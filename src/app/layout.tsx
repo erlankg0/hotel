@@ -1,10 +1,10 @@
-import { Noto_Sans } from 'next/font/google';
+import { Cormorant_Garamond  } from 'next/font/google';
 
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
-import './globals.css';
+import './globals.scss';
 
-const notoSans = Noto_Sans({
+const cormorant = Cormorant_Garamond({
   variable: '--font-geist-sans',
   subsets: ['latin', 'cyrillic', 'cyrillic-ext'],
 });
@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-    <body className={`${notoSans.variable}  antialiased`}>{children}</body>
+    <body className={`${cormorant.variable}  antialiased`}>{children}</body>
     </html>
   );
 }

@@ -7,6 +7,22 @@
   position: fixed;
   top: 0;
   width: 100%;
-  backdrop-filter: blur(3px);
+  backdrop-filter: blur(4.5px);
   z-index: 100;
+
+  &__menu {
+    display: flex;
+    flex-direction: row;
+    gap: .3rem;
+
+    & > span {
+      text-transform: uppercase;
+      color: var(--background);
+      align-self: start;
+    }
+  }
+}
+
+.right {
+  justify-self: end;
 }

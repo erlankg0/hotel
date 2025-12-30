@@ -1,4 +1,4 @@
-import { Cormorant_Garamond } from 'next/font/google';
+import { Montserrat } from 'next/font/google';
 
 import { SidebarProvider } from '@/components/ui/sidebar';
 import { SidebarUI } from '@/widget/sidebar';
@@ -7,9 +7,11 @@ import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 import './globals.css';
 
-const cormorant = Cormorant_Garamond({
-  variable: '--font-cormorant',
-  subsets: ['latin', 'cyrillic', 'cyrillic-ext'],
+ const montserrat = Montserrat({
+  subsets: ['latin', 'cyrillic'],
+  weight: ['300', '400', '500', '600', '700'],
+  display: 'swap',
+  variable: '--font-montserrat',
 });
 
 export const metadata: Metadata = {
@@ -24,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-    <body className={`${cormorant.variable}  antialiased`}>
+    <body className={`${montserrat.variable} antialiased`}>
     <SidebarProvider defaultOpen={false}>
       <SidebarUI />
       <main className="relative min-h-screen w-full overflow-x-hidden">

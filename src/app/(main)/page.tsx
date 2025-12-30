@@ -1,5 +1,6 @@
 import { FullVideo } from '@/widget/full-video';
 import { Header } from '@/widget/header';
+import { PriceRequestForm } from '@/widget/price-request-form';
 
 import styles from './page.module.scss';
 
@@ -11,10 +12,15 @@ export default function Page() {
 
       <div className={styles.overlay} />
 
-      <div className={styles.content}>
-        <p>Alanya, Kargıcak</p>
-        <h1>Utopia World SPA Resort</h1>
-      </div>
+      <article className={styles.content}>
+        <div className={styles.content__info}>
+          <p>Alanya, Kargıcak</p>
+          <h1>Utopia World SPA Resort</h1>
+        </div>
+        <form className={styles.booking}>
+          <PriceRequestForm />
+        </form>
+      </article>
     </section>
   );
 }

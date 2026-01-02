@@ -129,3 +129,10 @@
 body {
     font-family: var(--font-montserrat), Helvetica, Arial, Tahoma, Verdana, ui-sans-serif, system-ui, -apple-system;
 }
+
+
+.divider {
+    width: 1px;
+    align-self: stretch;
+    background-color: rgba(255, 255, 255, 0.8);
+}

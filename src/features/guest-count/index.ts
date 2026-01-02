@@ -1,0 +1,1 @@
+export { GuestCounter } from './ui/guest-count';

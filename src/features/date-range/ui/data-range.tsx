@@ -1,6 +1,8 @@
 'use client';
 
 
+import { ru } from 'date-fns/locale';
+
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
@@ -31,11 +33,13 @@ export function DateRange() {
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <Calendar
+          locale={ru}
           mode="range"
           selected={{
             from: dateRange.start ?? undefined,
             to: dateRange.end ?? undefined,
           }}
+          weekStartsOn={1}
           onSelect={handleDateRangeChange}
         />
       </DropdownMenuContent>

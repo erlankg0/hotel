@@ -80,6 +80,12 @@
     --sidebar-ring: hsl(217.2 91.2% 59.8%);
 
     --header-height: 96px;
+
+
+    --font-size-s: 1.2rem;
+    --font-size-m: 1.6rem;
+    --font-size-base: 1.8rem;
+    --font-size-lg: 4rem;
 }
 
 .dark {
@@ -129,6 +135,7 @@
 body {
     font-family: var(--font-montserrat), Helvetica, Arial, Tahoma, Verdana, ui-sans-serif, system-ui, -apple-system;
 }
+
 
 
 .divider {

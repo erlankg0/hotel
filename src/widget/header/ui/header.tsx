@@ -15,7 +15,8 @@ export function Header() {
 
       <Image src={'/images/logo.svg'} alt="logo" width={60} height={60} />
       <div className={styles.right}>
-        <Button variant={'ghost'}>Book Now</Button>
+
+        <Button variant={'regular'}>Контакты</Button>
       </div>
     </header>
   );

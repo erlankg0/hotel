@@ -22,7 +22,7 @@ export function PriceRequestForm() {
         </div>
 
         <div className={styles.right}>
-          <Button>Поиск</Button>
+          <Button variant={'regular'} type={'button'}>Поиск</Button>
         </div>
       </div>
     </section>

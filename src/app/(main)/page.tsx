@@ -14,8 +14,8 @@ export default function Page() {
 
       <article className={styles.content}>
         <div className={styles.content__info}>
-          <p>Alanya, Kargıcak</p>
-          <h1>Utopia World SPA Resort</h1>
+          <p className={styles.content__location}>Alanya, Kargıcak</p>
+          <h1 className={styles.content__title}>Utopia World SPA Resort</h1>
         </div>
         <form className={styles.booking}>
           <PriceRequestForm />

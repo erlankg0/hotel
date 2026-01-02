@@ -23,11 +23,31 @@
   align-items: center;
 
   color: #fff;
-}
 
-.content__info {
-  grid-row: 2;
-  text-align: center;
+  &__info {
+    grid-row: 2;
+    text-align: center;
+  }
+
+  &__location {
+    display: inline-block;
+    padding: .3rem .5rem;
+    border-radius: 1rem;
+    backdrop-filter: blur(.3rem);
+    background-color: rgba(175, 162, 90, 0);
+    text-transform: uppercase;
+    font-size: var(--font-size-s);
+  }
+
+  &__title {
+    display: block;
+    border-radius: 1rem;
+    color: rgba(255, 215, 0, 1);
+    text-transform: uppercase;
+    font-size: var(--font-size-lg);
+    font-family: var(--font-calligraffiti), cursive;
+    font-style: italic;
+  }
 }
 
 .booking {

@@ -143,3 +143,10 @@ body {
     align-self: stretch;
     background-color: rgba(255, 255, 255, 0.8);
 }
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 2;
+}

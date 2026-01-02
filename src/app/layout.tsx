@@ -6,6 +6,7 @@ import { SidebarUI } from '@/widget/sidebar';
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 import './globals.css';
+import { Header } from '@/widget/header';
 
 const montserrat = Montserrat({
   subsets: ['latin', 'cyrillic'],
@@ -37,6 +38,7 @@ export default function RootLayout({
     <SidebarProvider defaultOpen={false}>
       <SidebarUI />
       <main className="relative min-h-screen w-full overflow-x-hidden">
+        <Header />
         {children}
       </main>
     </SidebarProvider>

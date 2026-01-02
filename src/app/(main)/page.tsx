@@ -4,6 +4,8 @@ export default function Page() {
   return (
     <section>
       <Hero />
+      <Hero />
+      <Hero />
     </section>
   );
 }

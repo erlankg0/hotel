@@ -21,6 +21,9 @@ export function Hero() {
         <div className={styles.desktop}>
           <FullVideo url={'/video/utopia.mp4'} />
         </div>
+        <div className={'fixed w-full h-2 bg-black z-40'}>
+          Erlan Aaaa
+        </div>
       </div>
     </section>
   );

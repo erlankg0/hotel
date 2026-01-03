@@ -56,6 +56,18 @@
     border-radius: 1rem;
     overflow: hidden;
   }
+
+  &__fixed_form {
+    position: fixed;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -100%);
+    width: 100%;
+    max-width: calc(100% - 40rem);
+    border-radius: 3rem;
+    overflow: hidden;
+    margin-bottom: 3rem;
+  }
 }
 
 

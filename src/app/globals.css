@@ -137,7 +137,6 @@ body {
 }
 
 
-
 .divider {
     width: 1px;
     align-self: stretch;
@@ -149,4 +148,14 @@ body {
     inset: 0;
     background: rgba(0, 0, 0, 0.4);
     z-index: 2;
+}
+
+.bottom-panel {
+    position: fixed;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: calc(120rem - 3rem);
+    z-index: 4;
+    width: 70rem;
 }

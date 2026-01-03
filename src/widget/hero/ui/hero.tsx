@@ -3,6 +3,7 @@
 import { ChevronDown } from 'lucide-react';
 
 import { FullVideo } from '@/widget/full-video';
+import { PriceRequestForm } from '@/widget/price-request-form';
 
 import styles from './styles.module.scss';
 
@@ -20,9 +21,6 @@ export function Hero() {
         </div>
         <div className={styles.desktop}>
           <FullVideo url={'/video/utopia.mp4'} />
-        </div>
-        <div className={'fixed w-full h-2 bg-black z-40'}>
-          Erlan Aaaa
         </div>
       </div>
     </section>

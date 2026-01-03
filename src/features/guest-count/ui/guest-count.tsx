@@ -21,11 +21,11 @@ export function GuestCounter() {
     setChild,
   } = useGuest();
   return (
-    <DropdownMenu>
+    <DropdownMenu modal={false}>
       <DropdownMenuTrigger asChild>
         <Button variant={'square'}>{adults} Взрослых, {child} дети.</Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
+      <DropdownMenuContent sideOffset={30}>
         <DropdownMenuLabel>Количество гостей</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <GuestRow count={adults} setCount={setAdults} min={13} label={'Взрослый'} />

@@ -23,7 +23,7 @@ export function DateRange() {
   };
 
   return (
-    <DropdownMenu>
+    <DropdownMenu modal={false}>
       <DropdownMenuTrigger asChild>
         <Button variant={'square'} type="button">
           {dateRange.start && dateRange.end
@@ -31,7 +31,7 @@ export function DateRange() {
             : 'Выберите даты'}
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
+      <DropdownMenuContent sideOffset={30}>
         <Calendar
           locale={ru}
           mode="range"
@@ -40,6 +40,7 @@ export function DateRange() {
             to: dateRange.end ?? undefined,
           }}
           weekStartsOn={1}
+          numberOfMonths={2}
           onSelect={handleDateRangeChange}
         />
       </DropdownMenuContent>

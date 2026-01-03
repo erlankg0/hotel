@@ -6,6 +6,10 @@ export default function Page() {
       <Hero />
       <Hero />
       <Hero />
+      <Hero />
+      <Hero />
+      <Hero />
+      <Hero />
     </section>
   );
 }

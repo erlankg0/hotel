@@ -1,8 +1,14 @@
 .price_request {
   width: 100%;
   height: var(--header-height);
-  backdrop-filter: blur(4.5px);
   align-content: center;
+  background: var(--foreground);
+  color: var(--background);
+  border-radius: 4rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3),
+  0 2px 8px rgba(0, 0, 0, 0.2),
+  inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  overflow: hidden;
 
   &__content {
     display: grid;
@@ -21,4 +27,8 @@
 
 .right {
   justify-self: end;
+}
+
+.block {
+  z-index: 500;
 }

@@ -8,6 +8,7 @@ import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 
 import './globals.css';
+import { PriceRequestForm } from '@/widget/price-request-form';
 
 const montserrat = Montserrat({
   subsets: ['latin', 'cyrillic'],
@@ -38,12 +39,22 @@ export default function RootLayout({
     <body className={`${montserrat.variable} ${calligraffiti.variable} antialiased`}>
     <SidebarProvider defaultOpen={false}>
       <SidebarUI />
+
       <main className="relative min-h-screen w-full overflow-x-hidden">
         <Header />
         {children}
       </main>
+
+      <section
+        className="bottom-panel"
+        aria-label="Bottom fixed panel"
+      >
+        <PriceRequestForm />
+      </section>
+
     </SidebarProvider>
     </body>
     </html>
   );
 }
+

@@ -1,5 +1,7 @@
 import { useCallback } from 'react';
 
+import { Button } from '@/components/ui/button';
+
 import styles from './row.module.scss';
 
 import type { CounterType } from '../model/type';
@@ -18,10 +20,10 @@ export function GuestRow({ min, count, setCount, label }: CounterType) {
 
   return (
     <div className={styles.row}>
-      <p>{label} - {count}</p>
-      <div>
-        <button type={'button'} onClick={handleClickDecrement} disabled={count <= min}>-</button>
-        <button type={'button'} onClick={handleOnClickIncrement}>+</button>
+      <p className={styles.row__label}>{label} - {count}</p>
+      <div className={styles.row_row}>
+        <Button type={'button'} variant={'rounded'} onClick={handleClickDecrement} disabled={count <= min}>-</Button>
+        <Button type={'button'} variant={'rounded'} onClick={handleOnClickIncrement}>+</Button>
       </div>
     </div>
   );

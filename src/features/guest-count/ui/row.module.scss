@@ -1,6 +1,18 @@
 .row {
   display: flex;
-  flex-direction: row;
-  gap: 1rem;
   align-items: center;
+  gap: 1rem;
+
+  &__label {
+    font-size: 1rem;
+    font-weight: 500;
+    font-family: var(--font-montserrat), 'Roboto', sans-serif;
+    color: var(--foreground);
+  }
+
+  &_row {
+    margin-left: auto;
+    display: flex;
+    gap: 0.5rem;
+  }
 }

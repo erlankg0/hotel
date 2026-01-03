@@ -16,7 +16,7 @@ export function Header() {
       <Image src={'/images/logo.svg'} alt="logo" width={60} height={60} />
       <div className={styles.right}>
 
-        <Button variant={'regular'}>Контакты</Button>
+        <Button variant={'secondary'}>Контакты</Button>
       </div>
     </header>
   );

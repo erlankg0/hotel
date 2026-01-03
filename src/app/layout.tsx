@@ -2,13 +2,13 @@ import { Montserrat, Calligraffitti } from 'next/font/google';
 
 import { SidebarProvider } from '@/components/ui/sidebar';
 import { Header } from '@/widget/header';
+import { PriceRequestForm } from '@/widget/price-request-form';
 import { SidebarUI } from '@/widget/sidebar';
 
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 
 import './globals.css';
-import { PriceRequestForm } from '@/widget/price-request-form';
 
 const montserrat = Montserrat({
   subsets: ['latin', 'cyrillic'],

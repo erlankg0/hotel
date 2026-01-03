@@ -12,6 +12,7 @@ import {
 import { useGuest } from '../model/useGuest';
 
 import { GuestRow } from './guest-row';
+import styles from './styles.module.scss';
 
 export function GuestCounter() {
   const {
@@ -26,10 +27,12 @@ export function GuestCounter() {
         <Button variant={'square'}>{adults} Взрослых, {child} дети.</Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent sideOffset={30}>
-        <DropdownMenuLabel>Количество гостей</DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        <GuestRow count={adults} setCount={setAdults} min={13} label={'Взрослый'} />
-        <GuestRow count={child} setCount={setChild} min={3} label={'Ребенок'} />
+        <div className={styles.guests}>
+          <DropdownMenuLabel>Количество гостей</DropdownMenuLabel>
+          <DropdownMenuSeparator />
+          <GuestRow count={adults} setCount={setAdults} min={1} label={'Взрослый'} />
+          <GuestRow count={child} setCount={setChild} min={0} label={'Ребенок'} />
+        </div>
       </DropdownMenuContent>
     </DropdownMenu>
   );

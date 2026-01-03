@@ -15,12 +15,36 @@ const buttonVariants = cva(
         outline:
           'border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50',
         secondary:
-          'bg-secondary text-secondary-foreground hover:bg-secondary/80',
+          'border-[0.5px] border-solid border-foreground cursor-pointer transition-all duration-150 ease-out text-base hover:bg-foreground/5\n  hover:shadow-[0_1px_3px_rgba(0,0,0,0.15)]\n\n  active:scale-95\n  active:shadow-[inset_0_1px_2px_rgba(0,0,0,0.2)]\n\n  focus-visible:outline-none\n  focus-visible:ring-1\n  focus-visible:ring-foreground/40',
         ghost:
           'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50',
         link: 'text-primary underline-offset-4 hover:underline',
-        square: 'bg-none border-2 border-transparent hover:border-white hover:rounded-none',
+        square: 'bg-none border-2 border-transparent hover:border-white hover:rounded-none cursor-pointer',
         regular: 'border-solid border-white border-2 bg-none rounded-none text-white hover:border-black hover:text-black cursor-pointer',
+        rounded: `
+  h-8 w-8
+  rounded-full
+  border-[0.5px] border-solid border-foreground
+  bg-transparent
+  p-0
+  flex items-center justify-center
+  text-base
+  cursor-pointer
+  transition-all duration-150 ease-out
+
+  hover:bg-foreground/5
+  hover:shadow-[0_1px_3px_rgba(0,0,0,0.15)]
+
+  active:scale-95
+  active:shadow-[inset_0_1px_2px_rgba(0,0,0,0.2)]
+
+  focus-visible:outline-none
+  focus-visible:ring-1
+  focus-visible:ring-foreground/40
+
+  disabled:opacity-40
+  disabled:pointer-events-none
+`,
       },
       size: {
         default: 'h-9 px-4 py-2 has-[>svg]:px-3',

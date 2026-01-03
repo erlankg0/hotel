@@ -1,11 +1,15 @@
+'use client';
+
 import Image from 'next/image';
 
 import { Button } from '@/components/ui/button';
 import { SidebarTrigger } from '@/components/ui/sidebar';
+import { useContact } from '@/features/contact';
 
 import styles from './styles.module.scss';
 
 export function Header() {
+  const { setIsOpen } = useContact();
   return (
     <header className={styles.header}>
       <div>
@@ -16,7 +20,7 @@ export function Header() {
       <Image src={'/images/logo.svg'} alt="logo" width={60} height={60} />
       <div className={styles.right}>
 
-        <Button variant={'secondary'}>Контакты</Button>
+        <Button variant={'secondary'} onClick={setIsOpen}>Контакты</Button>
       </div>
     </header>
   );

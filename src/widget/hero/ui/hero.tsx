@@ -15,7 +15,7 @@ export function Hero() {
       <div className={styles.hero__inner}>
         <div className={styles.hero__text}>
           <div className={styles.hero__text__pre_title}>
-            <p>Welcome to</p>
+            <p>Welcome</p>
             <ChevronDown />
           </div>
           <h1 className={styles.hero__text__main_title}>Utopia World hotel</h1>

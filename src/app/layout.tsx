@@ -1,6 +1,6 @@
 import { Montserrat, Calligraffitti } from 'next/font/google';
 
-import { SidebarProvider } from '@/shared/ui/sidebar';
+import { Drawer } from '@/shared/ui/drawer';
 import { Header } from '@/widget/header';
 import { PriceRequestForm } from '@/widget/price-request-form';
 import { SidebarUI } from '@/widget/sidebar';
@@ -37,22 +37,19 @@ export default function RootLayout({
   return (
     <html lang="en">
     <body className={`${montserrat.variable} ${calligraffiti.variable} antialiased`}>
-    <SidebarProvider defaultOpen={false}>
-      <SidebarUI />
+    <SidebarUI />
 
-      <main className="relative min-h-screen w-full overflow-x-hidden">
-        <Header />
-        {children}
-      </main>
+    <main className="relative min-h-screen w-full overflow-x-hidden">
+      <Header />
+      {children}
+    </main>
 
-      <section
-        className="bottom-panel"
-        aria-label="Bottom fixed panel"
-      >
-        <PriceRequestForm />
-      </section>
-
-    </SidebarProvider>
+    <section
+      className="bottom-panel"
+      aria-label="Bottom fixed panel"
+    >
+      <PriceRequestForm />
+    </section>
     </body>
     </html>
   );

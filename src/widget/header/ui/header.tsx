@@ -4,7 +4,6 @@ import Image from 'next/image';
 
 import { useContact } from '@/features/contact';
 import { Button } from '@/shared/ui/button';
-import { SidebarTrigger } from '@/shared/ui/sidebar';
 
 import styles from './styles.module.scss';
 
@@ -13,7 +12,6 @@ export function Header() {
   return (
     <header className={styles.header}>
       <div>
-        <SidebarTrigger />
         <span>Меню</span>
       </div>
 

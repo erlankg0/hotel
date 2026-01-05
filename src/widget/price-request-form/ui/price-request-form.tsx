@@ -1,6 +1,6 @@
-import { Button } from '@/components/ui/button';
 import { DateRange } from '@/features/date-range';
 import { GuestCounter } from '@/features/guest-count';
+import { Button } from '@/shared/ui/button';
 
 import styles from './styles.module.scss';
 
@@ -22,7 +22,7 @@ export function PriceRequestForm() {
         </div>
 
         <div className={styles.right}>
-          <Button variant={'regular'} type={'button'}>Поиск</Button>
+          <Button variant={'secondary'} type={'button'}>Поиск</Button>
         </div>
       </div>
     </section>

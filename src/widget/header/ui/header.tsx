@@ -2,9 +2,9 @@
 
 import Image from 'next/image';
 
-import { Button } from '@/components/ui/button';
-import { SidebarTrigger } from '@/components/ui/sidebar';
 import { useContact } from '@/features/contact';
+import { Button } from '@/shared/ui/button';
+import { SidebarTrigger } from '@/shared/ui/sidebar';
 
 import styles from './styles.module.scss';
 

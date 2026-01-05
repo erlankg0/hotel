@@ -81,7 +81,6 @@
 
     --header-height: 96px;
 
-
     --font-size-s: 1.2rem;
     --font-size-m: 1.6rem;
     --font-size-base: 1.8rem;
@@ -135,7 +134,6 @@
 body {
     font-family: var(--font-montserrat), Helvetica, Arial, Tahoma, Verdana, ui-sans-serif, system-ui, -apple-system;
 }
-
 
 .divider {
     width: 1px;

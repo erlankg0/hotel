@@ -1,13 +1,13 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
+import { Button } from '@/shared/ui/button';
 import {
   DropdownMenu,
   DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-} from '@/components/ui/dropdown-menu';
+} from '@/shared/ui/dropdown-menu';
 
 import { useGuest } from '../model/useGuest';
 
@@ -24,7 +24,7 @@ export function GuestCounter() {
   return (
     <DropdownMenu modal={false}>
       <DropdownMenuTrigger asChild>
-        <Button variant={'square'}>{adults} Взрослых, {child} дети.</Button>
+        <Button variant={'secondary'}>{adults} Взрослых, {child} дети.</Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent sideOffset={30}>
         <div className={styles.guests}>

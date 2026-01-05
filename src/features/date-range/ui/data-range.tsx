@@ -3,9 +3,9 @@
 
 import { ru } from 'date-fns/locale';
 
-import { Button } from '@/components/ui/button';
-import { Calendar } from '@/components/ui/calendar';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { Button } from '@/shared/ui/button';
+import { Calendar } from '@/shared/ui/calendar';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@/shared/ui/dropdown-menu';
 
 import { useDateRange } from '../model/useDataRange';
 
@@ -25,7 +25,7 @@ export function DateRange() {
   return (
     <DropdownMenu modal={false}>
       <DropdownMenuTrigger asChild>
-        <Button variant={'square'} type="button">
+        <Button variant={'secondary'} type="button">
           {dateRange.start && dateRange.end
             ? `${dateRange.start.toLocaleDateString()} – ${dateRange.end.toLocaleDateString()}`
             : 'Выберите даты'}

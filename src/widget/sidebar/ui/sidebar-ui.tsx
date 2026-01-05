@@ -1,4 +1,4 @@
-import { SidebarContent, Sidebar } from '@/components/ui/sidebar';
+import { SidebarContent, Sidebar } from '@/shared/ui/sidebar';
 
 export function SidebarUI() {
   return (

@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 
-import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { Dialog, DialogContent } from '@/shared/ui/dialog';
 
 import type { DialogProps } from '../model/type';
 

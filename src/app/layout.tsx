@@ -39,7 +39,7 @@ export default function RootLayout({
     <body className={`${montserrat.variable} ${calligraffiti.variable} antialiased`}>
     <SidebarUI />
 
-    <main className="relative min-h-screen w-full overflow-x-hidden">
+    <main>
       <Header />
       {children}
     </main>

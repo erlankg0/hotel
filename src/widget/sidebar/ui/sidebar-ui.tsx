@@ -1,6 +1,6 @@
 'use client';
 
-import { useContact } from '@/features/contact';
+import { useSidebar } from '@/features/sidebar';
 import { Button } from '@/shared/ui/button';
 import {
   Drawer, DrawerClose,
@@ -12,7 +12,7 @@ import {
 } from '@/shared/ui/drawer';
 
 export function SidebarUI() {
-  const { setIsOpen, isOpen } = useContact();
+  const { setIsOpen, isOpen } = useSidebar();
   return (
     <Drawer direction={'left'} onClose={setIsOpen} open={isOpen}>
       <DrawerContent className={'z-[1000]'}>

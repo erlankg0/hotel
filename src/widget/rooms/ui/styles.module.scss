@@ -1,0 +1,17 @@
+.rooms {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  padding: 0 3rem;
+  margin: 0 auto;
+
+
+  &__title {
+    font-weight: 500;
+    font-family: var(--font-calligraffiti), 'Roboto', sans-serif;
+    font-size: var(--font-size-m);
+    text-align: center;
+
+  }
+}

@@ -2,13 +2,14 @@
 
 import { ChevronDown } from 'lucide-react';
 
-/*import { Contact, useContact } from '@/features/contact';
-import { Modal } from '@/shared/ui/modal'; */
+import { Contact, useContact } from '@/features/contact';
+import { Modal } from '@/shared/ui/modal';
 import { FullVideo } from '@/widget/full-video';
 
 import styles from './styles.module.scss';
 
 export function Hero() {
+  const { isOpen, setIsOpen } = useContact();
   return (
     <section className={styles.hero}>
       <div className={styles.hero__inner}>
@@ -24,9 +25,7 @@ export function Hero() {
           <FullVideo url={'/video/utopia.mp4'} />
         </div>
       </div>
+      <Modal content={<Contact />} isOpen={isOpen} onClose={setIsOpen} />
     </section>
   );
 }
-
-/*       <Modal content={<Contact />} isOpen={isOpen} onClose={setIsOpen} />
-*/

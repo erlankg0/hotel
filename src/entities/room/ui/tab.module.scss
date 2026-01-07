@@ -1,0 +1,43 @@
+.tab {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(3, 2fr) 1.5fr; // 3 фото + инфо
+    gap: 1.5rem;
+    align-items: stretch;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.5rem;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    height: 100%;
+  }
+
+  &__title {
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  &__description {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #555;
+  }
+
+  &__button {
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 999px;
+    border: 1px solid #000;
+    background: transparent;
+    cursor: pointer;
+  }
+}

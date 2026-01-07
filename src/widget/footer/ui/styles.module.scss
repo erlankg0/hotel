@@ -1,0 +1,21 @@
+.footer {
+  background-color: var(--background-green);
+  width: 100%;
+  min-height: calc(var(--header-height) * 3);
+  backdrop-filter: blur(3px);
+
+  &__inner {
+    padding: 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  &__info {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: space-between;
+  }
+}
+
+

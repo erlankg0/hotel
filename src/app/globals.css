@@ -85,6 +85,7 @@
     --font-size-m: 1.6rem;
     --font-size-base: 1.8rem;
     --font-size-lg: 4rem;
+    --background-green: #3A7659;
 }
 
 .dark {
@@ -159,7 +160,7 @@ body {
 }
 
 .container {
-    max-width: 1440px;
+    max-width: 1660px;
     width: 100%;
     padding: 0 1.2rem;
     margin: 0 auto;

@@ -1,6 +1,6 @@
 import { Montserrat, Calligraffitti } from 'next/font/google';
 
-import { Drawer } from '@/shared/ui/drawer';
+import { Footer } from '@/widget/footer';
 import { Header } from '@/widget/header';
 import { PriceRequestForm } from '@/widget/price-request-form';
 import { SidebarUI } from '@/widget/sidebar';
@@ -42,14 +42,14 @@ export default function RootLayout({
     <main>
       <Header />
       {children}
+      <section
+        className="bottom-panel"
+        aria-label="Bottom fixed panel"
+      >
+        <PriceRequestForm />
+      </section>
+      <Footer />
     </main>
-
-    <section
-      className="bottom-panel"
-      aria-label="Bottom fixed panel"
-    >
-      <PriceRequestForm />
-    </section>
     </body>
     </html>
   );

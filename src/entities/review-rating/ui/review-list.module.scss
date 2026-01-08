@@ -1,0 +1,29 @@
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 600;
+  font-size: var(--font-size-s);
+  cursor: pointer;
+
+  &__rating {
+    color: var(--accent);
+  }
+
+  &__divider {
+    opacity: 0.6;
+  }
+
+  &__max {
+    color: var(--accent);
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 14px;
+  min-width: 240px;
+  width: 100%;
+}

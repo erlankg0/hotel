@@ -1,5 +1,5 @@
-import { SomeUI } from '@/widget/animations';
 import { Hero } from '@/widget/hero';
+import { RestaurantsSwiper } from '@/widget/restorants';
 import { Rooms } from '@/widget/rooms';
 
 export default function Page() {
@@ -7,7 +7,7 @@ export default function Page() {
     <>
       <Hero />
       <Rooms />
-      <SomeUI />
+      <RestaurantsSwiper />
     </>
   );
 }

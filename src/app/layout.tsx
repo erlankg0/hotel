@@ -1,4 +1,4 @@
-import { Montserrat, Calligraffitti } from 'next/font/google';
+import { Calligraffitti, Montserrat } from 'next/font/google';
 
 import { Footer } from '@/widget/footer';
 import { Header } from '@/widget/header';
@@ -8,6 +8,10 @@ import { SidebarUI } from '@/widget/sidebar';
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
 import './globals.css';
 
 const montserrat = Montserrat({

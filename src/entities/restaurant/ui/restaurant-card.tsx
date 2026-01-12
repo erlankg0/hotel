@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 import styles from './card.module.scss';
 
 import type { RestaurantCardProps } from '../model/type';
@@ -18,13 +20,22 @@ export function RestaurantCard({
     >
       {media && (
         <div className={styles.media}>
-          <video
-            src={media.url}
-            autoPlay
-            muted
-            loop
-            playsInline
-          />
+          {media.type === 'video' ? (
+            <video
+              src={media.url}
+              autoPlay
+              muted
+              loop
+              playsInline
+            />
+          ) : (
+            <Image
+              src={media.url}
+              alt={media.alt}
+              fill
+              sizes="100vw"
+            />
+          )}
         </div>
       )}
       <div className={styles.content}>{slot}</div>

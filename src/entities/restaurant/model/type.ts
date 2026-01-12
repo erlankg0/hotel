@@ -12,6 +12,7 @@ export type RestaurantCardProps = {
   media: {
     url: string;
     alt: string;
+    type: 'video' | 'image';
   },
   slot: ReactNode,
   area: GridArea;

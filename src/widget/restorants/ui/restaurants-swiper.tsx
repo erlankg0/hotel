@@ -5,9 +5,10 @@ import {
   Swiper, SwiperSlide,
 } from 'swiper/react';
 
-import { RestaurantCard } from '@/entities/restaurant';
+import { RestaurantCard, RestorantTitle, Hours, ReservationInfo } from '@/entities/restaurant';
 
 import { RestaurantGrid } from './restaurant-grid';
+import styles from './restaurant-swiper.module.scss';
 
 export function RestaurantsSwiper() {
   return (
@@ -19,79 +20,185 @@ export function RestaurantsSwiper() {
       navigation
       pagination={{ clickable: true }}
       modules={[Navigation, Pagination, A11y]}
-      className={'border-2 rounded-xl px-2'}
+      className={styles.swiper}
     >
       <SwiperSlide>
-        <RestaurantGrid>
+        <RestaurantGrid size={4}>
           {/* крупный левый блок */}
           <RestaurantCard
-            media={{ url: '', alt: '' }}
-            area={{ col: 1, colSpan: 3, row: 1, rowSpan: 3 }}
-            slot={<h2>iPhone 16</h2>}
+            media={{
+              url: 'https://cdn.utopiahotels.com/assets/videos/covers/uw-turquaz.mp4',
+              alt: 'Turkuaz Restaurant',
+              type: 'video',
+            }} area={{ col: 1, colSpan: 2, row: 1, rowSpan: 2 }}
+            slot={<RestorantTitle />}
           />
-
-          {/* правый верхний короткий */}
           <RestaurantCard
-            media={{ url: '', alt: '' }}
-            area={{ col: 4, colSpan: 3, row: 1, rowSpan: 2 }}
-            slot={<p>New Colors</p>}
+            media={{
+              url: 'https://cdn.utopiahotels.com/assets/images/pages/turkuazgaleri02-xl.webp',
+              alt: 'Beach Restorant',
+              type: 'image',
+            }} area={{ col: 3, colSpan: 2, row: 1, rowSpan: 1 }}
+            slot={<h2>2</h2>}
           />
-
-          {/* нижний правый блок */}
           <RestaurantCard
-            media={{ url: '', alt: '' }}
-            area={{ col: 4, colSpan: 3, row: 3, rowSpan: 3 }}
-            slot={<p>More Features</p>}
+            media={{
+              url: 'https://cdn.utopiahotels.com/assets/images/pages/turkuazgaleri06-xl.webp',
+              alt: 'Beach Restorant',
+              type: 'image',
+            }} area={{ col: 1, colSpan: 1, row: 3, rowSpan: 1 }}
+            slot={<ReservationInfo />}
           />
-
-          {/* дополнительные блоки */}
           <RestaurantCard
-            media={{ url: '', alt: '' }}
-            area={{ col: 1, colSpan: 2, row: 4, rowSpan: 2 }}
-            slot={<p>Specs</p>}
+            media={{
+              url: 'https://cdn.utopiahotels.com/assets/images/pages/turkuazgaleri03-xl.webp',
+              alt: 'Beach Restorant',
+              type: 'image',
+            }} area={{ col: 2, colSpan: 1, row: 3, rowSpan: 1 }}
+            slot={<Hours />}
           />
-
           <RestaurantCard
-            media={{ url: '', alt: '' }}
-            area={{ col: 3, colSpan: 2, row: 4, rowSpan: 2 }}
-            slot={<p>Gallery</p>}
+            media={{
+              url: 'https://cdn.utopiahotels.com/assets/images/pages/turkuazgaleri04-xl.webp',
+              alt: 'Beach Restorant',
+              type: 'image',
+            }} area={{ col: 3, colSpan: 2, row: 2, rowSpan: 2 }}
+            slot={<h2>5</h2>}
           />
         </RestaurantGrid>
       </SwiperSlide>
       <SwiperSlide>
-        <RestaurantGrid>
+        <RestaurantGrid size={4}>
           {/* крупный левый блок */}
           <RestaurantCard
-            media={{ url: '', alt: '' }}
-            area={{ col: 1, colSpan: 3, row: 1, rowSpan: 3 }}
-            slot={<h2>iPhone 16</h2>}
+            media={{
+              url: 'https://cdn.utopiahotels.com/assets/videos/covers/uw-turquaz.mp4',
+              alt: 'Turkuaz Restaurant',
+              type: 'video',
+            }} area={{ col: 1, colSpan: 2, row: 1, rowSpan: 2 }}
+            slot={<RestorantTitle />}
           />
-
-          {/* правый верхний короткий */}
           <RestaurantCard
-            media={{ url: '', alt: '' }}
-            area={{ col: 4, colSpan: 3, row: 1, rowSpan: 2 }}
-            slot={<p>New Colors</p>}
+            media={{
+              url: 'https://cdn.utopiahotels.com/assets/images/pages/turkuazgaleri02-xl.webp',
+              alt: 'Beach Restorant',
+              type: 'image',
+            }} area={{ col: 3, colSpan: 2, row: 1, rowSpan: 1 }}
+            slot={<h2>2</h2>}
           />
-
-          {/* нижний правый блок */}
           <RestaurantCard
-            media={{ url: '', alt: '' }}
-            area={{ col: 4, colSpan: 3, row: 3, rowSpan: 3 }}
-            slot={<p>More Features</p>}
+            media={{
+              url: 'https://cdn.utopiahotels.com/assets/images/pages/turkuazgaleri06-xl.webp',
+              alt: 'Beach Restorant',
+              type: 'image',
+            }} area={{ col: 1, colSpan: 1, row: 3, rowSpan: 1 }}
+            slot={<ReservationInfo />}
           />
-
-          {/* дополнительные блоки */}
           <RestaurantCard
-            media={{ url: '', alt: '' }}
-            area={{ col: 1, colSpan: 2, row: 4, rowSpan: 2 }}
-            slot={<p>Specs</p>}
+            media={{
+              url: 'https://cdn.utopiahotels.com/assets/images/pages/turkuazgaleri03-xl.webp',
+              alt: 'Beach Restorant',
+              type: 'image',
+            }} area={{ col: 2, colSpan: 1, row: 3, rowSpan: 1 }}
+            slot={<Hours />}
           />
-
           <RestaurantCard
-            media={{ url: '', alt: '' }}
-            area={{ col: 3, colSpan: 1, row: 4, rowSpan: 2 }}
-            slot={<p>Gallery</p>}
+            media={{
+              url: 'https://cdn.utopiahotels.com/assets/images/pages/turkuazgaleri04-xl.webp',
+              alt: 'Beach Restorant',
+              type: 'image',
+            }} area={{ col: 3, colSpan: 2, row: 2, rowSpan: 2 }}
+            slot={<h2>5</h2>}
+          />
+        </RestaurantGrid>
+      </SwiperSlide>
+      <SwiperSlide>
+        <RestaurantGrid size={4}>
+          {/* крупный левый блок */}
+          <RestaurantCard
+            media={{
+              url: 'https://cdn.utopiahotels.com/assets/videos/covers/uw-turquaz.mp4',
+              alt: 'Turkuaz Restaurant',
+              type: 'video',
+            }} area={{ col: 1, colSpan: 2, row: 1, rowSpan: 2 }}
+            slot={<RestorantTitle />}
+          />
+          <RestaurantCard
+            media={{
+              url: 'https://cdn.utopiahotels.com/assets/images/pages/turkuazgaleri02-xl.webp',
+              alt: 'Beach Restorant',
+              type: 'image',
+            }} area={{ col: 3, colSpan: 2, row: 1, rowSpan: 1 }}
+            slot={<h2>2</h2>}
+          />
+          <RestaurantCard
+            media={{
+              url: 'https://cdn.utopiahotels.com/assets/images/pages/turkuazgaleri06-xl.webp',
+              alt: 'Beach Restorant',
+              type: 'image',
+            }} area={{ col: 1, colSpan: 1, row: 3, rowSpan: 1 }}
+            slot={<ReservationInfo />}
+          />
+          <RestaurantCard
+            media={{
+              url: 'https://cdn.utopiahotels.com/assets/images/pages/turkuazgaleri03-xl.webp',
+              alt: 'Beach Restorant',
+              type: 'image',
+            }} area={{ col: 2, colSpan: 1, row: 3, rowSpan: 1 }}
+            slot={<Hours />}
+          />
+          <RestaurantCard
+            media={{
+              url: 'https://cdn.utopiahotels.com/assets/images/pages/turkuazgaleri04-xl.webp',
+              alt: 'Beach Restorant',
+              type: 'image',
+            }} area={{ col: 3, colSpan: 2, row: 2, rowSpan: 2 }}
+            slot={<h2>5</h2>}
+          />
+        </RestaurantGrid>
+      </SwiperSlide>
+      <SwiperSlide>
+        <RestaurantGrid size={4}>
+          {/* крупный левый блок */}
+          <RestaurantCard
+            media={{
+              url: 'https://cdn.utopiahotels.com/assets/videos/covers/uw-turquaz.mp4',
+              alt: 'Turkuaz Restaurant',
+              type: 'video',
+            }} area={{ col: 1, colSpan: 2, row: 1, rowSpan: 2 }}
+            slot={<RestorantTitle />}
+          />
+          <RestaurantCard
+            media={{
+              url: 'https://cdn.utopiahotels.com/assets/images/pages/turkuazgaleri02-xl.webp',
+              alt: 'Beach Restorant',
+              type: 'image',
+            }} area={{ col: 3, colSpan: 2, row: 1, rowSpan: 1 }}
+            slot={<h2>2</h2>}
+          />
+          <RestaurantCard
+            media={{
+              url: 'https://cdn.utopiahotels.com/assets/images/pages/turkuazgaleri06-xl.webp',
+              alt: 'Beach Restorant',
+              type: 'image',
+            }} area={{ col: 1, colSpan: 1, row: 3, rowSpan: 1 }}
+            slot={<ReservationInfo />}
+          />
+          <RestaurantCard
+            media={{
+              url: 'https://cdn.utopiahotels.com/assets/images/pages/turkuazgaleri03-xl.webp',
+              alt: 'Beach Restorant',
+              type: 'image',
+            }} area={{ col: 2, colSpan: 1, row: 3, rowSpan: 1 }}
+            slot={<Hours />}
+          />
+          <RestaurantCard
+            media={{
+              url: 'https://cdn.utopiahotels.com/assets/images/pages/turkuazgaleri04-xl.webp',
+              alt: 'Beach Restorant',
+              type: 'image',
+            }} area={{ col: 3, colSpan: 2, row: 2, rowSpan: 2 }}
+            slot={<h2>5</h2>}
           />
         </RestaurantGrid>
       </SwiperSlide>

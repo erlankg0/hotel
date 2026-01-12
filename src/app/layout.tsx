@@ -1,4 +1,4 @@
-import { Calligraffitti, Montserrat } from 'next/font/google';
+import { Calligraffitti, Montserrat, Inter } from 'next/font/google';
 
 import { Footer } from '@/widget/footer';
 import { Header } from '@/widget/header';
@@ -28,6 +28,13 @@ const calligraffiti = Calligraffitti({
   variable: '--font-calligraffiti',
 });
 
+const inter = Inter({
+  subsets: ['latin', 'cyrillic', 'cyrillic-ext'],
+  weight: ['300', '400', '500', '600', '700'],
+  display: 'swap',
+  variable: '--font-inter',
+});
+
 export const metadata: Metadata = {
   title: 'Utopia World Hotel',
   description: 'A new world created in the most special corner of the Mediterranean where you can experience both the green and the blue together... Utopia World will be the indispensable address of your holiday.',
@@ -40,7 +47,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-    <body className={`${montserrat.variable} ${calligraffiti.variable} antialiased`}>
+    <body className={`${montserrat.variable} ${calligraffiti.variable} ${inter.variable} antialiased`}>
     <SidebarUI />
 
     <main>

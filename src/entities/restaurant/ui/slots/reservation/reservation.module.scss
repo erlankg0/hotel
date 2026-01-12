@@ -1,0 +1,65 @@
+.card {
+  position: relative;
+  padding: 2rem 2.4rem;
+  max-width: 360px;
+
+  color: var(--background);
+
+  box-shadow:
+          0 12px 35px rgba(0, 0, 0, 0.4);
+}
+
+.title {
+  font-size: 0.85rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  opacity: 0.75;
+  margin-bottom: 1.2rem;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  font-size: 1rem;
+  line-height: 1.4;
+  margin-bottom: 0.9rem;
+}
+
+.label {
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+.value {
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+
+.email {
+  text-decoration: none;
+  color: #6fd3c3;
+}
+
+.email:hover {
+  text-decoration: underline;
+}
+
+/* вертикальный акцент */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 1.2rem;
+  left: 1.2rem;
+  width: 2px;
+  height: 65%;
+  background: linear-gradient(
+                  to bottom,
+                  transparent,
+                  #6fd3c3,
+                  transparent
+  );
+}

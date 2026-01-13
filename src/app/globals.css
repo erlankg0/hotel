@@ -169,3 +169,25 @@ body {
 button[type="button"] {
     cursor: pointer;
 }
+
+.segments {
+    display: flex;
+    gap: 8px;
+}
+
+.segment {
+    width: 2rem;
+    height: 1rem;
+    background: rgba(255, 255, 255, 0.3);
+    overflow: hidden;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+.fill {
+    display: block;
+    height: 100%;
+    background: white;
+    transition: width 0.1s linear;
+}
+

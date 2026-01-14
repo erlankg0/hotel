@@ -4,7 +4,7 @@
   gap: 1rem;
   max-width: 1700px;
 
-  margin: 0 auto;
+  margin: 2rem auto;
 }
 
 .swiper {
@@ -16,10 +16,17 @@
 
 .swiper :global(.swiper-slide) {
   border-radius: 3cqw;
-  overflow: hidden;
 }
 
 .controls {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
+  gap: .5rem;
+
+  &__nav {
+    display: flex;
+    flex-direction: row;
+    gap: .5rem;
+  }
 }

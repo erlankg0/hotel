@@ -173,12 +173,13 @@ button[type="button"] {
 .segments {
     display: flex;
     gap: 8px;
+    border-radius: 2cqw;
+    padding: 1rem;
+    background-color: var(--sidebar-accent);
 }
 
 .segment {
-    width: 2rem;
     height: 1rem;
-    background: rgba(255, 255, 255, 0.3);
     overflow: hidden;
     pointer-events: auto;
     cursor: pointer;
@@ -189,5 +190,10 @@ button[type="button"] {
     height: 100%;
     background: white;
     transition: width 0.1s linear;
+}
+
+.segment-progress {
+    transform-origin: left;
+    transition: transform 0.45s ease-out;
 }
 

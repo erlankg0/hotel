@@ -1,1 +1,0 @@
-export { RestaurantsSwiper } from './ui/restaurants-swiper';

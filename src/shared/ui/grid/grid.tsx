@@ -1,9 +1,9 @@
-import styles from './restaurant-grid.module.scss';
+import styles from './grid.module.scss';
 
 import type { ReactNode } from 'react';
 
 
-export function RestaurantGrid({ children, size = 6 }: { children: ReactNode, size?: number }) {
+export function Grid({ children, size = 6 }: { children: ReactNode, size?: number }) {
   return (
     <section className={styles.grid} style={{
       gridTemplateColumns: `repeat(${size}, 1fr)`,

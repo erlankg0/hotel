@@ -1,1 +1,0 @@
-export { FoodBar } from './ui/FoodBar';

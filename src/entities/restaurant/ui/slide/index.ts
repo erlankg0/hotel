@@ -1,0 +1,1 @@
+export { RestaurantSlide } from './slide';

@@ -1,0 +1,1 @@
+export { AwardsMarquee } from './ui/awards';

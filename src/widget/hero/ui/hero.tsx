@@ -22,7 +22,7 @@ export function Hero() {
           <p>Alanya, Kargıcak</p>
         </div>
         <div className={styles.desktop}>
-          <FullVideo url={'/video/utopia.mp4'} />
+          <FullVideo url={'/video/utopia.mp4'} poster={'/images/poster.jpg'} />
         </div>
       </div>
       <Modal content={<Contact />} isOpen={isOpen} onClose={setIsOpen} />

@@ -8,4 +8,5 @@ export type SwiperProps = {
   controls?: boolean;
   navs?: boolean;
   centeredSlides?: boolean;
+  loop?: boolean;
 }

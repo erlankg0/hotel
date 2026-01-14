@@ -13,8 +13,16 @@ import styles from './swiper.module.scss';
 
 import type { SwiperProps } from '../model/type';
 
-
-export function SwiperUI({ delay, slides, spaceBetween = 32, slidesPerView = 1, controls, navs, centeredSlides }: SwiperProps) {
+export function SwiperUI({
+                           delay,
+                           slides,
+                           spaceBetween = 32,
+                           slidesPerView = 1,
+                           controls,
+                           navs,
+                           centeredSlides,
+                           loop,
+                         }: SwiperProps) {
   const nav = useSwiperNav();
 
   const {
@@ -27,6 +35,7 @@ export function SwiperUI({ delay, slides, spaceBetween = 32, slidesPerView = 1, 
   return (
     <div className={styles.wrapper}>
       <Swiper
+        loop={loop}
         slidesPerView={slidesPerView}
         spaceBetween={spaceBetween}
         centeredSlides={centeredSlides}
@@ -44,22 +53,24 @@ export function SwiperUI({ delay, slides, spaceBetween = 32, slidesPerView = 1, 
         className={styles.swiper}
       >
         {slides.map((slide, index) => (
-          <SwiperSlide key={index}>
+          <SwiperSlide key={index} className={styles.slide}>
             {slide}
           </SwiperSlide>
         ))}
       </Swiper>
       <div className={styles.controls}>
-        {controls && (<>{Segments}</>)}
-        {navs && (<div className={styles.controls__nav}>
-          <Button variant={'rounded'} onClick={nav.prev} disabled={nav.isStart}>
-            <ChevronLeft />
-          </Button>
+        {controls && <>{Segments}</>}
+        {navs && (
+          <div className={styles.controls__nav}>
+            <Button variant={'rounded'} onClick={nav.prev} disabled={nav.isStart}>
+              <ChevronLeft />
+            </Button>
 
-          <Button variant={'rounded'} onClick={nav.next} disabled={nav.isEnd}>
-            <ChevronRight />
-          </Button>
-        </div>)}
+            <Button variant={'rounded'} onClick={nav.next} disabled={nav.isEnd}>
+              <ChevronRight />
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );

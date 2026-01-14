@@ -1,11 +1,9 @@
 .tab {
-  max-width: 1440px;
   margin: 0 auto;
-  padding: 2rem 1rem;
 
   &__list {
     display: grid;
-    grid-template-columns: repeat(3, 2fr) 1.5fr; // 3 фото + инфо
+    grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
     align-items: stretch;
   }

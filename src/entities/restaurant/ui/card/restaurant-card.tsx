@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 import styles from './card.module.scss';
 
-import type { RestaurantCardProps } from '../model/type';
+import type { RestaurantCardProps } from './model/type';
 
 
 export function RestaurantCard({

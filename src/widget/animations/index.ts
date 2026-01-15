@@ -1,1 +1,0 @@
-export { SomeUI } from './ui/some';

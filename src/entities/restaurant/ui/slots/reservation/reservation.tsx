@@ -1,6 +1,7 @@
 'use client';
 
 import gsap from 'gsap';
+
 import styles from './reservation.module.scss';
 
 export function ReservationInfo() {

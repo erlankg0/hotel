@@ -8,7 +8,7 @@
     align-items: stretch;
   }
 
-  &__info {
+  &__content {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -17,6 +17,12 @@
     border-radius: 16px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     height: 100%;
+  }
+
+  &__info {
+    display: grid;
+    grid-template-rows: 40px 1fr 60px;
+    gap: 1rem;
   }
 
   &__title {

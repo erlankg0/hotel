@@ -3,3 +3,4 @@ export type Award = {
   year: string;
   organization: string;
 };
+

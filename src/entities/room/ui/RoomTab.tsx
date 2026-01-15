@@ -15,9 +15,12 @@ export function RoomTab(props: RoomTabData) {
           </li>
         ))}
 
-        <li className={styles.tab__info}>
-          <div className={'flex flex-col justify-between h-full'}>
+        <li className={styles.tab__content}>
+          <div className={styles.tab__info}>
             <h4 className={styles.tab__title}>{title}</h4>
+            <div>
+              тут инфо отеля
+            </div>
             <p className={styles.tab__description}>{description}</p>
           </div>
 

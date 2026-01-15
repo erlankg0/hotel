@@ -2,7 +2,7 @@ import { stdv, stda, penthouse, junior, corner, RoomTab } from '@/entities/room'
 import { SwiperUI } from '@/widget/swiper';
 
 const SWIPER_CONFIG = {
-  delay: 5000,
+  delay: 10000,
   controls: true,
   navs: true,
   slidesPerView: 1,

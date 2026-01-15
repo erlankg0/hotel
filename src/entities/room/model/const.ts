@@ -6,21 +6,31 @@ export const stdv: RoomTabData = {
     'Почувствуйте средиземноморский бриз в своей душе в номере виллы.\n\n' +
     'Благодаря широкому балкону вы можете ощутить максимальный комфорт в нашем просторном номере, ' +
     'погрузившись в поток уникального вида от зелёного до синего.',
-  images: [
+  media: [
     {
-      id: 'villa-standard-1',
-      url: 'https://cdn.utopiahotels.com/assets/images/pages/villastandardutopiaroom01-xl.webp',
-      alt: 'Стандартный номер виллы — интерьер',
+      hasVideo: false,
+      images: {
+        url: 'https://cdn.utopiahotels.com/assets/images/pages/villastandardutopiaroom01-xl.webp',
+        alt: 'Стандартный номер виллы — интерьер',
+      },
     },
     {
-      id: 'villa-standard-2',
-      url: 'https://cdn.utopiahotels.com/assets/images/pages/villastandardutopiaroom02-xl.webp',
-      alt: 'Стандартный номер виллы — спальня',
+      hasVideo: false,
+      images: {
+        url: 'https://cdn.utopiahotels.com/assets/images/pages/villastandardutopiaroom02-xl.webp',
+        alt: 'Стандартный номер виллы — спальня',
+      },
     },
     {
-      id: 'villa-standard-3',
-      url: 'https://cdn.utopiahotels.com/assets/images/pages/villastandardutopiaroom03-xl.webp',
-      alt: 'Стандартный номер виллы — балкон с видом',
+      hasVideo: true,
+      images: {
+        url: 'https://cdn.utopiahotels.com/assets/images/pages/villastandardutopiaroom03-xl.webp',
+        alt: 'Стандартный номер виллы — балкон с видом',
+      },
+      video: {
+        url: '/video/room/0.MOV',
+        alt: 'test-1',
+      },
     },
   ],
   info: {
@@ -38,21 +48,31 @@ export const stda: RoomTabData = {
   title: 'Стандартный номер',
   description: 'Каждый день вы будете сопровождать великолепный танец природы.\n' +
     'Очень приятно отдыхать в нашем Стандартном номере, который сопровождает захватывающий дух вид в мир Utopia World…\n',
-  images: [
+  media: [
     {
-      id: 'stda-1',
-      url: 'https://cdn.utopiahotels.com/assets/images/pages/01worldstandartroom-xl.webp',
-      alt: 'Стандартный номер виллы — интерьер',
+      hasVideo: false,
+      images: {
+        url: 'https://cdn.utopiahotels.com/assets/images/pages/01worldstandartroom-xl.webp',
+        alt: 'Стандартный номер — интерьер',
+      },
     },
     {
-      id: 'stda-2',
-      url: 'https://cdn.utopiahotels.com/assets/images/pages/02worldstandartroom-xl.webp',
-      alt: 'Стандартный номер виллы — спальня',
+      hasVideo: false,
+      images: {
+        url: 'https://cdn.utopiahotels.com/assets/images/pages/02worldstandartroom-xl.webp',
+        alt: 'Стандартный номер — спальня',
+      },
     },
     {
-      id: 'stda-3',
-      url: 'https://cdn.utopiahotels.com/assets/images/pages/03worldstandartroom-xl.webp',
-      alt: 'Стандартный номер виллы — балкон с видом',
+      hasVideo: true,
+      images: {
+        url: 'https://cdn.utopiahotels.com/assets/images/pages/03worldstandartroom-xl.webp',
+        alt: 'Стандартный номер',
+      },
+      video: {
+        url: '/video/room/1.MOV',
+        alt: 'test-1',
+      },
     },
   ],
   info: {
@@ -66,25 +86,37 @@ export const stda: RoomTabData = {
     bedRoomCount: 1,
   },
 };
+
+
 export const corner: RoomTabData = {
   title: 'Corner Suite',
   description: 'Мы предлагаем отдых, выходящий за рамки роскоши, в нашем номере Corner Suite.\n' +
     'Вы можете насладиться видом на Средиземное море из крытого джакузи и расслабиться, как пожелаете, в его просторной зоне.',
-  images: [
+  media: [
     {
-      id: 'corner-1',
-      url: 'https://cdn.utopiahotels.com/assets/images/pages/cornersuitworld02-xl.webp',
-      alt: 'Стандартный номер виллы — интерьер',
+      hasVideo: false,
+      images: {
+        url: 'https://cdn.utopiahotels.com/assets/images/pages/cornersuitworld02-xl.webp',
+        alt: 'Corner Suit — интерьер',
+      },
     },
     {
-      id: 'corner-2',
-      url: 'https://cdn.utopiahotels.com/assets/images/pages/cornersuitworld03-xl.webp',
-      alt: 'Стандартный номер виллы — спальня',
+      hasVideo: false,
+      images: {
+        url: 'https://cdn.utopiahotels.com/assets/images/pages/cornersuitworld03-xl.webp',
+        alt: 'Corner Suit — спальня',
+      },
     },
     {
-      id: 'corner-3',
-      url: 'https://cdn.utopiahotels.com/assets/images/pages/cornersuitworld04-xl.webp',
-      alt: 'Стандартный номер виллы — балкон с видом',
+      hasVideo: true,
+      images: {
+        url: 'https://cdn.utopiahotels.com/assets/images/pages/cornersuitworld04-xl.webp',
+        alt: 'Corner Suit',
+      },
+      video: {
+        url: '/video/room/0.MOV',
+        alt: 'test-1',
+      },
     },
   ],
   info: {
@@ -98,24 +130,34 @@ export const corner: RoomTabData = {
     bedRoomCount: 1,
   },
 };
-export const junior: RoomTabData= {
+export const junior: RoomTabData = {
   title: 'Junior Suite',
   description: 'Junior Suite предлагает комфортное жилое пространство для больших семей благодаря 2 отдельным спальням.\n',
-  images: [
+  media: [
     {
-      id: 'junior-1',
-      url: 'https://cdn.utopiahotels.com/assets/images/pages/juniorsuitgaleri02-xl.webp',
-      alt: 'Стандартный номер виллы — интерьер',
+      hasVideo: false,
+      images: {
+        url: 'https://cdn.utopiahotels.com/assets/images/pages/juniorsuitgaleri02-xl.webp',
+        alt: 'Junior — интерьер',
+      },
     },
     {
-      id: 'junior-2',
-      url: 'https://cdn.utopiahotels.com/assets/images/pages/juniorsuitgaleri03-xl.webp',
-      alt: 'Стандартный номер виллы — спальня',
+      hasVideo: false,
+      images: {
+        url: 'https://cdn.utopiahotels.com/assets/images/pages/juniorsuitgaleri03-xl.webp',
+        alt: 'Junior — спальня',
+      },
     },
     {
-      id: 'junior-3',
-      url: 'https://cdn.utopiahotels.com/assets/images/pages/juniorsuitgaleri04-xl.webp',
-      alt: 'Стандартный номер виллы — балкон с видом',
+      hasVideo: true,
+      images: {
+        url: 'https://cdn.utopiahotels.com/assets/images/pages/juniorsuitgaleri04-xl.webp',
+        alt: 'Junior Suit',
+      },
+      video: {
+        url: '/video/room/0.MOV',
+        alt: 'test-1',
+      },
     },
   ],
   info: {
@@ -132,21 +174,31 @@ export const junior: RoomTabData= {
 export const penthouse: RoomTabData = {
   title: 'Penthouse Suit',
   description: 'Комната, предназначенная для вашего комфорта, где вы можете дышать тишиной вечера и одновременно наблюдать за Средиземным морем на своей террасе.\n',
-  images: [
+  media: [
     {
-      id: 'Penthouse-1',
-      url: 'https://cdn.utopiahotels.com/assets/images/pages/dubelxroomworld01-xl.webp',
-      alt: 'Стандартный номер виллы — интерьер',
+      hasVideo: false,
+      images: {
+        url: 'https://cdn.utopiahotels.com/assets/images/pages/dubelxroomworld01-xl.webp',
+        alt: 'Penthouse Suit — интерьер',
+      },
     },
     {
-      id: 'Penthouse-2',
-      url: 'https://cdn.utopiahotels.com/assets/images/pages/dubelxroomworld02-xl.webp',
-      alt: 'Стандартный номер виллы — спальня',
+      hasVideo: false,
+      images: {
+        url: 'https://cdn.utopiahotels.com/assets/images/pages/dubelxroomworld02-xl.webp',
+        alt: 'Penthouse Suit — спальня',
+      },
     },
     {
-      id: 'Penthouse-3',
-      url: 'https://cdn.utopiahotels.com/assets/images/pages/dubelxroomworld03-xl.webp',
-      alt: 'Стандартный номер виллы — балкон с видом',
+      hasVideo: true,
+      images: {
+        url: 'https://cdn.utopiahotels.com/assets/images/pages/dubelxroomworld03-xl.webp',
+        alt: 'Penthouse Suit — балкон с видом',
+      },
+      video: {
+        url: '/video/room/1.MOV',
+        alt: 'test-1',
+      },
     },
   ],
   info: {

@@ -1,3 +1,3 @@
-export { RoomCard } from './ui/RoomCard';
-export { RoomTab } from './ui/RoomTab';
+export { RoomCard } from './ui/card/RoomCard';
+export { RoomTab } from './ui/tab/RoomTab';
 export { corner, junior, stda, stdv, penthouse } from './model/const';

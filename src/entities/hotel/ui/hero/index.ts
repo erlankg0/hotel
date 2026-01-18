@@ -1,0 +1,1 @@
+export { HotelHero } from './hero';

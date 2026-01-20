@@ -1,5 +1,6 @@
 import { HotelAbout } from '@/entities/hotel';
 import { AwardsMarquee } from '@/widget/awards';
+import { Entertainment } from '@/widget/entertainment';
 import { Hero } from '@/widget/hero';
 import { Restaurant } from '@/widget/restaurant';
 import { Rooms } from '@/widget/rooms';
@@ -11,6 +12,7 @@ export default function Page() {
     <section className={styles.page}>
       <Hero />
       <HotelAbout />
+      <Entertainment />
       <Restaurant />
       <AwardsMarquee />
       <Rooms />

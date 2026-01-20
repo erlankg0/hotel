@@ -13,12 +13,12 @@ export function HotelAccordion() {
         className={styles.accordion}
         defaultValue="item-1"
       >
-        <AccordionItem value="item-1" className={styles.accordionItem}>
-          <AccordionTrigger className={styles.accordionTrigger}>
-            <span className={styles.accordionTitle}>Общая информация</span>
+        <AccordionItem value="item-1" className={styles.accordion__item}>
+          <AccordionTrigger className={styles.accordion__trigger}>
+            <span className={styles.accordion_title}>Общая информация</span>
           </AccordionTrigger>
-          <AccordionContent className={styles.accordionContent}>
-            <div className={styles.contentBlock}>
+          <AccordionContent className={styles.accordion__content}>
+            <div className={styles.content}>
               <p>
                 Категория отеля — ★★★★★. Курорт работает по концепции Ultra All Inclusive
                 и был открыт 29 июня 2007 года.
@@ -38,28 +38,28 @@ export function HotelAccordion() {
           <AccordionTrigger className={styles.accordionTrigger}>
             <span className={styles.accordionTitle}>Расположение</span>
           </AccordionTrigger>
-          <AccordionContent className={styles.accordionContent}>
-            <div className={styles.contentBlock}>
+          <AccordionContent className={styles.accordion__content}>
+            <div className={styles.content}>
               <p>
                 Отель расположен в районе Kargıcak, недалеко от города Аланья, на побережье
                 Средиземного моря.
               </p>
               <div className={styles.distanceList}>
-                <div className={styles.distanceItem}>
-                  <span className={styles.distanceLabel}>Аланья</span>
-                  <span className={styles.distanceValue}>17 км</span>
+                <div className={styles.distanceList__item}>
+                  <span className={styles.distanceList__label}>Аланья</span>
+                  <span className={styles.distanceList__value}>17 км</span>
                 </div>
-                <div className={styles.distanceItem}>
-                  <span className={styles.distanceLabel}>Махмутлар</span>
-                  <span className={styles.distanceValue}>5 км</span>
+                <div className={styles.distanceList__item}>
+                  <span className={styles.distanceList__label}>Махмутлар</span>
+                  <span className={styles.distanceList__value}>5 км</span>
                 </div>
-                <div className={styles.distanceItem}>
-                  <span className={styles.distanceLabel}>Аэропорт Gazipaşa</span>
-                  <span className={styles.distanceValue}>21 км</span>
+                <div className={styles.distanceList__item}>
+                  <span className={styles.distanceList__label}>Аэропорт Gazipaşa</span>
+                  <span className={styles.distanceList__value}>21 км</span>
                 </div>
-                <div className={styles.distanceItem}>
-                  <span className={styles.distanceLabel}>Анталья</span>
-                  <span className={styles.distanceValue}>155 км</span>
+                <div className={styles.distanceList__item}>
+                  <span className={styles.distanceList__label}>Анталья</span>
+                  <span className={styles.distanceList__value}>155 км</span>
                 </div>
               </div>
             </div>

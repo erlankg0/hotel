@@ -1,1 +1,0 @@
-export { HotelContact } from './contact';

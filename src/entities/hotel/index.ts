@@ -1,3 +1,4 @@
 export { HotelHero } from './ui/hero';
-export { HotelContact } from './ui/contact';
-export { HotelInfo } from './ui/info';
+export { HotelInfo, HOTEL_INFO, HOTEL_CONTACTS } from './ui/info';
+export { HotelAccordion } from './ui/accordion';
+export { HotelAbout } from './ui/about';

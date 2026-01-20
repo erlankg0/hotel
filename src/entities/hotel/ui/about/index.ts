@@ -1,0 +1,1 @@
+export { HotelAbout } from './about';

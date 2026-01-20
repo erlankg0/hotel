@@ -1,32 +1,39 @@
 'use client';
 
+import Link from 'next/link';
+
 import { useSidebar } from '@/features/sidebar';
-import { Button } from '@/shared/ui/button';
-import {
-  Drawer, DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-} from '@/shared/ui/drawer';
+import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerDescription, DrawerFooter } from '@/shared/ui/drawer';
+
+
+import styles from './styles.module.scss';
 
 export function SidebarUI() {
   const { setIsOpen, isOpen } = useSidebar();
+
   return (
-    <Drawer direction={'left'} onClose={setIsOpen} open={isOpen}>
-      <DrawerContent className={'z-[1000]'}>
+    <Drawer direction="left" onClose={setIsOpen} open={isOpen}>
+      <DrawerContent className={styles.sidebar}>
         <DrawerHeader>
-          <DrawerTitle>Are you absolutely sure?</DrawerTitle>
-          <DrawerDescription>This action cannot be undone.</DrawerDescription>
+          <DrawerTitle>
+            <p>Utopia World</p>
+          </DrawerTitle>
+          <DrawerDescription>Выберите раздел</DrawerDescription>
         </DrawerHeader>
+
+        <nav className={styles.nav}>
+          <Link href="/rooms" onClick={setIsOpen}>Номера</Link>
+          <Link href="/food" onClick={setIsOpen}>Food and Bars</Link>
+          <Link href="/animation" onClick={setIsOpen}>Анимация</Link>
+          <Link href="/aquapark" onClick={setIsOpen}>Аквапарк</Link>
+          <Link href="/beach" onClick={setIsOpen}>Пляж</Link>
+          <Link href="/factsheet" onClick={setIsOpen}>Factsheet</Link>
+        </nav>
         <DrawerFooter>
-          <Button>Submit</Button>
-          <DrawerClose>
-            <Button variant="outline">Cancel</Button>
-          </DrawerClose>
+          Соц сети
         </DrawerFooter>
       </DrawerContent>
+
     </Drawer>
   );
 }

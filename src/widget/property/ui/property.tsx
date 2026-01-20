@@ -1,5 +1,4 @@
-import { HotelHero, HotelContact, HotelInfo } from '@/entities/hotel';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/shared/ui/accordion';
+import { HotelHero, HotelInfo, HotelAccordion, HOTEL_INFO, HOTEL_CONTACTS, HotelAbout } from '@/entities/hotel';
 
 import styles from './styles.module.scss';
 
@@ -8,12 +7,12 @@ export function Property() {
     <section className={styles.property}>
       <div className="container">
         <div className={styles.property__wrapper}>
+          <HotelAbout />
           <HotelHero />
-
           <div className={styles.contentGrid}>
-            <HotelContact />
-            <HotelInfo />
-            {/* Hotel Information */}
+            <HotelInfo list={HOTEL_CONTACTS} />
+            <HotelInfo list={HOTEL_INFO} />
+            <HotelAccordion />
           </div>
         </div>
       </div>

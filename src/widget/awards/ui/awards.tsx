@@ -1,6 +1,6 @@
 'use client';
-
 import { Marquee } from '@/shared/ui/marquee';
+import { Text } from '@/shared/ui/text';
 
 import { AWARDS } from '../model/const';
 
@@ -9,9 +9,11 @@ import styles from './styles.module.scss';
 export function AwardsMarquee() {
   return (
     <section className={styles.section}>
-      <div className={styles.header}>
-        <span className={styles.subtitle}>Awards & Recognition</span>
-        <h2 className={styles.title}>Наши награды</h2>
+      <div className={'container'}>
+        <div className={styles.header}>
+          <Text tag={'span'} variant={'kicker'}>Awards & Recognition</Text>
+          <Text tag={'h2'} variant={'title'}>Наши награды</Text>
+        </div>
       </div>
 
       <Marquee>

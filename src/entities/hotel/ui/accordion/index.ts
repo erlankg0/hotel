@@ -1,0 +1,1 @@
+export { HotelAccordion } from './accordion';

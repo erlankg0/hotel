@@ -10,7 +10,7 @@ export function Toggle() {
   return (
     <Button size={'lg'} variant={'transparent'} type={'button'} onClick={setIsOpen}>
       <Menu />
-      <span>Menu</span>
+      <span>Меню</span>
     </Button>
   );
 }

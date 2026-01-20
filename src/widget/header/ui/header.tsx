@@ -13,14 +13,16 @@ export function Header() {
   const { setIsOpen } = useContact();
   return (
     <header className={styles.header}>
-      <div className={styles.header__menu}>
-        <Toggle />
-      </div>
-      <Link href={'/'}>
-        <Image src={'/images/logo.svg'} alt="logo" width={60} height={60} />
-      </Link>
-      <div className={styles.right}>
-        <Button type={'button'} variant={'transparent'} size={'lg'} onClick={setIsOpen}>Контакты</Button>
+      <div className={styles.header__inner}>
+        <div className={styles.header__menu}>
+          <Toggle />
+        </div>
+        <Link href={'/'}>
+          <Image src={'/images/logo.svg'} alt="logo" width={60} height={60} />
+        </Link>
+        <div className={styles.right}>
+          <Button type={'button'} variant={'transparent'} size={'lg'} onClick={setIsOpen}>Контакты</Button>
+        </div>
       </div>
     </header>
   );

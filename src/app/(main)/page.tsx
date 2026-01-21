@@ -1,9 +1,5 @@
-import { HotelAbout } from '@/entities/hotel';
-import { AwardsMarquee } from '@/widget/awards';
-import { Entertainment } from '@/widget/entertainment';
 import { Hero } from '@/widget/hero';
-import { Restaurant } from '@/widget/restaurant';
-import { Rooms } from '@/widget/rooms';
+import { Parallax } from '@/widget/parallax';
 
 import styles from './page.module.scss';
 
@@ -11,11 +7,13 @@ export default function Page() {
   return (
     <section className={styles.page}>
       <Hero />
-      <HotelAbout />
+      <Parallax />
+      {/* <HotelAbout />
       <Entertainment />
+      <Parallax />
       <Restaurant />
       <AwardsMarquee />
-      <Rooms />
+      <Rooms /> */}
     </section>
   );
 }

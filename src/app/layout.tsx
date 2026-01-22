@@ -48,17 +48,12 @@ export default function RootLayout({
   return (
     <html lang="en">
     <body className={`${montserrat.variable} ${calligraffiti.variable} ${inter.variable} antialiased`}>
-    <SidebarUI />
+
+    <Header />
 
     <main>
-      <Header />
+      <SidebarUI />
       {children}
-      <section
-        className="bottom-panel"
-        aria-label="Bottom fixed panel"
-      >
-        <PriceRequestForm />
-      </section>
       <Footer />
     </main>
     </body>

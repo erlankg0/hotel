@@ -2,6 +2,7 @@ import { HotelAbout } from '@/entities/hotel';
 import { AwardsMarquee } from '@/widget/awards';
 import { Hero } from '@/widget/hero';
 import { Parallax } from '@/widget/parallax';
+import { PriceRequestForm } from '@/widget/price-request-form';
 import { Restaurant } from '@/widget/restaurant';
 import { Rooms } from '@/widget/rooms';
 
@@ -16,6 +17,12 @@ export default function Page() {
       <Restaurant />
       <AwardsMarquee />
       <Rooms />
+      <section
+        className="bottom-panel"
+        aria-label="Bottom fixed panel"
+      >
+        <PriceRequestForm />
+      </section>
     </section>
   );
 }

@@ -1,0 +1,22 @@
+.section {
+  margin-top: calc(var(--header-height));
+  box-sizing: border-box;
+  overflow: hidden;
+  background-color: var(--background);
+
+  &__inner {
+    height: calc(100% - 150px);
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+  }
+
+
+  & .desktop {
+    height: calc(100svh / 2);
+    display: block;
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+}
+

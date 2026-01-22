@@ -10,8 +10,14 @@ const nextConfig: NextConfig = {
         hostname: 'cdn.utopiahotels.com',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'drive.google.com',
+        pathname: '/**',
+      },
     ],
   },
 };
+
 
 export default nextConfig;

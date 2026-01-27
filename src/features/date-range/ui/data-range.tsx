@@ -1,22 +1,29 @@
-'use client';
-
-
 import { ru } from 'date-fns/locale';
 import { ChevronRight } from 'lucide-react';
+import { useMemo } from 'react';
 
 import { Button } from '@/shared/ui/button';
 import { Calendar } from '@/shared/ui/calendar';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@/shared/ui/dropdown-menu';
 
-import { useDateRange } from '../model/useDataRange';
-
+import type { Props } from '../model/type';
 import type { DateRange } from 'react-day-picker';
 
 
-export function DateRange() {
-  const { dateRange, setDateRange } = useDateRange();
+export function DateRange({ dateRange, setDateRange }: Props) {
 
-  const handleDateRangeChange = (range: DateRange | undefined) => {
+  const displayDates = useMemo(() => {
+    const today = new Date();
+    const fallbackEnd = new Date(today);
+    fallbackEnd.setDate(today.getDate() + 4);
+
+    return {
+      start: dateRange.start ?? today,
+      end: dateRange.end ?? fallbackEnd,
+    };
+  }, [dateRange]);
+
+  const handleDateRangeChange = (range?: DateRange) => {
     setDateRange({
       start: range?.from ?? null,
       end: range?.to ?? null,
@@ -26,28 +33,15 @@ export function DateRange() {
   return (
     <DropdownMenu modal={false}>
       <DropdownMenuTrigger asChild>
-        <Button variant={'ghost'} type="button">
-          {(() => {
-            const today = new Date();
-            const end = new Date(
-              today.getFullYear(),
-              today.getMonth(),
-              today.getDate() + 4,
-            );
-
-            const startDate = dateRange.start ?? today;
-            const endDate = dateRange.end ?? end;
-
-            return (
-              <div className={'flex gap-1 items-center'}>
-                <p>{startDate.toLocaleDateString()}</p>
-                <ChevronRight size={10} />
-                <p>{endDate.toLocaleDateString()}</p>
-              </div>
-            );
-          })()}
+        <Button variant="ghost" type="button">
+          <div className="flex gap-1 items-center">
+            <p>{displayDates.start.toLocaleDateString()}</p>
+            <ChevronRight size={10} />
+            <p>{displayDates.end.toLocaleDateString()}</p>
+          </div>
         </Button>
       </DropdownMenuTrigger>
+
       <DropdownMenuContent sideOffset={30}>
         <Calendar
           locale={ru}
@@ -62,7 +56,6 @@ export function DateRange() {
           onSelect={handleDateRangeChange}
         />
       </DropdownMenuContent>
-
     </DropdownMenu>
   );
 }

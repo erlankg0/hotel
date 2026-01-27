@@ -6,23 +6,24 @@ import styles from './row.module.scss';
 
 import type { CounterType } from '../model/type';
 
-export function GuestRow({ min, count, setCount, label }: CounterType) {
+export function GuestRow({ min, data, label }: CounterType) {
 
   const handleClickDecrement = useCallback(() => {
-    if (count > min) {
-      setCount(count - 1);
+    if (data.count > min) {
+      data.setCount(data.count - 1);
     }
-  }, [count, min, setCount]);
+  }, [data, min]);
 
   const handleOnClickIncrement = useCallback(() => {
-    setCount(count + 1);
-  }, [count, setCount]);
+    data.setCount(data.count + 1);
+  }, [data]);
 
   return (
     <div className={styles.row}>
-      <p className={styles.row__label}>{label} - {count}</p>
+      <p className={styles.row__label}>{label} - {data.count}</p>
       <div className={styles.row_row}>
-        <Button type={'button'} variant={'secondary'} onClick={handleClickDecrement} disabled={count <= min}>-</Button>
+        <Button type={'button'} variant={'secondary'} onClick={handleClickDecrement}
+                disabled={data.count <= min}>-</Button>
         <Button type={'button'} variant={'secondary'} onClick={handleOnClickIncrement}>+</Button>
       </div>
     </div>

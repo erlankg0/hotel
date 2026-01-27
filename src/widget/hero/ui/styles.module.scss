@@ -3,6 +3,7 @@
   box-sizing: border-box;
   overflow: hidden;
   background-color: var(--background);
+  position: relative;
 
   &__inner {
     height: calc(100% - 150px);

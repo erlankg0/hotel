@@ -44,20 +44,20 @@
     --color-sidebar-ring: var(--sidebar-ring);
     --animate-marquee: marquee var(--duration) infinite linear;
     --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
-  @keyframes marquee {
-  from {
-    transform: translateX(0);
+    @keyframes marquee {
+        from {
+            transform: translateX(0);
         }
-  to {
-    transform: translateX(calc(-100% - var(--gap)));
+        to {
+            transform: translateX(calc(-100% - var(--gap)));
         }
     }
-  @keyframes marquee-vertical {
-  from {
-    transform: translateY(0);
+    @keyframes marquee-vertical {
+        from {
+            transform: translateY(0);
         }
-  to {
-    transform: translateY(calc(-100% - var(--gap)));
+        to {
+            transform: translateY(calc(-100% - var(--gap)));
         }
     }
 }
@@ -153,6 +153,27 @@
 body {
     font-family: var(--font-montserrat), Helvetica, Arial, Tahoma, Verdana, ui-sans-serif, system-ui, -apple-system;
 }
+
+html, body {
+    height: 100%;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+
+.wrapper {
+    position: relative;
+}
+
+.panel {
+    width: 100%;
+    position: relative;
+}
+
 
 .divider {
     width: 1px;

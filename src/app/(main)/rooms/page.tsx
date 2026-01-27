@@ -4,14 +4,11 @@ import { PriceRequestFullSize } from '@/widget/price-request-form';
 
 import styles from './page.module.scss';
 
-
-export default async function Page() {
+export default function Page() {
   return (
     <section className={cn(styles.section)}>
       <BreadcrumbsUI />
       <PriceRequestFullSize />
-
-
     </section>
   );
 }

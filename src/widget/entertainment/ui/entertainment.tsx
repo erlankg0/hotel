@@ -17,28 +17,23 @@ export function Entertainment() {
   const videoRef = useRef<HTMLDivElement | null>(null);
 
   useGSAP(() => {
-    if (!desktopRef.current || !videoRef.current) return;
+    if (!videoRef.current) return;
 
     gsap.set(videoRef.current, {
       scale: 0.4,
       borderRadius: 24,
+      transformOrigin: 'center center',
     });
 
-    const tl = gsap.timeline({
+    gsap.to(videoRef.current, {
+      scale: 1.1,
+      borderRadius: 24,
       scrollTrigger: {
-        trigger: desktopRef.current,
-        start: 'top top',
-        end: 'bottom bottom',
-        scrub: true,
-        pin: desktopRef.current.querySelector(`.${styles.desktop__pin}`),
-        anticipatePin: 1,
+        trigger: videoRef.current,
+        start: 'top center',
+        end: 'center center',
+        scrub: 2,
       },
-    });
-
-    tl.to(videoRef.current, {
-      scale: 1,
-      borderRadius: 0,
-      ease: 'none',
     });
   }, []);
 

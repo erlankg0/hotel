@@ -3,6 +3,7 @@
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Balloon } from 'lucide-react';
 import { useRef } from 'react';
 
 import { Text } from '@/shared/ui/text';
@@ -26,13 +27,13 @@ export function Entertainment() {
     });
 
     gsap.to(videoRef.current, {
-      scale: 1.1,
+      scale: .9,
       borderRadius: 24,
       scrollTrigger: {
         trigger: videoRef.current,
         start: 'top center',
         end: 'center center',
-        scrub: 2,
+        scrub: 1.7,
       },
     });
   }, []);
@@ -46,15 +47,38 @@ export function Entertainment() {
           </Text>
         </header>
       </div>
+      <div className={'container'}>
+        <article className={styles.section__content}>
+          <div className={styles.section__top}>
+            <div className={styles.section__text}>
+              <span>Анимация</span>
+              <span><Balloon size={44} /></span>
+              <span>Utopia World</span>
+            </div>
+            <ul className={styles.section__info}>
+              <li>Взрослая</li>
+              <li>Десткая</li>
+              <li>Программа</li>
+            </ul>
+          </div>
 
-      <div ref={desktopRef} className={styles.desktop}>
-        <div className={styles.desktop__pin}>
-          <div ref={videoRef} className={styles.desktop__video}>
-            <FullVideo url="/video/utopia.mp4" />
+          <div className={styles.footer}>
+            <div>1</div>
+            <div>2</div>
+          </div>
+
+        </article>
+      </div>
+
+      <div className={styles.wrapper}>
+        <div ref={desktopRef} className={styles.desktop}>
+          <div className={styles.desktop__pin}>
+            <div ref={videoRef} className={styles.desktop__video}>
+              <FullVideo url="/video/utopia.mp4" />
+            </div>
           </div>
         </div>
       </div>
-
     </section>
   );
 }

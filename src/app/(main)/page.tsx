@@ -43,7 +43,7 @@ export default function Page() {
     <>
       <section className="panel"><Hero /></section>
       <section className="panel"><HotelAbout /></section>
-      <section className="panel"><Entertainment /></section>
+      <Entertainment />
       <section className="panel"><Restaurant /></section>
       <section className="panel"><AwardsMarquee /></section>
       <section className="panel"><Rooms /></section>

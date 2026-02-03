@@ -3,7 +3,7 @@
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Balloon, Group, Axe } from 'lucide-react';
+import { Balloon, Axe, Laugh, HandHeart, Moon, Sun } from 'lucide-react';
 import { useRef } from 'react';
 
 import { cn } from '@/shared/lib/utils';
@@ -77,6 +77,7 @@ export function Entertainment() {
                 </div>
               </div>
             </div>
+            <Rolling icons={[Axe, Balloon, HandHeart, Laugh, Moon, Sun]} />
           </div>
         </article>
       </div>

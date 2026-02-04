@@ -1,12 +1,17 @@
 import type { ReactNode } from 'react';
+import type { Swiper as SwiperType } from 'swiper';
 
 export type SwiperProps = {
   delay: number;
   slides: ReactNode[];
   slidesPerView?: number;
   spaceBetween?: number;
-  controls?: boolean;
-  navs?: boolean;
   centeredSlides?: boolean;
   loop?: boolean;
+  autoplay?: boolean;
+  onSwiper?: (swiper: SwiperType) => void;
+  onSlideChange?: (swiper: SwiperType) => void;
+  onAutoplayTimeLeft?: (timeleft: number, totalTime: number) => void;
+  navButtons?: ReactNode;
+  progressControls?: ReactNode;
 }

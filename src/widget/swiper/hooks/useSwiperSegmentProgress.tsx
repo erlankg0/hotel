@@ -48,8 +48,8 @@ export function useSwiperSegmentProgress({
   );
 
   const onAutoplayTimeLeft = useCallback(
-    (_: SwiperType, __: number, progressValue: number) => {
-      setProgress(progressValue);
+    (_: SwiperType, _timeLeft: number, progress: number) => {
+      setProgress(progress);
     },
     [],
   );

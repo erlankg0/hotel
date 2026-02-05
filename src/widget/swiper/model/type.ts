@@ -11,7 +11,7 @@ export type SwiperProps = {
   autoplay?: boolean;
   onSwiper?: (swiper: SwiperType) => void;
   onSlideChange?: (swiper: SwiperType) => void;
-  onAutoplayTimeLeft?: (timeleft: number, totalTime: number) => void;
+  onAutoplayTimeLeft?: (_: SwiperType, timeleft: number, totalTime: number) => void;
   navButtons?: ReactNode;
   progressControls?: ReactNode;
 }

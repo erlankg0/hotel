@@ -33,7 +33,7 @@ export function SwiperUI({
         onSlideChange={onSlideChange}
         autoplay={autoplay ? { delay, disableOnInteraction: false } : false}
         onAutoplayTimeLeft={(_, timeLeft, totalTime) => {
-          onAutoplayTimeLeft?.(timeLeft, totalTime);
+          onAutoplayTimeLeft?.(_,timeLeft, totalTime);
         }}
         modules={[A11y, Autoplay]}
         className={styles.swiper}

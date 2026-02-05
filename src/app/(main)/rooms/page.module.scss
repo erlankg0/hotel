@@ -4,19 +4,24 @@
   overflow: hidden;
   background-color: var(--background);
 
-  &__inner {
-    height: calc(100% - 150px);
+  &__hero {
     width: 100%;
-    margin: 0 auto;
     position: relative;
+
+
+    &_controls {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      position: absolute;
+      top: 80%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+    }
   }
 
 
-  & .desktop {
-    height: calc(100svh / 2);
-    display: block;
-    border-radius: 1rem;
-    overflow: hidden;
-  }
 }
 

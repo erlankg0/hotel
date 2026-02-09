@@ -10,18 +10,33 @@
 
 
     &_controls {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-
       position: absolute;
       top: 80%;
       left: 50%;
       transform: translate(-50%, -50%);
       z-index: 1;
     }
+
+    &_nav {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: .5rem;
+      width: 25rem;
+    }
+
+    &_pagination {
+      font-weight: bold;
+      font-size: var(--font-size-s);
+      text-align: center;
+
+      color: var(--accent);
+
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: .5rem;
+    }
   }
-
-
 }
 

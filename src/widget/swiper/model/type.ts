@@ -15,3 +15,23 @@ export type SwiperProps = {
   navButtons?: ReactNode;
   progressControls?: ReactNode;
 }
+
+export type UseSwiperSegmentProgressProps = {
+  segments: number;
+  onSegmentChange?: (index: number) => void;
+};
+
+export interface SegmentButtonProps {
+  index: number;
+  isActive: boolean;
+  segmentProgress: number;
+  segmentWidth: string;
+  onSegmentClick: (index: number) => void;
+}
+
+export type NavButtonProps = {
+  side: 'left' | 'right';
+  onClick?: () => boolean | undefined;
+  isDisabled?: boolean;
+  className?: string;
+}

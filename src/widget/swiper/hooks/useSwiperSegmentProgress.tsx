@@ -2,14 +2,11 @@
 
 import { useCallback, useMemo, useState, useRef } from 'react';
 
-import { Progress } from '@/shared/ui/progress';
+import { SegmentButton } from '../ui/segmentButton';
 
+import type { UseSwiperSegmentProgressProps } from '../model/type';
 import type { Swiper as SwiperType } from 'swiper';
 
-type UseSwiperSegmentProgressProps = {
-  segments: number;
-  onSegmentChange?: (index: number) => void;
-};
 
 export function useSwiperSegmentProgress({
                                            segments,
@@ -63,6 +60,8 @@ export function useSwiperSegmentProgress({
     [activeIndex, progress],
   );
 
+  const segmentWidth: string = useMemo(() => `${100 / segments}%`, [segments]);
+
   const Segments = useMemo(() => {
     return (
       <div className="segments">
@@ -71,23 +70,45 @@ export function useSwiperSegmentProgress({
           const isActive = i === activeIndex;
 
           return (
-            <button
+            <SegmentButton
               key={i}
-              className={`segment ${isActive ? 'segment-progress w-[30px]' : 'w-[10px]'}`}
-              onClick={() => onSegmentClick(i)}
-              type="button"
-              aria-label={`Перейти к слайду ${i + 1}`}
-              aria-current={isActive ? 'true' : 'false'}
-            >
-              <Progress value={isActive ? segmentProgress : 0} />
-            </button>
+              index={i}
+              isActive={isActive}
+              segmentProgress={segmentProgress}
+              segmentWidth={segmentWidth}
+              onSegmentClick={onSegmentClick}
+            />
           );
         })}
       </div>
     );
-  }, [activeIndex, segments, getSegmentProgress, onSegmentClick]);
+  }, [segments, getSegmentProgress, activeIndex, segmentWidth, onSegmentClick]);
+
+  const SegmentLine = useMemo(() => {
+    return (
+      <div className={'segments_line'}>
+        <div className={'segments_line_center'}>
+          {Array.from({ length: segments }).map((_, i) => {
+            const isActive = i === activeIndex;
+
+            return (
+              <SegmentButton
+                key={i}
+                index={i}
+                isActive={isActive}
+                segmentProgress={100}
+                segmentWidth={segmentWidth}
+                onSegmentClick={onSegmentClick}
+              />
+            );
+          })}
+        </div>
+      </div>
+    );
+  }, [segments, activeIndex, segmentWidth, onSegmentClick]);
 
   return {
+    SegmentLine,
     Segments,
     activeIndex,
     progress,

@@ -1,9 +1,10 @@
 'use client';
 
-import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useRef, useState } from 'react';
 
 import { Button } from '@/shared/ui/button';
+
+import { NavButton } from '../ui/NavButton';
 
 import type { Swiper as SwiperType } from 'swiper';
 
@@ -26,17 +27,9 @@ export function useSwiperNav() {
 
   const prev = () => swiperRef.current?.slidePrev();
   const next = () => swiperRef.current?.slideNext();
-  const prevButton = (
-    <Button variant={'rounded'} onClick={prev} disabled={isStart}>
-      <ChevronLeft />
-    </Button>
-  );
 
-  const nextButton = (
-    <Button variant={'rounded'} onClick={next} disabled={isEnd}>
-      <ChevronRight />
-    </Button>
-  );
+  const prevButton = <NavButton onClick={prev} side={'left'} isDisabled={isStart} />;
+  const nextButton = <NavButton onClick={next} side={'right'} isDisabled={isEnd} />;
 
   return {
     onSwiper,

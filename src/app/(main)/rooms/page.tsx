@@ -1,8 +1,8 @@
 'use client';
 
-import Image from 'next/image';
 import { useCallback } from 'react';
 
+import { BannerSlide } from '@/entities/room';
 import { cn } from '@/shared/lib/utils';
 import { BreadcrumbsUI } from '@/widget/breadcrumbs';
 import { SwiperUI, useSwiperNav, useSwiperSegmentProgress } from '@/widget/swiper';
@@ -19,6 +19,7 @@ export default function Page() {
     nextButton,
     prevButton,
   } = useSwiperNav();
+
   const {
     SegmentLine,
     onSwiper,
@@ -51,37 +52,24 @@ export default function Page() {
           onAutoplayTimeLeft={onAutoplayTimeLeft}
           autoplay={false}
           slides={[
-            <div key="1" className="relative w-full h-150">
-              <Image
-                src="/images/parallax/hotel/sea.png"
-                alt="Sea view"
-                fill
-                className="object-cover"
-                sizes="100vw"
-                loading={'lazy'}
-              />
-            </div>,
-
-            <div key="2" className="relative w-full h-150">
-              <Image
-                src="/images/parallax/hotel/hotel.png"
-                alt="Hotel view"
-                fill
-                className="object-cover"
-                sizes="100vw"
-                loading={'lazy'}
-              />
-            </div>,
-            <div key="2" className="relative w-full h-150">
-              <Image
-                src="/images/parallax/hotel/hotel.png"
-                alt="Hotel view"
-                fill
-                className="object-cover"
-                sizes="100vw"
-                loading={'lazy'}
-              />
-            </div>,
+            <BannerSlide
+              image={{ url: '/images/poster.jpg', alt: '' }}
+              title={'title'}
+              subtitle={'subtitle'}
+              key={'3'}
+            />,
+            <BannerSlide
+              image={{ url: '/images/parallax/hotel/hotel.png', alt: '' }}
+              title={'title'}
+              subtitle={'subtitle'}
+              key={'2'}
+            />,
+            <BannerSlide
+              image={{ url: '/images/parallax/hotel/sea.png', alt: '' }}
+              title={'title'}
+              subtitle={'subtitle'}
+              key={'3'}
+            />,
           ]}
         />
         <div className={styles.section__hero_controls}>

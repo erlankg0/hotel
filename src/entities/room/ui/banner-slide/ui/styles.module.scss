@@ -1,0 +1,25 @@
+.banner {
+  width: 100%;
+  height: clamp(300px, 60vh, 700px);
+
+  position: relative;
+  overflow: hidden;
+
+  z-index: 1;
+
+  display: grid;
+
+  &_image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 2;
+  }
+
+  &__content {
+    place-self: end start;
+    padding: clamp(1.6rem, 4vw, 5rem);
+    z-index: 3;
+  }
+
+}

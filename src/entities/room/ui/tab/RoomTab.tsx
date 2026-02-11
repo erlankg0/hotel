@@ -2,10 +2,12 @@ import { Bath, Scan, Users } from 'lucide-react';
 import { HiOutlineHome } from 'react-icons/hi2';
 import { MdBalcony } from 'react-icons/md';
 
-import { BED_TYPE_LABEL } from '../../model/type';
-import { RoomCard } from '../card/RoomCard';
+import { RoomCard } from '@/entities/room';
 
-import styles from './tab.module.scss';
+import { BED_TYPE_LABEL } from '../../model/type';
+
+import styles from './styles.module.scss';
+
 
 import type { RoomTabData } from '../../model/type';
 

@@ -5,7 +5,7 @@ import { useEffect, useRef } from 'react';
 
 import { useHover } from '@/shared/hooks/useHover';
 
-import styles from './card.module.scss';
+import styles from './styles.module.scss';
 
 import type { MediaType } from '../../model/type';
 

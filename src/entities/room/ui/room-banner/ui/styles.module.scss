@@ -1,6 +1,6 @@
 .banner {
   width: 100%;
-  height: clamp(300px, 60vh, 700px);
+  height: clamp(300px, 70vh, 900px);
 
   position: relative;
   overflow: hidden;
@@ -17,8 +17,8 @@
   }
 
   &__content {
-    place-self: end start;
-    padding: clamp(1.6rem, 4vw, 5rem);
+    place-self: center start;
+    padding: clamp(2rem, 4vw, 5rem);
     z-index: 3;
   }
 

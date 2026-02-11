@@ -1,0 +1,1 @@
+export { RoomBanner } from './ui/room-banner';

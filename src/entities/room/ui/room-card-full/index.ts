@@ -1,0 +1,1 @@
+export { RoomCardFull } from './ui/room-card-full';

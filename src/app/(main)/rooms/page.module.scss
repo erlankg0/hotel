@@ -63,10 +63,11 @@
   }
 }
 
-.list {
-  display: flex;
-  flex-direction: column;
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, minmax(10rem, 1fr));
   gap: 1rem;
-  max-width: 1440px;
-  margin: 0 auto;
+
+  padding: 1rem;
 }

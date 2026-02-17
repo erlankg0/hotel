@@ -101,7 +101,8 @@ export default function Page() {
           гранью комфорта благодаря нашим специальным номерам с 6 различными концепциями.
         </p>
       </div>
-      <div className={styles.list}>
+      <div className={styles.grid}>
+        <RoomCardFull />
         <RoomCardFull />
         <RoomCardFull />
         <RoomCardFull />

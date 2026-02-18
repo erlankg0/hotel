@@ -4,6 +4,7 @@ import { useCallback } from 'react';
 
 import { RoomBanner, RoomCardFull } from '@/entities/room';
 import { cn } from '@/shared/lib/utils';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/shared/ui/tabs';
 import { BreadcrumbsUI } from '@/widget/breadcrumbs';
 import { SwiperUI, useSwiperNav, useSwiperSegmentProgress } from '@/widget/swiper';
 
@@ -94,19 +95,38 @@ export default function Page() {
           </div>
         </div>
       </div>
-      <div className={styles.about}>
-        <h2 className={styles.about__title}>Дверь ведущая на природу</h2>
-        <p className={styles.about_paragraf}>
-          Utopia World Hotel предлагает такое же уникальное жилое пространство, как и он сам. Мы обещаем отдых за
-          гранью комфорта благодаря нашим специальным номерам с 6 различными концепциями.
-        </p>
-      </div>
-      <div className={styles.grid}>
-        <RoomCardFull />
-        <RoomCardFull />
-        <RoomCardFull />
-        <RoomCardFull />
-      </div>
+
+      <Tabs defaultValue={'room'} className={'bg-[#F8F8F8]'}>
+        <div className={styles.about}>
+          <h2 className={styles.about__title}>&#34;Окунуться в море и погрузиться в сон... вот все, что я хочу!&#34;</h2>
+          <p className={styles.about_paragraf}>
+            Utopia World Hotel предлагает такое же уникальное жилое пространство, как и он сам. Мы обещаем отдых за
+            гранью комфорта благодаря нашим специальным номерам.
+          </p>
+        </div>
+        <TabsList className={'mx-auto'}>
+          <TabsTrigger value={'room'}>Номера</TabsTrigger>
+          <TabsTrigger value={'suite'}>Suite</TabsTrigger>
+        </TabsList>
+        <TabsContent value={'room'}>
+          <div className={styles.accommodations}>
+            <p className={styles.accommodations_title}>Odalar</p>
+            <div className={styles.accommodations_row}>
+              <RoomCardFull />
+              <RoomCardFull />
+            </div>
+          </div>
+        </TabsContent>
+        <TabsContent value={'suite'}>
+          <div className={styles.accommodations}>
+            <p className={styles.accommodations_title}>Suite </p>
+            <div className={styles.accommodations_row}>
+              <RoomCardFull />
+              <RoomCardFull />
+            </div>
+          </div>
+        </TabsContent>
+      </Tabs>
     </section>
   );
 }

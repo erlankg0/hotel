@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 import styles from './styles.module.scss';
 
@@ -15,8 +16,15 @@ export function RoomCardFull() {
         />
       </div>
 
-      <div className={styles.card_content}>
-        content
+      <div className={styles.card__content}>
+        <div>
+          <h3>Стандартный номер в виллах</h3>
+          <ul>
+
+          </ul>
+        </div>
+
+        <Link href={'#'}>Посмотреть</Link>
       </div>
     </article>
   );

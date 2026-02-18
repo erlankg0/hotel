@@ -1,30 +1,73 @@
+import { Bath, Scan, Users } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { HiOutlineHome } from 'react-icons/hi2';
+
+import { BED_TYPE_LABEL } from '../../../model/type';
 
 import styles from './styles.module.scss';
 
-export function RoomCardFull() {
+import type { RoomType } from '../model/type';
+
+export function RoomCardFull({
+                               image,
+                               beds,
+                               area,
+                               bathCount,
+                               bedRoomCount,
+                               title,
+                               maxCapacity,
+                             }: RoomType) {
   return (
     <article className={styles.card}>
-      <div className={styles.imageWrapper}>
+      <Link href={'#'} className={styles.imageWrapper}>
         <Image
-          src="https://cdn.utopiahotels.com/assets/images/pages/310120222109-lg.webp"
-          alt="Room"
+          src={image.url}
+          alt={image.alt}
           fill
           sizes="(max-width: 768px) 100vw, 33vw"
           className={styles.image}
         />
-      </div>
+      </Link>
 
       <div className={styles.card__content}>
+        <h3 className={styles.card__title}>{title}</h3>
         <div>
-          <h3>Стандартный номер в виллах</h3>
-          <ul>
+          <ul className={styles.card__features}>
+            <p className={styles.card__features_text}>Особенности</p>
+            <li className={styles.card__features_item}>
+              <Scan size={24} />
+              <span>{area} м²</span>
+            </li>
+            <li className={styles.card__features_item}>
+              <Bath size={24} />
+              <span>{bathCount} ванных</span>
+            </li>
+            <li className={styles.card__features_item}>
+              <HiOutlineHome size={24} />
+              <span>{bedRoomCount} спальни</span>
+            </li>
+            <li className={styles.card__features_item}>
+              <Users size={24} />
+              <span>{maxCapacity} взрослых + 1 ребёнок</span>
+            </li>
 
+            <li className={styles.card__features_item}>
+              {beds.map((bed) => {
+                const Icon = BED_TYPE_LABEL[bed.type];
+
+                return (
+                  <div key={bed.type} className={'flex items-center'}>
+                    <Icon size={24} />
+                    × {bed.count}
+                  </div>
+                );
+              })}
+            </li>
           </ul>
         </div>
 
-        <Link href={'#'}>Посмотреть</Link>
+        <Link className={styles.link} href={'#'}>Посмотреть</Link>
       </div>
     </article>
   );

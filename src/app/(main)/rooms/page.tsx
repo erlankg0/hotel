@@ -2,7 +2,7 @@
 
 import { useCallback } from 'react';
 
-import { RoomBanner, RoomCardFull } from '@/entities/room';
+import { RoomBanner, stda, stdv, junior, penthouse, RoomCardFull } from '@/entities/room';
 import { cn } from '@/shared/lib/utils';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/shared/ui/tabs';
 import { BreadcrumbsUI } from '@/widget/breadcrumbs';
@@ -98,7 +98,8 @@ export default function Page() {
 
       <Tabs defaultValue={'room'} className={'bg-[#F8F8F8]'}>
         <div className={styles.about}>
-          <h2 className={styles.about__title}>&#34;Окунуться в море и погрузиться в сон... вот все, что я хочу!&#34;</h2>
+          <h2 className={styles.about__title}>&#34;Окунуться в море и погрузиться в сон... вот все, что я
+            хочу!&#34;</h2>
           <p className={styles.about_paragraf}>
             Utopia World Hotel предлагает такое же уникальное жилое пространство, как и он сам. Мы обещаем отдых за
             гранью комфорта благодаря нашим специальным номерам.
@@ -112,8 +113,10 @@ export default function Page() {
           <div className={styles.accommodations}>
             <p className={styles.accommodations_title}>Odalar</p>
             <div className={styles.accommodations_row}>
-              <RoomCardFull />
-              <RoomCardFull />
+              <RoomCardFull {...stdv.info} image={stdv.media[0].images} key={'1'} title={stdv.title}
+                            area={stdv.info.size} />
+              <RoomCardFull {...stda.info} image={stda.media[0].images} key={'1'} title={stda.title}
+                            area={stda.info.size} />
             </div>
           </div>
         </TabsContent>
@@ -121,8 +124,10 @@ export default function Page() {
           <div className={styles.accommodations}>
             <p className={styles.accommodations_title}>Suite </p>
             <div className={styles.accommodations_row}>
-              <RoomCardFull />
-              <RoomCardFull />
+              <RoomCardFull {...junior.info} image={junior.media[0].images} key={'1'} title={junior.title}
+                            area={junior.info.size} />
+              <RoomCardFull {...penthouse.info} image={penthouse.media[0].images} key={'1'} title={penthouse.title}
+                            area={penthouse.info.size} />
             </div>
           </div>
         </TabsContent>

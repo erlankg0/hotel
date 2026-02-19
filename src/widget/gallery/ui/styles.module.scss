@@ -1,0 +1,17 @@
+.gallery {
+  display: flex;
+  flex-direction: row;
+  gap: .5rem;
+
+  &__main_image {
+    width: 100%;
+    height: clamp(280px, 45vw, 460px);
+  }
+
+  &_list_image {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: .5rem;
+    width: 100%;
+  }
+}

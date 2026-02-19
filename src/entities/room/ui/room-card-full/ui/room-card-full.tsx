@@ -1,7 +1,8 @@
 import { Bath, Scan, Users } from 'lucide-react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { HiOutlineHome } from 'react-icons/hi2';
+
+import { ImageUI } from '@/shared/ui/image';
 
 import { BED_TYPE_LABEL } from '../../../model/type';
 
@@ -20,14 +21,8 @@ export function RoomCardFull({
                              }: RoomType) {
   return (
     <article className={styles.card}>
-      <Link href={'#'} className={styles.imageWrapper}>
-        <Image
-          src={image.url}
-          alt={image.alt}
-          fill
-          sizes="(max-width: 768px) 100vw, 33vw"
-          className={styles.image}
-        />
+      <Link href={'#'} >
+        <ImageUI src={image.url} alt={image.alt} size={'350px'} />
       </Link>
 
       <div className={styles.card__content}>

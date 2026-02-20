@@ -1,7 +1,12 @@
 .gallery {
-  display: flex;
-  flex-direction: row;
-  gap: .5rem;
+  position: relative;
+
+  &__content {
+    display: flex;
+    flex-direction: row;
+    gap: .5rem;
+
+  }
 
   &__main_image {
     width: 100%;
@@ -13,5 +18,30 @@
     grid-template-columns: repeat(2, 1fr);
     gap: .5rem;
     width: 100%;
+  }
+
+  &__controls {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+
+    height: 100%;
+    padding: 1rem 2rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__button {
+    max-width: 15rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    padding: 1rem 2rem;
+    gap: .5rem;
   }
 }

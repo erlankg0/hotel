@@ -43,5 +43,15 @@
 
     padding: 1rem 2rem;
     gap: .5rem;
+
+    background-color: rgba(var(--foreground), 0.1);
+    backdrop-filter: blur(20px);
+    transition: all .5s ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+      scale: 1.05;
+      color: rgba(var(--foreground), 0.1);
+    }
   }
 }

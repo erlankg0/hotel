@@ -2,6 +2,10 @@
   height: 100vh;
   margin-top: calc(var(--header-height) * 1);
   padding: 0 1.5rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
 }
 
 
@@ -11,9 +15,25 @@
   letter-spacing: 0.1em;
 }
 
-.row {
+.list {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  gap: 1rem;
+  flex-wrap: wrap;
+  gap: .5rem;
+
+  font-size: var(--font-size-s);
+  line-height: 1.8rem;
+
+  &_item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    &:after {
+      content: "∙";
+      font-weight: bold;
+      font-size: var(--font-size-s);
+      padding: 0 0.5rem;
+    }
+  }
 }

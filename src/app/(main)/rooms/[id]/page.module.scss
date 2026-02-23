@@ -15,6 +15,13 @@
   letter-spacing: 0.1em;
 }
 
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  align-items: center;
+}
+
 .list {
   display: flex;
   flex-direction: row;
@@ -29,11 +36,5 @@
     flex-direction: row;
     align-items: center;
 
-    &:after {
-      content: "∙";
-      font-weight: bold;
-      font-size: var(--font-size-s);
-      padding: 0 0.5rem;
-    }
   }
 }

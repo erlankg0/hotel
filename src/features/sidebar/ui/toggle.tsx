@@ -9,7 +9,7 @@ import { useSidebar } from '../hook/useSidebar';
 export function Toggle() {
   const { setIsOpen } = useSidebar();
   return (
-    <Button size={'lg'} variant={'transparent'} type={'button'} onClick={setIsOpen}>
+    <Button size={'lg'} variant={'blur'} type={'button'} onClick={setIsOpen}>
       <Menu />
       <span>Меню</span>
     </Button>

@@ -1,5 +1,6 @@
-import { Bed, LucideBath, Scan, SunMoon } from 'lucide-react';
+import { Bed, LucideBath, Scan, SunMoon, Wifi, Tv } from 'lucide-react';
 
+import { Balcony, Tree, Safe, Coffee, Air, Minibar} from '@/shared/icons';
 import { Separator } from '@/shared/ui/separator';
 import { Gallery } from '@/widget/gallery';
 
@@ -24,34 +25,47 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
   return (
     <section className={styles.section}>
       <Gallery />
-      <h2 className={styles.title}>Стандартный номер в виллах {id}</h2>
-      <ul className={styles.list}>
-        {FEATURES.map(({ label, Icon }) => (
-          <li key={label} className={styles.list_item}>
-            <p>{label}</p>
-            <Icon size={18} />
-          </li>
-        ))}
-      </ul>
+      <article className={styles.col}>
+        <h2 className={styles.title}>Стандартный номер в виллах</h2>
+        <p>Почувствуйте средиземноморский бриз в своей душе в номере виллы.</p>
+        <p>Благодаря широкому балкону вы можете ощутить максимальный комфорт в нашем просторном номере, погрузившись в
+          поток уникального вида от зеленого до синего.</p>
+
+      </article>
+
       <Separator />
-      <section>
-        <h2 className={styles.title}>About the Property</h2>
-        <article>
-          <p>Почувствуйте средиземноморский бриз в своей душе в номере виллы.</p>
-          <p>Благодаря широкому балкону вы можете ощутить максимальный комфорт в нашем просторном номере, погрузившись в
-            поток уникального вида от зеленого до синего.</p>
-          <ul className={styles.list}>
-            {PROPERTY_INFO.map(({ title, value }) => (
-              <li key={title}>
-                <p>{title}</p>
-                <p>{value}</p>
-              </li>
-            ))}
-          </ul>
-        </article>
-
-
-      </section>
+      <article>
+        <h3>Удобства</h3>
+        <ul>
+          <li>
+            <Balcony size={16} />
+          </li>
+          <li>
+            <Tree size={16} />
+          </li>
+          <li>
+            <Wifi size={16} />
+          </li>
+          <li>
+            <Safe size={16} />
+          </li>
+          <li>
+            <Coffee size={16} />
+          </li>
+          <li>
+            <Minibar size={16} />
+          </li>
+          <li>
+            <Tv size={16} />
+          </li>
+          <li>
+            <Minibar size={16} />
+          </li>
+          <li>
+            <Iron size={16} />
+          </li>
+        </ul>
+      </article>
     </section>
   );
 }

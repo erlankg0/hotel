@@ -1,6 +1,6 @@
 import { Bed, LucideBath, Scan, SunMoon, Wifi, Tv } from 'lucide-react';
 
-import { Balcony, Tree, Safe, Coffee, Air, Minibar} from '@/shared/icons';
+import { Balcony, Tree, Safe, Coffee, Iron, Minibar} from '@/shared/icons';
 import { Separator } from '@/shared/ui/separator';
 import { Gallery } from '@/widget/gallery';
 

@@ -8,7 +8,7 @@ import styles from './styles.module.scss';
 
 export function Footer() {
   return (
-    <footer className={styles.footer}>
+    <footer className={styles.footer} id={'footer'}>
       <section className={styles.footer__inner}>
         {/* REVIEWS */}
         <article className={styles.footer__top}>

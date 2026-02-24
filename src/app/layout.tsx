@@ -54,12 +54,7 @@ export default function RootLayout({
     <main>
       <SidebarUI />
       {children}
-      <section
-        className="bottom-panel"
-        aria-label="Bottom fixed panel"
-      >
-        <PriceRequestForm />
-      </section>
+      <PriceRequestForm />
     </main>
     <Footer />
     </body>

@@ -97,14 +97,17 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
       <div className={styles.other}>
         <h3 className={styles.title}>Ищете другие варианты ?</h3>
         <div className={styles.other__list}>
-          <Link href={"/rooms/3"} className={styles.other__card}>
+          <Link href={'/rooms/3'} className={styles.other__card}>
             <RoomCard images={stda.media[2].images} hasVideo={true} video={stda.media[2].video} />
+            <p className={styles.other__card__title}>{stda.title}</p>
           </Link>
-          <Link href={"/rooms/3"} className={styles.other__card}>
+          <Link href={'/rooms/3'} className={styles.other__card}>
             <RoomCard images={stdv.media[2].images} hasVideo={true} video={stdv.media[2].video} />
+            <p className={styles.other__card__title}>{stdv.title}</p>
           </Link>
-          <Link href={"/rooms/3"} className={styles.other__card}>
+          <Link href={'/rooms/3'} className={styles.other__card}>
             <RoomCard images={junior.media[2].images} hasVideo={true} video={junior.media[2].video} />
+            <p className={styles.other__card__title}>{junior.title}</p>
           </Link>
         </div>
       </div>

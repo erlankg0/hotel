@@ -1,7 +1,7 @@
 import { Bed, LucideBath, Tv, Wifi } from 'lucide-react';
 import Link from 'next/link';
 
-import { RoomCard, stda, stdv, junior } from '@/entities/room';
+import { RoomCard, stda, stdv, junior, corner } from '@/entities/room';
 import { Air, Balcony, Coffee, Cosmetics, Iron, Minibar, Safe, Tree } from '@/shared/icons';
 import { Separator } from '@/shared/ui/separator';
 import { Gallery } from '@/widget/gallery';
@@ -108,6 +108,10 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
           <Link href={'/rooms/3'} className={styles.other__card}>
             <RoomCard images={junior.media[2].images} hasVideo={true} video={junior.media[2].video} />
             <p className={styles.other__card__title}>{junior.title}</p>
+          </Link>
+          <Link href={'/rooms/4'} className={styles.other__card}>
+            <RoomCard images={corner.media[2].images} hasVideo={true} video={corner.media[2].video} />
+            <p className={styles.other__card__title}>{corner.title}</p>
           </Link>
         </div>
       </div>

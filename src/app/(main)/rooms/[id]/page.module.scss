@@ -1,5 +1,4 @@
 .section {
-  height: 100vh;
   margin-top: calc(var(--header-height) * 1);
   padding: 0 1.5rem;
 
@@ -10,9 +9,10 @@
 
 
 .title {
-  font-weight: 500;
   font-size: clamp(1.25rem, 1.85rem, 2rem);
-  letter-spacing: 0.1em;
+  font-weight: 500;
+  letter-spacing: normal;
+  color: #222;
 }
 
 .col {
@@ -36,5 +36,78 @@
     flex-direction: row;
     align-items: center;
 
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  &_grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 2.5rem;
+    row-gap: 1.25rem;
+
+    @media (max-width: 640px) {
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 1024px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: #222;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    color: #717171;
+  }
+}
+
+.property {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+  }
+}
+
+.other {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  &__list {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    margin: 0 auto;
+    height: 40rem;
+  }
+
+  &__card {
+    aspect-ratio: 9 / 16;
+    max-width: 30rem;
+    width: 100%;
   }
 }

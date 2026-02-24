@@ -60,8 +60,8 @@ export default function RootLayout({
       >
         <PriceRequestForm />
       </section>
-      <Footer />
     </main>
+    <Footer />
     </body>
     </html>
   );

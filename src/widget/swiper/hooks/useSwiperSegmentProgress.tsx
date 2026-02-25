@@ -2,18 +2,17 @@
 
 import { useCallback, useMemo, useState, useRef } from 'react';
 
-import { SegmentButton } from '../ui/segmentButton';
+import { SegmentButton } from '@/widget/swiper/ui/segmentButton';
 
 import type { UseSwiperSegmentProgressProps } from '../model/type';
 import type { Swiper as SwiperType } from 'swiper';
 
-
 export function useSwiperSegmentProgress({
                                            segments,
                                            onSegmentChange,
-                                         }: UseSwiperSegmentProgressProps) {
+                                           duration = 5, // Длительность в секундах
+                                         }: UseSwiperSegmentProgressProps & { duration?: number }) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [progress, setProgress] = useState(0);
   const swiperRef = useRef<SwiperType | null>(null);
 
   const onSwiper = useCallback((swiper: SwiperType) => {
@@ -24,97 +23,80 @@ export function useSwiperSegmentProgress({
   const onSegmentClick = useCallback(
     (index: number) => {
       const swiper = swiperRef.current;
-      if (!swiper || index === activeIndex) return;
+      if (!swiper) return;
 
       swiper.slideTo(index);
-      setActiveIndex(index);
-      setProgress(0);
       onSegmentChange?.(index);
-    },
-    [activeIndex, onSegmentChange],
-  );
-
-  const onSlideChange = useCallback(
-    (swiper: SwiperType) => {
-      const newIndex = swiper.activeIndex;
-      setActiveIndex(newIndex);
-      setProgress(0);
-      onSegmentChange?.(newIndex);
     },
     [onSegmentChange],
   );
 
-  const onAutoplayTimeLeft = useCallback(
-    (_: SwiperType, _timeLeft: number, progress: number) => {
-      setProgress(progress);
+  const onSlideChange = useCallback(
+    (swiper: SwiperType) => {
+      setActiveIndex(swiper.activeIndex);
+      onSegmentChange?.(swiper.activeIndex);
     },
-    [],
+    [onSegmentChange],
   );
 
-  const getSegmentProgress = useCallback(
-    (index: number) => {
-      if (index < activeIndex) return 100;
-      if (index === activeIndex) return (1 - progress) * 100;
-      return 0;
-    },
-    [activeIndex, progress],
-  );
+  const handleNext = useCallback(() => {
+    const swiper = swiperRef.current;
+    if (!swiper) return;
 
-  const segmentWidth: string = useMemo(() => `${100 / segments}%`, [segments]);
+    if (swiper.isEnd) {
+      swiper.slideTo(0);
+    } else {
+      swiper.slideNext();
+    }
+  }, []);
 
   const Segments = useMemo(() => {
     return (
       <div className="segments">
-        {Array.from({ length: segments }).map((_, i) => {
-          const segmentProgress = getSegmentProgress(i);
-          const isActive = i === activeIndex;
-
-          return (
-            <SegmentButton
-              key={i}
-              index={i}
-              isActive={isActive}
-              segmentProgress={segmentProgress}
-              segmentWidth={segmentWidth}
-              onSegmentClick={onSegmentClick}
-            />
-          );
-        })}
+        {Array.from({ length: segments }).map((_, i) => (
+          <SegmentButton
+            key={i}
+            index={i}
+            isActive={i === activeIndex}
+            isCompleted={i < activeIndex}
+            duration={duration}
+            onSegmentClick={onSegmentClick}
+            onComplete={handleNext}
+          />
+        ))}
       </div>
     );
-  }, [segments, getSegmentProgress, activeIndex, segmentWidth, onSegmentClick]);
+  }, [segments, activeIndex, onSegmentClick, handleNext, duration]);
 
   const SegmentLine = useMemo(() => {
     return (
       <div className={'segments_line'}>
         <div className={'segments_line_center'}>
           {Array.from({ length: segments }).map((_, i) => {
-            const isActive = i === activeIndex;
-
             return (
               <SegmentButton
                 key={i}
                 index={i}
-                isActive={isActive}
-                segmentProgress={100}
-                segmentWidth={segmentWidth}
+                isActive={i === activeIndex}
+                isCompleted={i < activeIndex}
+                duration={duration}
                 onSegmentClick={onSegmentClick}
+                onComplete={handleNext}
               />
             );
           })}
         </div>
       </div>
     );
-  }, [segments, activeIndex, segmentWidth, onSegmentClick]);
+  }, [segments, activeIndex, duration, onSegmentClick, handleNext]);
+
 
   return {
-    SegmentLine,
     Segments,
+    SegmentLine,
     activeIndex,
-    progress,
     onSwiper,
     onSlideChange,
-    onAutoplayTimeLeft,
     goToSlide: onSegmentClick,
   };
 }

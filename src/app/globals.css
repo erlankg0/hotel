@@ -241,9 +241,13 @@ button[type="button"] {
 .segments {
     display: flex;
     gap: 8px;
-    border-radius: 2cqw;
+    align-items: center;
     padding: 1rem;
     background-color: var(--sidebar-accent);
+    width: 100%;
+    max-width: 8rem;
+    border-radius: 2cqw;
+    overflow: hidden;
 }
 
 .segment {

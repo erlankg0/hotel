@@ -1,4 +1,5 @@
 import { Bath, Scan, Users } from 'lucide-react';
+import Link from 'next/link';
 import { HiOutlineHome } from 'react-icons/hi2';
 import { MdBalcony } from 'react-icons/md';
 
@@ -82,9 +83,9 @@ export function RoomTab(props: RoomTabData) {
             <p className={styles.tab__description}>{description}</p>
           </div>
 
-          <button type={'button'} className={styles.tab__button}>
+          <Link href={'/rooms/1'} className={styles.tab__button}>
             Подробнее о номере
-          </button>
+          </Link>
         </li>
       </ul>
     </section>

@@ -21,7 +21,6 @@ export function Restaurant() {
     Segments,
     onSwiper,
     onSlideChange,
-    onAutoplayTimeLeft,
   } = useSwiperSegmentProgress({ segments: RESTAURANTS.length });
 
   const handleOnSwiper = useCallback((swiper: SwiperType) => {
@@ -57,7 +56,6 @@ export function Restaurant() {
           )}
           onSwiper={handleOnSwiper}
           onSlideChange={handleOnSlideChange}
-          onAutoplayTimeLeft={onAutoplayTimeLeft}
           slides={RESTAURANTS.map((restaurant, index) => (
             <RestaurantSlide key={index} {...restaurant} />
           ))}

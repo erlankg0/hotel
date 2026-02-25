@@ -2,8 +2,6 @@
 
 import { useRef, useState } from 'react';
 
-import { Button } from '@/shared/ui/button';
-
 import { NavButton } from '../ui/NavButton';
 
 import type { Swiper as SwiperType } from 'swiper';
@@ -28,8 +26,8 @@ export function useSwiperNav() {
   const prev = () => swiperRef.current?.slidePrev();
   const next = () => swiperRef.current?.slideNext();
 
-  const prevButton = <NavButton onClick={prev} side={'left'} isDisabled={isStart} />;
-  const nextButton = <NavButton onClick={next} side={'right'} isDisabled={isEnd} />;
+  const prevButton = <NavButton onClick={prev} side={'left'} isDisabled={isStart} className={'text-black'} />;
+  const nextButton = <NavButton onClick={next} side={'right'} isDisabled={isEnd} className={'text-black'} />;
 
   return {
     onSwiper,

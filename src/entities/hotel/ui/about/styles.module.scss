@@ -2,17 +2,15 @@
   display: flex;
   flex-direction: column;
   gap: 3rem;
-  font-family: ui-sans-serif;
+  text-align: center;
 
   &__title {
     font-size: 25px;
     font-weight: 300;
-    font-family: ui-sans-serif;
   }
 
   &__text {
     font-size: 14px;
     font-weight: 400;
-    text-align: center;
   }
 }

@@ -25,7 +25,6 @@ export interface SegmentButtonProps {
   index: number;
   isActive: boolean;
   segmentProgress: number;
-  segmentWidth: string;
   onSegmentClick: (index: number) => void;
 }
 

@@ -15,8 +15,14 @@
     padding: 1.5rem;
     background: #fff;
     border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     height: 100%;
+    border: 1px solid var(--sidebar-accent-foreground);
+
+    &:hover {
+      transform: scale(1.01);
+      transition: all .5s ease-in-out;
+      box-shadow: var(--foreground) 1rem .5rem;
+    }
   }
 
   &__info {
@@ -43,6 +49,7 @@
     border: 1px solid #000;
     background: transparent;
     cursor: pointer;
+    text-align: center;
   }
 
   &__features {
@@ -61,7 +68,7 @@
     font-size: 0.9rem;
     color: #333;
 
-    &_bed{
+    &_bed {
       display: flex;
       flex-direction: row;
       gap: 0.5rem;

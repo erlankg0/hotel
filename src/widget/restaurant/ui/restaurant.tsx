@@ -21,7 +21,7 @@ export function Restaurant() {
     Segments,
     onSwiper,
     onSlideChange,
-  } = useSwiperSegmentProgress({ segments: RESTAURANTS.length });
+  } = useSwiperSegmentProgress({ segments: RESTAURANTS.length, className: 'bg-gray-300' });
 
   const handleOnSwiper = useCallback((swiper: SwiperType) => {
     onSwiper(swiper);

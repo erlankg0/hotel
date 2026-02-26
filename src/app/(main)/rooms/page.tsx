@@ -22,10 +22,9 @@ export default function Page() {
   } = useSwiperNav();
 
   const {
-    SegmentLine,
+    Segments,
     onSwiper,
     onSlideChange,
-    onAutoplayTimeLeft,
     activeIndex,
   } = useSwiperSegmentProgress({ segments: 3 });
 
@@ -50,7 +49,6 @@ export default function Page() {
           spaceBetween={0}
           onSwiper={handleOnSwiper}
           onSlideChange={handleOnChangeSwiper}
-          onAutoplayTimeLeft={onAutoplayTimeLeft}
           autoplay={false}
           slides={[
             <RoomBanner
@@ -86,7 +84,7 @@ export default function Page() {
           <div className={'flex flex-col gap-2'}>
             <div className={styles.section__hero_nav}>
               {prevButton}
-              {SegmentLine}
+              {Segments}
               {nextButton}
             </div>
             <div className={styles.section__hero_pagination}>

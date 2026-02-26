@@ -243,12 +243,14 @@ button[type="button"] {
     gap: 8px;
     align-items: center;
     padding: 1rem;
-    background-color: var(--sidebar-accent);
     width: 100%;
     max-width: 8rem;
     border-radius: 2cqw;
     overflow: hidden;
+    backdrop-filter: blur(20px);
 }
+
+
 
 .segment {
     height: 1rem;

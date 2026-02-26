@@ -2,6 +2,7 @@
 
 import { useCallback, useMemo, useState, useRef } from 'react';
 
+import { cn } from '@/shared/lib/utils';
 import { SegmentButton } from '@/widget/swiper/ui/segmentButton';
 
 import type { UseSwiperSegmentProgressProps } from '../model/type';
@@ -10,8 +11,9 @@ import type { Swiper as SwiperType } from 'swiper';
 export function useSwiperSegmentProgress({
                                            segments,
                                            onSegmentChange,
-                                           duration = 5, // Длительность в секундах
-                                         }: UseSwiperSegmentProgressProps & { duration?: number }) {
+                                           duration = 5,
+                                           className,
+                                         }: UseSwiperSegmentProgressProps & { duration?: number, className?: string }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const swiperRef = useRef<SwiperType | null>(null);
 
@@ -52,7 +54,7 @@ export function useSwiperSegmentProgress({
 
   const Segments = useMemo(() => {
     return (
-      <div className="segments">
+      <div className={cn('segments', className)}>
         {Array.from({ length: segments }).map((_, i) => (
           <SegmentButton
             key={i}
@@ -66,34 +68,11 @@ export function useSwiperSegmentProgress({
         ))}
       </div>
     );
-  }, [segments, activeIndex, onSegmentClick, handleNext, duration]);
-
-  const SegmentLine = useMemo(() => {
-    return (
-      <div className={'segments_line'}>
-        <div className={'segments_line_center'}>
-          {Array.from({ length: segments }).map((_, i) => {
-            return (
-              <SegmentButton
-                key={i}
-                index={i}
-                isActive={i === activeIndex}
-                isCompleted={i < activeIndex}
-                duration={duration}
-                onSegmentClick={onSegmentClick}
-                onComplete={handleNext}
-              />
-            );
-          })}
-        </div>
-      </div>
-    );
-  }, [segments, activeIndex, duration, onSegmentClick, handleNext]);
+  }, [className, segments, activeIndex, duration, onSegmentClick, handleNext]);
 
 
   return {
     Segments,
-    SegmentLine,
     activeIndex,
     onSwiper,
     onSlideChange,

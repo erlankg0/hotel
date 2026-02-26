@@ -58,3 +58,13 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
 }
+
+.image_card {
+  aspect-ratio: 2 / 1;
+  max-width: clamp(10rem, 50rem, 50rem);
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  margin: 0 auto;
+}

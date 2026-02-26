@@ -1,5 +1,6 @@
 import Image from 'next/image';
 
+import { ImageUI } from '@/shared/ui/image';
 import { Table, TableBody, TableCell, TableRow } from '@/shared/ui/table';
 
 import styles from './page.module.scss';
@@ -63,28 +64,6 @@ const GENERALINFORIGHT: { label: string, value: string }[] = [
     label: 'Бары',
     value: '8 баров, 1 кондитерская',
   },
-];
-const CONTACT: { label: string, value: string }[] = [
-  {
-    label: 'Адрес',
-    value: 'Kargıcak Mahallesi, Alanya/Antalya',
-  },
-  {
-    label: 'Телефоны',
-    value: '+90 242 526 22 22 - +90 242 526 28 28',
-  },
-  {
-    label: 'Электронная почта',
-    value: 'sales@utopiaworld.com.tr',
-  },
-  {
-    label: 'Веб Сайт',
-    value: 'utopiaworld.com',
-  },
-  {
-    label: 'GPS координаты',
-    value: '36.45073, 32.13228',
-  },
   {
     label: 'Номера для инвалидов',
     value: '5',
@@ -93,7 +72,56 @@ const CONTACT: { label: string, value: string }[] = [
     label: 'Расстояния',
     value: 'Алания 17 км, Анталия 155 км, Газипаша 21 км, Махмутлар 5 км',
   },
-]
+];
+const CONTACT: { label: string, value: string, type?: 'mailto' | 'tel' | 'href' | 'text' }[] = [
+  {
+    label: 'Адрес',
+    value: 'Kargıcak Mahallesi, Alanya/Antalya',
+    type: 'text',
+  },
+  {
+    label: 'Телефоны',
+    value: '+90 242 526 22 22 - +90 242 526 28 28',
+    type: 'tel',
+  },
+  {
+    label: 'Электронная почта',
+    value: 'sales@utopiaworld.com.tr',
+    type: 'mailto',
+  },
+  {
+    label: 'Веб Сайт',
+    value: 'utopiaworld.com',
+    type: 'href',
+  },
+  {
+    label: 'GPS координаты',
+    value: '36.45073, 32.13228',
+    type: 'href',
+  },
+  {
+    label: 'WhatsApp',
+    value: '+90 533 850 81 64',
+    type: 'href',
+  },
+  {
+    label: 'Instagram',
+    value: '@utopiaworldtr',
+    type: 'href',
+  },
+  {
+    label: 'Вконтакте группа',
+    value: 'utopiaworldtr',
+    type: 'href',
+  },
+  {
+    label: 'Телеграмм группа',
+    value: 'https://t.me/utopiaworldtr',
+    type: 'href',
+  },
+
+
+];
 
 export default async function Page() {
   return (
@@ -147,7 +175,7 @@ export default async function Page() {
       </section>
       <section className={styles.info}>
         <h2 className={styles.info__title}>Контактная информация</h2>
-        <div>
+        <div className={styles.grid}>
           <Table>
             <TableBody>
               {CONTACT.map((contact) => (
@@ -162,20 +190,9 @@ export default async function Page() {
               ))}
             </TableBody>
           </Table>
-          <Table>
-            <TableBody>
-              {CONTACT.map((contact) => (
-                <TableRow key={contact.label}>
-                  <TableCell className="font-medium text-muted-foreground w-1/3">
-                    {contact.label}
-                  </TableCell>
-                  <TableCell>
-                    {contact.value}
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+          <article className={styles.image_card}>
+            <ImageUI src={'/images/poster.jpg'} alt={'Постер'} aspectRatio={'2 / 1'} />
+          </article>
         </div>
       </section>
     </section>

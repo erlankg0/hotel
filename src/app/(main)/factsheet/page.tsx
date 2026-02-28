@@ -1,131 +1,19 @@
 import Image from 'next/image';
+import { LuBed } from 'react-icons/lu';
+import { MdOutlineKingBed } from 'react-icons/md';
 
+import { CONTACT, GENERALINFOLEFT, GENERALINFORIGHT, GIFT, HONEYMOON, ROOMS, UAI } from '@/entities/factsheet';
+import { Grid } from '@/shared/ui/grid';
 import { ImageUI } from '@/shared/ui/image';
-import { Table, TableBody, TableCell, TableRow } from '@/shared/ui/table';
+import { Separator } from '@/shared/ui/separator';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/shared/ui/table';
 
 import styles from './page.module.scss';
 
-const GENERALINFOLEFT: { label: string, value: string }[] = [
-  {
-    label: 'Категория Отеля',
-    value: '5 *',
-  },
-  {
-    label: 'Концепция',
-    value: 'Ультра всё включено',
-  },
-  {
-    label: 'Дата открытия',
-    value: '29.06.2007',
-  },
-  {
-    label: 'Последняя реновация',
-    value: '11.04.2026',
-  },
-  {
-    label: 'Период работы',
-    value: '12.04.2026 - 31.10.2026',
-  },
-  {
-    label: 'Общее количество номеров',
-    value: '567',
-  },
-  {
-    label: 'Площадь',
-    value: '120.000 м²',
-  },
-  {
-    label: 'Общее количество конференц-залов',
-    value: '2',
-  },
-];
-const GENERALINFORIGHT: { label: string, value: string }[] = [
-  {
-    label: 'Территория аквапарка',
-    value: '15.000 м²',
-  },
-  {
-    label: 'Пляж',
-    value: 'Песчаный пляж (350 м) и 2 пирса',
-  },
-  {
-    label: 'Открытые бассейны',
-    value: '4224 м² (глубина 120 - 145 см)',
-  },
-  {
-    label: 'Крытый бассейн',
-    value: '75 м² (глубина 150 см)',
-  },
-  {
-    label: 'Рестораны',
-    value: '1 Главный ресторан, 3 ресторана A la carte, 3 ресторана-закусочных',
-  },
-  {
-    label: 'Бары',
-    value: '8 баров, 1 кондитерская',
-  },
-  {
-    label: 'Номера для инвалидов',
-    value: '5',
-  },
-  {
-    label: 'Расстояния',
-    value: 'Алания 17 км, Анталия 155 км, Газипаша 21 км, Махмутлар 5 км',
-  },
-];
-const CONTACT: { label: string, value: string, type?: 'mailto' | 'tel' | 'href' | 'text' }[] = [
-  {
-    label: 'Адрес',
-    value: 'Kargıcak Mahallesi, Alanya/Antalya',
-    type: 'text',
-  },
-  {
-    label: 'Телефоны',
-    value: '+90 242 526 22 22 - +90 242 526 28 28',
-    type: 'tel',
-  },
-  {
-    label: 'Электронная почта',
-    value: 'sales@utopiaworld.com.tr',
-    type: 'mailto',
-  },
-  {
-    label: 'Веб Сайт',
-    value: 'utopiaworld.com',
-    type: 'href',
-  },
-  {
-    label: 'GPS координаты',
-    value: '36.45073, 32.13228',
-    type: 'href',
-  },
-  {
-    label: 'WhatsApp',
-    value: '+90 533 850 81 64',
-    type: 'href',
-  },
-  {
-    label: 'Instagram',
-    value: '@utopiaworldtr',
-    type: 'href',
-  },
-  {
-    label: 'Вконтакте группа',
-    value: 'utopiaworldtr',
-    type: 'href',
-  },
-  {
-    label: 'Телеграмм группа',
-    value: 'https://t.me/utopiaworldtr',
-    type: 'href',
-  },
-
-
-];
 
 export default async function Page() {
   return (
-    <section>
+    <section className={'flex flex-col  gap-8'}>
       <div className={styles.desktop}>
         <Image
           src="/images/hotel.jpg"
@@ -195,6 +83,176 @@ export default async function Page() {
           </article>
         </div>
       </section>
+      <Separator />
+      <section className={styles.info}>
+        <h2 className={styles.info__title}>{UAI.title}</h2>
+        <div className={styles.grid}>
+          <Table>
+            <TableBody>
+              {UAI.list.slice(0, UAI.list.length / 2).map((item) => (
+                <TableRow key={item}>
+                  <TableCell className="font-medium text-muted-foreground w-1/3">
+                    {item}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+          <Table>
+            <TableBody>
+              {UAI.list.slice(UAI.list.length / 2, UAI.list.length).map((item) => (
+                <TableRow key={item}>
+                  <TableCell className="font-medium text-muted-foreground w-1/3">
+                    {item}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
+
+      </section>
+      <section className={styles.info}>
+        <h2 className={styles.info__title}>{HONEYMOON.title}</h2>
+        <div className={styles.grid}>
+          <article className={styles.image_card}>
+            <ImageUI src={'/images/honeymoon.webp'} alt={HONEYMOON.title} aspectRatio={'2 / 1'} />
+          </article>
+          <Table>
+            <TableBody>
+              {HONEYMOON.list.map((item) => (
+                <TableRow key={item}>
+                  <TableCell className="font-medium text-muted-foreground w-1/3">
+                    {item}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
+
+      </section>
+      <div className={styles.grid}>
+        <section className={styles.info}>
+          <h2 className={styles.info__title}>{GIFT.WENDING}</h2>
+
+          <Table>
+            <TableBody>
+              {GIFT.list.map((item) => (
+                <TableRow key={item}>
+                  <TableCell className="font-medium text-muted-foreground w-1/3">
+                    {item}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+
+        </section>
+        <section className={styles.info}>
+          <h2 className={styles.info__title}>{GIFT.BIRTHDAY}</h2>
+          <Table>
+            <TableBody>
+              {GIFT.list.map((item) => (
+                <TableRow key={item}>
+                  <TableCell className="font-medium text-muted-foreground w-1/3">
+                    {item}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+
+        </section>
+      </div>
+      <Separator />
+      <div className={styles.info}>
+        <h2 className={styles.info__title}>Номера</h2>
+        <Grid size={2} className={'h-130'}>
+          <div className={styles.big}>
+            <ImageUI
+              src="https://cdn.utopiahotels.com/assets/images/pages/villastandardutopiaroom01-xl.webp"
+              alt="image"
+              aspectRatio="auto"
+            />
+          </div>
+          <div className={styles.small}>
+            <ImageUI src="https://cdn.utopiahotels.com/assets/images/pages/01worldstandartroom-xl.webp"
+                     alt="image"
+                     aspectRatio="auto"
+            />
+          </div>
+          <div className={styles.small}>
+            <ImageUI
+              src="https://cdn.utopiahotels.com/assets/images/pages/cornersuitworld02-xl.webp"
+              alt="image"
+              aspectRatio="auto"
+            />
+          </div>
+        </Grid>
+      </div>
+      <section className={styles.info}>
+        <h2 className={styles.info__title}>Особенность Номеров и Сьютов</h2>
+        <div>
+          <Table className="table-fixed w-full">
+            <TableHeader>
+              <TableRow>
+                <TableHead className="w-[20%]">Категория</TableHead>
+                <TableHead className="w-[5%]">Площадь</TableHead>
+                <TableHead className="w-[10%]">Макс. вместимость</TableHead>
+                <TableHead className="w-[65%]">Особенности</TableHead>
+              </TableRow>
+
+            </TableHeader>
+            <TableBody>
+              {ROOMS.map((room) => (
+                <TableRow key={room.title}>
+                  <TableCell className="font-medium">{room.title}</TableCell>
+                  <TableCell>{room.area}</TableCell>
+                  <TableCell>{room.capacity} + 1</TableCell>
+                  <TableCell>
+                    <Table className="table-fixed w-full">
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead>Спальни</TableHead>
+                          <TableHead>Сан Узел</TableHead>
+                          <TableHead>Балкон</TableHead>
+                          <TableHead>Кровати</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        <TableRow>
+                          <TableCell>{room.bedRoom}</TableCell>
+
+                          <TableCell>{room.bathRoom}</TableCell>
+                          <TableCell>{room.balcony}</TableCell>
+                          <TableCell className={'flex flex-row items-center gap-8'}>
+                            <div className={'flex flex-row items-center gap-2'}>
+                              <MdOutlineKingBed />
+                              <p>{room.beds.twin}</p>
+                            </div>
+                            <div className={'flex flex-row items-center gap-2'}>
+                              <LuBed />
+                              <p>{room.beds.sng}</p>
+                            </div>
+                            <div>
+                              + {room.beds?.extra && (<LuBed />)}
+                            </div>
+                            <div>
+                              {room.beds?.sofa && <> + Диван {room.beds.sofa}</>}
+                            </div>
+                          </TableCell>
+                        </TableRow>
+                      </TableBody>
+                    </Table>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
+      </section>
+
     </section>
   );
 }

@@ -1,0 +1,259 @@
+import type { Room } from '../model/type';
+
+export const GENERALINFOLEFT: { label: string, value: string }[] = [
+  {
+    label: 'Категория Отеля',
+    value: '5 *',
+  },
+  {
+    label: 'Концепция',
+    value: 'Ультра всё включено',
+  },
+  {
+    label: 'Дата открытия',
+    value: '29.06.2007',
+  },
+  {
+    label: 'Последняя реновация',
+    value: '11.04.2026',
+  },
+  {
+    label: 'Период работы',
+    value: '12.04.2026 - 31.10.2026',
+  },
+  {
+    label: 'Общее количество номеров',
+    value: '567',
+  },
+  {
+    label: 'Площадь',
+    value: '120.000 м²',
+  },
+  {
+    label: 'Общее количество конференц-залов',
+    value: '2',
+  },
+];
+export const GENERALINFORIGHT: { label: string, value: string }[] = [
+  {
+    label: 'Территория аквапарка',
+    value: '15.000 м²',
+  },
+  {
+    label: 'Пляж',
+    value: 'Песчаный пляж (350 м) и 2 пирса',
+  },
+  {
+    label: 'Открытые бассейны',
+    value: '4224 м² (глубина 120 - 145 см)',
+  },
+  {
+    label: 'Крытый бассейн',
+    value: '75 м² (глубина 150 см)',
+  },
+  {
+    label: 'Рестораны',
+    value: '1 Главный ресторан, 3 ресторана A la carte, 3 ресторана-закусочных',
+  },
+  {
+    label: 'Бары',
+    value: '8 баров, 1 кондитерская',
+  },
+  {
+    label: 'Номера для инвалидов',
+    value: '5',
+  },
+  {
+    label: 'Расстояния',
+    value: 'Алания 17 км, Анталия 155 км, Газипаша 21 км, Махмутлар 5 км',
+  },
+];
+export const CONTACT: { label: string, value: string, type?: 'mailto' | 'tel' | 'href' | 'text' }[] = [
+  {
+    label: 'Адрес',
+    value: 'Kargıcak Mahallesi, Alanya/Antalya',
+    type: 'text',
+  },
+  {
+    label: 'Телефоны',
+    value: '+90 242 526 22 22 - +90 242 526 28 28',
+    type: 'tel',
+  },
+  {
+    label: 'Электронная почта',
+    value: 'sales@utopiaworld.com.tr',
+    type: 'mailto',
+  },
+  {
+    label: 'Веб Сайт',
+    value: 'utopiaworld.com',
+    type: 'href',
+  },
+  {
+    label: 'GPS координаты',
+    value: '36.45073, 32.13228',
+    type: 'href',
+  },
+  {
+    label: 'WhatsApp',
+    value: '+90 533 850 81 64',
+    type: 'href',
+  },
+  {
+    label: 'Instagram',
+    value: '@utopiaworldtr',
+    type: 'href',
+  },
+  {
+    label: 'Вконтакте группа',
+    value: 'utopiaworldtr',
+    type: 'href',
+  },
+  {
+    label: 'Телеграмм группа',
+    value: 'https://t.me/utopiaworldtr',
+    type: 'href',
+  },
+
+
+];
+export const UAI = {
+  title: 'Концепция "Ульра все включено"',
+  list: [
+    'Приветствие с особыми угощениями у входа',
+    'Вода для автомобилей после выезда',
+    'Чайный & кофейный набор во всех номерах',
+    'Местные и импортные напитки',
+    'WI-FI доступен во всех номерах и зонах отеля',
+    'Кондитерская',
+    'Тапочки во всех номерах',
+    'Зонтик и бесплатные пляжные полотенца',
+  ],
+};
+
+export const HONEYMOON = {
+  title: 'Концепция "Медового месяца"',
+  list: [
+    'Украшение номера, специальный прием для молодоженов в день заезда',
+    'Один раз бесплатная резервация в ресторанах A\'la Carte',
+    'В день заселения в номер: игристое вино, десертная тарелка, корзина с фруктами',
+    'Бесплатный завтрак в номер в любой день (1 раз)',
+    'Особые удобства и VIP мини-бар (обновляется ежедневно)',
+    '2 фотографии в подарок от фотографа отеля',
+  ],
+};
+export const GIFT = {
+  WENDING: 'КОНЦЕПЦИЯ ГОДОВЩИНЫ СВАДЬБЫ',
+  BIRTHDAY: 'КОНЦЕПЦИЯ ДНЯ РОЖДЕНИЯ',
+  list: [
+    'Корзина фруктов и вино в номере',
+    'Один раз бесплатная резервация в ресторанах A\'la Carte',
+  ],
+};
+
+export const REGULARINFOROOM = [
+  '40" TV',
+  'Cейф',
+  'Мини-бар',
+  'Чайник, набор для чая и кофе',
+  'Сплит-кондиционер',
+  'Электронный ключ',
+  'Паркетный пол',
+  'Зеркало для макияжа',
+  'Банная косметика',
+  'WI-FI',
+  'Тапочки',
+  'Фен',
+  'Пожарная сигнализация',
+];
+
+export const ONREQUESTINFOROOM = [
+  'Десткая кровать',
+  'Десткая подушка',
+  'Десткий пододеяльник',
+  'Горшок',
+  'Плед',
+  'Утюг',
+];
+
+
+const stdv: Room = {
+  title: 'Стандартный номер в виллах',
+  capacity: 3,
+  area: '33.8 м2',
+  bathRoom: 1,
+  bedRoom: 1,
+  balcony: '3,5 м2',
+  beds: {
+    twin: 1,
+    sng: 1,
+    extra: 'кресло кровать',
+  },
+  view: 'Сад, Море',
+};
+
+const stda: Room = {
+  title: 'Стандартный номер',
+  capacity: 3,
+  area: '30.5 м2',
+  bathRoom: 1,
+  bedRoom: 1,
+  balcony: '3,8 м2',
+  beds: {
+    twin: 1,
+    sng: 1,
+    extra: 'Евро раскладушка',
+  },
+  view: 'Землю, Горы, Море',
+};
+
+const junior: Room = {
+  title: 'Junior Suite',
+  capacity: 5,
+  area: '71 м2',
+  bathRoom: 2,
+  bedRoom: 2,
+  balcony: '3,8 м2',
+  beds: {
+    twin: 1,
+    sng: 2,
+    extra: 'Евро раскладушка',
+    sofa: 1,
+  },
+  view: 'Землю, Горы, Море',
+};
+
+const corner: Room = {
+  title: 'Corner Suite',
+  capacity: 4,
+  area: '50 м2',
+  bathRoom: 2,
+  bedRoom: 1,
+  balcony: '14 м2',
+  beds: {
+    twin: 1,
+    sng: 1,
+    extra: 'Евро раскладушка',
+    sofa: 1,
+  },
+  view: 'Землю, Горы, Море',
+};
+
+const penthouse: Room = {
+  title: 'Penthouse Suite',
+  capacity: 5,
+  area: '71 м2',
+  bathRoom: 2,
+  bedRoom: 2,
+  balcony: '10 м2',
+  beds: {
+    twin: 2,
+    sng: 1,
+    extra: 'Евро раскладушка',
+    sofa: 1,
+  },
+  view: 'Землю, Горы, Море',
+
+};
+
+export const ROOMS: Room[] = [stda, stdv, corner, junior, penthouse];

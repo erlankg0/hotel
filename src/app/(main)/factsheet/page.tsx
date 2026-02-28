@@ -226,20 +226,20 @@ export default async function Page() {
 
                           <TableCell>{room.bathRoom}</TableCell>
                           <TableCell>{room.balcony}</TableCell>
-                          <TableCell className={'flex flex-row items-center gap-8'}>
+                          <TableCell className={'flex flex-row items-center gap-4'}>
                             <div className={'flex flex-row items-center gap-2'}>
                               <MdOutlineKingBed />
-                              <p>{room.beds.twin}</p>
+                              <p>x {room.beds.twin}</p>
                             </div>
                             <div className={'flex flex-row items-center gap-2'}>
                               <LuBed />
-                              <p>{room.beds.sng}</p>
+                              <p>x {room.beds.sng}</p>
+                            </div>
+                            <div className={'flex flex-row items-center gap-2'}>
+                              <p>+</p> {room.beds?.extra && (<LuBed />)}
                             </div>
                             <div>
-                              + {room.beds?.extra && (<LuBed />)}
-                            </div>
-                            <div>
-                              {room.beds?.sofa && <> + Диван {room.beds.sofa}</>}
+                              {room.beds?.sofa && <> + Диван </>}
                             </div>
                           </TableCell>
                         </TableRow>

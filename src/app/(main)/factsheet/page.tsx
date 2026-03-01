@@ -2,7 +2,17 @@ import Image from 'next/image';
 import { LuBed } from 'react-icons/lu';
 import { MdOutlineKingBed } from 'react-icons/md';
 
-import { CONTACT, GENERALINFOLEFT, GENERALINFORIGHT, GIFT, HONEYMOON, ROOMS, UAI } from '@/entities/factsheet';
+import {
+  CONTACT,
+  GENERALINFOLEFT,
+  GENERALINFORIGHT,
+  GIFT,
+  HONEYMOON,
+  ROOMS,
+  UAI,
+  REGULARINFOROOM,
+  ONREQUESTINFOROOM,
+} from '@/entities/factsheet';
 import { Grid } from '@/shared/ui/grid';
 import { ImageUI } from '@/shared/ui/image';
 import { Separator } from '@/shared/ui/separator';
@@ -252,7 +262,49 @@ export default async function Page() {
           </Table>
         </div>
       </section>
-
+      <section className={styles.info}>
+        <h2 className={styles.info__title}>Общие харатеристики номеров</h2>
+        <div className={styles.grid}>
+          <Table className="table-fixed w-full">
+            <TableHeader>Общее</TableHeader>
+            <TableBody>
+              {REGULARINFOROOM.map((regular) => (
+                <TableRow key={regular}>
+                  <TableCell className="font-medium">{regular}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+          <Table className="table-fixed w-full">
+            <TableHeader>По запросу</TableHeader>
+            <TableBody>
+              {ONREQUESTINFOROOM.map((request) => (
+                <TableRow key={request}>
+                  <TableCell className="font-medium">{request}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
+      </section>
+      <section className={styles.info}>
+        <h2 className={styles.info__title}>Сервис еды и напитков</h2>
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead className="w-[20%]">Ресторан</TableHead>
+              <TableHead className="w-[5%]">Тип</TableHead>
+              <TableHead className="w-[10%]">Формат</TableHead>
+              <TableHead className="w-[65%]">Писания</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            <TableRow>
+              <TableCell>Main Restaurants</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </section>
     </section>
   );
 }

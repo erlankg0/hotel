@@ -289,20 +289,164 @@ export default async function Page() {
       </section>
       <section className={styles.info}>
         <h2 className={styles.info__title}>Сервис еды и напитков</h2>
-        <Table>
+        <Table className="table-fixed w-full">
           <TableHeader>
             <TableRow>
-              <TableHead className="w-[20%]">Ресторан</TableHead>
-              <TableHead className="w-[5%]">Тип</TableHead>
+              <TableHead className="w-[15%]">Ресторан</TableHead>
+              <TableHead className="w-[10%]">Тип</TableHead>
               <TableHead className="w-[10%]">Формат</TableHead>
-              <TableHead className="w-[65%]">Писания</TableHead>
+              <TableHead className="w-[30%]">Описание</TableHead>
+              <TableHead className="w-[10%]">Время работы</TableHead>
+              <TableHead className="w-[15%]">Ультра всё включено</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             <TableRow>
-              <TableCell>Main Restaurants</TableCell>
+              <TableCell rowSpan={4} className="align-middle font-medium">
+                Ресторан Tuğra
+              </TableCell>
+              <TableCell>Завтрак</TableCell>
+              <TableCell rowSpan={4}>Шведский стол</TableCell>
+              <TableCell className="align-top break-words whitespace-normal p-2">
+                <p>
+                  Широкий выбор завтраков по системе «‎шведский стол»‎ и диетического буфета
+                </p>
+              </TableCell>
+              <TableCell>07:00 - 10:00</TableCell>
+              <TableCell><p className={'text-green-400'}>Включено</p></TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Поздний завтрак</TableCell>
+              <TableCell className="align-top break-words whitespace-normal p-2">
+                <p>
+                  Завтрак по системе «‎шведский стол»‎ и диетического буфета
+                </p>
+              </TableCell>
+              <TableCell>10:00 - 11:00</TableCell>
+              <TableCell><p className={'text-green-400'}>Включено</p></TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Обед</TableCell>
+              <TableCell className="align-top break-words whitespace-normal p-2">
+                <p>
+                  Разнообразный «‎шведский стол»‎ с диетическими и национальными блюдами.
+                </p>
+              </TableCell>
+              <TableCell>12:30 - 14:00</TableCell>
+              <TableCell><p className={'text-green-400'}>Включено</p></TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Ужин</TableCell>
+              <TableCell className="align-top break-words whitespace-normal p-2">
+                <p>
+                  Разнообразный «‎шведский стол»‎ с диетическими и национальными блюдами и теметическими ужинами.
+                </p>
+              </TableCell>
+              <TableCell>18:30 - 21:00</TableCell>
+              <TableCell><p className={'text-green-400'}>Включено</p></TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell rowSpan={2} className="align-middle font-medium">
+                Ресторан LA MONTE
+              </TableCell>
+              <TableCell>Снэк</TableCell>
+              <TableCell>Шведский стол</TableCell>
+              <TableCell className="align-top break-words whitespace-normal p-2">
+                <p>
+                  Ночной снэк бар по системе «‎шведский стол»‎
+                </p>
+              </TableCell>
+              <TableCell>22:00 - 06:00</TableCell>
+              <TableCell><p className={'text-green-400'}>Включено</p></TableCell>
+            </TableRow>
+
+            <TableRow>
+              <TableCell>Ужин</TableCell>
+              <TableCell>Меню</TableCell>
+              <TableCell className="align-top break-words whitespace-normal p-2">
+                <p>
+                  LA MONTE А&apos;ля карт предлогает исключительный опыт итальянской гастрономии, сочетая аутентичные
+                  вкусы, отборные свежие ингредиенты и классические блюда в элегантной и стильно атмосфере.
+                </p>
+              </TableCell>
+              <TableCell>19:00 - 21:00</TableCell>
+              <TableCell><p className={'text-rose-400'}>Платно</p></TableCell>
+            </TableRow>
+
+            <TableRow>
+              <TableCell  className="align-middle font-medium">
+                Ресторан Tuam
+              </TableCell>
+              <TableCell>Ужин</TableCell>
+              <TableCell>Меню</TableCell>
+              <TableCell className="align-top break-words whitespace-normal p-2">
+                <p>
+                  Tuam представляет турецкое наследие с аутентичным ужинами в традиционной Османской кухне, предлогаия гостям теплое и гостеприимное кулинарное приключения.
+                </p>
+              </TableCell>
+              <TableCell>19:00 - 21:00</TableCell>
+              <TableCell><p className={'text-rose-400'}>Платно</p></TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell  className="align-middle font-medium">
+                Ресторан TURKUAZ
+              </TableCell>
+              <TableCell>Ужин</TableCell>
+              <TableCell>Меню</TableCell>
+              <TableCell className="align-top break-words whitespace-normal p-2">
+                <p>
+                  TURKUAZ представляет морскую кухню с аутентичными ужинами, предлагая гостям тёплое и гостеприимное кулинарное приключение.
+                </p>
+              </TableCell>
+              <TableCell>19:00 - 21:00</TableCell>
+              <TableCell><p className={'text-rose-400'}>Платно</p></TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell className="align-middle font-medium">
+                Cнэк Tuğra
+              </TableCell>
+              <TableCell>Снэк</TableCell>
+              <TableCell className="align-top break-words whitespace-normal p-2">
+                <p>
+                  Закуски в течении дня по системе «‎шведский стол»‎
+                </p>
+              </TableCell>
+              <TableCell>14:30 - 16:00</TableCell>
+              <TableCell><p className={'text-green-400'}>Включено</p></TableCell>
+            </TableRow>
+
+            <TableRow>
+              <TableCell className="align-middle font-medium">
+                Cнэк Аквапарк
+              </TableCell>
+              <TableCell>Снэк</TableCell>
+              <TableCell>Меню</TableCell>
+
+              <TableCell className="align-top break-words whitespace-normal p-2">
+                <p>
+                  Разнообразный выбор снэков по меню также Gözleme.
+                </p>
+              </TableCell>
+              <TableCell>12:30 - 16:00</TableCell>
+              <TableCell><p className={'text-green-400'}>Включено</p></TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell className="align-middle font-medium">
+                Cнэк Пляж
+              </TableCell>
+              <TableCell>Снэк</TableCell>
+              <TableCell>Шведский стол</TableCell>
+
+              <TableCell className="align-top break-words whitespace-normal p-2">
+                <p>
+                  Закуски в течении дня с потрясающим видом на Средиземное море.
+                </p>
+              </TableCell>
+              <TableCell>12:30 - 16:00</TableCell>
+              <TableCell><p className={'text-green-400'}>Включено</p></TableCell>
             </TableRow>
           </TableBody>
+
         </Table>
       </section>
     </section>

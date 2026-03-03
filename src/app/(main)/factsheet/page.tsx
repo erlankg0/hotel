@@ -292,7 +292,7 @@ export default async function Page() {
                 </p>
               </TableCell>
               <TableCell>07:00 - 10:00</TableCell>
-              <TableCell><p className={'text-green-400'}>Включено</p></TableCell>
+              <TableCell><p className={'text-green-400 text-right'}>Включено</p></TableCell>
             </TableRow>
             <TableRow>
               <TableCell>Поздний завтрак</TableCell>
@@ -303,7 +303,7 @@ export default async function Page() {
                 </p>
               </TableCell>
               <TableCell>10:00 - 11:00</TableCell>
-              <TableCell><p className={'text-green-400'}>Включено</p></TableCell>
+              <TableCell><p className={'text-green-400 text-right'}>Включено</p></TableCell>
             </TableRow>
             <TableRow>
               <TableCell>Обед</TableCell>
@@ -314,7 +314,7 @@ export default async function Page() {
                 </p>
               </TableCell>
               <TableCell>12:30 - 14:00</TableCell>
-              <TableCell><p className={'text-green-400'}>Включено</p></TableCell>
+              <TableCell><p className={'text-green-400 text-right'}>Включено</p></TableCell>
             </TableRow>
             <TableRow>
               <TableCell>Ужин</TableCell>
@@ -325,7 +325,7 @@ export default async function Page() {
                 </p>
               </TableCell>
               <TableCell>18:30 - 21:00</TableCell>
-              <TableCell><p className={'text-green-400'}>Включено</p></TableCell>
+              <TableCell><p className={'text-green-400 text-right'}>Включено</p></TableCell>
             </TableRow>
             <TableRow>
               <TableCell className="align-middle font-medium">
@@ -339,7 +339,7 @@ export default async function Page() {
                 </p>
               </TableCell>
               <TableCell>22:00 - 06:00</TableCell>
-              <TableCell><p className={'text-green-400'}>Включено</p></TableCell>
+              <TableCell><p className={'text-green-400 text-right'}>Включено</p></TableCell>
             </TableRow>
             <TableRow>
               <TableCell className="align-middle font-medium">
@@ -353,7 +353,7 @@ export default async function Page() {
                 </p>
               </TableCell>
               <TableCell>14:30 - 16:00</TableCell>
-              <TableCell><p className={'text-green-400'}>Включено</p></TableCell>
+              <TableCell><p className={'text-green-400 text-right'}>Включено</p></TableCell>
             </TableRow>
             <TableRow>
               <TableCell className="align-middle font-medium">
@@ -368,7 +368,7 @@ export default async function Page() {
                 </p>
               </TableCell>
               <TableCell>12:30 - 16:00</TableCell>
-              <TableCell><p className={'text-green-400'}>Включено</p></TableCell>
+              <TableCell><p className={'text-green-400 text-right'}>Включено</p></TableCell>
             </TableRow>
             <TableRow>
               <TableCell className="align-middle font-medium">
@@ -383,7 +383,7 @@ export default async function Page() {
                 </p>
               </TableCell>
               <TableCell>12:30 - 16:00</TableCell>
-              <TableCell><p className={'text-green-400'}>Включено</p></TableCell>
+              <TableCell><p className={'text-green-400 text-right'}>Включено</p></TableCell>
             </TableRow>
 
             <TableRow>
@@ -392,7 +392,7 @@ export default async function Page() {
               </TableCell>
               <TableCell colSpan={3}>Снэк</TableCell>
               <TableCell>14:30 - 16:30</TableCell>
-              <TableCell><p className={'text-green-400'}>Включено</p></TableCell>
+              <TableCell><p className={'text-green-400 text-right'}>Включено</p></TableCell>
             </TableRow>
 
             <TableRow>
@@ -403,7 +403,7 @@ export default async function Page() {
               <TableCell>Шоколад, Торты, Печенье, Выпечка</TableCell>
 
               <TableCell>11:00 - 23:00</TableCell>
-              <TableCell><p className={'text-green-400'}>Включено</p></TableCell>
+              <TableCell><p className={'text-green-400 text-right'}>Включено</p></TableCell>
             </TableRow>
 
             <TableRow>
@@ -413,7 +413,7 @@ export default async function Page() {
               <TableCell colSpan={3}></TableCell>
 
               <TableCell>24 часа</TableCell>
-              <TableCell><p className={'text-rose-400'}>Платно</p></TableCell>
+              <TableCell><p className={'text-rose-400 text-right'}>Платно</p></TableCell>
             </TableRow>
           </TableBody>
         </Table>
@@ -468,7 +468,7 @@ export default async function Page() {
                 </p>
               </TableCell>
               <TableCell>19:00 - 21:00</TableCell>
-              <TableCell><p className={'text-rose-400'}>Платно</p></TableCell>
+              <TableCell><p className={'text-rose-400 text-right'}>Платно</p></TableCell>
             </TableRow>
 
             <TableRow>
@@ -484,7 +484,7 @@ export default async function Page() {
                 </p>
               </TableCell>
               <TableCell>19:00 - 21:00</TableCell>
-              <TableCell><p className={'text-rose-400'}>Платно</p></TableCell>
+              <TableCell><p className={'text-rose-400 text-right'}>Платно</p></TableCell>
             </TableRow>
             <TableRow>
               <TableCell className="align-middle font-medium">
@@ -499,7 +499,7 @@ export default async function Page() {
                 </p>
               </TableCell>
               <TableCell>19:00 - 21:00</TableCell>
-              <TableCell><p className={'text-rose-400'}>Платно</p></TableCell>
+              <TableCell><p className={'text-rose-400 text-right'}>Платно</p></TableCell>
             </TableRow>
           </TableBody>
         </Table>
@@ -525,14 +525,14 @@ export default async function Page() {
                 Лобби Бар
               </TableCell>
               <TableCell>24 часа</TableCell>
-              <TableCell><p className={'text-green-400'}>Включено</p></TableCell>
+              <TableCell><p className={'text-green-400 text-right'}>Включено</p></TableCell>
             </TableRow>
             <TableRow>
               <TableCell className="align-middle font-medium">
                 Лагуна Бар
               </TableCell>
               <TableCell>10:00 - 01:00</TableCell>
-              <TableCell><p className={'text-green-400'}>Включено</p></TableCell>
+              <TableCell><p className={'text-green-400 text-right'}>Включено</p></TableCell>
             </TableRow>
 
             <TableRow>
@@ -540,7 +540,7 @@ export default async function Page() {
                 Бар у бассейна
               </TableCell>
               <TableCell>10:00 - 01:00</TableCell>
-              <TableCell><p className={'text-green-400'}>Включено</p></TableCell>
+              <TableCell><p className={'text-green-400 text-right'}>Включено</p></TableCell>
             </TableRow>
 
             <TableRow>
@@ -548,14 +548,14 @@ export default async function Page() {
                 Бар у аквапарка
               </TableCell>
               <TableCell>10:00 - 17:00</TableCell>
-              <TableCell><p className={'text-green-400'}>Включено</p></TableCell>
+              <TableCell><p className={'text-green-400 text-right'}>Включено</p></TableCell>
             </TableRow>
             <TableRow>
               <TableCell className="align-middle font-medium">
                 Пляжный Бар
               </TableCell>
               <TableCell>10:00 - 17:00</TableCell>
-              <TableCell><p className={'text-green-400'}>Включено</p></TableCell>
+              <TableCell><p className={'text-green-400 text-right'}>Включено</p></TableCell>
             </TableRow>
 
             <TableRow>
@@ -563,14 +563,14 @@ export default async function Page() {
                 Бар у Релакс бассейна
               </TableCell>
               <TableCell>10:00 - 17:00</TableCell>
-              <TableCell><p className={'text-green-400'}>Включено</p></TableCell>
+              <TableCell><p className={'text-green-400 text-right'}>Включено</p></TableCell>
             </TableRow>
             <TableRow>
               <TableCell className="align-middle font-medium">
                 Бар в ночном клубе
               </TableCell>
               <TableCell>23:00 - 02:00</TableCell>
-              <TableCell><p className={'text-green-400'}>Включено</p></TableCell>
+              <TableCell><p className={'text-green-400 text-right'}>Включено</p></TableCell>
             </TableRow>
 
             <TableRow>
@@ -578,7 +578,7 @@ export default async function Page() {
                 Детокс Бар
               </TableCell>
               <TableCell>10:00 - 18:00</TableCell>
-              <TableCell><p className={'text-green-400'}>Включено</p></TableCell>
+              <TableCell><p className={'text-green-400 text-right'}>Включено</p></TableCell>
             </TableRow>
 
           </TableBody>
@@ -605,7 +605,7 @@ export default async function Page() {
               </TableCell>
               <TableCell>Все Бары
               </TableCell>
-              <TableCell><p className={'text-green-400'}>Включено</p></TableCell>
+              <TableCell><p className={'text-green-400 text-right'}>Включено</p></TableCell>
             </TableRow>
             <TableRow>
               <TableCell className="align-middle font-medium">
@@ -618,7 +618,7 @@ export default async function Page() {
               </TableCell>
               <TableCell>Все Бары
               </TableCell>
-              <TableCell><p className={'text-green-400'}>Включено</p></TableCell>
+              <TableCell><p className={'text-green-400 text-right'}>Включено</p></TableCell>
             </TableRow>
             <TableRow>
               <TableCell className="align-middle font-medium">
@@ -629,7 +629,7 @@ export default async function Page() {
               </TableCell>
               <TableCell>Все Бары
               </TableCell>
-              <TableCell><p className={'text-green-400'}>Включено</p></TableCell>
+              <TableCell><p className={'text-green-400 text-right'}>Включено</p></TableCell>
             </TableRow>
           </TableBody>
           <TableFooter className={'text-xs font-mono'}>
@@ -674,14 +674,14 @@ export default async function Page() {
               <TableCell>Сауна</TableCell>
               <TableCell>Паровая комната</TableCell>
               <TableCell>Турецкая баня</TableCell>
-              <TableCell><p className={'text-green-400'}>Включено</p></TableCell>
+              <TableCell><p className={'text-green-400 text-right'}>Включено</p></TableCell>
             </TableRow>
             <TableRow>
               <TableCell>Массаж и терапия</TableCell>
               <TableCell>Уход за кожей</TableCell>
               <TableCell>Уход за телом</TableCell>
               <TableCell>Маникюр, педикюр</TableCell>
-              <TableCell><p className={'text-rose-400'}>Платно</p></TableCell>
+              <TableCell><p className={'text-rose-400 text-right'}>Платно</p></TableCell>
             </TableRow>
           </TableBody>
           <TableFooter className={'text-xs font-mono'}>
@@ -721,9 +721,9 @@ export default async function Page() {
               <TableCell>32,85</TableCell>
               <TableCell>3,65</TableCell>
               <TableCell>485</TableCell>
-              <TableCell>430</TableCell>
-              <TableCell>600</TableCell>
-              <TableCell>325</TableCell>
+              <TableCell>430 чел.</TableCell>
+              <TableCell>600 чел.</TableCell>
+              <TableCell>325 чел.</TableCell>
             </TableRow>
             <TableRow>
               <TableCell>Maun</TableCell>
@@ -731,9 +731,81 @@ export default async function Page() {
               <TableCell>8,30</TableCell>
               <TableCell>3,65</TableCell>
               <TableCell>52</TableCell>
-              <TableCell>40</TableCell>
-              <TableCell>50</TableCell>
+              <TableCell>40 чел.</TableCell>
+              <TableCell>50 чел.</TableCell>
               <TableCell>-</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </section>
+      <section className={styles.info}>
+        <h2 className={styles.info__title}>Дополнительная информация</h2>
+
+        <Table className="table-fixed w-full">
+          <TableHeader>
+            <TableRow>
+              <TableHead>Услуга</TableHead>
+              <TableHead></TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            <TableRow>
+              <TableCell>Прокат авто</TableCell>
+              <TableCell className={'text-rose-400 text-right'}>Платно</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Кальянная</TableCell>
+              <TableCell className={'text-rose-400 text-right'}>Платно</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Моторные водные виды спорта</TableCell>
+              <TableCell className={'text-rose-400 text-right'}>Платно</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Трансфер из аэропорта</TableCell>
+              <TableCell className={'text-rose-400 text-right'}>Платно</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Няня</TableCell>
+              <TableCell className={'text-rose-400 text-right'}>Платно</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Детская коляска</TableCell>
+              <TableCell className={'text-rose-400 text-right'}>Платно</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Детская кровать, горшок, ванна и плед</TableCell>
+              <TableCell className={'text-green-400 text-right'}>Включено</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Room Service</TableCell>
+              <TableCell className={'text-rose-400 text-right'}>Платно</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Мини-бар пополняется один раз в день бесплатно. Дополнительное пополнение осуществляется за
+                дополнительную плату.</TableCell>
+              <TableCell className={'text-blue-400 text-right'}> Включено (1 раз в день)</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Пакет услуг для медового месяца (дополнительно оплачиваются услуги вне стандартной
+                концепции).</TableCell>
+              <TableCell className={'text-blue-400 text-right'}> Частично включено</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Юбилейный пакет (дополнительно оплачиваются услуги вне стандартной концепции)</TableCell>
+              <TableCell className={'text-blue-400 text-right'}> Частично включено</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Питание и напитки вне концепции Ultra All Inclusive</TableCell>
+              <TableCell className={'text-rose-400 text-right'}> Платно</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Магазины и лавки</TableCell>
+              <TableCell className={'text-rose-400 text-right'}> Платно</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Доктор</TableCell>
+              <TableCell className={'text-rose-400 text-right'}> Платно</TableCell>
             </TableRow>
           </TableBody>
         </Table>

@@ -506,29 +506,11 @@ export default async function Page() {
       </section>
       <section className={styles.info}>
         <h2 className={styles.info__title}>Бары</h2>
-        <Grid size={2} className={'h-130'}>
-          <div className={styles.big}>
-            <ImageUI
-              src="https://cdn.utopiahotels.com/assets/images/pages/0003lagunabar-lg.webp"
-              alt="image"
-              aspectRatio="auto"
-            />
-          </div>
-          <div className={styles.small}>
-            <ImageUI
-              src="https://cdn.utopiahotels.com/assets/images/pages/0008beachbar-lg.webp"
-              alt="image"
-              aspectRatio="auto"
-            />
-          </div>
-          <div className={styles.small}>
-            <ImageUI
-              src="https://cdn.utopiahotels.com/assets/images/pages/0006poolbar-lg.webp"
-              alt="image"
-              aspectRatio="auto"
-            />
-          </div>
-        </Grid>
+        <ImageUI
+          src="https://cdn.utopiahotels.com/assets/images/pages/0006poolbar-lg.webp"
+          alt="image"
+          aspectRatio="2/1"
+        />
         <Table className="table-fixed w-full">
           <TableHeader>
             <TableRow>
@@ -673,7 +655,89 @@ export default async function Page() {
           </TableFooter>
         </Table>
       </section>
+      <section className={styles.info}>
+        <h2 className={styles.info__title}>Центр SPA и оздоровления</h2>
 
+        <Table className="table-fixed w-full">
+          <TableHeader>
+            <TableRow>
+              <TableHead></TableHead>
+              <TableHead></TableHead>
+              <TableHead></TableHead>
+              <TableHead></TableHead>
+              <TableHead></TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            <TableRow>
+              <TableCell>Крытый бассейн</TableCell>
+              <TableCell>Сауна</TableCell>
+              <TableCell>Паровая комната</TableCell>
+              <TableCell>Турецкая баня</TableCell>
+              <TableCell><p className={'text-green-400'}>Включено</p></TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Массаж и терапия</TableCell>
+              <TableCell>Уход за кожей</TableCell>
+              <TableCell>Уход за телом</TableCell>
+              <TableCell>Маникюр, педикюр</TableCell>
+              <TableCell><p className={'text-rose-400'}>Платно</p></TableCell>
+            </TableRow>
+          </TableBody>
+          <TableFooter className={'text-xs font-mono'}>
+            <TableRow>
+              <TableCell colSpan={5}>
+                SPA - открыт 7 дней в неделю с 09:00 - 18:00.
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell colSpan={5}>
+                Гости обязаны сообщить о проблемах со здоровьем руководству SPA перед использованием услуг SPA
+              </TableCell>
+            </TableRow>
+          </TableFooter>
+        </Table>
+      </section>
+      <section className={styles.info}>
+        <h2 className={styles.info__title}>Конференц - залы</h2>
+
+        <Table className="table-fixed w-full">
+          <TableHeader>
+            <TableRow>
+              <TableHead>Названия</TableHead>
+              <TableHead>Ширина (м)</TableHead>
+              <TableHead>Длина (м)</TableHead>
+              <TableHead>Высота (м)</TableHead>
+              <TableHead>Площадь (м2)</TableHead>
+              <TableHead>Классная рассадка</TableHead>
+              <TableHead>Театральная рассадка</TableHead>
+              <TableHead>Банкетная рассадка</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            <TableRow>
+              <TableCell>Ephlatun</TableCell>
+              <TableCell>15,10</TableCell>
+              <TableCell>32,85</TableCell>
+              <TableCell>3,65</TableCell>
+              <TableCell>485</TableCell>
+              <TableCell>430</TableCell>
+              <TableCell>600</TableCell>
+              <TableCell>325</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Maun</TableCell>
+              <TableCell>6,50</TableCell>
+              <TableCell>8,30</TableCell>
+              <TableCell>3,65</TableCell>
+              <TableCell>52</TableCell>
+              <TableCell>40</TableCell>
+              <TableCell>50</TableCell>
+              <TableCell>-</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </section>
     </section>
   );
 }

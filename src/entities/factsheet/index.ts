@@ -7,6 +7,8 @@ export {
   UAI,
   HONEYMOON,
   ONREQUESTINFOROOM,
-  DISABLED
+  DISABLED,
+  NOTES,
+  AWARDS
 } from './const/conts';
-export { TableInfo } from './ui/table'
+export { TableInfo } from './ui/table';

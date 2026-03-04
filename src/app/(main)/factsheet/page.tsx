@@ -12,6 +12,8 @@ import {
   ROOMS,
   DISABLED,
   UAI,
+  NOTES,
+  AWARDS,
   TableInfo,
 } from '@/entities/factsheet';
 import { Grid } from '@/shared/ui/grid';
@@ -20,6 +22,7 @@ import { Separator } from '@/shared/ui/separator';
 import { Table, TableBody, TableCell, TableFooter, TableHead, TableHeader, TableRow } from '@/shared/ui/table';
 
 import styles from './page.module.scss';
+import { cn } from '@/shared/lib/utils';
 
 
 export default async function Page() {
@@ -254,6 +257,7 @@ export default async function Page() {
               aspectRatio="auto"
             />
           </div>
+
           <div className={styles.small}>
             <ImageUI src="https://cdn.utopiahotels.com/assets/images/pages/beachsnackglri6-xl.webp"
                      alt="image"
@@ -286,7 +290,7 @@ export default async function Page() {
               </TableCell>
               <TableCell>Завтрак</TableCell>
               <TableCell>Шведский стол</TableCell>
-              <TableCell className="align-top break-words whitespace-normal p-2">
+              <TableCell className="align-top wrap-break-word whitespace-normal p-2">
                 <p>
                   Широкий выбор завтраков по системе «‎шведский стол»‎ и диетического буфета
                 </p>
@@ -297,7 +301,7 @@ export default async function Page() {
             <TableRow>
               <TableCell>Поздний завтрак</TableCell>
               <TableCell>Шведский стол</TableCell>
-              <TableCell className="align-top break-words whitespace-normal p-2">
+              <TableCell className="align-top wrap-break-word whitespace-normal p-2">
                 <p>
                   Завтрак по системе «‎шведский стол»‎ и диетического буфета
                 </p>
@@ -308,7 +312,7 @@ export default async function Page() {
             <TableRow>
               <TableCell>Обед</TableCell>
               <TableCell>Шведский стол</TableCell>
-              <TableCell className="align-top break-words whitespace-normal p-2">
+              <TableCell className="align-top wrap-break-word whitespace-normal p-2">
                 <p>
                   Разнообразный «‎шведский стол»‎ с диетическими и национальными блюдами.
                 </p>
@@ -319,7 +323,7 @@ export default async function Page() {
             <TableRow>
               <TableCell>Ужин</TableCell>
               <TableCell>Шведский стол</TableCell>
-              <TableCell className="align-top break-words whitespace-normal p-2">
+              <TableCell className="align-top wrap-break-word whitespace-normal p-2">
                 <p>
                   Разнообразный «‎шведский стол»‎ с диетическими и национальными блюдами и теметическими ужинами.
                 </p>
@@ -333,7 +337,7 @@ export default async function Page() {
               </TableCell>
               <TableCell>Снэк</TableCell>
               <TableCell>Шведский стол</TableCell>
-              <TableCell className="align-top break-words whitespace-normal p-2">
+              <TableCell className="align-top wrap-break-word whitespace-normal p-2">
                 <p>
                   Ночной снэк бар по системе «‎шведский стол»‎
                 </p>
@@ -347,7 +351,7 @@ export default async function Page() {
               </TableCell>
               <TableCell>Снэк</TableCell>
               <TableCell>Шведский стол</TableCell>
-              <TableCell className="align-top break-words whitespace-normal p-2">
+              <TableCell className="align-top wrap-break-word whitespace-normal p-2">
                 <p>
                   Закуски в течении дня по системе «‎шведский стол»‎
                 </p>
@@ -362,7 +366,7 @@ export default async function Page() {
               <TableCell>Снэк</TableCell>
               <TableCell>Меню</TableCell>
 
-              <TableCell className="align-top break-words whitespace-normal p-2">
+              <TableCell className="align-top wrap-break-word whitespace-normal p-2">
                 <p>
                   Разнообразный выбор снэков по меню также Gözleme.
                 </p>
@@ -372,12 +376,12 @@ export default async function Page() {
             </TableRow>
             <TableRow>
               <TableCell className="align-middle font-medium">
-                Cнэк Пляж
+                Cнэк бар на Пляже
               </TableCell>
               <TableCell>Снэк</TableCell>
               <TableCell>Шведский стол</TableCell>
 
-              <TableCell className="align-top break-words whitespace-normal p-2">
+              <TableCell className="align-top wrap-break-word whitespace-normal p-2">
                 <p>
                   Закуски в течении дня с потрясающим видом на Средиземное море.
                 </p>
@@ -461,7 +465,7 @@ export default async function Page() {
               </TableCell>
               <TableCell>Ужин</TableCell>
               <TableCell>Меню</TableCell>
-              <TableCell className="align-top break-words whitespace-normal p-2">
+              <TableCell className="align-top wrap-break-word whitespace-normal p-2">
                 <p>
                   LA MONTE А&apos;ля карт предлогает исключительный опыт итальянской гастрономии, сочетая аутентичные
                   вкусы, отборные свежие ингредиенты и классические блюда в элегантной и стильно атмосфере.
@@ -477,7 +481,7 @@ export default async function Page() {
               </TableCell>
               <TableCell>Ужин</TableCell>
               <TableCell>Меню</TableCell>
-              <TableCell className="align-top break-words whitespace-normal p-2">
+              <TableCell className="align-top wrap-break-word whitespace-normal p-2">
                 <p>
                   Tuam представляет турецкое наследие с аутентичным ужинами в традиционной Османской кухне, предлогаия
                   гостям теплое и гостеприимное кулинарное приключения.
@@ -492,7 +496,7 @@ export default async function Page() {
               </TableCell>
               <TableCell>Ужин</TableCell>
               <TableCell>Меню</TableCell>
-              <TableCell className="align-top break-words whitespace-normal p-2">
+              <TableCell className="align-top wrap-break-word whitespace-normal p-2">
                 <p>
                   TURKUAZ представляет морскую кухню с аутентичными ужинами, предлагая гостям тёплое и гостеприимное
                   кулинарное приключение.
@@ -506,11 +510,23 @@ export default async function Page() {
       </section>
       <section className={styles.info}>
         <h2 className={styles.info__title}>Бары</h2>
-        <ImageUI
-          src="https://cdn.utopiahotels.com/assets/images/pages/0006poolbar-lg.webp"
-          alt="image"
-          aspectRatio="2/1"
-        />
+        <Grid>
+          <article className={cn(styles.image_card, 'w-full! max-h-46!')}>
+            <ImageUI
+              src={'https://cdn.utopiahotels.com/assets/images/pages/0006poolbar-lg.webp'}
+              alt={'Постер'}
+              aspectRatio={'2 / 1'}
+            />
+          </article>
+          <article className={cn(styles.image_card, 'w-full! max-h-46!')}>
+            <ImageUI
+              src={'https://cdn.utopiahotels.com/assets/images/pages/0006poolbar-lg.webp'}
+              alt={'Постер'}
+              aspectRatio={'2 / 1'}
+            />
+          </article>
+        </Grid>
+
         <Table className="table-fixed w-full">
           <TableHeader>
             <TableRow>
@@ -810,6 +826,9 @@ export default async function Page() {
           </TableBody>
         </Table>
       </section>
+      <TableInfo infoType={'table'} title={'Примечания'} list={NOTES} />
+      <TableInfo infoType={'table'} title={'НАГРАДЫ И СЕРТИФИКАТЫ'} list={AWARDS} />
+
     </section>
   );
 }

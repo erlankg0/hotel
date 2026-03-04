@@ -28,32 +28,31 @@ export default async function Page() {
             }}
             className={styles.grid__card}
           >
-            <ImageUI src={'/images/poster.jpg'} alt="Tuğra Restaurant" aspectRatio={'1 / 1'} />
+            <ImageUI src={'/images/pool.jpg'} alt="Tuğra Restaurant" aspectRatio={'1 / 1'} />
             <p className={styles.grid__card_text}>Text</p>
           </div>
 
           <div className={styles.grid__card}>
-            <ImageUI src={'/images/poster.jpg'} alt="White Lounge" aspectRatio={'1 / 1'} />
+            <ImageUI src={'/images/tuam.jpg'} alt="White Lounge" aspectRatio={'1 / 1'} />
             <p className={styles.grid__card_text}>Text</p>
 
           </div>
           <div className={styles.grid__card}>
-            <ImageUI src={'/images/poster.jpg'} alt="Laguna Bar" aspectRatio={'1 / 1'} />
+            <ImageUI src={'/images/beach.webp'} alt="Laguna Bar" aspectRatio={'1 / 1'} />
             <p className={styles.grid__card_text}>Text</p>
 
           </div>
           <div className={styles.grid__card}>
-            <ImageUI src={'/images/poster.jpg'} alt="Desserts" aspectRatio={'1 / 1'} />
+            <ImageUI src={'/images/tugra.webp'} alt="Desserts" aspectRatio={'1 / 1'} />
             <p className={styles.grid__card_text}>Text</p>
-
           </div>
 
           <div className={styles.grid__card}>
-            <ImageUI src={'/images/poster.jpg'} alt="Cocktails" aspectRatio={'1 / 1'} />
+            <ImageUI src={'/images/laguna.jpg'} alt="Cocktails" aspectRatio={'1 / 1'} />
             <p className={styles.grid__card_text}>Text</p>
           </div>
           <div className={styles.grid__card} style={{ gridColumn: 'span 2' }}>
-            <ImageUI src={'/images/poster.jpg'} alt="Cocktails" aspectRatio={'2 / 1'} />
+            <ImageUI src={'/images/beach.webp'} alt="Cocktails" aspectRatio={'2 / 1'} />
             <p className={styles.grid__card_text}>Text</p>
           </div>
         </Grid>

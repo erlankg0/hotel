@@ -41,7 +41,15 @@ export default function Page() {
 
   return (
     <>
-      <section className="panel"><Hero /></section>
+      <section className="panel">
+        <Hero
+          subtitle={'Alanya, Kargıcak'}
+          preTitle={'Welcome'}
+          title={['Utopia World Hotel', 'Utopia World Resort']}
+          video={'/video/utopia.mp4'}
+          poster={'/images/poster.jpg'}
+        />
+      </section>
       <section className="panel"><HotelAbout /></section>
       <Entertainment />
       <section className="panel"><Restaurant /></section>

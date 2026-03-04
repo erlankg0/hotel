@@ -1,4 +1,5 @@
 'use client';
+
 import gsap from 'gsap';
 import { ChevronDown } from 'lucide-react';
 import { useEffect, useRef } from 'react';
@@ -9,14 +10,16 @@ import { FullVideo } from '@/widget/full-video';
 
 import styles from './styles.module.scss';
 
-export function Hero() {
+import type { HeroPros } from '../model/type';
+
+export function Hero({ title, preTitle, subtitle, poster, video }: HeroPros) {
   const { isOpen, setIsOpen } = useContact();
   const worldRef = useRef<HTMLSpanElement | null>(null);
 
   useEffect(() => {
     if (!worldRef.current) return;
 
-    const words = ['Utopia World Resort', 'Utopia World Hotel'];
+    const words = title;
     let currentIndex = 0;
 
     const animateWord = () => {
@@ -54,23 +57,25 @@ export function Hero() {
     const interval = setInterval(animateWord, 3000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [title]);
 
   return (
     <section className={styles.hero}>
       <div className={styles.hero__inner}>
         <div className={styles.hero__text}>
           <div className={styles.hero__text__pre_title}>
-            <p>Welcome</p>
+            <p>{preTitle}</p>
             <ChevronDown />
           </div>
           <h1 className={styles.hero__text__main_title}>
-            <span ref={worldRef}>Utopia World Hotel</span>
+            <span ref={worldRef}>{title[0]}</span>
           </h1>
-          <p>Alanya, Kargıcak</p>
+          {subtitle && (
+            <p>{subtitle}</p>
+          )}
         </div>
         <div className={styles.desktop}>
-          <FullVideo url={'/video/utopia.mp4'} poster={'/images/poster.jpg'} />
+          <FullVideo url={video} poster={poster} />
         </div>
       </div>
       <Modal content={<Contact />} isOpen={isOpen} onClose={setIsOpen} />

@@ -1,0 +1,50 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+
+.info {
+  max-width: clamp(20rem, 50%, 60rem);
+  margin: 0 auto;
+  padding: 3rem 1rem;
+  text-align: center;
+
+  h2 {
+    font-size: 1.25rem;
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 1.5rem;
+  }
+
+  h2::after {
+    content: '';
+    width: clamp(5rem, 10rem, 15rem);
+    height: 3px;
+    background: #c9a86a;
+    display: block;
+    margin: 1.5rem auto 0;
+  }
+}
+
+.grid {
+  padding: 1rem 1rem;
+
+  &__card {
+    width: 100%;
+    height: 100%;
+    border-radius: 2cqw;
+    overflow: hidden;
+
+    position: relative;
+
+    &_text {
+      position: absolute;
+      bottom: 5%;
+      left: 50%;
+      transform: translate(-50%, -5%);
+      text-align: center;
+    }
+  }
+}

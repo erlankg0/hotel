@@ -21,40 +21,57 @@ export default async function Page() {
       </article>
       <div className={styles.grid}>
         <Grid size={5}>
-          <div
+          <article
             style={{
               gridColumn: 'span 2',
               gridRow: 'span 2',
             }}
             className={styles.grid__card}
           >
-            <ImageUI src={'/images/pool.jpg'} alt="Tuğra Restaurant" aspectRatio={'1 / 1'} />
-            <p className={styles.grid__card_text}>Text</p>
-          </div>
+            <ImageUI src={'/images/pool.webp'} alt="Tuğra Restaurant" aspectRatio={'1 / 1'} />
+            <div className={styles.info}>
+              <h3 className={styles.info__title}>Бар у бассейна</h3>
+              <p>Если вы хотите перекусить или выпить что-нибудь наслаждаясь бассейном, рядом с вами находится бар у
+                бассейна с его богатым выбором напитков.</p>
+            </div>
+          </article>
 
-          <div className={styles.grid__card}>
-            <ImageUI src={'/images/tuam.jpg'} alt="White Lounge" aspectRatio={'1 / 1'} />
-            <p className={styles.grid__card_text}>Text</p>
+          <article className={styles.grid__card}>
+            <ImageUI src={'/images/tuam.webp'} alt="White Lounge" aspectRatio={'1 / 1'} />
+            <div className={styles.info}>
+              <h3 className={styles.info__title}>Tuam</h3>
+            </div>
 
-          </div>
-          <div className={styles.grid__card}>
-            <ImageUI src={'/images/beach.webp'} alt="Laguna Bar" aspectRatio={'1 / 1'} />
-            <p className={styles.grid__card_text}>Text</p>
+          </article>
+          <article className={styles.grid__card}>
+            <ImageUI src={'https://cdn.utopiahotels.com/assets/images/pages/0008beachbar-lg.webp'} alt="Laguna Bar"
+                     aspectRatio={'1 / 1'} />
+            <div className={styles.info}>
+              <h3 className={styles.info__title} >Пляжный Бар</h3>
+            </div>
 
-          </div>
-          <div className={styles.grid__card}>
+          </article>
+          <article className={styles.grid__card}>
             <ImageUI src={'/images/tugra.webp'} alt="Desserts" aspectRatio={'1 / 1'} />
-            <p className={styles.grid__card_text}>Text</p>
-          </div>
+            <div className={styles.info}>
+              <h3 className={styles.info__title}></h3>
+              <p></p>
+            </div>
+          </article>
 
-          <div className={styles.grid__card}>
-            <ImageUI src={'/images/laguna.jpg'} alt="Cocktails" aspectRatio={'1 / 1'} />
-            <p className={styles.grid__card_text}>Text</p>
-          </div>
-          <div className={styles.grid__card} style={{ gridColumn: 'span 2' }}>
-            <ImageUI src={'/images/beach.webp'} alt="Cocktails" aspectRatio={'2 / 1'} />
-            <p className={styles.grid__card_text}>Text</p>
-          </div>
+          <article className={styles.grid__card}>
+            <ImageUI src={'/images/lobby.webp'} alt="Cocktails" aspectRatio={'1 / 1'} />
+            <div className={styles.info}>
+              <h3 className={styles.info__title}>Лобби Бар</h3>
+            </div>
+          </article>
+          <article className={styles.grid__card} style={{ gridColumn: 'span 2' }}>
+            <ImageUI src={'/images/laguna.webp'} alt="Cocktails" aspectRatio={'2 / 1'} />
+            <div className={styles.info}>
+              <h3 className={styles.info__title}>Лагуна бар</h3>
+              <p>Где собраны самые вкусные напитки мира Utopia World.</p>
+            </div>
+          </article>
         </Grid>
       </div>
     </section>

@@ -1,4 +1,4 @@
-import { Calligraffitti, Montserrat, Inter } from 'next/font/google';
+import { Calligraffitti, Montserrat, Inter, Great_Vibes } from 'next/font/google';
 
 import { Footer } from '@/widget/footer';
 import { Header } from '@/widget/header';
@@ -21,8 +21,8 @@ const montserrat = Montserrat({
   variable: '--font-montserrat',
 });
 
-const calligraffiti = Calligraffitti({
-  subsets: ['latin'],
+const calligraffiti = Great_Vibes({
+  subsets: ['latin', 'cyrillic', 'cyrillic-ext', 'latin-ext'],
   weight: '400',
   display: 'swap',
   variable: '--font-calligraffiti',

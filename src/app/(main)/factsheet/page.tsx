@@ -30,7 +30,7 @@ export default async function Page() {
     <section className={'flex flex-col  gap-8'}>
       <div className={styles.desktop}>
         <Image
-          src="/images/hotel.jpg"
+          src="/images/hotel.webp"
           alt="Вид на отель"
           fill
           priority

@@ -13,7 +13,7 @@ export default async function Page() {
       <article className={'info'}>
         <h2>Присоединяйтесь к волшебному миру Средиземноморья с Utopia World Hotels. Наслаждайтесь моментом с чистым кислородом от зелени и спокойствием от синевы.</h2>
       </article>
-      <section className={'px-[3rem] my-[3rem]'}>
+      <section className={'px-12 my-12'}>
         <Grid size={5}>
           <GridCard
             colSpan={2}

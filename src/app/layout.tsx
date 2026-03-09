@@ -1,4 +1,4 @@
-import { Calligraffitti, Montserrat, Inter, Great_Vibes } from 'next/font/google';
+import { Montserrat, Inter, Great_Vibes, Cormorant_Garamond } from 'next/font/google';
 
 import { Footer } from '@/widget/footer';
 import { Header } from '@/widget/header';
@@ -19,6 +19,13 @@ const montserrat = Montserrat({
   weight: ['300', '400', '500', '600', '700'],
   display: 'swap',
   variable: '--font-montserrat',
+});
+
+const cormorant_garamond = Cormorant_Garamond({
+  subsets: ['latin', 'cyrillic'],
+  weight: ['300', '400', '500', '600', '700'],
+  display: 'swap',
+  variable: '--font-cormorant',
 });
 
 const calligraffiti = Great_Vibes({
@@ -47,7 +54,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-    <body className={`${montserrat.variable} ${calligraffiti.variable} ${inter.variable} antialiased`}>
+    <body className={`${montserrat.variable} ${calligraffiti.variable} ${inter.variable} ${cormorant_garamond.variable} antialiased`}>
 
     <Header />
 

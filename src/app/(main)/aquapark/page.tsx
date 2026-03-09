@@ -18,7 +18,7 @@ export default async function Page() {
           соснового леса!
         </h2>
       </article>
-      <div className={'px-[3rem] my-[3rem]'}>
+      <div className={'px-12 my-12'}>
         <Grid size={5}>
           <GridCard
             colSpan={2}

@@ -1,9 +1,12 @@
 .price_request {
   width: 100%;
   height: var(--header-height);
+
   align-content: center;
+
   background: var(--foreground);
   color: var(--background);
+
   border-radius: 4rem;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3),
   0 2px 8px rgba(0, 0, 0, 0.2),

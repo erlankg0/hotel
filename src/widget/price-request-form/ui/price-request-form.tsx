@@ -33,6 +33,20 @@ export function PriceRequestForm() {
   }, []);
 
 
+  if (hidden) {
+    return (
+      <div
+        className={`bottom-panel`}
+        aria-label="Bottom fixed panel"
+      >
+        <section className={styles.price_request}>
+          <div className={styles.price_request__content}>
+            aaaaaa
+          </div>
+        </section>
+      </div>
+    );
+  }
   return (
     <div
       className={`bottom-panel`}

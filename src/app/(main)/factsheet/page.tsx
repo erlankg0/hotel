@@ -16,13 +16,13 @@ import {
   AWARDS,
   TableInfo,
 } from '@/entities/factsheet';
+import { cn } from '@/shared/lib/utils';
 import { Grid } from '@/shared/ui/grid';
 import { ImageUI } from '@/shared/ui/image';
 import { Separator } from '@/shared/ui/separator';
 import { Table, TableBody, TableCell, TableFooter, TableHead, TableHeader, TableRow } from '@/shared/ui/table';
 
 import styles from './page.module.scss';
-import { cn } from '@/shared/lib/utils';
 
 
 export default async function Page() {
@@ -524,7 +524,7 @@ export default async function Page() {
               alt={'Постер'}
               aspectRatio={'2 / 1'}
             />
-          </article>
+          </article>\
         </Grid>
 
         <Table className="table-fixed w-full">

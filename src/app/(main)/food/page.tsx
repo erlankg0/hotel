@@ -1,6 +1,7 @@
 import { cn } from '@/shared/lib/utils';
 import { Grid, GridCard } from '@/shared/ui/grid';
 import { Hero } from '@/widget/hero';
+import { Restaurant } from '@/widget/restaurant';
 
 export default async function Page() {
   return (
@@ -16,7 +17,8 @@ export default async function Page() {
       <article className={'info'}>
         <h2>Впечатляющая атмосфера Средиземноморья встречается с уникальными мировыми вкусами</h2>
       </article>
-      <div className={'px-[3rem] mb-[3rem]'}>
+      <section className={'mb-2'}><Restaurant /></section>
+      <div className={'px-12 mb-12'}>
         <Grid size={5}>
           <GridCard
             colSpan={2}
@@ -32,7 +34,10 @@ export default async function Page() {
             title={'Tuam'}
           />
           <GridCard
-            image={{ url: 'https://cdn.utopiahotels.com/assets/images/pages/0008beachbar-lg.webp', alt: 'Laguna Bar' }}
+            image={{
+              url: 'https://cdn.utopiahotels.com/assets/images/pages/0008beachbar-lg.webp',
+              alt: 'Laguna Bar',
+            }}
             aspectRatio={'1 / 1'}
             title={'Пляжный Бар'}
           />

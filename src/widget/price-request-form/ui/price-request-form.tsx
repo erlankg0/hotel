@@ -35,10 +35,10 @@ export function PriceRequestForm() {
 
   return (
     <div
-      className={`bottom-panel ${hidden && ('hidden')}`}
+      className={`bottom-panel`}
       aria-label="Bottom fixed panel"
     >
-      <section className={styles.price_request}>
+      {!hidden && (<section className={styles.price_request}>
         <div className={styles.price_request__content}>
           <p>Забронируйте проживание</p>
           <div className={styles.price_request__controller}>
@@ -58,7 +58,7 @@ export function PriceRequestForm() {
             <Button variant={'secondary'} type={'button'}>Поиск</Button>
           </div>
         </div>
-      </section>
+      </section>)}
     </div>
   );
 }

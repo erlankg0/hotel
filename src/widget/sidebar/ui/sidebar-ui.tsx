@@ -18,13 +18,12 @@ export function SidebarUI() {
           <DrawerTitle>
             <p>Utopia World</p>
           </DrawerTitle>
-          <DrawerDescription>Выберите раздел</DrawerDescription>
         </DrawerHeader>
 
         <nav className={styles.nav}>
           <Link href="/rooms" onClick={setIsOpen}>Номера</Link>
           <Link href="/food" onClick={setIsOpen}>Food and Bars</Link>
-          <Link href="/animation" onClick={setIsOpen}>Анимация</Link>
+          <Link href="/entertainment" onClick={setIsOpen}>Анимация</Link>
           <Link href="/aquapark" onClick={setIsOpen}>Аквапарк</Link>
           <Link href="/beach" onClick={setIsOpen}>Пляж</Link>
           <Link href="/factsheet" onClick={setIsOpen}>Factsheet</Link>

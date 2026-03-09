@@ -63,13 +63,11 @@ export function Hero({ title, preTitle, subtitle, poster, video }: HeroPros) {
     <section className={styles.hero}>
       <div className={styles.hero__inner}>
         <div className={styles.hero__text}>
-          <div className={styles.hero__text__pre_title}>
+          {preTitle && (<div className={styles.hero__text__pre_title}>
             <p>{preTitle}</p>
             <ChevronDown />
-          </div>
-          <h1 className={styles.hero__text__main_title}>
-            <span ref={worldRef}>{title[0]}</span>
-          </h1>
+          </div>)}
+          {title && (<h1 className={styles.hero__text__main_title}><span ref={worldRef}>{title[0]}</span></h1>)}
           {subtitle && (
             <p>{subtitle}</p>
           )}

@@ -251,7 +251,6 @@ button[type="button"] {
 }
 
 
-
 .segment {
     height: 1rem;
     overflow: hidden;
@@ -270,3 +269,33 @@ button[type="button"] {
     transform-origin: left;
     transition: transform 0.45s ease-out;
 }
+
+.page {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.info {
+    max-width: clamp(20rem, 50%, 60rem);
+    margin: 0 auto;
+    padding: 1rem;
+    text-align: center;
+
+    h2 {
+        font-size: 1.25rem;
+        font-weight: 500;
+        position: relative;
+        padding-bottom: 1.5rem;
+    }
+
+    h2::after {
+        content: '';
+        width: clamp(5rem, 10rem, 15rem);
+        height: 3px;
+        background: #c9a86a;
+        display: block;
+        margin: 1.5rem auto 0;
+    }
+}
+

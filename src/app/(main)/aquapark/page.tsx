@@ -1,13 +1,10 @@
 import { cn } from '@/shared/lib/utils';
-import { Grid } from '@/shared/ui/grid';
-import { ImageUI } from '@/shared/ui/image';
+import { Grid, GridCard } from '@/shared/ui/grid';
 import { Hero } from '@/widget/hero';
-
-import styles from './page.module.scss';
 
 export default async function Page() {
   return (
-    <section className={cn('panel', styles.page)}>
+    <section className={cn('panel', 'page')}>
       <Hero
         preTitle={'Аквапарк'}
         subtitle={'Веселье и умиротворение вместе в сердце природы\n.'}
@@ -15,47 +12,52 @@ export default async function Page() {
         video={'https://cdn.utopiahotels.com/assets/videos/covers/uw-aqua.mp4'}
         poster={'https://cdn.utopiahotels.com/assets/images/pages/001kaydirakmodal-lg.webp'}
       />
-      <article className={styles.info}>
+      <article className={'info'}>
         <h2>
           Добро пожаловать в Аквапарк Utopia World — настоящий оазис веселья и релаксации среди величественного
           соснового леса!
         </h2>
       </article>
-      <div className={styles.grid}>
-        <Grid size={4}>
-          <div
-            style={{
-              gridColumn: 'span 2',
-              gridRow: 'span 2',
-            }}
-            className={styles.grid__card}
-          >
-            <ImageUI src={'/images/pool.jpg'} alt="Tuğra Restaurant" aspectRatio={'1 / 1'} />
-            <p className={styles.grid__card_text}>Text</p>
-          </div>
+      <div className={'px-[3rem] my-[3rem]'}>
+        <Grid size={5}>
+          <GridCard
+            colSpan={2}
+            rowSpan={2}
+            image={{ url: '/images/pool.webp', alt: 'Tuğra Restaurant' }}
+            aspectRatio={'1 / 1'}
+            title={'Бар у бассейна'}
+            text={'Если вы хотите перекусить или выпить что-нибудь наслаждаясь бассейном, рядом с вами находится бар у бассейна с его богатым выбором напитков.'}
+          />
+          <GridCard
+            image={{ url: '/images/tuam.webp', alt: 'White Lounge' }}
+            aspectRatio={'1 / 1'}
+            title={'Tuam'}
+          />
+          <GridCard
+            image={{ url: 'https://cdn.utopiahotels.com/assets/images/pages/0008beachbar-lg.webp', alt: 'Laguna Bar' }}
+            aspectRatio={'1 / 1'}
+            title={'Пляжный Бар'}
+          />
+          <GridCard
+            image={{ url: '/images/tugra.webp', alt: 'Desserts' }}
+            aspectRatio={'1 / 1'}
+            title={'Пляжный Бар'}
+          />
+          <GridCard
+            image={{ url: '/images/lobby.webp', alt: 'Cocktails' }}
+            aspectRatio={'1 / 1'}
+            title={'Лобби Бар'}
+          />
 
-          <div className={styles.grid__card}>
-            <ImageUI src={'/images/tuam.jpg'} alt="White Lounge" aspectRatio={'1 / 1'} />
-            <p className={styles.grid__card_text}>Text</p>
-
-          </div>
-          <div className={styles.grid__card}>
-            <ImageUI src={'/images/beach.webp'} alt="Laguna Bar" aspectRatio={'1 / 1'} />
-            <p className={styles.grid__card_text}>Text</p>
-
-          </div>
-          <div className={styles.grid__card}>
-            <ImageUI src={'/images/tugra.webp'} alt="Desserts" aspectRatio={'1 / 1'} />
-            <p className={styles.grid__card_text}>Text</p>
-          </div>
-
-          <div className={styles.grid__card} style={{ gridColumn: 'span 2' }}>
-            <ImageUI src={'/images/beach.webp'} alt="Cocktails" aspectRatio={'2 / 1'} />
-            <p className={styles.grid__card_text}>Text</p>
-          </div>
+          <GridCard
+            colSpan={2}
+            image={{ url: '/images/laguna.webp', alt: 'Laguna Bar' }}
+            aspectRatio={'2 / 1'}
+            title={'Лагуна бар'}
+            text={'Где собраны самые вкусные напитки мира Utopia World'}
+          />
         </Grid>
       </div>
-
     </section>
   );
 }

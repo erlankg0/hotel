@@ -1,12 +1,15 @@
 'use client';
 
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 import { DateRange, useDateRange } from '@/features/date-range';
 import { GuestCounter, useGuest } from '@/features/guest-count';
+import { cn } from '@/shared/lib/utils';
 import { Button } from '@/shared/ui/button';
 
 import styles from './styles.module.scss';
+import { Hotel } from 'lucide-react';
 
 export function PriceRequestForm() {
   const { dateRange, setDateRange } = useDateRange();
@@ -35,44 +38,48 @@ export function PriceRequestForm() {
 
   if (hidden) {
     return (
-      <div
-        className={`bottom-panel`}
+      <section
+        className={`fixed bottom-4 right-4 z-50`}
         aria-label="Bottom fixed panel"
       >
-        <section className={styles.price_request}>
-          <div className={styles.price_request__content}>
-            aaaaaa
-          </div>
-        </section>
-      </div>
+        <div className={cn(styles.price_request, 'p-3 rounded-full cursor-pointer')}>
+          <Link href={'/book'}>
+            <Hotel size={16} />
+          </Link>
+        </div>
+      </section>
     );
   }
   return (
-    <div
+    <section
       className={`bottom-panel`}
       aria-label="Bottom fixed panel"
     >
-      {!hidden && (<section className={styles.price_request}>
-        <div className={styles.price_request__content}>
-          <p>Забронируйте проживание</p>
-          <div className={styles.price_request__controller}>
-            <div className={styles.block}>
-              <DateRange setDateRange={setDateRange} dateRange={dateRange} />
-            </div>
+      {!hidden &&
+        (
+          <article className={cn(styles.price_request, 'px-4 py-4')}>
+            <article className={styles.price_request__content}>
+              <p>Забронируйте проживание</p>
+              <div className={styles.price_request__controller}>
+                <div className={styles.block}>
+                  <DateRange setDateRange={setDateRange} dateRange={dateRange} />
+                </div>
 
-            <div className={'divider'} />
+                <div className={'divider'} />
 
-            <div className={styles.block}>
-              <GuestCounter child={{ count: child, setCount: setChild }}
-                            adults={{ count: adults, setCount: setAdults }} />
-            </div>
-          </div>
+                <div className={styles.block}>
+                  <GuestCounter child={{ count: child, setCount: setChild }}
+                                adults={{ count: adults, setCount: setAdults }} />
+                </div>
+              </div>
 
-          <div className={styles.right}>
-            <Button variant={'secondary'} type={'button'}>Поиск</Button>
-          </div>
-        </div>
-      </section>)}
-    </div>
+              <div className={styles.right}>
+                <Button variant={'secondary'} type={'button'}>Поиск</Button>
+              </div>
+            </article>
+          </article>
+        )
+      }
+    </section>
   );
 }

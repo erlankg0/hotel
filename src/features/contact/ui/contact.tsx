@@ -53,7 +53,7 @@ export function Contact() {
         </address>
 
         <Separator />
-        <h4>Наши Социальный сети</h4>
+        <h4>Наши Социальные сети</h4>
         <ul className={styles.contact__list}>
           <li>
             <Link href={'https://vk.com/utopiaworldtr'}>

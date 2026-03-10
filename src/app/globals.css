@@ -194,9 +194,8 @@ body::-webkit-scrollbar {
     bottom: 1rem;
     left: 50%;
     transform: translateX(-50%);
-    max-width: calc(120rem - 3rem);
     z-index: 4;
-    width: 65rem;
+    max-width: 65rem;
 }
 
 .container {

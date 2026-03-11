@@ -1,0 +1,1 @@
+export { HERO, GRID } from './const/const';

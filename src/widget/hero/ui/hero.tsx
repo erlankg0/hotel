@@ -4,8 +4,6 @@ import gsap from 'gsap';
 import { ChevronDown } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 
-import { Contact, useContact } from '@/features/contact';
-import { Modal } from '@/shared/ui/modal';
 import { FullVideo } from '@/widget/full-video';
 
 import styles from './styles.module.scss';
@@ -13,7 +11,6 @@ import styles from './styles.module.scss';
 import type { HeroPros } from '../model/type';
 
 export function Hero({ title, preTitle, subtitle, poster, video }: HeroPros) {
-  const { isOpen, setIsOpen } = useContact();
   const worldRef = useRef<HTMLSpanElement | null>(null);
 
   useEffect(() => {
@@ -76,7 +73,6 @@ export function Hero({ title, preTitle, subtitle, poster, video }: HeroPros) {
           <FullVideo url={video} poster={poster} />
         </div>
       </div>
-      <Modal content={<Contact />} isOpen={isOpen} onClose={setIsOpen} />
     </section>
   );
 }

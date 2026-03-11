@@ -1,12 +1,17 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 
 import { ReviewItem, ReviewList } from '@/entities/review-rating';
+import { Contact, useContact } from '@/features/contact';
+import { Modal } from '@/shared/ui/modal';
 import { Separator } from '@/shared/ui/separator';
 
 import styles from './styles.module.scss';
 
 export function Footer() {
+  const { isOpen, setIsOpen } = useContact();
   return (
     <footer className={styles.footer} id={'footer'}>
       <section className={styles.footer__inner}>
@@ -75,6 +80,7 @@ export function Footer() {
           </div>
         </div>
       </section>
+      <Modal content={<Contact />} isOpen={isOpen} onClose={setIsOpen} />
     </footer>
   );
 }

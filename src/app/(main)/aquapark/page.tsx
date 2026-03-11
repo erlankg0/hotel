@@ -19,42 +19,55 @@ export default async function Page() {
         </h2>
       </article>
       <div className={'px-12 my-12'}>
-        <Grid size={5}>
+        <Grid size={4}>
+          <GridCard
+            colSpan={2}
+            rowSpan={1}
+            image={{ url: 'https://cdn.utopiahotels.com/assets/images/pages/001kaydirak-lg.jpg', alt: 'Горки' }}
+            aspectRatio={'2 / 1'}
+            title={'Горки'}
+            text={'Мы раздвигаем границы развлечений с 8 взрослыми и 4 детскими горками..'}
+          />
+          <GridCard
+            image={{ url: 'https://cdn.utopiahotels.com/assets/images/pages/002rafting-lg.jpg', alt: 'Рафтинг' }}
+            aspectRatio={'1 / 1'}
+            title={'Рафтинг'}
+            text={'Где вы и ваши дети можете пережить захватывающие моменты.'}
+          />
+          <GridCard
+            image={{
+              url: 'https://cdn.utopiahotels.com/assets/images/pages/003cocukaqua-lg.jpg',
+              alt: 'Детский Аквапарк',
+            }}
+            aspectRatio={'1 / 1'}
+            title={'Детский Аквапарк'}
+            text={'Мы создали бассейн для наших маленьких гостей.'}
+          />
+          <GridCard
+            image={{
+              url: 'https://cdn.utopiahotels.com/assets/images/pages/004selale-lg.jpg',
+              alt: 'Бассейн с водопадом',
+            }}
+            aspectRatio={'1 / 1'}
+            title={'Бассейн с водопадом'}
+            text={'Бассейн с водопадом в окруженного соснами.'}
+          />
+          <GridCard
+            image={{
+              url: 'https://cdn.utopiahotels.com/assets/images/pages/005aquasnack-lg.jpg',
+              alt: 'Аква Ресторан',
+            }}
+            aspectRatio={'1 / 1'}
+            title={'Аква Ресторан'}
+            text={'Ресторан Aqua с вкусным меню всегда рядом с Вами.'}
+          />
           <GridCard
             colSpan={2}
             rowSpan={2}
-            image={{ url: '/images/pool.webp', alt: 'Tuğra Restaurant' }}
-            aspectRatio={'1 / 1'}
-            title={'Бар у бассейна'}
-            text={'Если вы хотите перекусить или выпить что-нибудь наслаждаясь бассейном, рядом с вами находится бар у бассейна с его богатым выбором напитков.'}
-          />
-          <GridCard
-            image={{ url: '/images/tuam.webp', alt: 'White Lounge' }}
-            aspectRatio={'1 / 1'}
-            title={'Tuam'}
-          />
-          <GridCard
-            image={{ url: 'https://cdn.utopiahotels.com/assets/images/pages/0008beachbar-lg.webp', alt: 'Laguna Bar' }}
-            aspectRatio={'1 / 1'}
-            title={'Пляжный Бар'}
-          />
-          <GridCard
-            image={{ url: '/images/tugra.webp', alt: 'Desserts' }}
-            aspectRatio={'1 / 1'}
-            title={'Пляжный Бар'}
-          />
-          <GridCard
-            image={{ url: '/images/lobby.webp', alt: 'Cocktails' }}
-            aspectRatio={'1 / 1'}
-            title={'Лобби Бар'}
-          />
-
-          <GridCard
-            colSpan={2}
-            image={{ url: '/images/laguna.webp', alt: 'Laguna Bar' }}
+            image={{ url: 'https://cdn.utopiahotels.com/assets/images/pages/006aquahavuzz-lg.jpg', alt: 'Аква бассейн' }}
             aspectRatio={'2 / 1'}
-            title={'Лагуна бар'}
-            text={'Где собраны самые вкусные напитки мира Utopia World'}
+            title={'Аква бассейн'}
+            text={'Подарите себе спокойное время с аква басесейном'}
           />
         </Grid>
       </div>

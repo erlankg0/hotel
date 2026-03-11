@@ -39,7 +39,7 @@ const PROPERTY_INFO = [
 ];
 
 export default async function Page({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params;
+  const {  } = await params;
   return (
     <section className={styles.section}>
       <Gallery />

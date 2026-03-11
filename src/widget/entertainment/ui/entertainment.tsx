@@ -6,7 +6,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Balloon, Axe, Laugh, HandHeart, Moon, Sun } from 'lucide-react';
 import { useRef } from 'react';
 
-import { cn } from '@/shared/lib/utils';
 import { Rolling } from '@/shared/ui/rooling';
 import { Text } from '@/shared/ui/text';
 import { FullVideo } from '@/widget/full-video';

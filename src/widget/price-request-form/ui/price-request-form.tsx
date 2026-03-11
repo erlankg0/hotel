@@ -1,5 +1,6 @@
 'use client';
 
+import { Hotel } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
@@ -9,7 +10,6 @@ import { cn } from '@/shared/lib/utils';
 import { Button } from '@/shared/ui/button';
 
 import styles from './styles.module.scss';
-import { Hotel } from 'lucide-react';
 
 export function PriceRequestForm() {
   const { dateRange, setDateRange } = useDateRange();

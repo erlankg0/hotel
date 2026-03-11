@@ -1,20 +1,12 @@
+import { Button } from '@/shared/ui/button';
 import { ImageUI } from '@/shared/ui/image';
 
 import styles from './card.module.scss';
 
-import type { ImageType } from '@/shared/types/types';
+import type { Props } from '../model/type';
 import type { CSSProperties } from 'react';
 
-type Props = {
-  aspectRatio?: string;
-  title?: string;
-  text?: string;
-  image: ImageType;
-  rowSpan?: number;
-  colSpan?: number;
-}
-
-export function GridCard({ image, text, title, rowSpan, colSpan, aspectRatio = '1 / 1' }: Props) {
+export function GridCard({ image, text, title, rowSpan, colSpan, aspectRatio = '1 / 1', onClick }: Props) {
   const span: CSSProperties = {
     ...(colSpan && { gridColumn: `span ${colSpan}` }),
     ...(rowSpan && { gridRow: `span ${rowSpan}` }),
@@ -31,6 +23,15 @@ export function GridCard({ image, text, title, rowSpan, colSpan, aspectRatio = '
           {title}
         </h3>
         {text && (<p>{text}</p>)}
+        {onClick && (
+          <Button
+            className={styles.card__button}
+            variant="blur"
+            onClick={onClick}
+          >
+            Подробнее
+          </Button>
+        )}
       </div>
     </article>
   );

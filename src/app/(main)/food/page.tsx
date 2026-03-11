@@ -79,38 +79,40 @@ export default async function Page() {
           />
         </Grid>
       </section>
-      <section className={'mb-2 container'}>
-        <Text tag={'h2'} variant={'title'}>Снек бары</Text>
-        <div key={'1'} className={'flex flex-row gap-2 w-full h-102'}>
-          <GridCard
-            image={{
-              url: 'https://cdn.utopiahotels.com/assets/images/pages/0014sahilsnack-lg.jpg',
-              alt: 'White Lounge',
-            }}
-            aspectRatio={'1 / 2'}
-            title={'White Lounge'}
-            text={'С Beach Snack все, что вам нужно, находится в одном шаге от вас.'}
-          />
-          <GridCard
-            image={{
-              url: 'https://cdn.utopiahotels.com/assets/images/pages/0009aquasnack-lg.jpg',
-              alt: 'Aqua Snack',
-            }}
-            rowSpan={2}
-            aspectRatio={'1 / 2'}
-            title={'Aqua Snack'}
-            text={'Aqua Snack предлагает вам вкусные закуски..'}
-          />
-          <GridCard
-            image={{
-              url: 'https://cdn.utopiahotels.com/assets/images/pages/0012pastane-lg.jpg',
-              alt: 'Кондитерская',
-            }}
-            rowSpan={2}
-            aspectRatio={'1 / 2'}
-            title={'Кондитерская'}
-            text={'Самые восхитительные вкусы Мира Утопии ждут вас в нашей Кондитерской..'}
-          />
+      <section className={'mb-6'}>
+        <div className={'container'}>
+          <Text tag={'h2'} variant={'title'}>Снек бары</Text>
+          <div key={'1'} className={'flex flex-row gap-2 w-full h-102'}>
+            <GridCard
+              image={{
+                url: 'https://cdn.utopiahotels.com/assets/images/pages/0014sahilsnack-lg.jpg',
+                alt: 'White Lounge',
+              }}
+              aspectRatio={'1 / 2'}
+              title={'White Lounge'}
+              text={'С Beach Snack все, что вам нужно, находится в одном шаге от вас.'}
+            />
+            <GridCard
+              image={{
+                url: 'https://cdn.utopiahotels.com/assets/images/pages/0009aquasnack-lg.jpg',
+                alt: 'Aqua Snack',
+              }}
+              rowSpan={2}
+              aspectRatio={'1 / 2'}
+              title={'Aqua Snack'}
+              text={'Aqua Snack предлагает вам вкусные закуски..'}
+            />
+            <GridCard
+              image={{
+                url: 'https://cdn.utopiahotels.com/assets/images/pages/0012pastane-lg.jpg',
+                alt: 'Кондитерская',
+              }}
+              rowSpan={2}
+              aspectRatio={'1 / 2'}
+              title={'Кондитерская'}
+              text={'Самые восхитительные вкусы Мира Утопии ждут вас в нашей Кондитерской..'}
+            />
+          </div>
         </div>
       </section>
     </section>

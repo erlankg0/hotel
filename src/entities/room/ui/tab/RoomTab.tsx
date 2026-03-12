@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { HiOutlineHome } from 'react-icons/hi2';
 import { MdBalcony } from 'react-icons/md';
 
-import { RoomCard } from '@/entities/room';
+import { ImageHover } from '@/shared/ui/image-hover';
 
 import { BED_TYPE_LABEL } from '../../model/type';
 
@@ -29,7 +29,7 @@ export function RoomTab(props: RoomTabData) {
       <ul className={styles.tab__list}>
         {media.slice(0, 3).map((content, index) => (
           <li key={index}>
-            <RoomCard {...content} />
+            <ImageHover {...content} />
           </li>
         ))}
 

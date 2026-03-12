@@ -1,8 +1,9 @@
 import { Bed, LucideBath, Tv, Wifi } from 'lucide-react';
 import Link from 'next/link';
 
-import { RoomCard, stda, stdv, junior, corner } from '@/entities/room';
+import {  stda, stdv, junior, corner } from '@/entities/room';
 import { Air, Balcony, Coffee, Cosmetics, Iron, Minibar, Safe, Tree } from '@/shared/icons';
+import { ImageHover } from '@/shared/ui/image-hover';
 import { Separator } from '@/shared/ui/separator';
 import { Gallery } from '@/widget/gallery';
 
@@ -98,19 +99,19 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
         <h3 className={styles.title}>Ищете другие варианты ?</h3>
         <div className={styles.other__list}>
           <Link href={'/rooms/3'} className={styles.other__card}>
-            <RoomCard images={stda.media[2].images} hasVideo={true} video={stda.media[2].video} />
+            <ImageHover images={stda.media[2].images} hasVideo={true} video={stda.media[2].video} />
             <p className={styles.other__card__title}>{stda.title}</p>
           </Link>
           <Link href={'/rooms/3'} className={styles.other__card}>
-            <RoomCard images={stdv.media[2].images} hasVideo={true} video={stdv.media[2].video} />
+            <ImageHover images={stdv.media[2].images} hasVideo={true} video={stdv.media[2].video} />
             <p className={styles.other__card__title}>{stdv.title}</p>
           </Link>
           <Link href={'/rooms/3'} className={styles.other__card}>
-            <RoomCard images={junior.media[2].images} hasVideo={true} video={junior.media[2].video} />
+            <ImageHover images={junior.media[2].images} hasVideo={true} video={junior.media[2].video} />
             <p className={styles.other__card__title}>{junior.title}</p>
           </Link>
           <Link href={'/rooms/4'} className={styles.other__card}>
-            <RoomCard images={corner.media[2].images} hasVideo={true} video={corner.media[2].video} />
+            <ImageHover images={corner.media[2].images} hasVideo={true} video={corner.media[2].video} />
             <p className={styles.other__card__title}>{corner.title}</p>
           </Link>
         </div>

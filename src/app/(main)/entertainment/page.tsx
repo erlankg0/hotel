@@ -22,7 +22,7 @@ export default async function Page() {
                 url: 'https://cdn.utopiahotels.com/assets/images/pages/001Arenashowcenter-lg.jpg',
                 alt: 'After шоу'
               }}
-              video={{ url: '/AFTER.mp4', alt: 'After Шоу' }}
+              video={{ url: '/video/AFTER.mp4', alt: 'After Шоу' }}
             />
           </article>
           <article className={styles.card}>
@@ -32,7 +32,7 @@ export default async function Page() {
                 url: 'https://cdn.utopiahotels.com/assets/images/pages/001Arenashowcenter-lg.jpg',
                 alt: 'After шоу'
               }}
-              video={{ url: '/AFTER.mp4', alt: 'After Шоу' }}
+              video={{ url: '/video/AFTER.mp4', alt: 'After Шоу' }}
             />
           </article>
           <article className={styles.card}>
@@ -42,7 +42,7 @@ export default async function Page() {
                 url: 'https://cdn.utopiahotels.com/assets/images/pages/001Arenashowcenter-lg.jpg',
                 alt: 'After шоу'
               }}
-              video={{ url: '/AFTER.mp4', alt: 'After Шоу' }}
+              video={{ url: '/video/AFTER.mp4', alt: 'After Шоу' }}
             />
           </article>
           <article className={styles.card}>
@@ -52,7 +52,7 @@ export default async function Page() {
                 url: 'https://cdn.utopiahotels.com/assets/images/pages/001Arenashowcenter-lg.jpg',
                 alt: 'After шоу'
               }}
-              video={{ url: '/AFTER.mp4', alt: 'After Шоу' }}
+              video={{ url: '/video/AFTER.mp4', alt: 'After Шоу' }}
             />
           </article>
         </Grid>

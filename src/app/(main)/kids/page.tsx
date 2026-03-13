@@ -270,14 +270,6 @@ export default function Page() {
               <TableRow>
                 <TableCell>
                   <Program
-                    title="BAMBINO"
-                    text="Сенсорные игры"
-                    time="10:30"
-                    age="1-3 года"
-                  />
-                </TableCell>
-                <TableCell>
-                  <Program
                     title="LUMO"
                     text="Светящий столик"
                     time="10:30"

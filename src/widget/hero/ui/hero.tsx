@@ -14,7 +14,7 @@ export function Hero({ title, preTitle, subtitle, poster, video, slot }: HeroPro
   const worldRef = useRef<HTMLSpanElement | null>(null);
 
   useEffect(() => {
-    if (!worldRef.current) return;
+    if (!worldRef.current || !title?.length) return;
 
     const words = title;
     let currentIndex = 0;
@@ -31,6 +31,7 @@ export function Hero({ title, preTitle, subtitle, poster, video, slot }: HeroPro
           if (!worldRef.current) return;
 
           currentIndex = (currentIndex + 1) % words.length;
+
           worldRef.current.textContent = words[currentIndex];
 
           gsap.set(worldRef.current, { y: 30 });

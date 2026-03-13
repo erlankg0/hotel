@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 
 export type HeroPros = {
-  title: string[];
+  title?: string[];
   preTitle?: string;
   subtitle?: string;
   slot?: ReactNode;

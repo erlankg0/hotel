@@ -24,10 +24,16 @@ export function SidebarUI() {
           <Link href="/rooms" onClick={setIsOpen}>Номера</Link>
           <Link href="/food" onClick={setIsOpen}>Рестораны и бары</Link>
           <Link href="/entertainment" onClick={setIsOpen}>Анимация</Link>
+          <Link href="/kids" onClick={setIsOpen}>
+            <span style={{ color: 'red' }}>Ma&</span>
+            <span style={{ color: 'green' }}>Me&</span>
+            <span style={{ color: 'blue' }}>Pa</span>
+            {' '}Семейный клуб
+          </Link>
           <Link href="/aquapark" onClick={setIsOpen}>Аквапарк</Link>
           <Link href="/beach" onClick={setIsOpen}>Пляж и бассейны</Link>
-          <Link href="/factsheet" onClick={setIsOpen}>Factsheet</Link>
           <Link href="/book" onClick={setIsOpen}>Бронирования</Link>
+          <Link href="/factsheet" onClick={setIsOpen}>Factsheet</Link>
         </nav>
         <DrawerFooter>
           <h4>Наши Социальные сети</h4>

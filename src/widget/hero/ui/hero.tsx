@@ -10,7 +10,7 @@ import styles from './styles.module.scss';
 
 import type { HeroPros } from '../model/type';
 
-export function Hero({ title, preTitle, subtitle, poster, video }: HeroPros) {
+export function Hero({ title, preTitle, subtitle, poster, video, slot }: HeroPros) {
   const worldRef = useRef<HTMLSpanElement | null>(null);
 
   useEffect(() => {
@@ -65,6 +65,7 @@ export function Hero({ title, preTitle, subtitle, poster, video }: HeroPros) {
             <ChevronDown />
           </div>)}
           {title && (<h1 className={styles.hero__text__main_title}><span ref={worldRef}>{title[0]}</span></h1>)}
+          {slot && (<>{slot}</>)}
           {subtitle && (
             <p>{subtitle}</p>
           )}

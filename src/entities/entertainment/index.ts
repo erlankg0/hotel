@@ -1,1 +1,1 @@
-export { HERO } from './const/const';
+export { HERO, KIDSHERO } from './const/const';

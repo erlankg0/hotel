@@ -9,7 +9,7 @@ import styles from './styles.module.scss';
 
 import type { MediaType } from '../model/type';
 
-export function ImageHover({ images, hasVideo, video }: MediaType) {
+export function ImageHover({ images, hasVideo, video, aspectRatio = '3 / 4' }: MediaType) {
   const { isHover, bind } = useHover<HTMLDivElement>();
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -29,7 +29,7 @@ export function ImageHover({ images, hasVideo, video }: MediaType) {
       className={`${styles.card} ${hasVideo ? styles.hasVideo : ''}`}
       {...bind}
     >
-      <div className={styles.imageWrapper}>
+      <div className={styles.imageWrapper} style={{ aspectRatio: aspectRatio }}>
         <Image
           src={images.url}
           alt={images.alt}

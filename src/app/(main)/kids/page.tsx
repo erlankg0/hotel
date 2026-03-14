@@ -7,7 +7,7 @@ import { Hero } from '@/widget/hero';
 export default function Page() {
   return (
     <section>
-      <title>Семеный клуб Ma&Me&Pa</title>
+      <title>Семейный клуб Ma&Me&Pa</title>
       <Hero {...KIDSHERO} slot={<Title />} />
       <article className={'info'}>
         <h2> Волшебное пространство для игр, творчества и счастливого семейного отдыха.</h2>
@@ -31,7 +31,6 @@ export default function Page() {
                 <TableRow key={rowIndex}>
                   {row.map((item, colIndex) => {
                     if (!item) return null;
-
                     return (
                       <TableCell key={colIndex} rowSpan={item?.rowSpan}>
                         <Program {...item} />

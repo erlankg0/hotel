@@ -129,8 +129,8 @@ export const PROGRAMTABLE = [
 
   [
     { title: 'ARTE', text: 'Художественная мастерская', time: '11:30', age: '4-12 лет', rowSpan: 1 },
-    { title: 'TENIS', text: 'Тенисный корт', time: '11:30', age: '4-12 лет', rowSpan: 1 },
-    { title: 'SCOUT', text: 'Мастерская экспериментов', time: '11:30', age: '4-12 лет', rowSpan: 1 },
+    { title: 'TENIS', text: 'Теннисный корт', time: '11:30', age: '4-12 лет', rowSpan: 1 },
+    { title: 'SCOUT', text: 'Эксперименты', time: '11:30', age: '4-12 лет', rowSpan: 1 },
     { title: 'NAMASTE', text: 'Йога', time: '11:30', age: '4-12 лет', rowSpan: 1 },
     { title: 'CULTURE', text: 'Пермальтура', time: '11:30', age: '4-12 лет', rowSpan: 1 },
     { title: 'CIBO', text: 'Кухня', time: '11:30', age: '4-12 лет', rowSpan: 1 },
@@ -142,7 +142,7 @@ export const PROGRAMTABLE = [
     { title: 'RITMO', text: 'Музыка и ритмика', time: '14:00', age: '4-12 лет', rowSpan: 1 },
     { title: 'LUMO', text: 'Светящий столик', time: '14:00', age: '4-12 лет' },
     { title: 'SONGO', text: 'Мастерская дизайна', time: '14:00', age: '4-12 лет', rowSpan: 1 },
-    { title: 'MOCTAIL', text: 'Мастерская коктелей', time: '14:00', age: '4-12 лет', rowSpan: 1 },
+    { title: 'MOCTAIL', text: 'Мастерская коктейлей', time: '14:00', age: '4-12 лет', rowSpan: 1 },
     { title: 'CULTURE', text: 'Пермальтура', time: '14:00', age: '4-12 лет', rowSpan: 1 },
     { title: 'SONGO', text: 'Мастерская дизайна', time: '14:00', age: '4-12 лет', rowSpan: 1 },
   ],

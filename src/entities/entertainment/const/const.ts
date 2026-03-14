@@ -107,11 +107,92 @@ export const GRIDKIDS = [
 ];
 
 export const DAYS = [
-  "Понедельник",
-  "Вторник",
-  "Среда",
-  "Четверг",
-  "Пятница",
-  "Суббота",
-  "Воскресенье",
-]
+  'Понедельник',
+  'Вторник',
+  'Среда',
+  'Четверг',
+  'Пятница',
+  'Суббота',
+  'Воскресенье',
+];
+
+export const PROGRAMTABLE = [
+  [
+    { title: 'BAMBINO', text: 'Сенсорные игры', time: '10:30', age: '1-3 года', rowSpan: 1 },
+    { title: 'LUMO', text: 'Светящий столик', time: '10:30', age: '1-3 года', rowSpan: 1 },
+    { title: 'SENTIDO', text: 'Художественное рисование', time: '10:30', age: '1-3 года', rowSpan: 1 },
+    { title: 'CIBO', text: 'Кухня', time: '10:30', age: '1-3 года', rowSpan: 1 },
+    { title: 'BAMBINO', text: 'Сенсорные игры', time: '10:30', age: '1-3 года', rowSpan: 1 },
+    { title: 'LUMO', text: 'Светящий столик', time: '10:30', age: '1-3 года', rowSpan: 1 },
+    { title: 'SENTIDO', text: 'Художественное рисование', time: '10:30', age: '1-3 года', rowSpan: 1 },
+  ],
+
+  [
+    { title: 'ARTE', text: 'Художественная мастерская', time: '11:30', age: '4-12 лет', rowSpan: 1 },
+    { title: 'TENIS', text: 'Тенисный корт', time: '11:30', age: '4-12 лет', rowSpan: 1 },
+    { title: 'SCOUT', text: 'Мастерская экспериментов', time: '11:30', age: '4-12 лет', rowSpan: 1 },
+    { title: 'NAMASTE', text: 'Йога', time: '11:30', age: '4-12 лет', rowSpan: 1 },
+    { title: 'CULTURE', text: 'Пермальтура', time: '11:30', age: '4-12 лет', rowSpan: 1 },
+    { title: 'CIBO', text: 'Кухня', time: '11:30', age: '4-12 лет', rowSpan: 1 },
+    { title: 'MOTUS', text: 'Подвижные игры', time: '11:30', age: '4-12 лет', rowSpan: 1 },
+  ],
+
+  [
+    { title: 'SONGO', text: 'Мастерская дизайна', time: '14:00', age: '4-12 лет', rowSpan: 1 },
+    { title: 'RITMO', text: 'Музыка и ритмика', time: '14:00', age: '4-12 лет', rowSpan: 1 },
+    { title: 'LUMO', text: 'Светящий столик', time: '14:00', age: '4-12 лет' },
+    { title: 'SONGO', text: 'Мастерская дизайна', time: '14:00', age: '4-12 лет', rowSpan: 1 },
+    { title: 'MOCTAIL', text: 'Мастерская коктелей', time: '14:00', age: '4-12 лет', rowSpan: 1 },
+    { title: 'CULTURE', text: 'Пермальтура', time: '14:00', age: '4-12 лет', rowSpan: 1 },
+    { title: 'SONGO', text: 'Мастерская дизайна', time: '14:00', age: '4-12 лет', rowSpan: 1 },
+  ],
+
+  [
+    { title: 'CIBO', text: 'Кухня', time: '15:00', age: '4-12 лет', rowSpan: 1 },
+    { title: 'SONGO', text: 'Мастерская дизайна', time: '15:00', age: '4-12 лет', rowSpan: 1 },
+    { title: 'ARTE', text: 'Художественная мастерская', time: '15:00', age: '4-12 лет', rowSpan: 1 },
+    { title: 'LOUPE', text: 'Квест по поиску сокровищ', time: '15:00', age: '4-12 лет', rowSpan: 2 },
+    { title: 'LUMO', text: 'Светящий столик', time: '15:00', age: '4-12 лет', rowSpan: 1 },
+    { title: 'ARTE', text: 'Художественная мастерская', time: '15:00', age: '4-12 лет', rowSpan: 1 },
+    { title: 'CIBO', text: 'Кухня', time: '15:00', age: '4-12 лет', rowSpan: 1 },
+  ],
+
+  [
+    { title: 'MOTUS', text: 'Подвижные игры', time: '16:00', age: '4-12 лет', rowSpan: 1 },
+    { title: 'BALOON', text: 'Шариковая вечеринка', time: '16:00', age: '4-12 лет', rowSpan: 2 },
+    { title: 'CAMPO', text: 'Поход', time: '16:00', age: '4-12 лет', rowSpan: 2 },
+    { title: 'CIBO', text: 'Кухня', time: '16:00', age: '4-12 лет', rowSpan: 1 },
+    { title: 'RITMO', text: 'Музыка и ритмика', time: '16:00', age: '4-12 лет', rowSpan: 1 },
+    { title: 'LUMO', text: 'Светящий столик', time: '16:00', age: '4-12 лет', rowSpan: 1 },
+  ],
+
+  [
+    { title: 'MAGIC', text: 'Школа волшебства', time: '17:00', age: '4-12 лет', rowSpan: 1 },
+    null,
+    null,
+    { title: 'BUBLE', text: 'Мыльные пузыри', time: '17:00', age: '4-12 лет', rowSpan: 1 },
+    { title: 'SCOUT', text: 'Эксперименты', time: '17:00', age: '4-12 лет', rowSpan: 1 },
+    { title: 'SONGO', text: 'Мастерская дизайна', time: '17:00', age: '4-12 лет', rowSpan: 1 },
+    { title: 'SCOUT', text: 'Эксперименты', time: '17:00', age: '4-12 лет', rowSpan: 1 },
+  ],
+
+  [
+    { title: 'DISKO', text: 'Дискотека', time: '20:30', age: '4-12 лет', rowSpan: 1 },
+    { title: 'DISKO', text: 'Дискотека', time: '20:30', age: '4-12 лет', rowSpan: 1 },
+    { title: 'DISKO', text: 'Дискотека', time: '20:30', age: '4-12 лет', rowSpan: 1 },
+    { title: 'DISKO', text: 'Дискотека', time: '20:30', age: '4-12 лет', rowSpan: 1 },
+    { title: 'DISKO', text: 'Дискотека', time: '20:30', age: '4-12 лет', rowSpan: 1 },
+    { title: 'DISKO', text: 'Дискотека', time: '20:30', age: '4-12 лет', rowSpan: 1 },
+    { title: 'DISKO', text: 'Дискотека', time: '20:30', age: '4-12 лет', rowSpan: 1 },
+  ],
+
+  [
+    { title: 'FUNFAIR', text: 'Семейное время', time: '19:30 - 23:00', age: '4-12 лет', rowSpan: 1 },
+    { title: 'FUNFAIR', text: 'Семейное время', time: '19:30 - 23:00', age: '4-12 лет', rowSpan: 1 },
+    { title: 'FUNFAIR', text: 'Семейное время', time: '19:30 - 23:00', age: '4-12 лет', rowSpan: 1 },
+    { title: 'FUNFAIR', text: 'Семейное время', time: '19:30 - 23:00', age: '4-12 лет', rowSpan: 1 },
+    { title: 'FUNFAIR', text: 'Семейное время', time: '19:30 - 23:00', age: '4-12 лет', rowSpan: 1 },
+    { title: 'FUNFAIR', text: 'Семейное время', time: '19:30 - 23:00', age: '4-12 лет', rowSpan: 1 },
+    { title: 'FUNFAIR', text: 'Семейное время', time: '19:30 - 23:00', age: '4-12 лет', rowSpan: 1 },
+  ],
+];

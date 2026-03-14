@@ -1,4 +1,4 @@
-import { HERO, GRID } from '@/entities/entertainment';
+import { HERO_ENTERTAINMENT, GRID_ENTERTAINMENT } from '@/entities/entertainment';
 import { cn } from '@/shared/lib/utils';
 import { Grid } from '@/shared/ui/grid';
 import { ImageHover } from '@/shared/ui/image-hover';
@@ -9,13 +9,13 @@ import styles from './page.module.scss';
 export default async function Page() {
   return (
     <section className={cn('panel', 'page')}>
-      <Hero {...HERO} />
+      <Hero {...HERO_ENTERTAINMENT} />
       <article className={'info'}>
         <h2>Погрузитесь в ритм веселья</h2>
       </article>
       <section className={'px-12 mb-12'}>
         <Grid size={4}>
-          {GRID.map((item) => (
+          {GRID_ENTERTAINMENT.map((item) => (
             <article
               key={item.title}
               className={styles.card}

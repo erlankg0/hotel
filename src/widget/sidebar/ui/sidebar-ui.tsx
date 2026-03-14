@@ -24,6 +24,7 @@ export function SidebarUI() {
           <Link href="/rooms" onClick={setIsOpen}>Номера</Link>
           <Link href="/food" onClick={setIsOpen}>Рестораны и бары</Link>
           <Link href="/entertainment" onClick={setIsOpen}>Анимация</Link>
+          <Link href="/sport" onClick={setIsOpen}>Спортивная Академия</Link>
           <Link href="/kids" onClick={setIsOpen}>
             <span style={{ color: 'red' }}>Ma&</span>
             <span style={{ color: 'green' }}>Me&</span>

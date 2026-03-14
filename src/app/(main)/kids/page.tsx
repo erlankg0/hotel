@@ -1,4 +1,4 @@
-import { KIDSHERO, GRIDKIDS, DAYS, PROGRAMTABLE, Title, Program } from '@/entities/entertainment';
+import { HERO_KIDS, GRID_KIDS, DAYS, PROGRAM, Title, Program } from '@/entities/entertainment';
 import { Grid, GridCard } from '@/shared/ui/grid';
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from '@/shared/ui/table';
 import { Text } from '@/shared/ui/text';
@@ -8,13 +8,13 @@ export default function Page() {
   return (
     <section>
       <title>Семейный клуб Ma&Me&Pa</title>
-      <Hero {...KIDSHERO} slot={<Title />} />
+      <Hero {...HERO_KIDS} slot={<Title />} />
       <article className={'info'}>
         <h2> Волшебное пространство для игр, творчества и счастливого семейного отдыха.</h2>
       </article>
       <section className={'container'}>
         <Grid size={4}>
-          {GRIDKIDS.map((item) => (<GridCard {...item} key={item.title} />))}
+          {GRID_KIDS.map((item) => (<GridCard {...item} key={item.title} />))}
         </Grid>
       </section>
       <section className={'px-8'} aria-label={'Недельня программа'}>
@@ -27,7 +27,7 @@ export default function Page() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {PROGRAMTABLE.map((row, rowIndex) => (
+              {PROGRAM.map((row, rowIndex) => (
                 <TableRow key={rowIndex}>
                   {row.map((item, colIndex) => {
                     if (!item) return null;

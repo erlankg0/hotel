@@ -1,9 +1,4 @@
-import { Montserrat, Inter, Great_Vibes, Cormorant_Garamond, Architects_Daughter } from 'next/font/google';
-
-import { Footer } from '@/widget/footer';
-import { Header } from '@/widget/header';
-import { PriceRequestForm } from '@/widget/price-request-form';
-import { SidebarUI } from '@/widget/sidebar';
+import { Architects_Daughter, Cormorant_Garamond, Great_Vibes, Inter, Montserrat } from 'next/font/google';
 
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
@@ -71,14 +66,7 @@ export default function RootLayout({
         antialiased`
       }>
 
-    <Header />
-
-    <main>
-      <SidebarUI />
-      {children}
-      <PriceRequestForm />
-    </main>
-    <Footer />
+    {children}
     </body>
     </html>
   );

@@ -1,0 +1,24 @@
+import { Footer } from '@/widget/footer';
+import { Header } from '@/widget/header';
+import { SidebarUI } from '@/widget/sidebar';
+
+import type { ReactNode } from 'react';
+
+
+export default function BookLayout({
+                                     children,
+                                   }: Readonly<{
+  children: ReactNode;
+}>) {
+  return (
+    <>
+    <Header />
+    <main>
+      <SidebarUI />
+      {children}
+    </main>
+    <Footer />
+    </>
+  );
+}
+

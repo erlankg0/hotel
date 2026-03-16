@@ -33,7 +33,7 @@ export function SwiperUI({
         onSlideChange={onSlideChange}
         autoplay={autoplay ? { delay, disableOnInteraction: false } : false}
         onAutoplayTimeLeft={(_, timeLeft, totalTime) => {
-          onAutoplayTimeLeft?.(_,timeLeft, totalTime);
+          onAutoplayTimeLeft?.(_, timeLeft, totalTime);
         }}
         modules={[A11y, Autoplay]}
         className={styles.swiper}
@@ -44,14 +44,16 @@ export function SwiperUI({
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className={styles.controls}>
-        {progressControls && <>{progressControls}</>}
-        {navButtons && (
-          <div className={styles.controls__nav}>
-            {navButtons}
-          </div>
-        )}
-      </div>
+      {(progressControls || navButtons) && (
+        <div className={styles.controls}>
+          {progressControls && <>{progressControls}</>}
+          {navButtons && (
+            <div className={styles.controls__nav}>
+              {navButtons}
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }

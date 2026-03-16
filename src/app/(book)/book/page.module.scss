@@ -1,0 +1,21 @@
+.gallery {
+  position: relative;
+
+  &__content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: .5rem;
+  }
+
+  &__slide {
+    width: 100%;
+    height: clamp(280px, 45vw, 460px);
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: .5rem;
+    width: 100%;
+  }
+}

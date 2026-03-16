@@ -105,6 +105,7 @@
     --font-size-lg: 4rem;
     --background-green: #3A7659;
     --light-gray: #F8F8F8;
+    --gray: #F6F9FD;
 }
 
 .dark {
@@ -298,3 +299,15 @@ button[type="button"] {
     }
 }
 
+
+.row {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}

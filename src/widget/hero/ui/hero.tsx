@@ -71,9 +71,12 @@ export function Hero({ title, preTitle, subtitle, poster, video, slot }: HeroPro
             <p>{subtitle}</p>
           )}
         </div>
-        <div className={styles.desktop}>
-          <FullVideo url={video} poster={poster} />
-        </div>
+        {video &&
+          (
+            <div className={styles.desktop}>
+              <FullVideo url={video} poster={poster} />
+            </div>
+          )}
       </div>
     </section>
   );

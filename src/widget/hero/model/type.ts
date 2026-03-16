@@ -6,5 +6,5 @@ export type HeroPros = {
   subtitle?: string;
   slot?: ReactNode;
   poster: string;
-  video: string
+  video?: string
 }

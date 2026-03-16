@@ -12,12 +12,20 @@ export default function BookLayout({
 }>) {
   return (
     <>
-    <Header />
-    <main>
-      <SidebarUI />
-      {children}
-    </main>
-    <Footer />
+      <Header />
+      <main>
+        <SidebarUI />
+        {/*
+         <Hero
+          video={'/images/hotel.webp'}
+          poster={'/images/hotel.webp'}
+          slot={<Text tag={'h1'} variant={'title'} className={styles.title}>Utopia World</Text>}
+          subtitle={'Выберите даты и номер, чтобы узнать стоимость вашего проживания'}
+        />
+        */}
+        {children}
+      </main>
+      <Footer />
     </>
   );
 }

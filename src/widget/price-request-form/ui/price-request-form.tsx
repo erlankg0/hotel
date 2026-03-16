@@ -1,6 +1,6 @@
 'use client';
 
-import { Hotel } from 'lucide-react';
+import { Hotel, Search } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
@@ -59,7 +59,7 @@ export function PriceRequestForm() {
         (
           <article className={cn(styles.price_request, 'px-4 py-4')}>
             <article className={styles.price_request__content}>
-              <p>Забронируйте проживание</p>
+              <p>Бронирования</p>
               <div className={styles.price_request__controller}>
                 <div className={styles.block}>
                   <DateRange setDateRange={setDateRange} dateRange={dateRange} />
@@ -74,7 +74,9 @@ export function PriceRequestForm() {
               </div>
 
               <div className={styles.right}>
-                <Button variant={'secondary'} type={'button'}>Поиск</Button>
+                <Button variant={'secondary'} type={'button'}>
+                  <Search />
+                </Button>
               </div>
             </article>
           </article>

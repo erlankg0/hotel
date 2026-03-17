@@ -10,8 +10,6 @@ import type { SwiperProps } from '../model/type';
 export function SwiperUI({
                            delay,
                            slides,
-                           spaceBetween = 32,
-                           slidesPerView = 1,
                            progressControls,
                            navButtons,
                            centeredSlides,
@@ -20,6 +18,8 @@ export function SwiperUI({
                            onSwiper,
                            onSlideChange,
                            onAutoplayTimeLeft,
+                           spaceBetween = 32,
+                           slidesPerView = 1,
                          }: SwiperProps) {
 
   return (

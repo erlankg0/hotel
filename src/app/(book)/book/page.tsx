@@ -1,9 +1,16 @@
+'use client';
+import { useCallback } from 'react';
+
 import { cn } from '@/shared/lib/utils';
+import { Button } from '@/shared/ui/button';
 import { ImageUI } from '@/shared/ui/image';
 import { Text } from '@/shared/ui/text';
-import { SwiperUI } from '@/widget/swiper';
+import { SwiperUI, useSwiperNav } from '@/widget/swiper';
 
 import styles from './page.module.scss';
+
+import type { Swiper as SwiperType } from 'swiper';
+
 
 const IMAGES = [
   'hotel.webp',
@@ -15,9 +22,28 @@ const IMAGES = [
 
 const gallery = IMAGES.map((image) => `/images/${image}`);
 
-export default async function Page() {
+export default function Page() {
+
+  const {
+    onSwiper,
+    onSlideChange,
+    prev,
+    next,
+    isStart,
+    isEnd,
+  } = useSwiperNav();
+
+  const handleOnSwiper = useCallback((swiper: SwiperType) => {
+    onSwiper(swiper);
+  }, [onSwiper]);
+
+  const handleOnChange = useCallback((swiper: SwiperType) => {
+    onSlideChange(swiper);
+  }, [onSlideChange]);
+
+
   return (
-    <section className={cn('page')}>
+    <section className={cn('page', 'panel', styles.page)}>
       <article className={cn('col', 'container')}>
         <Text tag={'h1'} variant={'title'}>
           Utopia World
@@ -26,7 +52,10 @@ export default async function Page() {
           <article className={styles.gallery__content}>
             <SwiperUI
               delay={5000}
+              onSwiper={handleOnSwiper}
+              onSlideChange={handleOnChange}
               slidesPerView={1}
+              spaceBetween={0}
               slides={gallery.map((image) => (
                 <ImageUI
                   key={image}
@@ -35,8 +64,8 @@ export default async function Page() {
                   classNames={styles.gallery__slide}
                   aspectRatio={'2 / 1'}
                 />
-              ))} />
-
+              ))}
+            />
             <div className={styles.gallery__list}>
               <ImageUI
                 alt={''}
@@ -50,6 +79,10 @@ export default async function Page() {
                 size={'calc(100% - 2px)'}
                 aspectRatio={'2 / 1'}
               />
+            </div>
+            <div className={styles.gallery__controls}>
+              <Button disabled={isStart} onClick={prev}>prev</Button>
+              <Button disabled={isEnd} onClick={next}>next</Button>
             </div>
           </article>
         </div>

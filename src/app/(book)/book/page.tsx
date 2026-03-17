@@ -6,6 +6,7 @@ import { Button } from '@/shared/ui/button';
 import { ImageUI } from '@/shared/ui/image';
 import { Text } from '@/shared/ui/text';
 import { SwiperUI, useSwiperNav } from '@/widget/swiper';
+import { ChevronRight, ChevronLeft } from 'lucide-react';
 
 import styles from './page.module.scss';
 
@@ -81,8 +82,15 @@ export default function Page() {
               />
             </div>
             <div className={styles.gallery__controls}>
-              <Button disabled={isStart} onClick={prev}>prev</Button>
-              <Button disabled={isEnd} onClick={next}>next</Button>
+              <div className={styles.gallery__controls__buttons}>
+                <Button disabled={isStart} onClick={prev}>
+                  <ChevronLeft size={16} />
+                </Button>
+                <Button disabled={isEnd} onClick={next}>
+                  <ChevronRight size={16} />
+                </Button>
+              </div>
+
             </div>
           </article>
         </div>

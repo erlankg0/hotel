@@ -1,4 +1,5 @@
 'use client';
+import { ChevronRight, ChevronLeft, Camera } from 'lucide-react';
 import { useCallback } from 'react';
 
 import { cn } from '@/shared/lib/utils';
@@ -6,7 +7,6 @@ import { Button } from '@/shared/ui/button';
 import { ImageUI } from '@/shared/ui/image';
 import { Text } from '@/shared/ui/text';
 import { SwiperUI, useSwiperNav } from '@/widget/swiper';
-import { ChevronRight, ChevronLeft } from 'lucide-react';
 
 import styles from './page.module.scss';
 
@@ -45,12 +45,15 @@ export default function Page() {
 
   return (
     <section className={cn('page', 'panel', styles.page)}>
-      <article className={cn('col', 'container')}>
-        <Text tag={'h1'} variant={'title'}>
-          Utopia World
-        </Text>
-        <div className={styles.gallery}>
-          <article className={styles.gallery__content}>
+      <div className={cn('col', 'container')}>
+        <header>
+          <Text tag={'h1'} variant={'title'}>
+            Utopia World
+          </Text>
+        </header>
+
+        <section className={styles.gallery}>
+          <div className={styles.gallery__content}>
             <SwiperUI
               delay={5000}
               onSwiper={handleOnSwiper}
@@ -82,9 +85,12 @@ export default function Page() {
                   aspectRatio={'2 / 1'}
                 />
               </div>
-              <Button className={styles.button}>Галерея</Button>
+              <Button className={styles.button}>
+                <Camera size={16} />
+                <p>Галерея</p>
+              </Button>
             </div>
-            <article className={styles.gallery__controls}>
+            <nav className={styles.gallery__controls}>
               <div className={styles.gallery__controls__buttons}>
                 <Button disabled={isStart} onClick={prev} className={styles.button}>
                   <ChevronLeft size={16} />
@@ -93,10 +99,10 @@ export default function Page() {
                   <ChevronRight size={16} />
                 </Button>
               </div>
-            </article>
-          </article>
-        </div>
-      </article>
+            </nav>
+          </div>
+        </section>
+      </div>
     </section>
   );
 }

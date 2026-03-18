@@ -68,33 +68,34 @@ export default function Page() {
               ))}
             />
             <div className={styles.gallery__list}>
-              <ImageUI
-                alt={''}
-                src={'https://cdn.utopiahotels.com/assets/images/pages/310120222100-lg.webp'}
-                size={'calc(100% - 2px)'}
-                aspectRatio={'2 / 1'}
-              />
-              <ImageUI
-                alt={''}
-                src={'https://cdn.utopiahotels.com/assets/images/pages/310120222100-lg.webp'}
-                size={'calc(100% - 2px)'}
-                aspectRatio={'2 / 1'}
-              />
+              <div className={styles.gallery__list__images}>
+                <ImageUI
+                  alt={''}
+                  src={'https://cdn.utopiahotels.com/assets/images/pages/310120222100-lg.webp'}
+                  size={'calc(100% - 2px)'}
+                  aspectRatio={'2 / 1'}
+                />
+                <ImageUI
+                  alt={''}
+                  src={'https://cdn.utopiahotels.com/assets/images/pages/310120222100-lg.webp'}
+                  size={'calc(100% - 2px)'}
+                  aspectRatio={'2 / 1'}
+                />
+              </div>
+              <Button className={styles.button}>Галерея</Button>
             </div>
-            <div className={styles.gallery__controls}>
+            <article className={styles.gallery__controls}>
               <div className={styles.gallery__controls__buttons}>
-                <Button disabled={isStart} onClick={prev}>
+                <Button disabled={isStart} onClick={prev} className={styles.button}>
                   <ChevronLeft size={16} />
                 </Button>
-                <Button disabled={isEnd} onClick={next}>
+                <Button disabled={isEnd} onClick={next} className={styles.button}>
                   <ChevronRight size={16} />
                 </Button>
               </div>
-
-            </div>
+            </article>
           </article>
         </div>
-
       </article>
     </section>
   );

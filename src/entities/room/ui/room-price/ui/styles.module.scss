@@ -1,0 +1,25 @@
+.card {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+
+  padding: 1rem;
+  border-radius: 1rem;
+  background-color: var(--gray);
+
+  &__inner {
+    background-color: var(--background);
+    padding: 1rem;
+    border-radius: 1rem;
+    width: 100%;
+    flex: 1;
+  }
+
+  &__slide {
+    max-width: 25rem;
+    width: 100%;
+    height: 20rem;
+    overflow: hidden;
+    border-radius: 1rem;
+  }
+}

@@ -2,6 +2,7 @@
 import { ChevronRight, ChevronLeft, Camera } from 'lucide-react';
 import { useCallback } from 'react';
 
+import { RoomPrice } from '@/entities/room';
 import { cn } from '@/shared/lib/utils';
 import { Button } from '@/shared/ui/button';
 import { ImageUI } from '@/shared/ui/image';
@@ -46,11 +47,9 @@ export default function Page() {
   return (
     <section className={cn('page', 'panel', styles.page)}>
       <div className={cn('col', 'container')}>
-        <header>
-          <Text tag={'h1'} variant={'title'}>
-            Utopia World
-          </Text>
-        </header>
+        <Text tag={'h1'} variant={'title'}>
+          Utopia World
+        </Text>
 
         <section className={styles.gallery}>
           <div className={styles.gallery__content}>
@@ -101,6 +100,23 @@ export default function Page() {
               </div>
             </nav>
           </div>
+        </section>
+
+        <section>
+          <Text tag={'h2'} variant={'title'}>
+            Номера
+          </Text>
+
+          <div>
+            <div className={'flex flex-col gap-6'}>
+              <RoomPrice />
+              <RoomPrice />
+              <RoomPrice />
+              <RoomPrice />
+            </div>
+
+          </div>
+
         </section>
       </div>
     </section>

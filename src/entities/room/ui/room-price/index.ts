@@ -1,0 +1,1 @@
+export { RoomPrice } from './ui/room-price';

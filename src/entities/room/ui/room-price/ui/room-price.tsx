@@ -65,11 +65,13 @@ export function RoomPrice() {
             <ImageUI src={image} alt={image} key={image} aspectRatio={'2 / 1'} />))
           }
         />
-        <nav className={styles.card__slide__nav}>
-          <Button disabled={isStart} onClick={prev} className={styles.button}>
+        <nav className={styles.card__slide_left}>
+          <Button variant={'blur'} disabled={isStart} onClick={prev} className={styles.button}>
             <ChevronLeft size={16} />
           </Button>
-          <Button disabled={isEnd} onClick={next} className={styles.button}>
+        </nav>
+        <nav className={styles.card__slide__right}>
+          <Button variant={'blur'} disabled={isEnd} onClick={next} className={styles.button}>
             <ChevronRight size={16} />
           </Button>
         </nav>

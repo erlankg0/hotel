@@ -84,17 +84,17 @@ export default function Page() {
                   aspectRatio={'2 / 1'}
                 />
               </div>
-              <Button className={styles.button}>
+              <Button variant={'blur'}>
                 <Camera size={16} />
                 <p>Галерея</p>
               </Button>
             </div>
             <nav className={styles.gallery__controls}>
               <div className={styles.gallery__controls__buttons}>
-                <Button disabled={isStart} onClick={prev} className={styles.button}>
+                <Button variant={'blur'} disabled={isStart} onClick={prev} className={styles.gallery__controls__left}>
                   <ChevronLeft size={16} />
                 </Button>
-                <Button disabled={isEnd} onClick={next} className={styles.button}>
+                <Button variant={'blur'} disabled={isEnd} onClick={next} className={styles.gallery__controls__right}>
                   <ChevronRight size={16} />
                 </Button>
               </div>

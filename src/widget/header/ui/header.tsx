@@ -21,7 +21,12 @@ export function Header() {
           <Image src={'/images/logo.svg'} alt="logo" width={60} height={60} />
         </Link>
         <div className={styles.right}>
-          <Button type={'button'} variant={'blur'} size={'lg'} onClick={setIsOpen}>Контакты</Button>
+          <Button
+            type={'button'}
+            className={'text-black!'}
+            variant={'blur'}
+            size={'lg'}
+            onClick={setIsOpen}>Контакты</Button>
         </div>
       </div>
     </header>

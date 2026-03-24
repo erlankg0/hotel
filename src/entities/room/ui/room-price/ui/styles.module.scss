@@ -54,6 +54,25 @@
     }
 
   }
+
+  &__row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 1.5rem 0;
+  }
+
+  &__footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    & > a {
+      color: var(--color-blue-600);
+      font-weight: 500;
+    }
+  }
 }
 
 .title {
@@ -84,4 +103,111 @@
     align-items: center;
     gap: .5rem;
   }
+}
+
+.price {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  font-weight: 500;
+
+  &__info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  &__discount {
+    padding: 0.25rem 0.5rem;
+    background: linear-gradient(135deg, #ff4d4f, #ff7875);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 600;
+    border-radius: 0.4rem;
+
+    box-shadow: 0 2px 6px rgba(255, 77, 79, 0.3);
+  }
+
+  &__old {
+    color: #999;
+    font-size: 0.85rem;
+    text-decoration: line-through;
+  }
+
+  &__current {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-blue-400);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.25rem;
+  }
+
+  &__popover {
+    min-width: 200px;
+    max-width: 250px;
+    padding: 0.5rem 0.75rem;
+    background: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    font-size: 0.8rem;
+    color: #444;
+    line-height: 1.4;
+
+    ul {
+      list-style: none;
+      margin: 0 0 0.5rem 0;
+      padding: 0;
+
+      li {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.25rem 0;
+        border-bottom: 1px solid #f0f0f0;
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        span {
+          font-weight: 600;
+          color: var(--color-blue-400);
+        }
+      }
+    }
+
+    p {
+      margin: 0;
+      font-size: 0.7rem;
+      color: #717171;
+      line-height: 1.3;
+    }
+
+  }
+
+  &__currency {
+    font-size: 0.9rem;
+    opacity: 0.7;
+    text-align: right;
+  }
+
+  .meta {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+
+    font-size: 0.85rem;
+    color: #717171;
+  }
+
+  .dot {
+    opacity: 0.5;
+  }
+
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }

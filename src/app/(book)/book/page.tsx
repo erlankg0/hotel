@@ -114,9 +114,7 @@ export default function Page() {
               <RoomPrice />
               <RoomPrice />
             </div>
-
           </div>
-
         </section>
       </div>
     </section>

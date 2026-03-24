@@ -24,6 +24,7 @@ const buttonVariants = cva(
         transparent: 'bg-transparent border-2 rounded-none hover:underline',
         rounded: 'bg-none border-2 border-solid rounded-full cursor-pointer text-white active:scale-105',
         blur: styles.button,
+        blue: 'bg-blue-500 text-white hover:bg-blue-600 focus-visible:ring-blue-300 rounded-lg font-semibold px-6 py-3',
       },
       size: {
         default: 'h-9 px-4 py-2 has-[>svg]:px-3',

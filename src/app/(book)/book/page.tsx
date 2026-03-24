@@ -1,5 +1,5 @@
 'use client';
-import { ChevronRight, ChevronLeft, Camera } from 'lucide-react';
+import { ChevronRight, ChevronLeft, Camera, CalendarDays, Search } from 'lucide-react';
 import { useCallback } from 'react';
 
 import { RoomPrice } from '@/entities/room';
@@ -101,7 +101,45 @@ export default function Page() {
             </nav>
           </div>
         </section>
-
+        <section className={styles.price}>
+          <div className={styles.price_item}>
+            <CalendarDays className={styles.price__icon} />
+            <div className={styles.price__info}>
+              <p className={styles.price_item__title}>
+                24.03.2026
+              </p>
+              <p className={styles.price_item__description}>
+                Вторник
+              </p>
+            </div>
+          </div>
+          <div className={styles.price_item}>
+            <CalendarDays className={styles.price__icon} />
+            <div className={styles.price__info}>
+              <p className={styles.price_item__title}>
+                24.03.2026
+              </p>
+              <p className={styles.price_item__description}>
+                Вторник
+              </p>
+            </div>
+          </div>
+          <div className={styles.price_item}>
+            <CalendarDays className={styles.price__icon} />
+            <div className={styles.price__info}>
+              <p className={styles.price_item__title}>
+                24.03.2026
+              </p>
+              <p className={styles.price_item__description}>
+                Вторник
+              </p>
+            </div>
+          </div>
+          <Button type={'button'} className={styles.price__search} variant={'blue'}>
+            <Search size={36} />
+            <p>Поиск</p>
+          </Button>
+        </section>
         <section>
           <Text tag={'h2'} variant={'title'}>
             Номера
@@ -116,6 +154,7 @@ export default function Page() {
             </div>
           </div>
         </section>
+
       </div>
     </section>
   );

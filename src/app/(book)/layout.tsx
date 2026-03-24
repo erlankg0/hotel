@@ -13,7 +13,7 @@ export default function BookLayout({
   return (
     <>
       <Header />
-      <main>
+      <div>
         <SidebarUI />
         {/*
          <Hero
@@ -24,7 +24,7 @@ export default function BookLayout({
         />
         */}
         {children}
-      </main>
+      </div>
       <Footer />
     </>
   );

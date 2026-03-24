@@ -1,1 +1,1 @@
-export { PriceForm } from './form';
+export { PriceRequest } from './form';

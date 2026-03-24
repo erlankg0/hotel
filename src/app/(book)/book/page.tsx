@@ -1,8 +1,9 @@
 'use client';
-import { ChevronRight, ChevronLeft, Camera, CalendarDays, Search } from 'lucide-react';
+import { ChevronRight, ChevronLeft, Camera } from 'lucide-react';
 import { useCallback } from 'react';
 
 import { RoomPrice } from '@/entities/room';
+import { PriceRequest } from '@/features/price';
 import { cn } from '@/shared/lib/utils';
 import { Button } from '@/shared/ui/button';
 import { ImageUI } from '@/shared/ui/image';
@@ -45,12 +46,11 @@ export default function Page() {
 
 
   return (
-    <section className={cn('page', 'panel', styles.page)}>
-      <div className={cn('col', 'container')}>
+    <main className={cn('page', 'panel', styles.page)}>
+      <section className={cn('col', 'container')}>
         <Text tag={'h1'} variant={'title'}>
           Utopia World
         </Text>
-
         <section className={styles.gallery}>
           <div className={styles.gallery__content}>
             <SwiperUI
@@ -101,45 +101,7 @@ export default function Page() {
             </nav>
           </div>
         </section>
-        <section className={styles.price}>
-          <div className={styles.price_item}>
-            <CalendarDays className={styles.price__icon} />
-            <div className={styles.price__info}>
-              <p className={styles.price_item__title}>
-                24.03.2026
-              </p>
-              <p className={styles.price_item__description}>
-                Вторник
-              </p>
-            </div>
-          </div>
-          <div className={styles.price_item}>
-            <CalendarDays className={styles.price__icon} />
-            <div className={styles.price__info}>
-              <p className={styles.price_item__title}>
-                24.03.2026
-              </p>
-              <p className={styles.price_item__description}>
-                Вторник
-              </p>
-            </div>
-          </div>
-          <div className={styles.price_item}>
-            <CalendarDays className={styles.price__icon} />
-            <div className={styles.price__info}>
-              <p className={styles.price_item__title}>
-                24.03.2026
-              </p>
-              <p className={styles.price_item__description}>
-                Вторник
-              </p>
-            </div>
-          </div>
-          <Button type={'button'} className={styles.price__search} variant={'blue'}>
-            <Search size={36} />
-            <p>Поиск</p>
-          </Button>
-        </section>
+        <PriceRequest />
         <section>
           <Text tag={'h2'} variant={'title'}>
             Номера
@@ -154,8 +116,7 @@ export default function Page() {
             </div>
           </div>
         </section>
-
-      </div>
-    </section>
+      </section>
+    </main>
   );
 }

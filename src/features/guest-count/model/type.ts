@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react';
+
 export type Count = {
   count: number;
   setCount: (count: number) => void;
@@ -6,6 +8,7 @@ export type Count = {
 export interface GuestProps {
   adults: Count;
   child: Count;
+  trigger?: ReactNode;
 }
 
 export type CounterType = {

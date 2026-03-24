@@ -14,11 +14,15 @@ import styles from './styles.module.scss';
 
 import type { GuestProps } from '../model/type';
 
-export function GuestCounter({ child, adults }: GuestProps) {
+export function GuestCounter({ child, adults, trigger }: GuestProps) {
+  const defaultTrigger = (
+    <Button variant={'secondary'}>{adults.count} Взрослых, {child.count} дети.</Button>
+  );
+
   return (
     <DropdownMenu modal={false}>
       <DropdownMenuTrigger asChild>
-        <Button variant={'secondary'}>{adults.count} Взрослых, {child.count} дети.</Button>
+        {trigger ?? defaultTrigger}
       </DropdownMenuTrigger>
       <DropdownMenuContent sideOffset={30}>
         <div className={styles.guests}>

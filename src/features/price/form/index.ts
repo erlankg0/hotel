@@ -1,1 +1,1 @@
-export { PriceForm } from './ui/form';
+export { PriceRequest } from './ui/form';

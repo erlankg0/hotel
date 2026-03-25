@@ -2,12 +2,12 @@
 
 import { Button } from '@/shared/ui/button';
 import {
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-} from '@/shared/ui/dropdown-menu';
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverHeader,
+} from '@/shared/ui/popover';
+import { Separator } from '@/shared/ui/separator';
 
 import { GuestRow } from './guest-row';
 import styles from './styles.module.scss';
@@ -18,20 +18,19 @@ export function GuestCounter({ child, adults, trigger }: GuestProps) {
   const defaultTrigger = (
     <Button variant={'secondary'}>{adults.count} Взрослых, {child.count} дети.</Button>
   );
-
   return (
-    <DropdownMenu modal={false}>
-      <DropdownMenuTrigger asChild>
+    <Popover modal={false}>
+      <PopoverTrigger asChild>
         {trigger ?? defaultTrigger}
-      </DropdownMenuTrigger>
-      <DropdownMenuContent sideOffset={30}>
+      </PopoverTrigger>
+      <PopoverContent sideOffset={12} align="start" className="w-auto p-0">
         <div className={styles.guests}>
-          <DropdownMenuLabel>Количество гостей</DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          <GuestRow data={adults}  min={1} label={'Взрослый'} />
+          <PopoverHeader>Количество гостей</PopoverHeader>
+          <Separator />
+          <GuestRow data={adults} min={1} label={'Взрослый'} />
           <GuestRow data={child} min={0} label={'Ребенок до 12 лет'} />
         </div>
-      </DropdownMenuContent>
-    </DropdownMenu>
+      </PopoverContent>
+    </Popover>
   );
 }

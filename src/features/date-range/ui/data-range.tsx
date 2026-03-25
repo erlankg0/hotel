@@ -30,7 +30,7 @@ export function DateRange({ dateRange, setDateRange, trigger, renderTrigger }: P
       end: range?.to ?? null,
     });
 
-    if (range?.from && range.to) {
+    if (range?.from && range?.to && range.from.getTime() !== range.to.getTime()) {
       setOpen(false);
     }
   };

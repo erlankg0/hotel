@@ -8,6 +8,7 @@ import { cn } from '@/shared/lib/utils';
 import { Button } from '@/shared/ui/button';
 import { ImageUI } from '@/shared/ui/image';
 import { Text } from '@/shared/ui/text';
+import { Cancel } from '@/widget/cancel';
 import { SwiperUI, useSwiperNav } from '@/widget/swiper';
 
 import styles from './page.module.scss';
@@ -102,6 +103,7 @@ export default function Page() {
           </div>
         </section>
         <PriceRequest />
+        <Cancel />
         <section>
           <Text tag={'h2'} variant={'title'}>
             Номера

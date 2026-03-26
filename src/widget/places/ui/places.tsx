@@ -1,4 +1,4 @@
-import { Plane, ChessRook, Binoculars } from 'lucide-react';
+import { Plane, ChessRook, Binoculars, Info } from 'lucide-react';
 
 import { cn } from '@/shared/lib/utils';
 import { Text } from '@/shared/ui/text';
@@ -9,7 +9,7 @@ export function Places() {
   return (
     <section className={cn('container', styles.place)}>
       <Text tag={'h2'} variant={'title'}>Окружающая среда и расположение</Text>
-      <div className={styles.place__info}>
+      <div className={styles.place__inner}>
 
         <article className={styles.card}>
           <header className={styles.card__header}>
@@ -94,8 +94,13 @@ export function Places() {
             </li>
           </ol>
         </article>
-
       </div>
+      <article className={styles.place__info}>
+        <Info size={12} />
+        <p>
+          Указанные расстояния рассчитываются по прямой, и фактические расстояния могут варьироваться.
+        </p>
+      </article>
     </section>
   );
 }

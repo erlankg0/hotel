@@ -86,7 +86,7 @@ export function PriceRequest() {
                   {displayDates.end.toLocaleDateString('ru-RU')}
                   <div className={'flex flex-row items-center gap-2'}>
                     <MoonIcon size={14} />
-                    <p> {nights}</p>
+                    <p> {nights > 0 ? nights : 4}</p>
                   </div>
                 </p>
                 <p className={styles.price_item__description}>

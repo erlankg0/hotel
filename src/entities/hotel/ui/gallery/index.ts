@@ -1,0 +1,1 @@
+export { HotelGallery } from './ui/gallery';

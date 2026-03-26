@@ -9,6 +9,7 @@ import { Button } from '@/shared/ui/button';
 import { ImageUI } from '@/shared/ui/image';
 import { Text } from '@/shared/ui/text';
 import { Cancel } from '@/widget/cancel';
+import { Places } from '@/widget/places';
 import { SwiperUI, useSwiperNav } from '@/widget/swiper';
 
 import styles from './page.module.scss';
@@ -118,6 +119,7 @@ export default function Page() {
             </div>
           </div>
         </section>
+        <Places />
       </section>
     </main>
   );

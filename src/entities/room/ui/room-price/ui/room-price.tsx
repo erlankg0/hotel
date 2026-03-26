@@ -85,7 +85,7 @@ export function RoomPrice() {
           <MartiniIcon size={24} />
           <p className={styles.description}>Ульта все включено</p>
         </div>
-        <div className={'flex flex-row justify-between py-6'}>
+        <div className={'flex flex-row justify-between'}>
           <ul className={styles.info}>
             {FEATURES.map((feature) => {
               const Icon = feature.Icon;

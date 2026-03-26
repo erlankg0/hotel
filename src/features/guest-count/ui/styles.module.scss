@@ -3,4 +3,52 @@
   flex-direction: column;
   gap: 1rem;
   padding: .5rem 1rem;
+
+  &__controls {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+  &__header {
+    text-align: center !important;
+    font-size: 1.25rem !important;
+    font-weight: bold !important;
+  }
+
+  &__selects {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    & > p {
+      color: #1a1a1a;
+      text-align: center;
+      font-size: 1rem;
+    }
+  }
+
 }
+
+.childs {
+  &__info {
+    background-color: var(--gray);
+    border-radius: 1rem;
+
+    padding: 2rem 1rem;
+
+    &__text {
+      text-align: center;
+      font-size: .75rem;
+      line-height: 1rem;
+      font-weight: 300;
+    }
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: .5rem;
+  }
+}
+

@@ -1,18 +1,16 @@
-.row {
-  display: flex;
+.controls {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: .5rem;
   align-items: center;
-  gap: 1rem;
+  justify-content: center;
 
-  &__label {
-    font-size: 1rem;
-    font-weight: 500;
-    font-family: var(--font-montserrat), 'Roboto', sans-serif;
-    color: var(--foreground);
-  }
+  padding: .5rem;
+  border-radius: 1rem;
+  background-color: var(--gray);
+}
 
-  &_row {
-    margin-left: auto;
-    display: flex;
-    gap: 0.5rem;
-  }
+.count{
+  text-align: center;
+  color: var(--foreground);
 }

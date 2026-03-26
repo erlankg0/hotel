@@ -13,6 +13,5 @@ export interface GuestProps {
 
 export type CounterType = {
   min: number;
-  label: 'Взрослый' | 'Ребенок' | 'Младенец' | string;
   data: Count
 }

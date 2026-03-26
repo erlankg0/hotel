@@ -1,5 +1,5 @@
 'use client';
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 
 import { Button } from '@/shared/ui/button';
 import {
@@ -21,15 +21,14 @@ import styles from './styles.module.scss';
 
 import type { GuestProps } from '../model/type';
 
-export function GuestCounter({ child, adults, trigger }: GuestProps) {
-  const [childrenAges, setChildrenAges] = useState<number[]>([]);
+export function GuestCounter({ child, adults, trigger, setChildrenAges, childrenAges }: GuestProps) {
 
-  const ages = Array.from({ length: child.count }, (_, i) => {
+  const ages = childrenAges ? Array.from({ length: child.count }, (_, i) => {
     return childrenAges[i] ?? 0;
-  });
+  }) : [];
 
   const handleAgeChange = useCallback((index: number, value: number) => {
-    setChildrenAges((prev) => {
+    setChildrenAges?.((prev) => {
       const updated = [...prev];
       updated[index] = value;
       return updated;
@@ -49,11 +48,11 @@ export function GuestCounter({ child, adults, trigger }: GuestProps) {
           <div className={styles.guests__controls}>
             <div className={styles.guests__selects}>
               <p>Взрослые</p>
-              <GuestRow data={adults} min={1} />
+              <GuestRow data={adults} min={1} max={5} />
             </div>
             <div className={styles.guests__selects}>
               <p>Дети</p>
-              <GuestRow data={child} min={0} />
+              <GuestRow data={child} min={0} max={6} />
             </div>
           </div>
           <Separator />
@@ -64,7 +63,7 @@ export function GuestCounter({ child, adults, trigger }: GuestProps) {
                   Укажите возраст детей для точного расчета цены.
                 </p>
                 <p className={styles.childs__info__text}>
-                 Дети от 12 лет считаются взрослыми.
+                  Дети от 12 лет считаются взрослыми.
                 </p>
               </div>
             ) : (
@@ -79,7 +78,7 @@ export function GuestCounter({ child, adults, trigger }: GuestProps) {
                         handleAgeChange(index, Number(value))
                       }
                     >
-                      <SelectTrigger className={styles.childs__select}>
+                      <SelectTrigger className={'w-full'}>
                         <SelectValue placeholder="Возраст" />
                       </SelectTrigger>
 

@@ -1,40 +1,54 @@
 'use client';
-import { CalendarDays, Search, Users } from 'lucide-react';
+import { CalendarDays, Search, Users, MoonIcon, Baby, UserRound } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 import { DateRange, useDateRange } from '@/features/date-range';
 import { GuestCounter, useGuest } from '@/features/guest-count';
+import { cn, formatWeekday, getGuestLabel } from '@/shared/lib/utils';
 import { Button } from '@/shared/ui/button';
 
 import styles from './styles.module.scss';
 
-const weekdayFormatter = new Intl.DateTimeFormat('ru-RU', {
-  weekday: 'long',
-});
-
-function formatWeekday(date: Date) {
-  const value = weekdayFormatter.format(date);
-  return value.charAt(0).toUpperCase() + value.slice(1);
-}
-
-function getGuestLabel(count: number) {
-  const mod10 = count % 10;
-  const mod100 = count % 100;
-
-  if (mod10 === 1 && mod100 !== 11) {
-    return `${count} гость`;
-  }
-
-  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) {
-    return `${count} гостя`;
-  }
-
-  return `${count} гостей`;
-}
-
 export function PriceRequest() {
-  const { dateRange, setDateRange } = useDateRange();
-  const { adults, setAdults, child, setChild } = useGuest();
+  const router = useRouter();
+
+  const { dateRange, nights, setDateRange } = useDateRange();
+  const { adults, setAdults, child, setChild, childrenAges, setChildrenAges } = useGuest();
+
   const totalGuests = adults + child;
+
+  const handleSearch = () => {
+
+    const query = {
+      checkIn: '',
+      checkOut: '',
+      adults: adults,
+      child: child,
+    };
+
+    if (dateRange?.start) {
+      query.checkIn = dateRange.start.toLocaleDateString('ru-RU');
+    }
+
+    if (dateRange?.end) {
+      query.checkOut = dateRange.end.toLocaleDateString('ru-RU');
+    }
+
+
+    const params = new URLSearchParams({
+      check_in: query.checkIn,
+      check_out: query.checkOut,
+      adults: String(adults),
+      child: String(child),
+    });
+
+    for (let i = 0; i < child; i++) {
+      params.append(`childage_${i + 1}`, String(childrenAges[i] ?? '0'));
+    }
+
+
+    router.push(`/book?${params.toString()}`);
+  };
 
   return (
     <section className={styles.price}>
@@ -68,8 +82,12 @@ export function PriceRequest() {
             >
               <CalendarDays className={styles.price__icon} />
               <div className={styles.price__info}>
-                <p className={styles.price_item__title}>
+                <p className={cn(styles.price_item__title, 'flex flex-row items-center justify-between w-full')}>
                   {displayDates.end.toLocaleDateString('ru-RU')}
+                  <div className={'flex flex-row items-center gap-2'}>
+                    <MoonIcon size={14} />
+                    <p> {nights}</p>
+                  </div>
                 </p>
                 <p className={styles.price_item__description}>
                   {formatWeekday(displayDates.end)}
@@ -83,6 +101,8 @@ export function PriceRequest() {
       <GuestCounter
         adults={{ count: adults, setCount: setAdults }}
         child={{ count: child, setCount: setChild }}
+        childrenAges={childrenAges}
+        setChildrenAges={setChildrenAges}
         trigger={(
           <button
             type="button"
@@ -94,17 +114,24 @@ export function PriceRequest() {
               <p className={styles.price_item__title}>
                 {getGuestLabel(totalGuests)}
               </p>
-              <p className={styles.price_item__description}>
-                {adults} взрослых, {child} детей
-              </p>
+              <div className={styles.price_item__description}>
+                <div className="flex items-center gap-1">
+                  <UserRound size={12} />
+                  <span>Взрослых {adults}</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <Baby size={12} />
+                  <span>Детей {child}</span>
+                </div>
+              </div>
             </div>
           </button>
         )}
       />
 
-      <Button type={'button'} className={styles.price__search} variant={'blue'}>
-          <Search size={36} />
-          <p>Поиск</p>
+      <Button onClick={handleSearch} type={'button'} className={styles.price__search} variant={'blue'}>
+        <Search size={36} />
+        <p>Поиск</p>
       </Button>
     </section>
   );

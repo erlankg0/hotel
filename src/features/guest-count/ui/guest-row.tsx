@@ -6,7 +6,7 @@ import styles from './row.module.scss';
 
 import type { CounterType } from '../model/type';
 
-export function GuestRow({ min, data }: CounterType) {
+export function GuestRow({ min, max, data }: CounterType) {
 
   const handleClickDecrement = useCallback(() => {
     if (data.count > min) {
@@ -29,6 +29,7 @@ export function GuestRow({ min, data }: CounterType) {
       <Button
         type={'button'}
         variant={'blue'}
+        disabled={data.count >= max}
         onClick={handleOnClickIncrement}>+</Button>
     </div>
   );

@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import type { ReactNode, Dispatch, SetStateAction } from 'react';
 
 export type Count = {
   count: number;
@@ -8,10 +8,13 @@ export type Count = {
 export interface GuestProps {
   adults: Count;
   child: Count;
+  setChildrenAges?: Dispatch<SetStateAction<number[]>>;
+  childrenAges?: number[];
   trigger?: ReactNode;
 }
 
 export type CounterType = {
   min: number;
+  max: number;
   data: Count
 }

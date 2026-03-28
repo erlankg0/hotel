@@ -14,7 +14,7 @@ export function Hero({ title, preTitle, subtitle, poster, video, slot }: HeroPro
   const worldRef = useRef<HTMLSpanElement | null>(null);
 
   useEffect(() => {
-    if (!worldRef.current || !title?.length) return;
+    if (!worldRef.current || !title?.length || !Array.isArray(title)) return;
 
     const words = title;
     let currentIndex = 0;

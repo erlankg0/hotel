@@ -31,7 +31,7 @@ export function RestaurantSlide({ url, title, description, video }: Props) {
       </div>
 
       <Link
-        href={`/restaurant/${encodeURIComponent(title)}`}
+        href={`/food/restaurants/${encodeURIComponent(title)}`}
         className={styles.link}
       >
         Подробнее

@@ -62,11 +62,11 @@ export const PROGRAM = [
   [
     { title: 'BAMBINO', text: 'Сенсорные игры', time: '10:30', age: '1-3 года', rowSpan: 1 },
     { title: 'LUMO', text: 'Светящий столик', time: '10:30', age: '1-3 года', rowSpan: 1 },
-    { title: 'SENTIDO', text: 'Художественное рисование', time: '10:30', age: '1-3 года', rowSpan: 1 },
+    { title: 'SENTIDO', text: 'Рисование ', time: '10:30', age: '1-3 года', rowSpan: 1 },
     { title: 'CIBO', text: 'Кухня', time: '10:30', age: '1-3 года', rowSpan: 1 },
     { title: 'BAMBINO', text: 'Сенсорные игры', time: '10:30', age: '1-3 года', rowSpan: 1 },
     { title: 'LUMO', text: 'Светящий столик', time: '10:30', age: '1-3 года', rowSpan: 1 },
-    { title: 'SENTIDO', text: 'Художественное рисование', time: '10:30', age: '1-3 года', rowSpan: 1 },
+    { title: 'SENTIDO', text: 'Рисование', time: '10:30', age: '1-3 года', rowSpan: 1 },
   ],
 
   [

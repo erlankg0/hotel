@@ -117,6 +117,26 @@ const dotMap: Record<string, string> = {
   red: styles.dot_red,
 };
 
+const RESTAURANT_DETAILS = [
+  {
+    title: 'Часы работы',
+    lines: ['Ужин (А ля карт)', '19:00 - 21:00', 'Требуется резервация.'],
+  },
+  {
+    title: 'Бронирование',
+    lines: ['Внутренняя Связь 7075', 'guest@utopiaworld.com.tr'],
+  },
+  {
+    title: 'Стиль одежды',
+    lines: ['Следует отдавать предпочтение одежде в стиле смарт-кэжуал.'],
+  },
+  {
+    title: 'Примечание',
+    lines: ['Предоставляет услуги за дополнительную плату и по предварительному бронированию.'],
+  },
+] as const;
+
+
 export default function RestaurantLayout({
                                            children,
                                          }: {
@@ -188,6 +208,27 @@ export default function RestaurantLayout({
             );
           })}
         </Tabs>
+      </section>
+      <section className={'container'} aria-label={'Информация о ресторане'}>
+        <div className={styles.notes}>
+          <header className={styles.notes__header}>
+            <span className={styles.notes__label}>Полезная информация</span>
+            <span className={styles.notes__rule} />
+          </header>
+
+          <div className={styles.notes__grid}>
+            {RESTAURANT_DETAILS.map((item) => (
+              <article key={item.title} className={styles.notes__item}>
+                <h3 className={styles.notes__title}>{item.title}</h3>
+                <div className={styles.notes__content}>
+                  {item.lines.map((line) => (
+                    <p key={line}>{line}</p>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
       </section>
     </section>
   );

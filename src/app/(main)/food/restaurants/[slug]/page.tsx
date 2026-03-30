@@ -153,6 +153,7 @@ const MENU_SECTIONS = [
   { value: 'kids', label: 'Детское меню', items: Kids },
 ] as const;
 
+
 function Food({
   title,
   description,

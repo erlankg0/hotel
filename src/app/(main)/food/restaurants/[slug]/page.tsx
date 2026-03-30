@@ -143,6 +143,99 @@ const Kids: { title: string; description: string }[] = [
   },
 ];
 
+type Wine = {
+  title: string,
+  value: string,
+
+}
+type WinesType = {
+  category: string;
+  subcategories: {
+    category: string;
+    wines: Wine[];
+  }[]
+}
+
+const wines: WinesType[] = [
+  {
+    category: 'Белые вина',
+    subcategories: [{
+      category: 'Сухие',
+      wines: [
+        { title: 'Trio / Chardonnay, Narince, Sultaniye', value: '75 cl' },
+        { title: 'Trio / Chardonnay, Narince, Sultaniye', value: '37,5 cl' },
+        { title: 'Anfora Chardonnay', value: '75 cl' },
+        { title: ' Chardonnay Reserve', value: '75 cl' },
+        { title: ' Çankaya', value: '75 cl' },
+        { title: ' Dolunca Sarafın Chardonnay', value: '75 cl' },
+        { title: ' Dolunca Sarafın Sauvignon Blanc', value: '75 cl' },
+      ],
+    },
+      {
+        category: 'Полусухие',
+        wines: [
+          { title: 'Senfoni', value: '75 cl' },
+        ],
+      },
+      {
+        category: 'Сладкие',
+        wines: [
+          { title: 'Senfoni', value: '75 cl' },
+        ],
+      },
+      {
+        category: 'Сладкие',
+        wines: [
+          { title: 'Senfoni', value: '75 cl' },
+        ],
+      },
+    ],
+  },
+  {
+    category: 'Розовые вина',
+    subcategories: [{
+      category: 'Сухие',
+      wines: [
+        { title: 'Trio / Shiraz, Karası, Cabernet Sauvignon', value: '75 cl' },
+      ],
+    },
+    ],
+  },
+  {
+    category: 'Красные вина',
+    subcategories: [{
+      category: 'Сухие',
+      wines: [
+        { title: 'Trio / Shiraz, Karası, Cabernet Sauvignon', value: '75 cl' },
+        { title: 'Trio / Shiraz, Karası, Cabernet Sauvignon', value: '37,5 cl' },
+        { title: 'Anfora Shiraz', value: '75 cl' },
+        { title: 'Shiraz Rezerve', value: '75 cl' },
+        { title: 'Anfora Kalecik karası', value: '75 cl' },
+        { title: 'Anfora Mertol', value: '75 cl' },
+        { title: 'Anfora Öközgüzü, Boğazkere', value: '75 cl' },
+        { title: 'Anfora Cabarnet Sauvignon', value: '75 cl' },
+        { title: 'Yakut', value: '75 cl' },
+        { title: 'Doluca Sarafın Cabernen Sauvignon', value: '75 cl' },
+        { title: 'Doluca Sarafın Mertol', value: '75 cl' },
+      ],
+    },
+      {
+        category: 'Сладкие',
+        wines: [
+          { title: 'Senfoni', value: '75 cl' },
+        ],
+      },
+      {
+        category: 'Игристые вина',
+        wines: [
+          { title: 'Anfore Gold', value: '75 cl' },
+          { title: 'Henkell Trocken', value: '75 cl' },
+        ],
+      },
+    ],
+  },
+];
+
 function Food({
                 title,
                 description,
@@ -178,43 +271,6 @@ export default function Page() {
 
       <section className={'container'} aria-label={'Меню блюд'}>
         <Text tag={'h3'} variant={'title'} className={'text-center'}> Меню</Text>
-        <Tabs defaultValue="soup">
-          <TabsList className="mx-auto flex flex-wrap gap-4 justify-center mb-8">
-            <TabsTrigger value="soup" className="px-4 py-2 rounded-full transition hover:bg-gray-100">
-              Супы
-            </TabsTrigger>
-            <TabsTrigger value="antipasti" className="px-4 py-2 rounded-full transition hover:bg-gray-100">
-              Закуски
-            </TabsTrigger>
-            <TabsTrigger value="main" className="px-4 py-2 rounded-full transition hover:bg-gray-100">
-              Основные блюда
-            </TabsTrigger>
-            <TabsTrigger value="deserts" className="px-4 py-2 rounded-full transition hover:bg-gray-100">
-              Десерты
-            </TabsTrigger>
-            <TabsTrigger value="kids" className="px-4 py-2 rounded-full transition hover:bg-gray-100">
-              Детское меню
-            </TabsTrigger>
-          </TabsList>
-
-          {['soup', 'antipasti', 'main', 'deserts', 'kids'].map((tab) => {
-            const data = { soup: Soup, antipasti: Antipasti, main: Main, deserts: Deserts, kids: Kids }[tab];
-            return (
-              <TabsContent key={tab} value={tab}>
-                <ul className="space-y-4">
-                  {data && data.map((item) => (
-                    <li key={item.title}>
-                      <Food {...item} />
-                    </li>
-                  ))}
-                </ul>
-              </TabsContent>
-            );
-          })}
-        </Tabs>
-      </section>
-      <section className={'container'} aria-label={'винотека'}>
-        <Text tag={'h3'} variant={'title'} className={'text-center'}>Винотека</Text>
         <Tabs defaultValue="soup">
           <TabsList className="mx-auto flex flex-wrap gap-4 justify-center mb-8">
             <TabsTrigger value="soup" className="px-4 py-2 rounded-full transition hover:bg-gray-100">

@@ -1,0 +1,28 @@
+.header {
+  display: flex;
+  flex-direction: column;
+
+  &__text {
+    font-size: 0.875rem;
+    letter-spacing: .4rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  &__title {
+    font-weight: 300;
+    font-size: clamp(56px, 9vw, 100px);
+    letter-spacing: -0.02em;
+
+    & em {
+      font-style: italic;
+      color: var(--gold);
+    }
+  }
+}
+
+.tab_wrap {
+  margin: 0 auto;
+  padding: 0 3rem;
+}

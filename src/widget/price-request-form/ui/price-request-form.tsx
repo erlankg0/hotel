@@ -1,20 +1,44 @@
 'use client';
 
-import { Hotel, Search } from 'lucide-react';
+import { Calendar, Hotel, Search, Users } from 'lucide-react';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import { DateRange, useDateRange } from '@/features/date-range';
 import { GuestCounter, useGuest } from '@/features/guest-count';
 import { cn } from '@/shared/lib/utils';
-import { Button } from '@/shared/ui/button';
 
 import styles from './styles.module.scss';
 
 export function PriceRequestForm() {
-  const { dateRange, setDateRange } = useDateRange();
+  const { dateRange, setDateRange, nights } = useDateRange();
   const { adults, setAdults, child, setChild } = useGuest();
-  const [hidden, setHidden] = useState(false);
+  const [isFooterVisible, setIsFooterVisible] = useState(false);
+
+  const guestsLabel = useMemo(() => {
+    const totalGuests = adults + child;
+
+    return `${totalGuests} гост${totalGuests === 1 ? 'ь' : totalGuests < 5 ? 'я' : 'ей'}`;
+  }, [adults, child]);
+
+  const bookingHref = useMemo(() => {
+    const params = new URLSearchParams();
+
+    if (dateRange.start) {
+      params.set('checkIn', formatDateParam(dateRange.start));
+    }
+
+    if (dateRange.end) {
+      params.set('checkOut', formatDateParam(dateRange.end));
+    }
+
+    params.set('adults', String(adults));
+    params.set('children', String(child));
+
+    const query = params.toString();
+
+    return query ? `/book?${query}` : '/book';
+  }, [adults, child, dateRange.end, dateRange.start]);
 
   useEffect(() => {
     const footer = document.getElementById('footer');
@@ -22,11 +46,12 @@ export function PriceRequestForm() {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setHidden(entry.isIntersecting);
+        setIsFooterVisible(entry.isIntersecting);
       },
       {
         root: null,
         threshold: 0,
+        rootMargin: '0px 0px -48px 0px',
       },
     );
 
@@ -36,52 +61,100 @@ export function PriceRequestForm() {
   }, []);
 
 
-  if (hidden) {
+  if (isFooterVisible) {
     return (
-      <section
-        className={`fixed bottom-4 right-4 z-50`}
-        aria-label="Bottom fixed panel"
-      >
-        <div className={cn(styles.price_request, 'p-3 rounded-full cursor-pointer')}>
-          <Link href={'/book'}>
-            <Hotel size={16} />
-          </Link>
-        </div>
-      </section>
+      <aside className={styles.compact} aria-label="Быстрый переход к бронированию">
+        <Link href={bookingHref} className={styles.compact__link} aria-label="Открыть форму бронирования">
+          <Hotel size={18} />
+          <span>Бронь</span>
+        </Link>
+      </aside>
     );
   }
+
   return (
-    <section
-      className={`bottom-panel`}
-      aria-label="Bottom fixed panel"
-    >
-      {!hidden &&
-        (
-          <article className={cn(styles.price_request, 'px-4 py-4')}>
-            <article className={styles.price_request__content}>
-              <p>Бронирования</p>
-              <div className={styles.price_request__controller}>
-                <div className={styles.block}>
-                  <DateRange setDateRange={setDateRange} dateRange={dateRange} />
-                </div>
+    <aside className={'bottom-panel'} aria-label="Панель бронирования">
+      <div className={styles.price_request}>
+        <div className={styles.price_request__content}>
+          <div className={styles.price_request__lead}>
+            <span className={styles.price_request__kicker}>Бронирование</span>
+            <p className={styles.price_request__title}>Выберите даты и гостей</p>
+          </div>
 
-                <div className={'divider'} />
+          <div className={styles.price_request__controller}>
+            <div className={styles.block}>
+              <DateRange
+                setDateRange={setDateRange}
+                dateRange={dateRange}
+                renderTrigger={({ displayDates, open }) => (
+                  <button
+                    type="button"
+                    onClick={open}
+                    className={styles.trigger}
+                    aria-label="Выбрать даты проживания"
+                  >
+                    <span className={styles.trigger__label}>
+                      <Calendar size={16} />
+                    </span>
+                    <span className={styles.trigger__value}>
+                      {formatDisplayDate(displayDates.start)} - {formatDisplayDate(displayDates.end)}
+                    </span>
+                    <span className={styles.trigger__meta}>
+                      {nights > 0 ? `${nights} ноч${nights === 1 ? 'ь' : nights < 5 ? 'и' : 'ей'}` : 'Выберите период'}
+                    </span>
+                  </button>
+                )}
+              />
+            </div>
 
-                <div className={styles.block}>
-                  <GuestCounter child={{ count: child, setCount: setChild }}
-                                adults={{ count: adults, setCount: setAdults }} />
-                </div>
-              </div>
+            <div className={styles.block}>
+              <GuestCounter
+                child={{ count: child, setCount: setChild }}
+                adults={{ count: adults, setCount: setAdults }}
+                trigger={(
+                  <button
+                    type="button"
+                    className={styles.trigger}
+                    aria-label="Выбрать количество гостей"
+                  >
+                    <span className={styles.trigger__label}>
+                      <Users size={16} />
+                    </span>
+                    <span className={styles.trigger__value}>{guestsLabel}</span>
+                    <span className={styles.trigger__meta}>
+                      {adults} взр. {child > 0 ? `• ${child} дет.` : ''}
+                    </span>
+                  </button>
+                )}
+              />
+            </div>
+          </div>
 
-              <div className={styles.right}>
-                <Button variant={'secondary'} type={'button'}>
-                  <Search />
-                </Button>
-              </div>
-            </article>
-          </article>
-        )
-      }
-    </section>
+          <Link
+            href={bookingHref}
+            className={cn(styles.action, styles.action_gold)}
+            aria-label="Перейти к бронированию"
+          >
+            <Search size={18} />
+            <span>Найти</span>
+          </Link>
+        </div>
+      </div>
+    </aside>
   );
+}
+
+function formatDisplayDate(date: Date) {
+  return date.toLocaleDateString('ru-RU', {
+    day: '2-digit',
+    month: 'short',
+  });
+}
+
+function formatDateParam(date: Date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+
+  return `${year}-${month}-${day}`;
 }

@@ -1,12 +1,14 @@
-import { Text } from '@/shared/ui/text';
-
-import styles from './layout.module.scss';
+import { cn } from '@/shared/lib/utils';
 import {
   Tabs,
   TabsContent,
   TabsTrigger,
   TabsList,
 } from '@/shared/ui/tabs';
+
+import styles from './layout.module.scss';
+
+
 import type { ReactNode } from 'react';
 
 type Wine = {
@@ -58,16 +60,6 @@ const wines: WinesType[] = [
     ],
   },
   {
-    category: 'Розовые вина',
-    subcategories: [{
-      category: 'Сухие',
-      wines: [
-        { title: 'Trio / Shiraz, Karası, Cabernet Sauvignon', value: '75 cl' },
-      ],
-    },
-    ],
-  },
-  {
     category: 'Красные вина',
     subcategories: [{
       category: 'Сухие',
@@ -100,14 +92,41 @@ const wines: WinesType[] = [
       },
     ],
   },
+  {
+    category: 'Розовые вина',
+    subcategories: [{
+      category: 'Сухие',
+      wines: [
+        { title: 'Trio / Shiraz, Karası, Cabernet Sauvignon', value: '75 cl' },
+      ],
+    },
+    ],
+  },
 ];
 
 
-export default function RestaurantLayout({ children }: { children: ReactNode }) {
+const tabMap: Record<string, string> = {
+  'Белые вина': 'white',
+  'Розовые вина': 'rose',
+  'Красные вина': 'red',
+};
+
+const dotMap: Record<string, string> = {
+  white: styles.dot_white,
+  rose: styles.dot_rose,
+  red: styles.dot_red,
+};
+
+export default function RestaurantLayout({
+                                           children,
+                                         }: {
+  children: ReactNode;
+}) {
   return (
     <section>
       {children}
-      <section className={'container'}>
+
+      <section className="container">
         <div className={styles.header}>
           <p className={styles.header__text}>
             Коллекция вин · à la carte
@@ -116,12 +135,58 @@ export default function RestaurantLayout({ children }: { children: ReactNode }) 
             Вино<em>тека</em>
           </h2>
         </div>
-        <Tabs>
-          <TabsList>
-            <TabsTrigger value={'white'}>Белые</TabsTrigger>
-            <TabsTrigger value={'rose'}>Розовые</TabsTrigger>
-            <TabsTrigger value={'red'}>Красные</TabsTrigger>
+
+        <Tabs defaultValue="white">
+          {/* ✅ Tabs List */}
+          <TabsList className={styles.tablist}>
+            {wines.map((wine) => {
+              const value = tabMap[wine.category];
+
+              return (
+                <TabsTrigger
+                  key={value}
+                  value={value}
+                  className={styles.tablist__item}
+                >
+                  <div className={cn(styles.dot, dotMap[value])} />
+                  <p>{wine.category.replace(' вина', '')}</p>
+                </TabsTrigger>
+              );
+            })}
           </TabsList>
+
+          {wines.map((wine) => {
+            const value = tabMap[wine.category];
+
+            return (
+              <TabsContent key={value} value={value}>
+                {wine.subcategories.map((sub, i) => (
+                  <article key={i} className={styles.sub}>
+                    <header className={styles.sub__header}>
+                      <span className={styles.sub__label}>
+                        {sub.category}
+                      </span>
+                      <span className={styles.sub__rule} />
+                    </header>
+
+                    <ul className={styles.wines}>
+                      {sub.wines.map((item, idx) => (
+                        <li key={idx} className={styles.wines__row}>
+                          <span className={styles.wines__name}>
+                            {item.title}
+                          </span>
+                          <span className={styles.wines__rule} />
+                          <span className={styles.wines__vol}>
+                            {item.value}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </article>
+                ))}
+              </TabsContent>
+            );
+          })}
         </Tabs>
       </section>
     </section>

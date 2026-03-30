@@ -1,9 +1,11 @@
 import { cn } from '@/shared/lib/utils';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/ui/tabs';
-import { Text } from '@/shared/ui/text';
 import { Hero } from '@/widget/hero';
 
 import { Title } from '../ui/title';
+
+import styles from './page.module.scss';
+
 
 
 const RESTAURANT = {
@@ -143,119 +145,31 @@ const Kids: { title: string; description: string }[] = [
   },
 ];
 
-type Wine = {
-  title: string,
-  value: string,
-
-}
-type WinesType = {
-  category: string;
-  subcategories: {
-    category: string;
-    wines: Wine[];
-  }[]
-}
-
-const wines: WinesType[] = [
-  {
-    category: 'Белые вина',
-    subcategories: [{
-      category: 'Сухие',
-      wines: [
-        { title: 'Trio / Chardonnay, Narince, Sultaniye', value: '75 cl' },
-        { title: 'Trio / Chardonnay, Narince, Sultaniye', value: '37,5 cl' },
-        { title: 'Anfora Chardonnay', value: '75 cl' },
-        { title: ' Chardonnay Reserve', value: '75 cl' },
-        { title: ' Çankaya', value: '75 cl' },
-        { title: ' Dolunca Sarafın Chardonnay', value: '75 cl' },
-        { title: ' Dolunca Sarafın Sauvignon Blanc', value: '75 cl' },
-      ],
-    },
-      {
-        category: 'Полусухие',
-        wines: [
-          { title: 'Senfoni', value: '75 cl' },
-        ],
-      },
-      {
-        category: 'Сладкие',
-        wines: [
-          { title: 'Senfoni', value: '75 cl' },
-        ],
-      },
-      {
-        category: 'Сладкие',
-        wines: [
-          { title: 'Senfoni', value: '75 cl' },
-        ],
-      },
-    ],
-  },
-  {
-    category: 'Розовые вина',
-    subcategories: [{
-      category: 'Сухие',
-      wines: [
-        { title: 'Trio / Shiraz, Karası, Cabernet Sauvignon', value: '75 cl' },
-      ],
-    },
-    ],
-  },
-  {
-    category: 'Красные вина',
-    subcategories: [{
-      category: 'Сухие',
-      wines: [
-        { title: 'Trio / Shiraz, Karası, Cabernet Sauvignon', value: '75 cl' },
-        { title: 'Trio / Shiraz, Karası, Cabernet Sauvignon', value: '37,5 cl' },
-        { title: 'Anfora Shiraz', value: '75 cl' },
-        { title: 'Shiraz Rezerve', value: '75 cl' },
-        { title: 'Anfora Kalecik karası', value: '75 cl' },
-        { title: 'Anfora Mertol', value: '75 cl' },
-        { title: 'Anfora Öközgüzü, Boğazkere', value: '75 cl' },
-        { title: 'Anfora Cabarnet Sauvignon', value: '75 cl' },
-        { title: 'Yakut', value: '75 cl' },
-        { title: 'Doluca Sarafın Cabernen Sauvignon', value: '75 cl' },
-        { title: 'Doluca Sarafın Mertol', value: '75 cl' },
-      ],
-    },
-      {
-        category: 'Сладкие',
-        wines: [
-          { title: 'Senfoni', value: '75 cl' },
-        ],
-      },
-      {
-        category: 'Игристые вина',
-        wines: [
-          { title: 'Anfore Gold', value: '75 cl' },
-          { title: 'Henkell Trocken', value: '75 cl' },
-        ],
-      },
-    ],
-  },
-];
+const MENU_SECTIONS = [
+  { value: 'soup', label: 'Супы', items: Soup },
+  { value: 'antipasti', label: 'Закуски', items: Antipasti },
+  { value: 'main', label: 'Основные блюда', items: Main },
+  { value: 'deserts', label: 'Десерты', items: Deserts },
+  { value: 'kids', label: 'Детское меню', items: Kids },
+] as const;
 
 function Food({
-                title,
-                description,
-              }: {
+  title,
+  description,
+}: {
   title: string;
   description: string;
 }) {
   return (
-    <article
-      className="py-6 border-b border-gray-200 last:border-none text-center md:text-left transition hover:bg-gray-50 rounded-lg px-4">
-      <h4 className="text-xl font-serif text-gray-900 mb-1 tracking-tight">
-        {title}
-      </h4>
-      <p className="text-sm text-gray-600 italic leading-relaxed max-w-xl mx-auto md:mx-0">
-        {description}
-      </p>
+    <article className={styles.dish}>
+      <div className={styles.dish__head}>
+        <h4 className={styles.dish__title}>{title}</h4>
+        <span className={styles.dish__rule} />
+      </div>
+      <p className={styles.dish__description}>{description}</p>
     </article>
   );
 }
-
 
 export default function Page() {
   return (
@@ -265,42 +179,47 @@ export default function Page() {
         slot={<Title title={'La Mounte'} />}
       />
 
-      <div className={'info'}>
-        <h2>Ла Монте, где итальянская кухня встречается с средиземноморскими бризами, предлагает настоящий вкус.</h2>
+      <div className={cn('info', styles.intro)}>
+        <h2>Ла Монте, где итальянская кухня встречается со средиземноморским бризом, предлагает настоящий вкус.</h2>
       </div>
 
       <section className={'container'} aria-label={'Меню блюд'}>
-        <Text tag={'h3'} variant={'title'} className={'text-center'}> Меню</Text>
+        <div className={styles.header}>
+          <p className={styles.header__text}>Коллекция блюд · à la carte</p>
+          <h2 className={styles.header__title}>Ме<em>ню</em></h2>
+        </div>
+
         <Tabs defaultValue="soup">
-          <TabsList className="mx-auto flex flex-wrap gap-4 justify-center mb-8">
-            <TabsTrigger value="soup" className="px-4 py-2 rounded-full transition hover:bg-gray-100">
-              Супы
-            </TabsTrigger>
-            <TabsTrigger value="antipasti" className="px-4 py-2 rounded-full transition hover:bg-gray-100">
-              Закуски
-            </TabsTrigger>
-            <TabsTrigger value="main" className="px-4 py-2 rounded-full transition hover:bg-gray-100">
-              Основные блюда
-            </TabsTrigger>
-            <TabsTrigger value="deserts" className="px-4 py-2 rounded-full transition hover:bg-gray-100">
-              Десерты
-            </TabsTrigger>
-            <TabsTrigger value="kids" className="px-4 py-2 rounded-full transition hover:bg-gray-100">
-              Детское меню
-            </TabsTrigger>
+          <TabsList className={styles.tablist}>
+            {MENU_SECTIONS.map((section) => (
+              <TabsTrigger
+                key={section.value}
+                value={section.value}
+                className={styles.tablist__item}
+              >
+                <span className={styles.dot} aria-hidden />
+                <span>{section.label}</span>
+              </TabsTrigger>
+            ))}
           </TabsList>
 
-          {['soup', 'antipasti', 'main', 'deserts', 'kids'].map((tab) => {
-            const data = { soup: Soup, antipasti: Antipasti, main: Main, deserts: Deserts, kids: Kids }[tab];
+          {MENU_SECTIONS.map((section) => {
             return (
-              <TabsContent key={tab} value={tab}>
-                <ul className="space-y-4">
-                  {data && data.map((item) => (
-                    <li key={item.title}>
-                      <Food {...item} />
-                    </li>
-                  ))}
-                </ul>
+              <TabsContent key={section.value} value={section.value}>
+                <section className={styles.sub}>
+                  <header className={styles.sub__header}>
+                    <span className={styles.sub__label}>{section.label}</span>
+                    <span className={styles.sub__rule} />
+                  </header>
+
+                  <ul className={styles.menu}>
+                    {section.items.map((item) => (
+                      <li key={item.title} className={styles.menu__item}>
+                        <Food {...item} />
+                      </li>
+                    ))}
+                  </ul>
+                </section>
               </TabsContent>
             );
           })}

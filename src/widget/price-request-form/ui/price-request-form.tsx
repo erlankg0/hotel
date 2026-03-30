@@ -12,7 +12,7 @@ import styles from './styles.module.scss';
 
 export function PriceRequestForm() {
   const { dateRange, setDateRange, nights } = useDateRange();
-  const { adults, setAdults, child, setChild } = useGuest();
+  const { adults, setAdults, child, setChild, childrenAges, setChildrenAges } = useGuest();
   const [isFooterVisible, setIsFooterVisible] = useState(false);
 
   const guestsLabel = useMemo(() => {
@@ -24,21 +24,27 @@ export function PriceRequestForm() {
   const bookingHref = useMemo(() => {
     const params = new URLSearchParams();
 
+
     if (dateRange.start) {
-      params.set('checkIn', formatDateParam(dateRange.start));
+      params.set('check_in', formatDateParam(dateRange.start));
     }
 
     if (dateRange.end) {
-      params.set('checkOut', formatDateParam(dateRange.end));
+      params.set('check_out', formatDateParam(dateRange.end));
     }
 
     params.set('adults', String(adults));
-    params.set('children', String(child));
+    params.set('child', String(child));
 
+
+
+    for (let i = 0; i < child; i++) {
+      params.append(`childage_${i + 1}`, String(childrenAges[i] ?? '0'));
+    }
     const query = params.toString();
 
     return query ? `/book?${query}` : '/book';
-  }, [adults, child, dateRange.end, dateRange.start]);
+  }, [adults, child, childrenAges, dateRange.end, dateRange.start]);
 
   useEffect(() => {
     const footer = document.getElementById('footer');
@@ -100,7 +106,7 @@ export function PriceRequestForm() {
                       {formatDisplayDate(displayDates.start)} - {formatDisplayDate(displayDates.end)}
                     </span>
                     <span className={styles.trigger__meta}>
-                      {nights > 0 ? `${nights} ноч${nights === 1 ? 'ь' : nights < 5 ? 'и' : 'ей'}` : 'Выберите период'}
+                      {nights > 0 ? `${nights} ноч${nights === 1 ? 'ь' : nights < 5 ? 'и' : 'ей'}` : ''}
                     </span>
                   </button>
                 )}
@@ -111,6 +117,8 @@ export function PriceRequestForm() {
               <GuestCounter
                 child={{ count: child, setCount: setChild }}
                 adults={{ count: adults, setCount: setAdults }}
+                childrenAges={childrenAges}
+                setChildrenAges={setChildrenAges}
                 trigger={(
                   <button
                     type="button"

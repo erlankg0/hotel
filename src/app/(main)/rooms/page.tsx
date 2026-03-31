@@ -39,7 +39,7 @@ export default function Page() {
   }, [onSlideChange, navOnSlideChange]);
 
   return (
-    <section className={cn(styles.section)}>
+    <section className={cn(styles.section, 'margin_top')}>
       <div className="container">
         <BreadcrumbsUI />
       </div>

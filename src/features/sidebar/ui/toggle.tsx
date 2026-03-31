@@ -6,11 +6,15 @@ import { Button } from '@/shared/ui/button';
 
 import { useSidebar } from '../hook/useSidebar';
 
-export function Toggle() {
+type ToggleProps = {
+  className?: string;
+};
+
+export function Toggle({ className }: ToggleProps) {
   const { setIsOpen } = useSidebar();
   return (
     <Button
-      className={'text-black!'}
+      className={className}
       size={'lg'}
       variant={'blur'}
       type={'button'}

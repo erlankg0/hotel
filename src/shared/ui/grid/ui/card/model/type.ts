@@ -7,5 +7,7 @@ export type Props = {
   image: ImageType;
   rowSpan?: number;
   colSpan?: number;
+  buttonText?: string;
+  className?: string;
   onClick?: () => void;
 }

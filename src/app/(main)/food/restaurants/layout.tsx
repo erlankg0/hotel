@@ -143,7 +143,7 @@ export default function RestaurantLayout({
   children: ReactNode;
 }) {
   return (
-    <section>
+    <section className={'margin_top'}>
       {children}
 
       <section className="container">
@@ -157,7 +157,6 @@ export default function RestaurantLayout({
         </div>
 
         <Tabs defaultValue="white">
-          {/* ✅ Tabs List */}
           <TabsList className={styles.tablist}>
             {wines.map((wine) => {
               const value = tabMap[wine.category];

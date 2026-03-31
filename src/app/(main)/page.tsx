@@ -45,7 +45,7 @@ export default function Page() {
 
   return (
     <main ref={pageRef}>
-      <section className="panel">
+      <section className="panel margin_top">
         <Hero
           subtitle={'Alanya, Kargıcak'}
           preTitle={'Welcome'}

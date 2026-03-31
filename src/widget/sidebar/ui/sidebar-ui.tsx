@@ -8,6 +8,7 @@ import { useSidebar } from '@/features/sidebar';
 import { Drawer, DrawerContent, DrawerFooter, DrawerHeader, DrawerTitle } from '@/shared/ui/drawer';
 
 import styles from './styles.module.scss';
+
 import type { ReactNode } from 'react';
 
 type NavItem = {

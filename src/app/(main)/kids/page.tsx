@@ -6,7 +6,7 @@ import { Hero } from '@/widget/hero';
 
 export default function Page() {
   return (
-    <section>
+    <section className={'margin_top'}>
       <title>Семейный клуб Ma&Me&Pa</title>
       <Hero {...HERO_KIDS} slot={<Title />} />
       <article className={'info'}>

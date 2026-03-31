@@ -7,7 +7,6 @@ import { Title } from '../ui/title';
 import styles from './page.module.scss';
 
 
-
 const RESTAURANT = {
   subtitle: 'Итальянская кухня',
   video: 'https://cdn.utopiahotels.com/assets/videos/covers/uw-lamonte.mp4',
@@ -155,9 +154,9 @@ const MENU_SECTIONS = [
 
 
 function Food({
-  title,
-  description,
-}: {
+                title,
+                description,
+              }: {
   title: string;
   description: string;
 }) {

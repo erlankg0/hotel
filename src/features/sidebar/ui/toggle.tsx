@@ -11,14 +11,15 @@ type ToggleProps = {
 };
 
 export function Toggle({ className }: ToggleProps) {
-  const { setIsOpen } = useSidebar();
+  const { toggleSidebar } = useSidebar();
+
   return (
     <Button
       className={className}
       size={'lg'}
       variant={'blur'}
       type={'button'}
-      onClick={setIsOpen}>
+      onClick={toggleSidebar}>
       <Menu />
       <span>Меню</span>
     </Button>

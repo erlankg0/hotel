@@ -13,6 +13,7 @@ export function FullVideo(params: Params) {
         muted
         loop
         playsInline
+        preload="metadata"
         poster={params.poster}
       >
         <source src={params.url} type="video/mp4" />

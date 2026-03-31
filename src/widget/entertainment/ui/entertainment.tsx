@@ -15,46 +15,52 @@ import styles from './styles.module.scss';
 gsap.registerPlugin(ScrollTrigger);
 
 export function Entertainment() {
-  const desktopRef = useRef<HTMLDivElement | null>(null);
+  const sectionRef = useRef<HTMLElement | null>(null);
   const videoRef = useRef<HTMLDivElement | null>(null);
-  const topRef = useRef<HTMLDivElement | null>(null);
 
   useGSAP(() => {
-    if (!videoRef.current) return;
+    if (!sectionRef.current || !videoRef.current) return;
 
-    gsap.set(videoRef.current, {
-      scale: 0.4,
-      borderRadius: 24,
-      transformOrigin: 'center center',
-    });
+    const media = gsap.matchMedia();
 
-    gsap.to(videoRef.current, {
-      scale: 1.1,
-      borderRadius: 24,
-      scrollTrigger: {
-        trigger: videoRef.current,
-        start: 'top center',
-        end: 'center center',
-        scrub: 1,
-      },
-    });
+    media.add('(min-width: 992px) and (prefers-reduced-motion: no-preference)', () => {
+      gsap.set(videoRef.current, {
+        transformOrigin: 'center center',
+        force3D: true,
+      });
 
-    if (topRef.current) {
-      gsap.to(topRef.current, {
-        y: -200,
-        opacity: 0,
+      gsap.fromTo(videoRef.current, {
+        autoAlpha: 0.85,
+        scale: 0.84,
+        yPercent: 6,
+      }, {
+        autoAlpha: 1,
+        scale: 1,
+        yPercent: 0,
+        ease: 'none',
         scrollTrigger: {
-          trigger: videoRef.current,
-          start: 'top center',
-          end: 'center center',
-          scrub: 1,
+          trigger: sectionRef.current,
+          start: 'top 75%',
+          end: 'bottom center',
+          scrub: 0.35,
+          invalidateOnRefresh: true,
         },
       });
-    }
-  }, []);
+    });
+
+    media.add('(max-width: 991px), (prefers-reduced-motion: reduce)', () => {
+      gsap.set(videoRef.current, {
+        clearProps: 'all',
+      });
+    });
+
+    return () => {
+      media.revert();
+    };
+  }, { scope: sectionRef });
 
   return (
-    <section className={`${styles.section} panel`}>
+    <section ref={sectionRef} className={`${styles.section} panel`} data-panel-static="true">
       <div className={'container'}>
         <header className={styles.section__col}>
           <Text tag={'span'} variant={'kicker'}>Entertainment</Text>
@@ -69,7 +75,7 @@ export function Entertainment() {
       <div className={styles.section__wrapper}>
         <article className={styles.section__content}>
           <div className={styles.section__video}>
-            <div ref={desktopRef} className={styles.desktop}>
+            <div className={styles.desktop}>
               <div className={styles.desktop__pin}>
                 <div ref={videoRef} className={styles.desktop__video}>
                   <FullVideo url="/video/part.mp4" />

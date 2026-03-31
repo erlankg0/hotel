@@ -1,5 +1,5 @@
-import { Button } from '@/shared/ui/button';
 import { cn } from '@/shared/lib/utils';
+import { Button } from '@/shared/ui/button';
 import { ImageUI } from '@/shared/ui/image';
 
 import styles from './card.module.scss';

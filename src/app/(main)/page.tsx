@@ -1,8 +1,9 @@
 'use client';
 
+import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useEffect } from 'react';
+import { useRef } from 'react';
 
 import { HotelAbout } from '@/entities/hotel';
 import { RESTAURANTS, RestaurantSlide } from '@/entities/restaurant';
@@ -15,33 +16,35 @@ import { Slider } from '@/widget/slider';
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Page() {
-  useEffect(() => {
-    const panels = gsap.utils.toArray<HTMLElement>('.panel');
+  const pageRef = useRef<HTMLElement | null>(null);
+
+  useGSAP(() => {
+    const panels = gsap.utils.toArray<HTMLElement>('.panel:not([data-panel-static="true"])');
 
     panels.forEach((panel) => {
       gsap.fromTo(
         panel,
-        { opacity: 0, y: 100 },
         {
-          opacity: 1,
+          autoAlpha: 0,
+          y: 48,
+        },
+        {
+          autoAlpha: 1,
           y: 0,
+          duration: 0.9,
+          ease: 'power2.out',
           scrollTrigger: {
             trigger: panel,
-            start: 'top 80%',
-            end: 'top 20%',
-            scrub: 1,
+            start: 'top 85%',
+            once: true,
           },
         },
       );
     });
-
-    return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-    };
-  }, []);
+  }, { scope: pageRef });
 
   return (
-    <>
+    <main ref={pageRef}>
       <section className="panel">
         <Hero
           subtitle={'Alanya, Kargıcak'}
@@ -65,6 +68,6 @@ export default function Page() {
       </section>
       <section className="panel"><AwardsMarquee /></section>
       <section className="panel"><Rooms /></section>
-    </>
+    </main>
   );
 }

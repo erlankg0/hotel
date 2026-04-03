@@ -17,7 +17,7 @@ export function WrapperForm<T extends FieldValues>({
   return (
     <FormProvider {...methods}>
       <form
-        className={cn(className, 'flex flex-col gap-4')}
+        className={cn(className, 'flex flex-col gap-2')}
         onSubmit={methods.handleSubmit(onSubmit)}
       >
         {children}

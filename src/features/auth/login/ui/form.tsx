@@ -1,4 +1,5 @@
 import { LucideMail } from 'lucide-react';
+import Link from 'next/link';
 import { useFormContext } from 'react-hook-form';
 
 import {
@@ -6,7 +7,7 @@ import {
   FieldGroup,
   FieldTitle,
   FieldLabel,
-  FieldError,
+  FieldError, FieldDescription,
 } from '@/shared/ui/field';
 import { InputGroup, InputGroupAddon, InputGroupInput } from '@/shared/ui/input-group';
 
@@ -48,7 +49,9 @@ export function LoginForm() {
           <FieldError>{errors.password.message}</FieldError>
         )}
       </FieldGroup>
-
+      <FieldDescription>
+        Нет аккаунта? <Link href="/register">Регистрация</Link>
+      </FieldDescription>
     </FieldSet>
   );
 }

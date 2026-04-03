@@ -1,5 +1,8 @@
 import { Architects_Daughter, Cormorant_Garamond, Great_Vibes, Inter, Montserrat } from 'next/font/google';
 
+import { QueryProvider } from '@/shared/providers/tanstack/provider';
+import { Toaster } from '@/shared/ui/sonner';
+
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 
@@ -66,7 +69,10 @@ export default function RootLayout({
         antialiased`
       }>
 
-    {children}
+    <QueryProvider>
+      {children}
+    </QueryProvider>
+    <Toaster />
     </body>
     </html>
   );

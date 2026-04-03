@@ -87,7 +87,6 @@ export function Footer() {
             <div className={styles.footer__cta}>
               <Button
                 type="button"
-                variant="blur"
                 size="lg"
                 className={`${styles.footer__button} ${styles.footer__button_primary}`}
                 onClick={setIsOpen}
@@ -97,7 +96,6 @@ export function Footer() {
 
               <Button
                 asChild
-                variant="blur"
                 size="lg"
                 className={`${styles.footer__button} ${styles.footer__button_secondary}`}
               >

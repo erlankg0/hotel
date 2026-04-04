@@ -28,7 +28,7 @@ export default function Page() {
         type={'submit'}
         className={styles.button}
       >
-        {isPending ? (<span className={styles.loader}><Loader size={14} />Регистарция...</span>) : ('Регистарция')}
+        {isPending ? (<span className={styles.loader}><Loader size={14} />Регистрация...</span>) : ('Регистрация')}
       </Button>
     </WrapperForm>
   );

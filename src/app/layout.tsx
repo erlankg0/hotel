@@ -72,7 +72,22 @@ export default function RootLayout({
     <QueryProvider>
       {children}
     </QueryProvider>
-    <Toaster />
+    <Toaster
+      position="top-right"
+      toastOptions={{
+        classNames: {
+          toast: 'rounded-xl border border-border bg-background shadow-lg px-4 py-3',
+          title: 'text-sm font-medium text-foreground',
+          description: 'text-xs text-muted-foreground mt-0.5',
+          error: 'border-destructive/20 bg-destructive/5',
+          success: 'border-green-500/20 bg-green-500/5',
+          actionButton: 'bg-foreground text-background text-xs rounded-md px-3 py-1.5',
+          icon: 'mt-0.5',
+        },
+      }}
+      gap={8}
+      visibleToasts={3}
+    />
     </body>
     </html>
   );

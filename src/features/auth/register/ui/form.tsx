@@ -20,77 +20,85 @@ export function RegisterForm() {
     register,
     formState: { errors },
   } = useFormContext<RegisterDto>();
+
   return (
-    <FieldSet className={'flex flex-col gap-6'}>
-      <article>
-        <FieldTitle className={'text-xl font-bold text-center'}>Регистрация</FieldTitle>
+    <FieldSet className="flex flex-col gap-4">
+      <article className="mb-2">
+        <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
+          Добро пожаловать
+        </p>
+        <FieldTitle className="text-2xl font-semibold">Регистрация</FieldTitle>
       </article>
 
+      <div className="grid grid-cols-2 gap-3">
+        <FieldGroup>
+          <FieldLabel htmlFor="firstName">Имя</FieldLabel>
+          <InputGroup>
+            <InputGroupInput {...register('firstName')} placeholder="Иван" />
+            <InputGroupAddon>
+              <UserSearch size={14} />
+            </InputGroupAddon>
+          </InputGroup>
+          {errors.firstName && <FieldError>{errors.firstName.message}</FieldError>}
+        </FieldGroup>
+
+        <FieldGroup>
+          <FieldLabel htmlFor="lastName">Фамилия</FieldLabel>
+          <InputGroup>
+            <InputGroupInput {...register('lastName')} placeholder="Иванов" />
+            <InputGroupAddon>
+              <UserSearch size={14} />
+            </InputGroupAddon>
+          </InputGroup>
+          {errors.lastName && <FieldError>{errors.lastName.message}</FieldError>}
+        </FieldGroup>
+      </div>
+
       <FieldGroup>
-        <FieldLabel htmlFor={'firstName'}>Имя</FieldLabel>
+        <FieldLabel htmlFor="email">Email</FieldLabel>
         <InputGroup>
-          <InputGroupInput {...register('firstName')} placeholder={'Иван'} />
+          <InputGroupInput {...register('email')} placeholder="example@example.com" />
           <InputGroupAddon>
-            <UserSearch size={12} />
+            <LucideMail size={14} />
           </InputGroupAddon>
         </InputGroup>
-        {errors.firstName && (
-          <FieldError>{errors.firstName.message}</FieldError>
-        )}
+        {errors.email && <FieldError>{errors.email.message}</FieldError>}
       </FieldGroup>
 
       <FieldGroup>
-        <FieldLabel htmlFor={'lastName'}>Фамилия</FieldLabel>
+        <FieldLabel htmlFor="username">Логин</FieldLabel>
         <InputGroup>
-          <InputGroupInput {...register('lastName')} placeholder={'Иванов'} />
+          <InputGroupInput {...register('username')} placeholder="username" />
           <InputGroupAddon>
-            <UserSearch size={12} />
+            <PiUserThin size={14} />
           </InputGroupAddon>
         </InputGroup>
-        {errors.lastName && (
-          <FieldError>{errors.lastName.message}</FieldError>
-        )}
+        {errors.username && <FieldError>{errors.username.message}</FieldError>}
       </FieldGroup>
 
       <FieldGroup>
-        <FieldLabel htmlFor={'email'}>Email</FieldLabel>
+        <div className="flex items-center justify-between">
+          <FieldLabel htmlFor="password">Пароль</FieldLabel>
+          <span className="text-xs text-muted-foreground">мин. 8 символов</span>
+        </div>
         <InputGroup>
-          <InputGroupInput {...register('email')} placeholder={'example@example.com'} />
+          <InputGroupInput
+            type="password"
+            placeholder="••••••••"
+            {...register('password')}
+          />
           <InputGroupAddon>
-            <LucideMail size={12} />
+            <PiPasswordThin size={14} />
           </InputGroupAddon>
         </InputGroup>
-        {errors.email && (
-          <FieldError>{errors.email.message}</FieldError>
-        )}
+        {errors.password && <FieldError>{errors.password.message}</FieldError>}
       </FieldGroup>
 
-      <FieldGroup>
-        <FieldLabel htmlFor={'username'}>Логин</FieldLabel>
-        <InputGroup>
-          <InputGroupInput {...register('username')} placeholder={'username'} />
-          <InputGroupAddon>
-            <PiUserThin size={12} />
-          </InputGroupAddon>
-        </InputGroup>
-        {errors.username && (
-          <FieldError>{errors.username.message}</FieldError>
-        )}
-      </FieldGroup>
-      <FieldGroup>
-        <FieldLabel htmlFor={'password'}>Пароль</FieldLabel>
-        <InputGroup>
-          <InputGroupInput type={'password'} placeholder={'Пароль'} {...register('password')} />
-          <InputGroupAddon>
-            <PiPasswordThin size={12} />
-          </InputGroupAddon>
-        </InputGroup>
-        {errors.password && (
-          <FieldError>{errors.password.message}</FieldError>
-        )}
-      </FieldGroup>
-      <FieldDescription>
-        Есть аккаунт? <Link href="/login">Войти</Link>
+      <FieldDescription className="text-center text-sm text-muted-foreground">
+        Уже есть аккаунт?{' '}
+        <Link href="/login" className="text-foreground underline underline-offset-2">
+          Войти
+        </Link>
       </FieldDescription>
     </FieldSet>
   );

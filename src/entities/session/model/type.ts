@@ -4,4 +4,7 @@ export interface UserSummary {
   email: string;
   firstName: string;
   lastName: string;
+  avatar: string | null;
+  createdAt: Date,
+  updatedAt: Date,
 }

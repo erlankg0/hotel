@@ -1,9 +1,10 @@
 'use client';
 
+import { Loader } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
 
+import { useSession } from '@/entities/session';
 import { useContact } from '@/features/contact';
 import { Toggle } from '@/features/sidebar';
 import { Button } from '@/shared/ui/button';
@@ -12,8 +13,7 @@ import styles from './styles.module.scss';
 
 export function Header() {
   const { setIsOpen } = useContact();
-  const [isAuthorized, setIsAuthorized] = useState(false);
-
+  const { isAuth, data, isLoading } = useSession();
   return (
     <header className={styles.header}>
       <div className={styles.header__inner}>
@@ -34,16 +34,13 @@ export function Header() {
           <Button
             type={'button'}
             className={`${styles.header__action} ${styles.header__action_secondary}`}
-            variant={'blur'}
             size={'lg'}
-            onClick={() => setIsAuthorized(prev => !prev)}
           >
-            <span>{isAuthorized ? 'Выход' : 'Вход'}</span>
+            <span>{isAuth ? 'Выход' : isLoading ? <Loader size={12} /> : data?.username}</span>
           </Button>
           <Button
             type={'button'}
             className={`${styles.header__action} ${styles.header__action_primary}`}
-            variant={'blur'}
             size={'lg'}
             onClick={setIsOpen}
           >

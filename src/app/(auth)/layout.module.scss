@@ -4,6 +4,7 @@
   align-items: center;
   justify-content: center;
   position: relative;
+  padding: 20px;
 
   background-image: url("/images/poster.jpg");
   background-size: cover;
@@ -21,12 +22,21 @@
 .card {
   width: 100%;
   max-width: 420px;
+  max-height: 70vh;
   padding: 32px;
   border-radius: 16px;
   background: white;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
   position: relative;
   z-index: 1;
+
+  overflow-y: scroll;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
 }
 
 .form {

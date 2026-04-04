@@ -17,7 +17,6 @@ export function Toggle({ className }: ToggleProps) {
     <Button
       className={className}
       size={'lg'}
-      variant={'blur'}
       type={'button'}
       onClick={toggleSidebar}>
       <Menu />

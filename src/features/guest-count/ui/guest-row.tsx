@@ -22,13 +22,11 @@ export function GuestRow({ min, max, data }: CounterType) {
     <div className={styles.controls}>
       <Button
         type={'button'}
-        variant={'blue'}
         onClick={handleClickDecrement}
         disabled={data.count <= min}>-</Button>
       <p className={styles.count}>{data.count}</p>
       <Button
         type={'button'}
-        variant={'blue'}
         disabled={data.count >= max}
         onClick={handleOnClickIncrement}>+</Button>
     </div>

@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { DateRange, useDateRange } from '@/features/date-range';
 import { GuestCounter, useGuest } from '@/features/guest-count';
 import { cn, formatWeekday, getGuestLabel } from '@/shared/lib/utils';
-import { Button } from '@/shared/ui/button';
+import { Button } from '@/shared/ui/button/button';
 
 import styles from './styles.module.scss';
 

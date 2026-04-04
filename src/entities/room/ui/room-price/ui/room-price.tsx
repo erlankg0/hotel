@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useCallback } from 'react';
 
 import { Air, Balcony, Cosmetics, Minibar, Safe, Tree } from '@/shared/icons';
-import { Button } from '@/shared/ui/button';
+import { Button } from '@/shared/ui/button/button';
 import { ImageUI } from '@/shared/ui/image';
 import { Popover, PopoverContent, PopoverTrigger } from '@/shared/ui/popover';
 import { Separator } from '@/shared/ui/separator';

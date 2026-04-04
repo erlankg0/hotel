@@ -50,7 +50,6 @@ export function GridCard({
             type={'button'}
             size={'sm'}
             className={cn(styles.card__button, styles.card__button_visible)}
-            variant="blur"
             onClick={onClick}
             aria-label={buttonLabel}
           >

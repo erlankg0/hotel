@@ -15,6 +15,11 @@ const nextConfig: NextConfig = {
         hostname: 'drive.google.com',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'cdn.shadcnstudio.com',
+        pathname: '/**',
+      },
     ],
   },
 };

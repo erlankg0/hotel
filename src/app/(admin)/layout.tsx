@@ -1,10 +1,10 @@
 'use client';
 import { Loader } from 'lucide-react';
-import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
 
 import { useSession } from '@/entities/session';
 import { Header } from '@/widget/header';
+
+import NotFound from '../not-found';
 
 import type { ReactNode } from 'react';
 
@@ -14,15 +14,10 @@ export default function AdminLayout({
   children: ReactNode;
 }>) {
   const { isAuth, data, isLoading } = useSession();
-  const router = useRouter();
 
-  useEffect(() => {
-    if (!isLoading) {
-      if (!isAuth || data?.role !== 'ADMIN') {
-        router.push('/');
-      }
-    }
-  }, [isLoading, isAuth, data?.role, router]);
+  if (!isAuth || data?.role !== 'ADMIN') {
+    return <NotFound />;
+  }
 
   if (isLoading || !isAuth || data?.role !== 'ADMIN') {
     return (

@@ -37,7 +37,7 @@ export function BreadcrumbsUI() {
             <BreadcrumbItem key={crumb.path}>
               <BreadcrumbLink key={crumb.path} href={crumb.path}>
                 {crumb.title.length <= 10
-                  ? <Text tag={'p'} variant={'kicker'} className={'text-black font-bold'}>{crumb.title}</Text>
+                  ? <Text tag={'p'} variant={'kicker'} className={'text-black font-bold mb-0!'}>{crumb.title}</Text>
                   : `${crumb.title.slice(0, 10)}...`}
               </BreadcrumbLink>
             </BreadcrumbItem>

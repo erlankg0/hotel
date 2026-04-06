@@ -10,21 +10,21 @@ import type { ReactNode } from 'react';
 
 export default function AdminLayout({
                                       children,
-                                    }: Readonly<{
+                                    }: {
   children: ReactNode;
-}>) {
+}) {
   const { isAuth, data, isLoading } = useSession();
 
-  if (!isAuth || data?.role !== 'ADMIN') {
-    return <NotFound />;
-  }
-
-  if (isLoading || !isAuth || data?.role !== 'ADMIN') {
+  if (isLoading) {
     return (
       <div className="flex min-h-screen items-center justify-center">
         <Loader className="animate-spin text-gray-500" size={32} />
       </div>
     );
+  }
+
+  if (!isAuth || data?.role !== 'ADMIN') {
+    return <NotFound />;
   }
 
   return (

@@ -3,6 +3,7 @@ import { Plus } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 
+import { RoomPrice } from '@/entities/room';
 import { Button } from '@/shared/ui/button';
 import { Page } from '@/widget/page';
 import { PageHeader } from '@/widget/page-header';
@@ -20,13 +21,18 @@ export default function Rooms() {
         onSearchOnChange={setSearch}
         slot={
           <Button type={'button'}>
-            <Link href={'new'}>
+            <Link href={'rooms/new'}>
               <Plus size={14} />
             </Link>
           </Button>
         }
       />}>
-      Room PAge
+      <div className={'flex flex-col gap-6'}>
+        <RoomPrice />
+        <RoomPrice />
+        <RoomPrice />
+        <RoomPrice />
+      </div>
     </Page>
   );
 }

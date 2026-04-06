@@ -7,4 +7,5 @@ export interface UserSummary {
   avatar: string | null;
   createdAt: Date,
   updatedAt: Date,
+  role: 'ADMIN' | 'USER'
 }

@@ -1,5 +1,5 @@
 'use client';
-import { Plus } from 'lucide-react';
+import { Plus, Info } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 
@@ -20,11 +20,18 @@ export default function Rooms() {
         searchValue={search}
         onSearchOnChange={setSearch}
         slot={
-          <Button type={'button'}>
-            <Link href={'rooms/new'}>
-              <Plus size={14} />
-            </Link>
-          </Button>
+          <div className={'flex flex-row items-center gap-2'}>
+            <Button type={'button'}>
+              <Link href={'/admin/rooms/new'}>
+                <Plus size={14} />
+              </Link>
+            </Button>
+            <Button type={'button'}>
+              <Link href={'/admin/rooms/options'}>
+                <Info size={14} />
+              </Link>
+            </Button>
+          </div>
         }
       />}>
       <div className={'flex flex-col gap-6'}>

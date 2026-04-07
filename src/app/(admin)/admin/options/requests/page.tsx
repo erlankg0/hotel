@@ -1,17 +1,21 @@
 'use client';
-import { Plus, Info } from 'lucide-react';
+
+import { Loader, Plus } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 
-import { RoomPrice } from '@/entities/room';
+import { useRequest, RequestItem } from '@/entities/requests';
 import { Button } from '@/shared/ui/button';
 import { Page } from '@/widget/page';
 import { PageHeader } from '@/widget/page-header';
 
-
-export default function Rooms() {
+export default function RequestPage() {
   const [search, setSearch] = useState<string>('');
+  const { data, isLoading } = useRequest(search);
 
+  if (isLoading) {
+    return <Loader className="animate-spin text-gray-500" size={32} />;
+  }
 
   return (
     <Page
@@ -23,25 +27,17 @@ export default function Rooms() {
           slot={
             <div className={'flex flex-row items-center gap-2'}>
               <Button type={'button'}>
-                <Link href={'/admin/rooms/new'}>
+                <Link href={'requests/new'}>
                   <Plus size={14} />
-                </Link>
-              </Button>
-              <Button type={'button'}>
-                <Link href={'/admin/rooms/options'}>
-                  <Info size={14} />
                 </Link>
               </Button>
             </div>
           }
         />}
     >
-      <div className={'flex flex-col gap-6'}>
-        <RoomPrice />
-        <RoomPrice />
-        <RoomPrice />
-        <RoomPrice />
-      </div>
+      {data?.data.map((item) => (
+        <RequestItem slot={<></>} key={item.id} name={item.name} />
+      ))}
     </Page>
   );
 }

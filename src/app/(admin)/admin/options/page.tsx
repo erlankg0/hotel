@@ -9,7 +9,7 @@ import { Page } from '@/widget/page';
 
 const Tiles = [
   { title: 'Галерея', icon: Images, href: 'gallery' },
-  { title: 'Запросы', icon: Info, href: 'request' },
+  { title: 'Запросы', icon: Info, href: 'options/requests' },
   { title: 'Удобство', icon: Gem, href: 'amity' },
 ];
 

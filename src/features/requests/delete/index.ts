@@ -1,0 +1,1 @@
+export { useRequestDelete } from './hook/useRequestDelete';

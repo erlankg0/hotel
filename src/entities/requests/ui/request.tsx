@@ -5,20 +5,24 @@ import { Item, ItemContent, ItemActions, ItemMedia, ItemTitle } from '@/shared/u
 import type { RequestType } from '../model/type';
 import type { ReactNode } from 'react';
 
-export function RequestItem({ name, slot }: Partial<RequestType> & { slot: ReactNode }) {
+interface RequestItemProps extends Partial<RequestType> {
+  slot?: ReactNode;
+}
+
+export function RequestItem({ name, slot }: RequestItemProps) {
   return (
-    <Item>
+    <Item
+      variant="outline"
+      size="sm"
+      className="cursor-pointer transform transition-transform ease-in hover:scale-105 active:scale-105"
+    >
       <ItemMedia>
         <BadgeInfoIcon size={14} />
       </ItemMedia>
       <ItemContent>
-        <ItemTitle className={'text-muted-foreground font-semibold'}>{name}</ItemTitle>
+        <ItemTitle className="text-muted-foreground font-semibold">{name}</ItemTitle>
       </ItemContent>
-      {slot && (
-        <ItemActions>
-          {slot}
-        </ItemActions>
-      )}
+      {slot && <ItemActions>{slot}</ItemActions>}
     </Item>
   );
 }

@@ -18,7 +18,7 @@ export const useRequest = (search?: string) => {
   });
 
   return {
-    data,
+    requests: data,
     setPage,
     isLoading,
     error,

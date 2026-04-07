@@ -1,5 +1,9 @@
 export interface BaseResponse<T> {
-  data: T;
+  data: {
+    data: T[];
+    page: number;
+    total: number;
+  };
   status: number;
   message: string;
 }

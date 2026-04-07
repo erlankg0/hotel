@@ -11,7 +11,7 @@ import { PageHeader } from '@/widget/page-header';
 
 export default function RequestPage() {
   const [search, setSearch] = useState<string>('');
-  const { data, isLoading } = useRequest(search);
+  const { requests, isLoading } = useRequest(search);
 
   if (isLoading) {
     return <Loader className="animate-spin text-gray-500" size={32} />;
@@ -35,9 +35,11 @@ export default function RequestPage() {
           }
         />}
     >
-      {data?.data.map((item) => (
-        <RequestItem slot={<></>} key={item.id} name={item.name} />
-      ))}
+      <div className={'flex flex-col gap-4'}>
+        {requests?.data.data.map((item) => (
+          <RequestItem slot={<></>} key={item.id} name={item.name} />
+        ))}
+      </div>
     </Page>
   );
 }

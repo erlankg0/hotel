@@ -1,8 +1,11 @@
 export interface BaseResponse<T> {
-  data: T[];
-  limit: number;
-  page: number;
-  total: number;
+  data: {
+    data: T[];
+    page: number;
+    total: number;
+  };
+  status: number;
+  message: string;
 }
 
 export interface QueryOptions {

@@ -1,0 +1,1 @@
+export { useAmenityDelete } from './hook/useAmenityDelete';

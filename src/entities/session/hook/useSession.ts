@@ -15,6 +15,7 @@ export const useSession = () => {
     staleTime: 1000 * 60 * 5,
     select: (response) => response.data,
   });
+
   return {
     data: data,
     isAuth: isSuccess && !!data,

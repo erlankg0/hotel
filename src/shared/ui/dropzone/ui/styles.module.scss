@@ -1,0 +1,290 @@
+.dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  min-height: 200px;
+  padding: 24px;
+
+  cursor: pointer;
+  border: 1.5px dashed rgba(15, 23, 42, 0.14);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.96), rgba(248, 250, 252, 0.92)),
+    rgba(255, 255, 255, 0.9);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65), 0 18px 40px rgba(15, 23, 42, 0.05);
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+  outline: none;
+
+  &:hover {
+    border-color: rgba(15, 23, 42, 0.24);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72), 0 22px 46px rgba(15, 23, 42, 0.07);
+  }
+
+  &.active {
+    border-color: rgba(37, 99, 235, 0.65);
+    background:
+      radial-gradient(circle at top, rgba(219, 234, 254, 0.88), rgba(239, 246, 255, 0.96)),
+      rgba(239, 246, 255, 0.92);
+    box-shadow: 0 24px 50px rgba(37, 99, 235, 0.12);
+    transform: translateY(-1px);
+  }
+
+  &.filled {
+    align-items: stretch;
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+  text-align: center;
+}
+
+.filled .header {
+  justify-content: space-between;
+  text-align: left;
+}
+
+.iconWrap {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.75);
+}
+
+.icon {
+  width: 28px;
+  height: 28px;
+  color: rgba(37, 99, 235, 0.9);
+}
+
+.copy {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.title {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.35;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.text {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(15, 23, 42, 0.66);
+  user-select: none;
+}
+
+.counter {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  align-self: flex-start;
+  padding: 8px 12px;
+  border: 1px solid rgba(37, 99, 235, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.82);
+  font-size: 13px;
+  line-height: 1;
+  font-weight: 600;
+  color: rgba(37, 99, 235, 0.92);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  width: 100%;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.06);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+  animation: item-appear 0.22s ease both;
+
+  &:hover {
+    transform: translateY(-2px) scale(1.01);
+    border-color: rgba(37, 99, 235, 0.18);
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.1);
+  }
+}
+
+.imageCard {
+  gap: 0;
+}
+
+.fileCard {
+  flex-direction: row;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+}
+
+.previewWrap {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  max-height: 180px;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(226, 232, 240, 0.85), rgba(248, 250, 252, 0.95));
+}
+
+.previewImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  padding: 14px 16px 16px;
+}
+
+.fileCard .cardBody {
+  flex: 1;
+  padding: 0;
+}
+
+.fileName {
+  overflow: hidden;
+  font-size: 14px;
+  line-height: 1.4;
+  font-weight: 600;
+  color: var(--foreground);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fileMeta {
+  font-size: 13px;
+  line-height: 1.4;
+  color: rgba(15, 23, 42, 0.55);
+}
+
+.fileMetaRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.06);
+  font-size: 11px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: rgba(15, 23, 42, 0.64);
+  text-transform: uppercase;
+}
+
+.previewWrap .badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(8px);
+}
+
+.fileIconWrap {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background: rgba(37, 99, 235, 0.08);
+}
+
+.fileIcon {
+  width: 24px;
+  height: 24px;
+  color: rgba(37, 99, 235, 0.92);
+}
+
+@keyframes item-appear {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 767px) {
+  .dropzone {
+    min-height: 180px;
+    padding: 18px;
+    border-radius: 20px;
+  }
+
+  .header,
+  .filled .header {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .counter {
+    align-self: flex-start;
+  }
+
+  .grid {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+  }
+
+  .fileCard {
+    gap: 12px;
+    padding: 14px;
+  }
+
+  .previewWrap {
+    max-height: 150px;
+  }
+}

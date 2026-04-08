@@ -10,7 +10,7 @@ import { Page } from '@/widget/page';
 const Tiles = [
   { title: 'Галерея', icon: Images, href: 'gallery' },
   { title: 'Запросы', icon: Info, href: 'options/requests' },
-  { title: 'Удобство', icon: Gem, href: 'amity' },
+  { title: 'Удобство', icon: Gem, href: 'amenity' },
 ];
 
 export default async function Options() {

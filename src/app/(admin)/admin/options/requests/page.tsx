@@ -35,9 +35,12 @@ export default function RequestPage() {
           }
         />}
     >
-      {data?.data.map((item) => (
-        <RequestItem slot={<></>} key={item.id} name={item.name} />
-      ))}
+      <div className={'flex flex-row items-center gap-2'}>
+        {data && data.map((item) => (
+          <RequestItem slot={<></>} key={item.id} name={item.name} />
+        ))}
+      </div>
+
     </Page>
   );
 }

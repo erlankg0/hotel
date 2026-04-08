@@ -7,7 +7,7 @@ import type { ReactNode } from 'react';
 
 export function RequestItem({ name, slot }: Partial<RequestType> & { slot: ReactNode }) {
   return (
-    <Item>
+    <Item variant={'outline'}>
       <ItemMedia>
         <BadgeInfoIcon size={14} />
       </ItemMedia>

@@ -6,7 +6,7 @@ import type { QueryOptions } from '@/shared/types/response';
 
 export const QueryOptionRequest = {
   baseKey: 'requests',
-  getAll: ({ name, page, limit, enabled = true }: QueryOptions) => {
+  get: ({ name, page, limit, enabled = true }: QueryOptions) => {
     return queryOptions({
       queryKey: ['requests', { name, page, limit }],
       queryFn: () => getApi({ name: name, page: page, limit: limit }),

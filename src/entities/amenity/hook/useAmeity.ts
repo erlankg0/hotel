@@ -16,8 +16,10 @@ export const useAmenity = (search?: string) => {
     ...QueryOptionAmenity.get({ name: debouncedSearch, page }),
   });
 
+  const result = data?.data.data;
+
   return {
-    data,
+    data: result,
     setPage,
     isLoading,
     error,

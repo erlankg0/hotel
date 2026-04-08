@@ -14,11 +14,13 @@ export const useRequest = (search?: string) => {
     error,
     isLoading,
   } = useQuery({
-    ...QueryOptionRequest.getAll({ name: debouncedSearch, page }),
+    ...QueryOptionRequest.get({ name: debouncedSearch, page }),
   });
 
+  const result = data?.data.data
+
   return {
-    data,
+    data: result,
     setPage,
     isLoading,
     error,

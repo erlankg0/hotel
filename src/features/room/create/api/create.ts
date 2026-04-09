@@ -1,5 +1,7 @@
 import axiosInstance from '@/shared/axios/axios';
 
-export async function createApi() {
-  return await axiosInstance.post('rooms');
+import type { RoomDto } from '../model/dto';
+
+export async function createApi(dto: RoomDto) {
+  return await axiosInstance.post('rooms', dto);
 }

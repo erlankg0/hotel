@@ -8,7 +8,7 @@ enum Category {
 
 const IsNotEmpty = { message: 'Обязательное поле' };
 
-const RoomSchema = z.object({
+export const RoomSchema = z.object({
   title: z.string(IsNotEmpty).min(3, { message: 'Минимум 3 символа' }),
   description: z.string(IsNotEmpty),
   subDescription: z.string({}).optional(),
@@ -24,4 +24,4 @@ const RoomSchema = z.object({
   galleryId: z.string().optional(),
 });
 
-export type RoomDtoType = z.infer<typeof RoomSchema>;
+export type RoomDto = z.infer<typeof RoomSchema>;

@@ -1,9 +1,12 @@
 import type { ReactNode } from 'react';
-import type { UseFormProps, FieldValues } from 'react-hook-form';
+import type { FieldValues, SubmitHandler, UseFormProps } from 'react-hook-form';
 
-export type WrapperFormProps<T extends FieldValues> = {
+export type WrapperFormProps<
+  TFieldValues extends FieldValues,
+  TTransformedValues extends FieldValues = TFieldValues,
+> = {
   children: ReactNode;
-  options?: UseFormProps<T>;
-  onSubmit: (data: T) => void;
+  options?: UseFormProps<TFieldValues, any, TTransformedValues>;
+  onSubmit: SubmitHandler<TTransformedValues>;
   className?: string;
-}
+};

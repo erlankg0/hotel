@@ -1,19 +1,23 @@
 'use client';
 
-import { useForm, FormProvider } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 
 import { cn } from '../../../lib/utils';
 
 import type { WrapperFormProps } from '../model/type';
 import type { FieldValues } from 'react-hook-form';
 
-export function WrapperForm<T extends FieldValues>({
-                                                     children,
-                                                     options,
-                                                     className,
-                                                     onSubmit,
-                                                   }: WrapperFormProps<T>) {
-  const methods = useForm(options);
+export function WrapperForm<
+  TFieldValues extends FieldValues,
+  TTransformedValues extends FieldValues = TFieldValues,
+>({
+  children,
+  options,
+  className,
+  onSubmit,
+}: WrapperFormProps<TFieldValues, TTransformedValues>) {
+  const methods = useForm<TFieldValues, any, TTransformedValues>(options);
+
   return (
     <FormProvider {...methods}>
       <form
@@ -24,5 +28,4 @@ export function WrapperForm<T extends FieldValues>({
       </form>
     </FormProvider>
   );
-
 }

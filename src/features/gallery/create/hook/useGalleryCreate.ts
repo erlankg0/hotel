@@ -4,31 +4,31 @@ import { toast } from 'sonner';
 
 import { handleAxiosError } from '@/shared/lib/handleAxiosError';
 
-import { QueryOptionRequest } from '../../model/query-option';
+import { QueryOptionGallery } from '../../model/query-option';
 import { createApi } from '../api/create';
 
-import type { AmenityType } from '../../model/type';
-import type { AmenityDto } from '../model/dto';
+import type { GalleryType } from '../../model/type';
+import type { GalleryDto } from '../model/dto';
 
-export const useAmenityCreate = () => {
+export const useGalleryCreate = (roomId: string) => {
   const router = useRouter();
   const queryClient = useQueryClient();
 
   const mutate = useMutation({
-    mutationFn: createApi,
+    mutationFn: (dto: GalleryDto) => createApi(dto, roomId),
 
-    onMutate: async (data: AmenityDto) => {
+    onMutate: async (data: GalleryDto) => {
 
-      await queryClient.cancelQueries({ queryKey: [QueryOptionRequest.baseKey] });
+      await queryClient.cancelQueries({ queryKey: [QueryOptionGallery.baseKey] });
 
-      const previous = queryClient.getQueryData([QueryOptionRequest.baseKey]);
+      const previous = queryClient.getQueryData([QueryOptionGallery.baseKey]);
 
       const optimistic = {
         ...data,
         id: new Date().getTime(),
       };
 
-      await queryClient.setQueryData([QueryOptionRequest.baseKey], (old?: AmenityType[]) => {
+      await queryClient.setQueryData([QueryOptionGallery.baseKey], (old?: GalleryType[]) => {
         if (!old) return [optimistic];
         return [...old, optimistic];
       });
@@ -39,17 +39,17 @@ export const useAmenityCreate = () => {
     onError: async (error, _, context) => {
       await handleAxiosError(error);
       if (context?.previous) {
-        await queryClient.setQueryData([QueryOptionRequest.baseKey], context.previous);
+        await queryClient.setQueryData([QueryOptionGallery.baseKey], context.previous);
       }
     },
     onSuccess: async () => {
-      await queryClient.cancelQueries({ queryKey: [QueryOptionRequest.baseKey] });
+      await queryClient.cancelQueries({ queryKey: [QueryOptionGallery.baseKey] });
       toast.success('Успешно сохранено!');
       router.back();
     },
   });
 
-  function handleOnSubmit(dto: AmenityDto) {
+  function handleOnSubmit(dto: GalleryDto) {
     mutate.mutate({ ...dto });
   }
 

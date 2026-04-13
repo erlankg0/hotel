@@ -8,4 +8,8 @@ export const sitemap: Record<string, string> = {
   hotels: 'Отели',
   booking: 'Бронирования',
   rooms: 'Комнаты',
+  admin: 'Админ',
+  new: 'Добавить',
+  delete: 'Удалить',
+  edit: 'Обновить',
 };

@@ -1,8 +1,9 @@
 import { LuBed } from 'react-icons/lu';
 import { MdOutlineKingBed } from 'react-icons/md';
 
-import type { ImageType, Video } from '@/shared/types/types';
+import type { ImageType, Video, Info, FileType } from '@/shared/types/types';
 import type { ElementType } from 'react';
+
 
 export const BED_TYPE_LABEL: Record<string, ElementType> = {
   SNG: LuBed,
@@ -41,7 +42,19 @@ export type RoomTabData = {
   info: RoomInfo,
 }
 
-
+export interface RoomType {
+  id: string;
+  title: string;
+  description: string;
+  subDescription: string;
+  category: string;
+  capacity: number;
+  bedRoomCount: number;
+  bathRoomCount: number;
+  amenity: Info[];
+  requests: Info[];
+  photos: FileType[];
+}
 
 
 

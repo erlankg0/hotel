@@ -1,7 +1,7 @@
 import { BadgeInfo } from 'lucide-react';
 import { useFormContext } from 'react-hook-form';
 
-import { AMENITY_ICONS, AMENITY_LABEL_RU } from '@/shared/const/icons';
+import { AMENITY_ICONS, AMENITY_LABEL_RU } from '@/shared/const/icon_amenities';
 import {
   FieldSet,
   FieldGroup,

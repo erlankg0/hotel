@@ -1,7 +1,7 @@
 import { ChevronRightIcon } from 'lucide-react';
 import Link from 'next/link';
 
-import { AMENITY_ICONS } from '@/shared/const/icons';
+import { AMENITY_ICONS } from '@/shared/const/icon_amenities';
 import { Item, ItemContent, ItemTitle, ItemMedia, ItemActions } from '@/shared/ui/item';
 
 import type { AmenityType } from '../model/type';

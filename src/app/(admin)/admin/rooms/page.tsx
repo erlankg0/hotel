@@ -1,9 +1,9 @@
 'use client';
-import { Plus, Info } from 'lucide-react';
+import { Plus, Info, Loader } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 
-import { RoomPrice } from '@/entities/room';
+import { RoomPrice, useRooms } from '@/entities/room';
 import { Button } from '@/shared/ui/button';
 import { Page } from '@/widget/page';
 import { PageHeader } from '@/widget/page-header';
@@ -11,7 +11,7 @@ import { PageHeader } from '@/widget/page-header';
 
 export default function Rooms() {
   const [search, setSearch] = useState<string>('');
-
+  const { isLoading, data } = useRooms(search);
 
   return (
     <Page
@@ -37,6 +37,12 @@ export default function Rooms() {
         />}
     >
       <div className={'flex flex-col gap-6'}>
+        {isLoading ? (<Loader className={'sonner-loader'} />) : null}
+        {data && (data.map((room) => {
+          return (
+            <div key={room.title}>{room.title}</div>
+          );
+        }))}
         <RoomPrice />
         <RoomPrice />
         <RoomPrice />

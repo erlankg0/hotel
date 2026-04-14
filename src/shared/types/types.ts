@@ -12,10 +12,9 @@ export type Video = {
 export type Info = {
   id: string;
   name: string;
-}
-
+};
 export type FileType = {
   id: string;
   url: string;
-  publicId: string;
-}
+  format: string;
+};

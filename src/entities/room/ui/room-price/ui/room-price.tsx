@@ -13,17 +13,8 @@ import { SwiperUI, useSwiperNav } from '@/widget/swiper';
 
 import styles from './styles.module.scss';
 
+import type { RoomType } from '../../../model/type';
 import type { Swiper as SwiperType } from 'swiper';
-
-const IMAGES = [
-  'hotel.webp',
-  'laguna.webp',
-  'poster.jpg',
-  'beach.webp',
-  'turkish.webp',
-];
-
-const gallery = IMAGES.map((image) => `/images/${image}`);
 
 const FEATURES = [
   { label: 'Море или Лес', Icon: Tree },
@@ -37,7 +28,20 @@ const FEATURES = [
 ];
 
 
-export function RoomPrice() {
+export function RoomPrice({
+                            id,
+                            title,
+                            description,
+                            subDescription,
+                            bedRoomCount,
+                            bathRoomCount,
+                            amenity,
+                            requests,
+                            category,
+                            photos,
+                            capacity,
+                            uai,
+                          }: RoomType) {
   const {
     onSwiper,
     onSlideChange,
@@ -56,15 +60,15 @@ export function RoomPrice() {
   }, [onSlideChange]);
 
   return (
-    <article className={styles.card}>
+    <article className={styles.card} id={id}>
       <div className={styles.card__slide}>
         <SwiperUI
           delay={5000}
           spaceBetween={0}
           onSwiper={handleOnSwiper}
           onSlideChange={handleOnChange}
-          slides={gallery.map((image) => (
-            <ImageUI src={image} alt={image} key={image} aspectRatio={'2 / 1'} />))
+          slides={photos.map((image) => (
+            <ImageUI src={image.url} alt={image.format} key={image.id} aspectRatio={'2 / 1'} />))
           }
         />
         <nav className={styles.card__slide_left}>
@@ -79,12 +83,14 @@ export function RoomPrice() {
         </nav>
       </div>
       <div className={styles.card__inner}>
-        <h3 className={styles.title}>Villa standard oda</h3>
+        <h3 className={styles.title}>{title}</h3>
         <Separator />
-        <div className={styles.card__row}>
-          <MartiniIcon size={24} />
-          <p className={styles.description}>Ульта все включено</p>
-        </div>
+        {uai && (
+          <div className={styles.card__row}>
+            <MartiniIcon size={24} />
+            <p className={styles.description}>Ультра все включено</p>
+          </div>
+        )}
         <div className={'flex flex-row justify-between'}>
           <ul className={styles.info}>
             {FEATURES.map((feature) => {
@@ -137,7 +143,7 @@ export function RoomPrice() {
           </article>
         </div>
         <footer className={styles.card__footer}>
-          <Link href={'/rooms/1'}>Подробнее</Link>
+          <Link href={`/rooms/${id}`}>Подробнее</Link>
           <Button type={'button'} variant={'blue'}>Бронировать</Button>
         </footer>
       </div>

@@ -4,7 +4,7 @@ import { Loader, Plus } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 
-import { useAmenity } from '@/entities/amenity';
+import { useAmenity, ItemUI } from '@/entities/amenity';
 import { Button } from '@/shared/ui/button';
 import { Page } from '@/widget/page';
 import { PageHeader } from '@/widget/page-header';
@@ -25,23 +25,19 @@ export default function RequestPage() {
           searchValue={search}
           onSearchOnChange={setSearch}
           slot={<div className={'flex flex-row items-center gap-2'}>
-              <Button type={'button'}>
-                <Link href={'amenity/new'}>
-                  <Plus size={14} />
-                </Link>
-              </Button>
-            </div>}
+            <Button type={'button'}>
+              <Link href={'amenity/new'}>
+                <Plus size={14} />
+              </Link>
+            </Button>
+          </div>}
         />}
     >
 
       <div className={'flex flex-row items-center gap-2'}>
-
         {data && data.map((item) => (
-          <div key={item.id}>
-            {item.name}
-          </div>
+          <ItemUI {...item} key={item.id} />
         ))}
-
       </div>
 
     </Page>

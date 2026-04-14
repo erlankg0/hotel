@@ -12,4 +12,6 @@ export const sitemap: Record<string, string> = {
   new: 'Добавить',
   delete: 'Удалить',
   edit: 'Обновить',
+  amenity: 'Удобства',
+  options: 'Информация',
 };

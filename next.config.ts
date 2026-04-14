@@ -16,6 +16,11 @@ const nextConfig: NextConfig = {
         pathname: '/**',
       },
       {
+        protocol: 'http',
+        hostname: 'res.cloudinary.com',
+        pathname: '/**',
+      },
+      {
         protocol: 'https',
         hostname: 'cdn.shadcnstudio.com',
         pathname: '/**',

@@ -1,4 +1,5 @@
 'use client';
+
 import { Plus, Info, Loader } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -40,13 +41,9 @@ export default function Rooms() {
         {isLoading ? (<Loader className={'sonner-loader'} />) : null}
         {data && (data.map((room) => {
           return (
-            <div key={room.title}>{room.title}</div>
+            <RoomPrice {...room} key={room.id} />
           );
         }))}
-        <RoomPrice />
-        <RoomPrice />
-        <RoomPrice />
-        <RoomPrice />
       </div>
     </Page>
   );

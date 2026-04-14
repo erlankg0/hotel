@@ -45,16 +45,19 @@ export type RoomTabData = {
 export interface RoomType {
   id: string;
   title: string;
-  description: string;
-  subDescription: string;
+  description: string | null;
+  subDescription: string | null;
   category: string;
   capacity: number;
   bedRoomCount: number;
   bathRoomCount: number;
+  uai: boolean;
+
   amenity: Info[];
   requests: Info[];
+
   photos: FileType[];
+
+  video: unknown | null;
+  gallery: unknown | null;
 }
-
-
-

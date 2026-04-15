@@ -29,7 +29,7 @@ export default function Rooms() {
                 </Link>
               </Button>
               <Button type={'button'}>
-                <Link href={'/admin/rooms/options'}>
+                <Link href={'/admin/options'}>
                   <Info size={14} />
                 </Link>
               </Button>

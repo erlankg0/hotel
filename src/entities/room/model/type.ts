@@ -1,6 +1,7 @@
 import { LuBed } from 'react-icons/lu';
 import { MdOutlineKingBed } from 'react-icons/md';
 
+import type { AmenityKey } from '@/shared/const/icon_amenities';
 import type { ImageType, Video, Info, FileType } from '@/shared/types/types';
 import type { ElementType } from 'react';
 
@@ -53,7 +54,7 @@ export interface RoomType {
   bathRoomCount: number;
   uai: boolean;
 
-  amenity: Info[];
+  amenity: AmenityType[];
   requests: Info[];
 
   photos: FileType[];
@@ -61,3 +62,7 @@ export interface RoomType {
   video: unknown | null;
   gallery: unknown | null;
 }
+
+type AmenityType = {
+  icon: AmenityKey
+} & Info

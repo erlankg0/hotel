@@ -1,10 +1,10 @@
 'use client';
 
-import { ChevronLeft, ChevronRight, MartiniIcon, Tv, Wifi, ChartBar } from 'lucide-react';
+import { ChevronLeft, ChevronRight, MartiniIcon, ChartBar } from 'lucide-react';
 import Link from 'next/link';
 import { useCallback } from 'react';
 
-import { Air, Balcony, Cosmetics, Minibar, Safe, Tree } from '@/shared/icons';
+import { AMENITY_ICONS } from '@/shared/const/icon_amenities';
 import { Button } from '@/shared/ui/button/button';
 import { ImageUI } from '@/shared/ui/image';
 import { Popover, PopoverContent, PopoverTrigger } from '@/shared/ui/popover';
@@ -16,31 +16,15 @@ import styles from './styles.module.scss';
 import type { RoomType } from '../../../model/type';
 import type { Swiper as SwiperType } from 'swiper';
 
-const FEATURES = [
-  { label: 'Море или Лес', Icon: Tree },
-  { label: 'Балкон', Icon: Balcony },
-  { label: 'Кондиционер', Icon: Air },
-  { label: 'Wi-Fi', Icon: Wifi },
-  { label: 'Мини-бар', Icon: Minibar },
-  { label: 'Косметика', Icon: Cosmetics },
-  { label: '32-дюймовый ТВ', Icon: Tv },
-  { label: 'Сейф', Icon: Safe },
-];
-
 
 export function RoomPrice({
                             id,
                             title,
-                            description,
-                            subDescription,
-                            bedRoomCount,
-                            bathRoomCount,
-                            amenity,
-                            requests,
-                            category,
                             photos,
-                            capacity,
                             uai,
+                            amenity,
+                            capacity,
+                            category,
                           }: RoomType) {
   const {
     onSwiper,
@@ -91,13 +75,21 @@ export function RoomPrice({
             <p className={styles.description}>Ультра все включено</p>
           </div>
         )}
+        {category && (
+          <div className={styles.card__row}>
+            <p className={styles.description}>{category}</p>
+          </div>
+        )}
+        <div>
+          <p>Максимальное размещения{capacity} + 1 ребенок</p>
+        </div>
         <div className={'flex flex-row justify-between'}>
           <ul className={styles.info}>
-            {FEATURES.map((feature) => {
-              const Icon = feature.Icon;
+            {amenity.map((feature) => {
+              const Icon = AMENITY_ICONS[feature.icon];
               return (
-                <li className={styles.info__item} key={feature.label}>
-                  <p>{feature.label}</p>
+                <li className={styles.info__item} key={feature.id}>
+                  <p>{feature.name}</p>
                   <Icon size={16} />
                 </li>
               );

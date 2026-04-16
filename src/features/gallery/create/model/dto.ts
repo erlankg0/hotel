@@ -14,14 +14,7 @@ export const GallerySchema = z.object({
     .min(3, 'Заголовок должен быть не менее 3 символов')
     .max(50, 'Слишком длинный заголовок'),
 
-  fields: z
-    .array(
-      z.object({
-        id: z.string(),
-        url: z.string().url(),
-      }),
-    )
-    .min(1, 'Добавьте хотя бы одну фотографию'),
+  fileIds: z.array(z.string()).nonempty({ message: 'Фото обязательны' }),
 });
 
 export const GalleryCreateFormSchema = z.object({

@@ -30,26 +30,27 @@ export function RoomInfo({
   return (
     <div className={styles.inner}>
       <div className={styles.header}>
-        <h3 className={styles.title}>{title}</h3>
-        {category && (
-          <p className={styles.badge}>
-            {categoryLabelMap[category]}
-          </p>
-        )}
-      </div>
-
-      <Separator className={styles.separator} />
-
-      {uai && (
         <div className={styles.row}>
-          <MartiniIcon size={20} />
-          <p>Ультра всё включено</p>
+          <h3 className={styles.title}>{title}</h3>
+          {category && (
+            <p className={styles.badge}>
+              {categoryLabelMap[category]}
+            </p>
+          )}
         </div>
-      )}
+        <Separator className={styles.separator} />
+        {uai && (
+          <div className={styles.uai}>
+            <MartiniIcon size={20} />
+            <p>Ультра всё включено</p>
+          </div>
+        )}
 
-      <div className={styles.capacity}>
-        Максимальное размещение: <strong>{capacity}</strong> + 1 ребенок
+        <div className={styles.capacity}>
+          Максимальное размещение: <strong>{capacity}</strong> + 1 ребенок
+        </div>
       </div>
+
 
       <div className={styles.footer}>
         <div className={styles.amenities}>

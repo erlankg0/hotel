@@ -4,7 +4,7 @@ import { Plus, Info, Loader } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 
-import { RoomPrice, useRooms, RoomCard, RoomSlider, RoomInfo } from '@/entities/room';
+import { useRooms, RoomCard, RoomSlider, RoomInfo } from '@/entities/room';
 import { Button } from '@/shared/ui/button';
 import { Page } from '@/widget/page';
 import { PageHeader } from '@/widget/page-header';
@@ -45,7 +45,9 @@ export default function Rooms() {
               <RoomSlider photos={room.photos} />
             </RoomCard.Slider>
             <RoomCard.Info id={room.id}>
-              <RoomInfo {...room} slot={<RoomPrice />} />
+              <RoomInfo {...room} slot={
+                <Link href={`/admin/rooms/${room.id}/gallery/new`}>Добавить Галлерию</Link>
+              } />
             </RoomCard.Info>
           </RoomCard>
         ))}

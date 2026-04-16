@@ -24,13 +24,9 @@ RoomCard.Slider = ({ children }) => {
 
 RoomCard.Slider.displayName = 'RoomCard.Slider';
 
-RoomCard.Info = ({ children, id }) => {
-  return (<div aria-label={'Room Info'} className={styles.card__inner}>
+RoomCard.Info = ({ children }) => {
+  return (<div aria-label={'Room Info'}>
     {children}
-    <footer className={styles.card__footer}>
-      <Link href={`/rooms/${id}`}>Подробнее</Link>
-      <Button type={'button'}>Бронировать</Button>
-    </footer>
   </div>);
 };
 

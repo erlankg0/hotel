@@ -73,8 +73,8 @@ export enum Category {
   ROOM = 'ROOM',
 }
 
-export const categoryMap: Record<string, Category> = {
-  'Бунгалов': Category.VILLA,
-  'Сьют': Category.SUIT,
-  'Стандарт': Category.ROOM,
+export const categoryLabelMap: Record<Category, string> = {
+  [Category.VILLA]: 'Бунгалов',
+  [Category.SUIT]: 'Сьют',
+  [Category.ROOM]: 'Стандарт',
 };

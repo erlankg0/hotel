@@ -13,21 +13,6 @@
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   }
 
-  &__inner {
-    background-color: var(--background);
-    padding: 1rem;
-    border-radius: 1rem;
-    width: 100%;
-    flex: 1;
-  }
-
-
-  &__row {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 1.5rem 0;
-  }
 
   &__footer {
     display: flex;

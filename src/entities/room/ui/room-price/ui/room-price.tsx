@@ -45,27 +45,6 @@ export function RoomPrice({
 
   return (
     <article className={styles.card} id={id}>
-      <div className={styles.card__slide}>
-        <SwiperUI
-          delay={5000}
-          spaceBetween={0}
-          onSwiper={handleOnSwiper}
-          onSlideChange={handleOnChange}
-          slides={photos.map((image) => (
-            <ImageUI src={image.url} alt={image.format} key={image.id} aspectRatio={'2 / 1'} />))
-          }
-        />
-        <nav className={styles.card__slide_left}>
-          <Button variant={'blur'} disabled={isStart} onClick={prev} className={styles.button}>
-            <ChevronLeft size={16} />
-          </Button>
-        </nav>
-        <nav className={styles.card__slide__right}>
-          <Button variant={'blur'} disabled={isEnd} onClick={next} className={styles.button}>
-            <ChevronRight size={16} />
-          </Button>
-        </nav>
-      </div>
       <div className={styles.card__inner}>
         <h3 className={styles.title}>{title}</h3>
         <Separator />

@@ -4,7 +4,7 @@ import { Plus, Info, Loader } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 
-import { RoomPrice, useRooms } from '@/entities/room';
+import { RoomPrice, useRooms, RoomCard, RoomSlider, RoomInfo } from '@/entities/room';
 import { Button } from '@/shared/ui/button';
 import { Page } from '@/widget/page';
 import { PageHeader } from '@/widget/page-header';
@@ -38,12 +38,13 @@ export default function Rooms() {
         />}
     >
       <div className={'flex flex-col gap-6'}>
-        {isLoading ? (<Loader className={'sonner-loader'} />) : null}
-        {data && (data.map((room) => {
-          return (
-            <RoomPrice {...room} key={room.id} />
-          );
-        }))}
+        {isLoading ? (<Loader className={'animate-spin'} />) : null}
+        {data && data.map((room) => (
+          <RoomCard key={room.id}>
+            <RoomSlider photos={room.photos} />
+            <RoomInfo {...room} slot={<RoomPrice />} />
+          </RoomCard>
+        ))}
       </div>
     </Page>
   );

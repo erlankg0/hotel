@@ -1,0 +1,21 @@
+.inner {
+  background-color: var(--background);
+  padding: 1rem;
+  border-radius: 1rem;
+  width: 100%;
+  flex: 1;
+}
+
+.title {
+  font-weight: 500;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  padding: 1rem .5rem;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}

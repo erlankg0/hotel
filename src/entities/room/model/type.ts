@@ -48,7 +48,7 @@ export interface RoomType {
   title: string;
   description: string | null;
   subDescription: string | null;
-  category: string;
+  category: Category;
   capacity: number;
   bedRoomCount: number;
   bathRoomCount: number;
@@ -66,3 +66,15 @@ export interface RoomType {
 type AmenityType = {
   icon: AmenityKey
 } & Info
+
+export enum Category {
+  VILLA = 'VILLA',
+  SUIT = 'SUIT',
+  ROOM = 'ROOM',
+}
+
+export const categoryMap: Record<string, Category> = {
+  'Бунгалов': Category.VILLA,
+  'Сьют': Category.SUIT,
+  'Стандарт': Category.ROOM,
+};

@@ -41,8 +41,12 @@ export default function Rooms() {
         {isLoading ? (<Loader className={'animate-spin'} />) : null}
         {data && data.map((room) => (
           <RoomCard key={room.id}>
-            <RoomSlider photos={room.photos} />
-            <RoomInfo {...room} slot={<RoomPrice />} />
+            <RoomCard.Slider>
+              <RoomSlider photos={room.photos} />
+            </RoomCard.Slider>
+            <RoomCard.Info id={room.id}>
+              <RoomInfo {...room} slot={<RoomPrice />} />
+            </RoomCard.Info>
           </RoomCard>
         ))}
       </div>

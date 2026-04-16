@@ -6,11 +6,12 @@ import { Separator } from '@/shared/ui/separator';
 import styles from './styles.module.scss';
 
 import type { RoomType } from '../../model/type';
+import { categoryMap } from '../../model/type';
 import type { ReactNode } from 'react';
 
 export function RoomInfo({ title, uai, capacity, category, amenity, slot }: Partial<RoomType> & { slot?: ReactNode }) {
   return (
-    <div className={styles.inner}>
+    <>
       <div className={styles.header}>
         <h3 className={styles.title}>{title}</h3>
         <p className={styles.title}>{category}</p>
@@ -24,7 +25,7 @@ export function RoomInfo({ title, uai, capacity, category, amenity, slot }: Part
       )}
       {category && (
         <div className={styles.card__row}>
-          <p className={styles.description}>{category}</p>
+          <p className={styles.description}>{categoryMap[category]}</p>
         </div>
       )}
       <div>
@@ -44,6 +45,6 @@ export function RoomInfo({ title, uai, capacity, category, amenity, slot }: Part
         </ul>
         {slot}
       </div>
-    </div>
+    </>
   );
 }

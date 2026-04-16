@@ -5,6 +5,7 @@ export { corner, junior, stda, stdv, penthouse } from './model/const';
 
 
 export { useRooms } from './hooks/useRooms';
+export { useDetailRoom } from './hooks/useRoomDetail';
 
 export { RoomCard } from './ui/room/room';
 export { RoomSlider } from './ui/room-slider/room-slider';

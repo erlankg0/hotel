@@ -16,7 +16,7 @@ export const useRooms = (search?: string) => {
     error,
     isLoading,
   } = useQuery({
-    ...QueryOptionsRooms.get({ name: debouncedSearch, page }),
+    ...QueryOptionsRooms.get({ title: debouncedSearch, page }),
   });
 
   const result = data?.data.data;

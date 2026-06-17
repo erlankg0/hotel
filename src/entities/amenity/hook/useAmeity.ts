@@ -13,7 +13,7 @@ export const useAmenity = (search?: string) => {
     error,
     isLoading,
   } = useQuery({
-    ...QueryOptionAmenity.get({ name: debouncedSearch, page }),
+    ...QueryOptionAmenity.get({ title: debouncedSearch, page }),
   });
 
   const result = data?.data.data;

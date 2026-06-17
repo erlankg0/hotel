@@ -5,7 +5,7 @@ export interface BaseResponse<T> {
 }
 
 export interface QueryOptions {
-  name?: string;
+  title?: string;
   page?: number;
   limit?: number;
   enabled?: boolean,

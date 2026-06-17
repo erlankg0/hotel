@@ -4,8 +4,8 @@ export { RoomCardFull } from './ui/room-card-full';
 export { corner, junior, stda, stdv, penthouse } from './model/const';
 
 
-export { useRooms } from './hooks/useRooms';
-export { useDetailRoom } from './hooks/useRoomDetail';
+export { useRoomsQuery } from './hooks/useRoomsQuery';
+export { useRoomQuery } from './hooks/useRoomQuery';
 
 export { RoomCard } from './ui/room/room';
 export { RoomSlider } from './ui/room-slider/room-slider';

@@ -7,7 +7,7 @@ import { useDebounce } from '@/shared/lib/useDebounce';
 
 import { QueryOptionsRooms } from '../model/query-options';
 
-export const useRooms = (search?: string) => {
+export const useRoomsQuery = (search?: string) => {
   const debouncedSearch = useDebounce<string | undefined>(search, 500);
   const [page, setPage] = useState<number>(1);
 

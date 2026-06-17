@@ -2,10 +2,17 @@
 
 import { useParams } from 'next/navigation';
 
-export default function DetailPage() {
-  const { id } = useParams<{ id: string }>();
+import { useRoomQuery } from '@/entities/room';
+import { Page } from '@/widget/page';
 
+export default function RoomDetail() {
+  const { id } = useParams<{ id: string }>();
+  const { isLoading, data, error } = useRoomQuery(id);
   return (
-    <section>1</section>
+    <Page>
+      {isLoading && (<p>Loading...</p>)}
+      {error && (<p>{error.message}</p>)}
+      {data && (<p>{data.title}</p>)}
+    </Page>
   );
 }

@@ -4,7 +4,7 @@ import { Plus, Info, Loader } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 
-import { useRooms, RoomCard, RoomSlider, RoomInfo } from '@/entities/room';
+import { useRoomsQuery, RoomCard, RoomSlider, RoomInfo } from '@/entities/room';
 import { Button } from '@/shared/ui/button';
 import { Page } from '@/widget/page';
 import { PageHeader } from '@/widget/page-header';
@@ -12,7 +12,7 @@ import { PageHeader } from '@/widget/page-header';
 
 export default function Rooms() {
   const [search, setSearch] = useState<string>('');
-  const { isLoading, data } = useRooms(search);
+  const { isLoading, data } = useRoomsQuery(search);
 
   return (
     <Page
@@ -46,7 +46,9 @@ export default function Rooms() {
             </RoomCard.Slider>
             <RoomCard.Info id={room.id}>
               <RoomInfo {...room} slot={
-                <Link href={`/admin/rooms/${room.id}/gallery/new`}>Добавить Галлерию</Link>
+                <div>
+                  <Link href={`/admin/rooms/${room.id}/detail`}>Детали</Link>
+                </div>
               } />
             </RoomCard.Info>
           </RoomCard>

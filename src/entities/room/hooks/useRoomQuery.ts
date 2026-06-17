@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import { QueryOptionsRooms } from '../model/query-options';
 
-export const useDetailRoom = (id: string) => {
+export const useRoomQuery = (id: string) => {
 
   const {
     data,

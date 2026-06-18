@@ -1,0 +1,48 @@
+.page {
+  font-family: var(--font-inter), serif;
+  background-color: var(--gray2);
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 20rem 1fr 20rem;
+  gap: 1.5rem;
+}
+
+.link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.2rem;
+  width: 100%;
+
+  padding: 1rem;
+  transition: all .3s ease-in-out;
+
+  &:hover {
+    background-color: var(--gray);
+    color: var(--color-sidebar-ring);
+  }
+
+  & > svg {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  & > p {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+}

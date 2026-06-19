@@ -6,3 +6,5 @@ export {
   CreateForm,
 } from './create';
 export type { RoomDto, RoomCreateFormInput, RoomCreateFormValues } from './create';
+
+export { UpdateForm } from './update';

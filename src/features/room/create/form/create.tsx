@@ -24,15 +24,11 @@ import {
 } from '@/shared/ui/select';
 import { Textarea } from '@/shared/ui/textarea';
 
-import { Category } from '../model/dto';
+import { categoryOptions } from '../../const';
 
+import type { Category} from '../../const';
 import type { RoomCreateFormInput } from '../model/dto';
 
-const categoryOptions = [
-  { label: 'Номер', value: Category.ROOM },
-  { label: 'Сьют', value: Category.SUIT },
-  { label: 'Вилла', value: Category.VILLA },
-];
 
 export function CreateForm() {
   const {

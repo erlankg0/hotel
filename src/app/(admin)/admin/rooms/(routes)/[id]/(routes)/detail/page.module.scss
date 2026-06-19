@@ -1,6 +1,6 @@
 .page {
   font-family: var(--font-inter), serif;
-  background-color: var(--gray2);
+  background-color: var(--bg-page);
 }
 
 .header {
@@ -13,6 +13,12 @@
     flex-direction: column;
     gap: 1rem;
   }
+
+  &__title {
+    color: #0070f3;
+    font-weight: 500;
+    font-size: var(--font-size-m);
+  }
 }
 
 .content {
@@ -23,26 +29,47 @@
 
 .link {
   display: flex;
-  flex-direction: row;
   align-items: center;
-  gap: 1.2rem;
-  width: 100%;
+  gap: 12px;
 
-  padding: 1rem;
-  transition: all .3s ease-in-out;
+  width: 100%;
+  min-height: 44px;
+
+  padding: 12px 16px;
+  border-radius: 12px;
+
+  color: #475467;
+  text-decoration: none;
+
+  transition: all .2s ease;
+
+  svg {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+  }
+
+  span {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 22px;
+  }
 
   &:hover {
-    background-color: var(--gray);
-    color: var(--color-sidebar-ring);
+    background: #F2F4F7;
+    color: #101828;
   }
 
-  & > svg {
-    font-size: 1rem;
-    font-weight: 600;
+  &:active {
+    transform: scale(.98);
   }
+}
 
-  & > p {
-    font-size: 1rem;
-    font-weight: 400;
+.active {
+  background: #EEF4FF;
+  color: #155EEF;
+
+  svg {
+    color: #155EEF;
   }
 }

@@ -1,10 +1,6 @@
 import { z } from 'zod';
 
-export enum Category {
-  ROOM = 'ROOM',
-  SUIT = 'SUIT',
-  VILLA = 'VILLA',
-}
+import { Category } from '../../const';
 
 const IsNotEmpty = { message: 'Обязательное поле' };
 const fileSchema = z.custom<File>((value) => {

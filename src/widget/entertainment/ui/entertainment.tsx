@@ -63,9 +63,9 @@ export function Entertainment() {
     <section ref={sectionRef} className={`${styles.section} panel`} data-panel-static="true">
       <div className={'container'}>
         <header className={styles.section__col}>
-          <Text tag={'span'} variant={'kicker'}>Entertainment</Text>
-          <Text tag={'h2'} variant={'title'}>Развлечения</Text>
-          <Text tag={'p'} variant={'subtitle'}>
+          <Text tag={'span'} size={'kicker'}>Entertainment</Text>
+          <Text tag={'h2'} size={'title'}>Развлечения</Text>
+          <Text tag={'p'} size={'subtitle'}>
             Захватывающие шоу, яркая анимация и неповторимая средиземноморская атмосфера — каждый момент здесь
             превращается в праздник!
           </Text>

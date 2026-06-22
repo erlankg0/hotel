@@ -10,7 +10,7 @@ export function Rooms() {
   return (
     <section className={styles.rooms}>
       <div className={'container'}>
-        <Text tag={'h2'} variant={'title'} className={'text-center'}>Наши номера & сьюты</Text>
+        <Text tag={'h2'} size={'title'} className={'text-center'}>Наши номера & сьюты</Text>
       </div>
       <TabsUI defaultValue={'room'} triggers={ROOM_TABS} />
     </section>

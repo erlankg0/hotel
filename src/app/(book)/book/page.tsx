@@ -39,7 +39,7 @@ export default function Page() {
   return (
     <main className={cn('page', 'panel', styles.page)}>
       <section className={cn('col', 'container')}>
-        <Text tag={'h1'} variant={'title'}>
+        <Text tag={'h1'} size={'title'}>
           Utopia World
         </Text>
         <HotelGallery images={gallery} predImages={gallery.slice(0, 3)} blocks={blocks} />
@@ -58,7 +58,7 @@ export default function Page() {
           </p>
         </section>
         <section>
-          <Text tag={'h2'} variant={'title'}>
+          <Text tag={'h2'} size={'title'}>
             Номера
           </Text>
 

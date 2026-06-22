@@ -26,8 +26,8 @@ export default async function Page() {
       </section>
       <section className={'px-12 mb-12'}>
         <article className={'flex flex-col gap-2 my-2'}>
-          <Text tag={'h2'} variant={'title'}>Бары</Text>
-          <Text tag={'p'} variant={'subtitle'}> Лучшие напитки Средиземноморья</Text>
+          <Text tag={'h2'} size={'title'}>Бары</Text>
+          <Text tag={'p'} size={'subtitle'}> Лучшие напитки Средиземноморья</Text>
         </article>
         <Grid size={6}>
           {GRID_BARS.map((item) => (<GridCard key={item.title} {...item} />))}
@@ -35,7 +35,7 @@ export default async function Page() {
       </section>
       <section className={'mb-6'}>
         <div className={'container'}>
-          <Text tag={'h2'} variant={'title'}>Снек бары</Text>
+          <Text tag={'h2'} size={'title'}>Снек бары</Text>
           <div key={'1'} className={'flex flex-row gap-2 w-full h-102'}>
             {GRID_SNACK.map((item) => (<GridCard key={item.title} {...item} />))}
           </div>

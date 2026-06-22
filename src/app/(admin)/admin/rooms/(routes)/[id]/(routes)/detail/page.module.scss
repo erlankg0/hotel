@@ -25,6 +25,14 @@
   display: grid;
   grid-template-columns: 20rem 1fr 20rem;
   gap: 1.5rem;
+
+}
+
+.nav {
+  border-radius: .5rem;
+  border: 1px solid var(--border);
+
+  padding: 1rem;
 }
 
 .link {

@@ -39,9 +39,9 @@ export function Slider({ slides, title, kicker, subtitle, slidesPerView = 1.3 }:
     <section className={styles.section} aria-label="Food & Bar">
       <div className="container">
         <header className={styles.header}>
-          {kicker && (<Text tag={'span'} variant={'kicker'}>{kicker}</Text>)}
-          {title && (<Text tag={'h2'} variant={'title'}>{title}</Text>)}
-          {subtitle && (<Text tag={'p'} variant={'subtitle'}>{subtitle}</Text>)}
+          {kicker && (<Text tag={'span'} size={'kicker'}>{kicker}</Text>)}
+          {title && (<Text tag={'h2'} size={'title'}>{title}</Text>)}
+          {subtitle && (<Text tag={'p'} size={'subtitle'}>{subtitle}</Text>)}
         </header>
 
         <SwiperUI

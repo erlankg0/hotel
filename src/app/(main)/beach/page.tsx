@@ -26,7 +26,7 @@ export default function Page() {
 
       <section className="container py-20">
         <header className="text-center mb-16">
-          <Text tag="h2" variant="title">Особенности</Text>
+          <Text tag="h2" size="title">Особенности</Text>
           <p className="mt-4 text-neutral-500 max-w-xl mx-auto">
             Частный пляж и коллекция бассейнов для отдыха у Средиземного моря.
           </p>

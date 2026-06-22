@@ -20,7 +20,7 @@ export function PageHeader({
 
   return (
     <div className={'container'}>
-      <Text variant={'title'} tag={'h4'}>{title}</Text>
+      <Text size={'title'} tag={'h4'}>{title}</Text>
       <div className={'flex gap-3 items-center justify-center'}>
         {onSearchOnChange && (
           <InputGroup>

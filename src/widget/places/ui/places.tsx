@@ -8,7 +8,7 @@ import styles from './styles.module.scss';
 export function Places() {
   return (
     <section className={cn('container', styles.place)}>
-      <Text tag={'h2'} variant={'title'}>Окружающая среда и расположение</Text>
+      <Text tag={'h2'} size={'title'}>Окружающая среда и расположение</Text>
       <div className={styles.place__inner}>
 
         <article className={styles.card}>

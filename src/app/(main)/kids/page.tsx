@@ -18,7 +18,7 @@ export default function Page() {
         </Grid>
       </section>
       <section className={'px-8'} aria-label={'Недельня программа'}>
-        <Text variant={'title'} tag={'h2'} className={'py-6'}>Программа</Text>
+        <Text size={'title'} tag={'h2'} className={'py-6'}>Программа</Text>
         <div className={'w-full overflow-x-auto'}>
           <Table>
             <TableHeader>

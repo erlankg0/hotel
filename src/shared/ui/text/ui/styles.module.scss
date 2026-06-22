@@ -1,14 +1,5 @@
-.kicker {
-  display: inline-block;
-  margin-bottom: 12px;
-  font-size: 12px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: #9a9a9a;
-}
-
 .title {
-  font-size: 42px;
+  font-size: 36px;
   line-height: 1.1;
   font-weight: 600;
   margin-bottom: 16px;
@@ -17,5 +8,33 @@
 .subtitle {
   font-size: 16px;
   line-height: 1.6;
-  color: #666;
+}
+
+.kicker {
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.body {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+
+.default {
+  color: var(--color-primary);
+}
+
+.info {
+  color: #3b82f6;
+}
+
+.danger {
+  color: #ef4444;
+}
+
+.success {
+  color: #22c55e;
 }

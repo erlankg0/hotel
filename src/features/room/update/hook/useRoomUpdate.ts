@@ -9,26 +9,39 @@ import { QueryOptionRooms } from '../../model/query-option';
 import type { RoomDto } from '../../model/dto';
 import type { RoomType } from '../../model/type';
 
-export const useRoomCreate = () => {
+interface UpdateRoomArgs {
+  id: string;
+  dto: Partial<RoomDto>;
+}
+
+export const useRoomUpdate = () => {
   const router = useRouter();
   const queryClient = useQueryClient();
 
   const mutate = useMutation({
-    mutationFn: QueryOptionRooms.post,
+    mutationFn: ({ id, dto }: UpdateRoomArgs) => QueryOptionRooms.put(id, dto),
     onError: handleAxiosError,
-    onMutate: async (data: RoomDto) => {
+    onMutate: async ({ id, dto }: UpdateRoomArgs) => {
 
       await queryClient.cancelQueries({ queryKey: [QueryOptionRooms.baseKey] });
 
-      const previous = queryClient.getQueryData([QueryOptionRooms.baseKey]);
+      const previous = queryClient.getQueryData<RoomType[]>([QueryOptionRooms.baseKey]);
 
       const optimistic = {
-        ...data,
+        ...dto,
+        id: id,
       };
 
       await queryClient.setQueryData([QueryOptionRooms.baseKey], (old?: RoomType[]) => {
-        if (!old) return [optimistic];
-        return [...old, optimistic];
+        if (!old) {
+          return [optimistic];
+        }
+        return old.map((room) => {
+          if (room.id == id) {
+            return { ...room, ...dto };
+          }
+          return room;
+        });
       });
 
       return { previous };
@@ -41,8 +54,8 @@ export const useRoomCreate = () => {
     },
   });
 
-  function handleOnSubmit(dto: RoomDto) {
-    mutate.mutate({ ...dto });
+  function handleOnSubmit({ id, dto }: UpdateRoomArgs) {
+    mutate.mutate({ id: id, dto: dto });
   }
 
   return {

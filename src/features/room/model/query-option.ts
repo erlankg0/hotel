@@ -1,6 +1,8 @@
-import { createApi } from '../create/api/create';
+import { post } from '../create/api/post';
+import { put } from '../update/api/put';
 
 export const QueryOptionRooms = {
   baseKey: 'rooms',
-  create: createApi,
+  post: post,
+  put: put,
 };

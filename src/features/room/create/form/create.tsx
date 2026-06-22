@@ -24,10 +24,10 @@ import {
 } from '@/shared/ui/select';
 import { Textarea } from '@/shared/ui/textarea';
 
-import { categoryOptions } from '../../const';
+import { categoryOptions } from '../../model/const';
 
-import type { Category} from '../../const';
-import type { RoomCreateFormInput } from '../model/dto';
+import type { Category } from '../../model/const';
+import type { RoomCreateFormInput } from '../../model/dto';
 
 
 export function CreateForm() {

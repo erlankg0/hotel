@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { Category } from '../../const';
+import { Category } from './const';
 
 const IsNotEmpty = { message: 'Обязательное поле' };
 const fileSchema = z.custom<File>((value) => {

@@ -1,10 +1,11 @@
 'use client';
 
-import { Info, Pencil, Sparkles, Image, Plus } from 'lucide-react';
+import { Image, Info, Pencil, Plus, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 
 import { useRoomQuery } from '@/entities/room';
+import { Category } from '@/entities/room/model/type';
 import { UpdateForm, useRoomUpdate } from '@/features/room';
 import { WrapperForm } from '@/shared/providers/form';
 import { Button } from '@/shared/ui/button';
@@ -12,6 +13,9 @@ import { Text } from '@/shared/ui/text';
 import { Page } from '@/widget/page';
 
 import styles from './page.module.scss';
+
+import type { RoomCreateFormInput } from '@/features/room';
+
 
 const navLinks = [
   {
@@ -39,7 +43,21 @@ const navLinks = [
 export default function RoomDetail() {
   const { id } = useParams<{ id: string }>();
   const { handleOnSubmit } = useRoomUpdate();
+  const { data, isLoading, error } = useRoomQuery(id);
 
+  const defaultValues: RoomCreateFormInput = {
+    title: data?.title || '',
+    category: data?.category || Category.ROOM,
+    description: data?.description || '',
+    subDescription: data?.subDescription || '',
+    capacity: data?.capacity || 1,
+    bedRoomCount: data?.bedRoomCount || 1,
+    bathRoomCount: data?.bathRoomCount || 1,
+    amenityIds: data?.amenity.map((a) => a.id) || [],
+    requestsIds: data?.requests?.map((r) => r.id) || [],
+    uai: true,
+    files: [],
+  };
   return (
     <Page>
       <section>
@@ -66,9 +84,15 @@ export default function RoomDetail() {
           })}
 
         </nav>
-        <WrapperForm>
-          <UpdateForm />
-        </WrapperForm>
+        {isLoading ? (<p>Loading...</p>) : (
+          <WrapperForm<RoomCreateFormInput>
+            options={{ defaultValues }}
+            onSubmit={handleOnSubmit}
+          >
+            <UpdateForm />
+          </WrapperForm>
+        )}
+
         <section>
           <div className={styles.nav}>
             <Text tag={'h4'} tone={'default'} size={'subtitle'}>Статус номера</Text>

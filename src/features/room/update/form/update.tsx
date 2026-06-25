@@ -27,11 +27,11 @@ import { Textarea } from '@/shared/ui/textarea';
 import { categoryOptions } from '../../model/const';
 
 import styles from './update.module.scss';
+
 import type { Category } from '../../model/const';
 import type { RoomCreateFormInput } from '../../model/dto';
-import type { RoomType } from '../../model/type';
 
-export function UpdateForm(props: Partial<RoomType>) {
+export function UpdateForm() {
   const {
     getValues,
     register,

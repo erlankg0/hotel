@@ -16,7 +16,6 @@ import { Page } from '@/widget/page';
 import styles from './page.module.scss';
 
 import type { RoomCreateFormInput, RoomDto } from '@/features/room';
-import type { RoomCreateFormInput, RoomDto } from '@/features/room';
 
 
 const navLinks = [
@@ -46,7 +45,6 @@ export default function RoomDetail() {
   const { id } = useParams<{ id: string }>();
   const { handleOnSubmit } = useRoomUpdate();
   const { data, isLoading } = useRoomQuery(id);
-  const { data, isLoading } = useRoomQuery(id);
 
   const defaultValues: Partial<RoomCreateFormInput> = {
     title: data?.title || '',
@@ -59,13 +57,13 @@ export default function RoomDetail() {
     amenityIds: data?.amenity.map((a) => a.id) || [],
     requestsIds: data?.requests?.map((r) => r.id) || [],
     uai: true,
-    files: [],
   };
 
-  const onSubmit = (data: RoomDto) => {
-    console.log(data);
-    handleOnSubmit({ id, dto: data });
-  };
+  const onSubmit = useCallback((dto: Partial<RoomDto>) => {
+    console.log(`...data: ${dto}`);
+    handleOnSubmit({ id: id, dto: dto });
+  }, [handleOnSubmit, id]);
+
   return (
     <Page>
       <section>
@@ -96,10 +94,8 @@ export default function RoomDetail() {
           <WrapperForm<RoomCreateFormInput>
             options={{ defaultValues }}
             onSubmit={onSubmit}
-            onSubmit={onSubmit}
           >
             <UpdateForm />
-            <Button type={'submit'}>Save</Button>
             <Button type={'submit'}>Save</Button>
           </WrapperForm>
         )}

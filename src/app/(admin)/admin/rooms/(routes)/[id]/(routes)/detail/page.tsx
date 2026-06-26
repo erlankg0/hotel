@@ -3,6 +3,7 @@
 import { Image, Info, Pencil, Plus, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
+import { useCallback } from 'react';
 
 import { useRoomQuery } from '@/entities/room';
 import { Category } from '@/entities/room/model/type';
@@ -14,7 +15,7 @@ import { Page } from '@/widget/page';
 
 import styles from './page.module.scss';
 
-import type { RoomCreateFormInput } from '@/features/room';
+import type { RoomCreateFormInput, RoomDto } from '@/features/room';
 
 
 const navLinks = [
@@ -43,9 +44,9 @@ const navLinks = [
 export default function RoomDetail() {
   const { id } = useParams<{ id: string }>();
   const { handleOnSubmit } = useRoomUpdate();
-  const { data, isLoading, error } = useRoomQuery(id);
+  const { data, isLoading } = useRoomQuery(id);
 
-  const defaultValues: RoomCreateFormInput = {
+  const defaultValues: Partial<RoomCreateFormInput> = {
     title: data?.title || '',
     category: data?.category || Category.ROOM,
     description: data?.description || '',
@@ -56,8 +57,13 @@ export default function RoomDetail() {
     amenityIds: data?.amenity.map((a) => a.id) || [],
     requestsIds: data?.requests?.map((r) => r.id) || [],
     uai: true,
-    files: [],
   };
+
+  const onSubmit = useCallback((dto: Partial<RoomDto>) => {
+    console.log(`...data: ${dto}`);
+    handleOnSubmit({ id: id, dto: dto });
+  }, [handleOnSubmit, id]);
+
   return (
     <Page>
       <section>
@@ -87,9 +93,10 @@ export default function RoomDetail() {
         {isLoading ? (<p>Loading...</p>) : (
           <WrapperForm<RoomCreateFormInput>
             options={{ defaultValues }}
-            onSubmit={handleOnSubmit}
+            onSubmit={onSubmit}
           >
             <UpdateForm />
+            <Button type={'submit'}>Save</Button>
           </WrapperForm>
         )}
 

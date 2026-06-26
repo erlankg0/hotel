@@ -43,7 +43,7 @@ const navLinks = [
 
 export default function RoomDetail() {
   const { id } = useParams<{ id: string }>();
-  const { handleOnSubmit } = useRoomUpdate();
+  const { handleOnSubmit, isPending } = useRoomUpdate();
   const { data, isLoading } = useRoomQuery(id);
 
   const defaultValues: Partial<RoomCreateFormInput> = {
@@ -96,7 +96,9 @@ export default function RoomDetail() {
             onSubmit={onSubmit}
           >
             <UpdateForm />
-            <Button type={'submit'}>Save</Button>
+            <Button type={'submit'} disabled={isPending}>
+              {isPending ? 'Loading...' : ('Save')}
+            </Button>
           </WrapperForm>
         )}
 

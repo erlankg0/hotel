@@ -38,8 +38,11 @@ export default function Rooms() {
         />}
     >
       <div className={'flex flex-col gap-6'}>
-        {isLoading ? (<Loader className={'animate-spin'} />) : null}
-        {data && data.map((room) => (
+{!isLoading && (!data || data.length === 0) && (
+  <div className="py-12 text-center text-muted-foreground">
+    Нет данных
+  </div>
+)}        {data && data.map((room) => (
           <RoomCard key={room.id}>
             <RoomCard.Slider>
               <RoomSlider photos={room.photos} />

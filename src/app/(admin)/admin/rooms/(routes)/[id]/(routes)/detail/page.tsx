@@ -3,6 +3,7 @@
 import { Image, Info, Pencil, Plus, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
+import { useCallback } from 'react';
 
 import { useRoomQuery } from '@/entities/room';
 import { Category } from '@/entities/room/model/type';
@@ -14,6 +15,7 @@ import { Page } from '@/widget/page';
 
 import styles from './page.module.scss';
 
+import type { RoomCreateFormInput, RoomDto } from '@/features/room';
 import type { RoomCreateFormInput, RoomDto } from '@/features/room';
 
 
@@ -44,8 +46,9 @@ export default function RoomDetail() {
   const { id } = useParams<{ id: string }>();
   const { handleOnSubmit } = useRoomUpdate();
   const { data, isLoading } = useRoomQuery(id);
+  const { data, isLoading } = useRoomQuery(id);
 
-  const defaultValues: RoomCreateFormInput = {
+  const defaultValues: Partial<RoomCreateFormInput> = {
     title: data?.title || '',
     category: data?.category || Category.ROOM,
     description: data?.description || '',
@@ -93,8 +96,10 @@ export default function RoomDetail() {
           <WrapperForm<RoomCreateFormInput>
             options={{ defaultValues }}
             onSubmit={onSubmit}
+            onSubmit={onSubmit}
           >
             <UpdateForm />
+            <Button type={'submit'}>Save</Button>
             <Button type={'submit'}>Save</Button>
           </WrapperForm>
         )}

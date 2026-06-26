@@ -14,7 +14,7 @@ import { Page } from '@/widget/page';
 
 import styles from './page.module.scss';
 
-import type { RoomCreateFormInput } from '@/features/room';
+import type { RoomCreateFormInput, RoomDto } from '@/features/room';
 
 
 const navLinks = [
@@ -43,7 +43,7 @@ const navLinks = [
 export default function RoomDetail() {
   const { id } = useParams<{ id: string }>();
   const { handleOnSubmit } = useRoomUpdate();
-  const { data, isLoading, error } = useRoomQuery(id);
+  const { data, isLoading } = useRoomQuery(id);
 
   const defaultValues: RoomCreateFormInput = {
     title: data?.title || '',
@@ -57,6 +57,11 @@ export default function RoomDetail() {
     requestsIds: data?.requests?.map((r) => r.id) || [],
     uai: true,
     files: [],
+  };
+
+  const onSubmit = (data: RoomDto) => {
+    console.log(data);
+    handleOnSubmit({ id, dto: data });
   };
   return (
     <Page>
@@ -87,9 +92,10 @@ export default function RoomDetail() {
         {isLoading ? (<p>Loading...</p>) : (
           <WrapperForm<RoomCreateFormInput>
             options={{ defaultValues }}
-            onSubmit={handleOnSubmit}
+            onSubmit={onSubmit}
           >
             <UpdateForm />
+            <Button type={'submit'}>Save</Button>
           </WrapperForm>
         )}
 

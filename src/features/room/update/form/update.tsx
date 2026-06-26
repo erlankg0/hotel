@@ -46,7 +46,6 @@ export function UpdateForm() {
   const selectedRequestsIds = watch('requestsIds');
   const selectedFiles = watch('files');
   const selectedCategory = watch('category');
-  const uai = watch('uai');
 
   const photoNames = useMemo(() => {
     return selectedFiles?.map(file => file.name) ?? [];

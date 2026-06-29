@@ -1,8 +1,14 @@
 export { Category } from './model/const';
 
-export { RoomSchema, RoomCreateFormSchema } from './model/dto';
+export { RoomSchema, RoomCreateFormSchema, RoomUpdateFormSchema } from './model/dto';
 
-export type { RoomDto, RoomCreateFormInput, RoomCreateFormValues } from './model/dto';
+export type {
+  RoomDto,
+  RoomCreateFormInput,
+  RoomCreateFormValues,
+  RoomUpdateFormInput,
+  RoomUpdateFormValues,
+} from './model/dto';
 
 export { useRoomCreate } from './create';
 export { useRoomUpdate } from './update';

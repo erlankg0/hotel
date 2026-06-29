@@ -33,6 +33,18 @@ export const RoomCreateFormSchema = RoomSchema.omit({
   files: z.array(fileSchema).nonempty({ message: 'Фото обязательны' }),
 });
 
+export const RoomUpdateFormSchema = RoomSchema.omit({
+  photosIds: true,
+}).extend({
+  photosIds: z.array(z.string()),
+  files: z.array(fileSchema).default([]),
+}).refine(
+  (data) => data.photosIds.length > 0 || data.files.length > 0,
+  { message: 'Должно остаться хотя бы одно фото', path: ['files'] },
+);
+
 export type RoomDto = z.infer<typeof RoomSchema>;
 export type RoomCreateFormInput = z.input<typeof RoomCreateFormSchema>;
 export type RoomCreateFormValues = z.output<typeof RoomCreateFormSchema>;
+export type RoomUpdateFormInput = z.input<typeof RoomUpdateFormSchema>;
+export type RoomUpdateFormValues = z.output<typeof RoomUpdateFormSchema>;

@@ -1,6 +1,7 @@
 'use client';
 
-import { useMemo } from 'react';
+import { X } from 'lucide-react';
+import { useEffect, useMemo, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 import { useAmenity } from '@/entities/amenity';
@@ -14,6 +15,7 @@ import {
   FieldSet,
   FieldTitle,
 } from '@/shared/ui/field';
+import { ImageUI } from '@/shared/ui/image';
 import { Input } from '@/shared/ui/input';
 import {
   Select,
@@ -22,6 +24,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/shared/ui/select';
+import { Text } from '@/shared/ui/text';
 import { Textarea } from '@/shared/ui/textarea';
 
 import { categoryOptions } from '../../model/const';
@@ -29,26 +32,47 @@ import { categoryOptions } from '../../model/const';
 import styles from './update.module.scss';
 
 import type { Category } from '../../model/const';
-import type { RoomCreateFormInput } from '../../model/dto';
+import type { RoomUpdateFormInput } from '../../model/dto';
+import type { FileType } from '@/shared/types/types';
 
-export function UpdateForm() {
+interface UpdateFormProps {
+  existingPhotos?: FileType[];
+}
+
+export function UpdateForm({ existingPhotos = [] }: UpdateFormProps) {
   const {
     getValues,
     register,
     setValue,
     watch,
     formState: { errors },
-  } = useFormContext<RoomCreateFormInput>();
+  } = useFormContext<RoomUpdateFormInput>();
   const { data: amenities, isLoading: isAmenitiesLoading } = useAmenity();
   const { data: requests, isLoading: isRequestsLoading } = useRequest();
 
   const selectedAmenityIds = watch('amenityIds');
   const selectedRequestsIds = watch('requestsIds');
   const selectedFiles = watch('files');
+  const selectedPhotoIds = watch('photosIds');
   const selectedCategory = watch('category');
 
-  const photoNames = useMemo(() => {
-    return selectedFiles?.map(file => file.name) ?? [];
+  const visibleExistingPhotos = useMemo(() => {
+    return existingPhotos.filter(photo => selectedPhotoIds?.includes(photo.id));
+  }, [existingPhotos, selectedPhotoIds]);
+
+  const [newFilePreviews, setNewFilePreviews] = useState<{ file: File; url: string }[]>([]);
+
+  useEffect(() => {
+    const previews = (selectedFiles ?? []).map(file => ({
+      file,
+      url: URL.createObjectURL(file),
+    }));
+
+    setNewFilePreviews(previews);
+
+    return () => {
+      previews.forEach(preview => URL.revokeObjectURL(preview.url));
+    };
   }, [selectedFiles]);
 
   function toggleArrayValue(field: 'amenityIds' | 'requestsIds', value: string) {
@@ -64,10 +88,40 @@ export function UpdateForm() {
     });
   }
 
+  function removeExistingPhoto(photoId: string) {
+    const previousIds = getValues('photosIds') ?? [];
+
+    setValue(
+      'photosIds',
+      previousIds.filter(id => id !== photoId),
+      {
+        shouldDirty: true,
+        shouldTouch: true,
+        shouldValidate: true,
+      },
+    );
+  }
+
+  function removeNewFile(index: number) {
+    const previousFiles = getValues('files') ?? [];
+
+    setValue(
+      'files',
+      previousFiles.filter((_, fileIndex) => fileIndex !== index),
+      {
+        shouldDirty: true,
+        shouldTouch: true,
+        shouldValidate: true,
+      },
+    );
+  }
+
   return (
     <FieldSet className={styles.section}>
       <section className={styles.card} id={'main'}>
-        <FieldTitle>Основная информация</FieldTitle>
+        <FieldTitle>
+          <Text size={'title'} tag={'p'}>Основная информация</Text>
+        </FieldTitle>
         <div className={styles.card__content}>
           <FieldGroup>
             <FieldLabel htmlFor={'title'}>Название номера</FieldLabel>
@@ -102,7 +156,9 @@ export function UpdateForm() {
       </section>
 
       <section id={'description'} className={styles.card}>
-        <FieldTitle>Дополнительная информация об номере</FieldTitle>
+        <FieldTitle>
+          <Text size={'title'} tag={'p'}>Информация об номере</Text>
+        </FieldTitle>
         <FieldGroup>
           <FieldLabel htmlFor={'description'}>Описание</FieldLabel>
           <Textarea
@@ -124,7 +180,9 @@ export function UpdateForm() {
       </section>
 
       <section id={'info'} className={styles.card}>
-        <FieldTitle>Дополнительная информация об номере</FieldTitle>
+        <FieldTitle>
+          <Text size={'title'} tag={'p'}>Дополнительная информация об номере</Text>
+        </FieldTitle>
         <div className={styles.card__content}>
           <FieldGroup>
             <FieldLabel htmlFor={'capacity'}>Вместимость</FieldLabel>
@@ -161,7 +219,9 @@ export function UpdateForm() {
         </div>
       </section>
       <section className={styles.card}>
-        <FieldTitle>Дополнительно</FieldTitle>
+        <FieldTitle>
+          <Text size={'title'} tag={'p'}>Дополнительно</Text>
+        </FieldTitle>
         <FieldGroup>
           <FieldLabel>Удобства</FieldLabel>
           <div className={'flex flex-wrap gap-2'}>
@@ -212,9 +272,63 @@ export function UpdateForm() {
         </FieldGroup>
       </section>
 
-      <section className={styles.card}>
+      <section className={styles.card} id={'photos'}>
         <FieldGroup>
-          <FieldLabel>Фотографии номера</FieldLabel>
+          <FieldLabel>
+            <Text size={'title'} tag={'p'}>Фотографии номера</Text>
+          </FieldLabel>
+
+          {visibleExistingPhotos.length > 0 && (
+            <>
+              <FieldDescription>Загруженные фотографии</FieldDescription>
+              <div className={styles.photos}>
+                {visibleExistingPhotos.map(photo => (
+                  <div className={styles.photo} key={photo.id}>
+                    <button
+                      type={'button'}
+                      className={styles.photo__remove}
+                      aria-label={'Удалить фото'}
+                      onClick={() => removeExistingPhoto(photo.id)}
+                    >
+                      <X size={14} />
+                    </button>
+                    <ImageUI
+                      src={photo.url}
+                      alt={photo.format || 'Фото номера'}
+                      aspectRatio={'1 / 1'}
+                    />
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
+
+          {newFilePreviews.length > 0 && (
+            <>
+              <FieldDescription>Новые фотографии</FieldDescription>
+              <div className={styles.photos}>
+                {newFilePreviews.map(({ file, url }, index) => (
+                  <div className={styles.photo} key={`${file.name}-${file.lastModified}`}>
+                    <button
+                      type={'button'}
+                      className={styles.photo__remove}
+                      aria-label={'Убрать новое фото'}
+                      onClick={() => removeNewFile(index)}
+                    >
+                      <X size={14} />
+                    </button>
+                    <img
+                      src={url}
+                      alt={file.name}
+                      className={styles.photo__preview}
+                    />
+                    <span className={styles.photo__name}>{file.name}</span>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
+
           <Dropzone
             onFilesSelected={(acceptedFiles) => {
               const previousFiles = getValues('files') ?? [];
@@ -231,13 +345,14 @@ export function UpdateForm() {
               },
               maxFiles: 20,
             }}
-            placeholder={'Добавьте фотографии номера'}
+            placeholder={'Добавьте новые фотографии'}
           />
           {errors.files && <FieldError>{errors.files.message}</FieldError>}
-          {photoNames.length ? (
-            <FieldDescription>Выбрано фото: {photoNames.join(', ')}</FieldDescription>
-          ) : (
-            <FieldDescription>Фотографии загрузятся только после нажатия кнопки сохранения.</FieldDescription>
+          {!visibleExistingPhotos.length && !newFilePreviews.length && (
+            <FieldDescription>Добавьте хотя бы одну фотографию номера.</FieldDescription>
+          )}
+          {newFilePreviews.length > 0 && (
+            <FieldDescription>Новые фото загрузятся после сохранения.</FieldDescription>
           )}
         </FieldGroup>
       </section>

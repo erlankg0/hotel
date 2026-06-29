@@ -1,5 +1,6 @@
 'use client';
 
+import { zodResolver } from '@hookform/resolvers/zod';
 import { Image, Info, Pencil, Plus, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
@@ -7,7 +8,12 @@ import { useCallback } from 'react';
 
 import { useRoomQuery } from '@/entities/room';
 import { Category } from '@/entities/room/model/type';
-import { UpdateForm, useRoomUpdate } from '@/features/room';
+import {
+  RoomUpdateFormSchema,
+  UpdateForm,
+  useRoomUpdate,
+} from '@/features/room';
+import { useUploadFile } from '@/shared/lib/hooks/useUploadFile';
 import { WrapperForm } from '@/shared/providers/form';
 import { Button } from '@/shared/ui/button';
 import { Text } from '@/shared/ui/text';
@@ -15,7 +21,7 @@ import { Page } from '@/widget/page';
 
 import styles from './page.module.scss';
 
-import type { RoomCreateFormInput, RoomDto } from '@/features/room';
+import type { RoomDto, RoomUpdateFormInput, RoomUpdateFormValues } from '@/features/room';
 
 
 const navLinks = [
@@ -45,8 +51,9 @@ export default function RoomDetail() {
   const { id } = useParams<{ id: string }>();
   const { handleOnSubmit, isPending } = useRoomUpdate();
   const { data, isLoading } = useRoomQuery(id);
+  const uploadFile = useUploadFile();
 
-  const defaultValues: Partial<RoomCreateFormInput> = {
+  const defaultValues: RoomUpdateFormInput = {
     title: data?.title || '',
     category: data?.category || Category.ROOM,
     description: data?.description || '',
@@ -54,15 +61,29 @@ export default function RoomDetail() {
     capacity: data?.capacity || 1,
     bedRoomCount: data?.bedRoomCount || 1,
     bathRoomCount: data?.bathRoomCount || 1,
-    amenityIds: data?.amenity.map((a) => a.id) || [],
-    requestsIds: data?.requests?.map((r) => r.id) || [],
-    uai: true,
+    amenityIds: data?.amenity.map((amenity) => amenity.id) || [],
+    requestsIds: data?.requests?.map((request) => request.id) || [],
+    photosIds: data?.photos?.map((photo) => photo.id) || [],
+    files: [],
+    uai: data?.uai ?? true,
+    videoId: '',
+    galleryId: '',
   };
 
-  const onSubmit = useCallback((dto: Partial<RoomDto>) => {
-    console.log(`...data: ${dto}`);
-    handleOnSubmit({ id: id, dto: dto });
-  }, [handleOnSubmit, id]);
+  const onSubmit = useCallback(async (formData: RoomUpdateFormValues) => {
+    const { files, photosIds, ...roomData } = formData;
+
+    const uploadedFiles = files.length
+      ? await Promise.all(files.map(file => uploadFile.mutateAsync(file)))
+      : [];
+
+    const dto: Partial<RoomDto> = {
+      ...roomData,
+      photosIds: [...photosIds, ...uploadedFiles.map(file => file.id)],
+    };
+
+    handleOnSubmit({ id, dto });
+  }, [handleOnSubmit, id, uploadFile]);
 
   return (
     <Page>
@@ -91,13 +112,17 @@ export default function RoomDetail() {
 
         </nav>
         {isLoading ? (<p>Loading...</p>) : (
-          <WrapperForm<RoomCreateFormInput>
-            options={{ defaultValues }}
+          <WrapperForm<RoomUpdateFormInput, RoomUpdateFormValues>
+            options={{
+              defaultValues,
+              mode: 'onChange',
+              resolver: zodResolver(RoomUpdateFormSchema),
+            }}
             onSubmit={onSubmit}
           >
-            <UpdateForm />
-            <Button type={'submit'} disabled={isPending}>
-              {isPending ? 'Loading...' : ('Save')}
+            <UpdateForm existingPhotos={data?.photos ?? []} />
+            <Button type={'submit'} disabled={isPending || uploadFile.isPending}>
+              {isPending || uploadFile.isPending ? 'Сохранение...' : 'Сохранить'}
             </Button>
           </WrapperForm>
         )}

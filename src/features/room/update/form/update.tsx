@@ -1,7 +1,7 @@
 'use client';
 
 import { X } from 'lucide-react';
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 import { useAmenity } from '@/entities/amenity';
@@ -55,6 +55,7 @@ export function UpdateForm({ existingPhotos = [] }: UpdateFormProps) {
   const selectedFiles = watch('files');
   const selectedPhotoIds = watch('photosIds');
   const selectedCategory = watch('category');
+  const [activePreview, setActivePreview] = useState<{ url: string; alt: string } | null>(null);
 
   const visibleExistingPhotos = useMemo(() => {
     return existingPhotos.filter(photo => selectedPhotoIds?.includes(photo.id));
@@ -72,6 +73,21 @@ export function UpdateForm({ existingPhotos = [] }: UpdateFormProps) {
       newFilePreviews.forEach(preview => URL.revokeObjectURL(preview.url));
     };
   }, [newFilePreviews]);
+
+  useEffect(() => {
+    function handleEsc(event: KeyboardEvent) {
+      if (event.key === 'Escape') {
+        setActivePreview(null);
+      }
+    }
+
+    window.addEventListener('keydown', handleEsc);
+    return () => window.removeEventListener('keydown', handleEsc);
+  }, []);
+
+  function openPreview(url: string, alt: string) {
+    setActivePreview({ url, alt });
+  }
 
   function toggleArrayValue(field: 'amenityIds' | 'requestsIds', value: string) {
     const previousValues = getValues(field) ?? [];
@@ -286,15 +302,25 @@ export function UpdateForm({ existingPhotos = [] }: UpdateFormProps) {
                       type={'button'}
                       className={styles.photo__remove}
                       aria-label={'Удалить фото'}
-                      onClick={() => removeExistingPhoto(photo.id)}
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        removeExistingPhoto(photo.id);
+                      }}
                     >
                       <X size={14} />
                     </button>
-                    <ImageUI
-                      src={photo.url}
-                      alt={photo.format || 'Фото номера'}
-                      aspectRatio={'1 / 1'}
-                    />
+                    <button
+                      type={'button'}
+                      className={styles.photo__previewBtn}
+                      aria-label={'Открыть фото'}
+                      onClick={() => openPreview(photo.url, photo.format || 'Фото номера')}
+                    >
+                      <ImageUI
+                        src={photo.url}
+                        alt={photo.format || 'Фото номера'}
+                        aspectRatio={'1 / 1'}
+                      />
+                    </button>
                   </div>
                 ))}
               </div>
@@ -311,16 +337,26 @@ export function UpdateForm({ existingPhotos = [] }: UpdateFormProps) {
                       type={'button'}
                       className={styles.photo__remove}
                       aria-label={'Убрать новое фото'}
-                      onClick={() => removeNewFile(index)}
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        removeNewFile(index);
+                      }}
                     >
                       <X size={14} />
                     </button>
-                    <img
-                      src={url}
-                      alt={file.name}
-                      className={styles.photo__preview}
-                    />
-                    <span className={styles.photo__name}>{file.name}</span>
+                    <button
+                      type={'button'}
+                      className={styles.photo__previewBtn}
+                      aria-label={'Открыть фото'}
+                      onClick={() => openPreview(url, file.name)}
+                    >
+                      <img
+                        src={url}
+                        alt={file.name}
+                        className={styles.photo__preview}
+                      />
+                      <span className={styles.photo__name}>{file.name}</span>
+                    </button>
                   </div>
                 ))}
               </div>
@@ -357,6 +393,34 @@ export function UpdateForm({ existingPhotos = [] }: UpdateFormProps) {
       </section>
 
 
+      {activePreview && (
+        <div
+          className={styles.lightbox}
+          role={'dialog'}
+          aria-modal={'true'}
+          aria-label={'Предпросмотр изображения'}
+          onClick={() => setActivePreview(null)}
+        >
+          <div
+            className={styles.lightbox__content}
+            onClick={event => event.stopPropagation()}
+          >
+            <button
+              type={'button'}
+              className={styles.lightbox__close}
+              aria-label={'Закрыть предпросмотр'}
+              onClick={() => setActivePreview(null)}
+            >
+              <X size={18} />
+            </button>
+            <img
+              src={activePreview.url}
+              alt={activePreview.alt}
+              className={styles.lightbox__image}
+            />
+          </div>
+        </div>
+      )}
     </FieldSet>
   );
 }

@@ -6,9 +6,10 @@ import {
   FileText,
   FileVideoCamera,
   UploadCloud,
+  X,
   type LucideIcon,
 } from 'lucide-react';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 
 import { cn } from '../../../lib/utils';
@@ -116,8 +117,11 @@ export function Dropzone({
   onFilesSelected,
   options,
   placeholder = 'Перетащите файлы сюда или нажмите для загрузки',
+  showPreviewList = true,
 }: DropzoneProps) {
   const [previewItems, setPreviewItems] = useState<PreviewItem[]>([]);
+  const [activePreviewUrl, setActivePreviewUrl] = useState<string | null>(null);
+  const [activePreviewName, setActivePreviewName] = useState<string>('');
   const previewItemsRef = useRef<PreviewItem[]>([]);
   const isSingleFileMode = options?.multiple === false || options?.maxFiles === 1;
 
@@ -129,6 +133,18 @@ export function Dropzone({
     return () => {
       revokePreviewItems(previewItemsRef.current);
     };
+  }, []);
+
+  useEffect(() => {
+    function handleEsc(event: KeyboardEvent) {
+      if (event.key === 'Escape') {
+        setActivePreviewUrl(null);
+        setActivePreviewName('');
+      }
+    }
+
+    window.addEventListener('keydown', handleEsc);
+    return () => window.removeEventListener('keydown', handleEsc);
   }, []);
 
   const onDrop = useCallback(
@@ -154,20 +170,31 @@ export function Dropzone({
     ...options,
   });
   const hasItems = previewItems.length > 0;
+  const shouldShowItems = showPreviewList && hasItems;
+  const acceptLabel = useMemo(() => {
+    const accept = options?.accept;
+    if (!accept) {
+      return 'Любые форматы';
+    }
+    return Object.keys(accept)
+      .map(type => type.replace('image/', '').replace('video/', '').toUpperCase())
+      .join(', ');
+  }, [options?.accept]);
+  const limitLabel = options?.maxFiles ? `До ${options.maxFiles} файлов` : 'Без ограничения';
   const rootProps = getRootProps({
     className: cn(
       s.dropzone,
-      hasItems && s.filled,
+      shouldShowItems && s.filled,
       isDragActive && s.active,
       className,
     ),
   });
   const title = isDragActive ? 'Отпускайте файлы для загрузки' : placeholder;
   const description = isDragActive
-    ? 'Файлы появятся в списке сразу после выбора.'
-    : hasItems
-      ? `Файлов в списке: ${previewItems.length}. Перетащите ещё или нажмите, чтобы добавить.`
-      : 'Изображения будут показаны с превью, а документы — аккуратными карточками.';
+    ? 'Отпустите файл - мы сразу добавим его в галерею.'
+    : shouldShowItems
+      ? `Добавлено ${previewItems.length}. Нажмите, чтобы добавить еще, или перетащите новые файлы.`
+      : 'Перетащите изображения сюда или выберите их вручную. Превью и увеличенный просмотр включены.';
 
   return (
     <div {...rootProps}>
@@ -181,12 +208,16 @@ export function Dropzone({
         <div className={s.copy}>
           <p className={s.title}>{title}</p>
           <p className={s.text}>{description}</p>
+          <div className={s.tags}>
+            <span className={s.tag}>{acceptLabel}</span>
+            <span className={s.tag}>{limitLabel}</span>
+          </div>
         </div>
 
-        {hasItems && <span className={s.counter}>Загружено: {previewItems.length}</span>}
+        {shouldShowItems && <span className={s.counter}>Выбрано: {previewItems.length}</span>}
       </div>
 
-      {hasItems && (
+      {shouldShowItems && (
         <div className={s.grid}>
           {previewItems.map(item => {
             const Icon = getFileIcon(item.file);
@@ -201,14 +232,22 @@ export function Dropzone({
               >
                 {item.previewUrl ? (
                   <>
-                    <div className={s.previewWrap}>
+                    <button
+                      type={'button'}
+                      className={s.previewWrap}
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        setActivePreviewUrl(item.previewUrl ?? null);
+                        setActivePreviewName(item.file.name);
+                      }}
+                    >
                       <img
                         alt={item.file.name}
                         className={s.previewImage}
                         src={item.previewUrl}
                       />
                       <span className={s.badge}>{getFileExtension(item.file.name)}</span>
-                    </div>
+                    </button>
 
                     <div className={s.cardBody}>
                       <span className={s.fileName} title={item.file.name}>
@@ -238,6 +277,43 @@ export function Dropzone({
               </article>
             );
           })}
+        </div>
+      )}
+
+      {activePreviewUrl && (
+        <div
+          className={s.lightbox}
+          role={'dialog'}
+          aria-modal={'true'}
+          aria-label={'Предпросмотр изображения'}
+          onClick={(event) => {
+            event.stopPropagation();
+            setActivePreviewUrl(null);
+            setActivePreviewName('');
+          }}
+        >
+          <div
+            className={s.lightbox__content}
+            onClick={event => event.stopPropagation()}
+          >
+            <button
+              type={'button'}
+              className={s.lightbox__close}
+              aria-label={'Закрыть предпросмотр'}
+              onClick={() => {
+                setActivePreviewUrl(null);
+                setActivePreviewName('');
+              }}
+            >
+              <X size={18} />
+            </button>
+
+            <img
+              src={activePreviewUrl}
+              alt={activePreviewName}
+              className={s.lightbox__image}
+            />
+          </div>
         </div>
       )}
     </div>

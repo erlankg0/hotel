@@ -5,4 +5,5 @@ export interface DropzoneProps {
   options?: DropzoneOptions;
   className?: string;
   placeholder?: string;
+  showPreviewList?: boolean;
 }

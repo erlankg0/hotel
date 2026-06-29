@@ -1,7 +1,7 @@
 'use client';
 
 import { X } from 'lucide-react';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 import { useAmenity } from '@/entities/amenity';
@@ -60,20 +60,18 @@ export function UpdateForm({ existingPhotos = [] }: UpdateFormProps) {
     return existingPhotos.filter(photo => selectedPhotoIds?.includes(photo.id));
   }, [existingPhotos, selectedPhotoIds]);
 
-  const [newFilePreviews, setNewFilePreviews] = useState<{ file: File; url: string }[]>([]);
-
-  useEffect(() => {
-    const previews = (selectedFiles ?? []).map(file => ({
+  const newFilePreviews = useMemo(() => {
+    return (selectedFiles ?? []).map(file => ({
       file,
       url: URL.createObjectURL(file),
     }));
-
-    setNewFilePreviews(previews);
-
-    return () => {
-      previews.forEach(preview => URL.revokeObjectURL(preview.url));
-    };
   }, [selectedFiles]);
+
+  useEffect(() => {
+    return () => {
+      newFilePreviews.forEach(preview => URL.revokeObjectURL(preview.url));
+    };
+  }, [newFilePreviews]);
 
   function toggleArrayValue(field: 'amenityIds' | 'requestsIds', value: string) {
     const previousValues = getValues(field) ?? [];
@@ -330,6 +328,7 @@ export function UpdateForm({ existingPhotos = [] }: UpdateFormProps) {
           )}
 
           <Dropzone
+            showPreviewList={false}
             onFilesSelected={(acceptedFiles) => {
               const previousFiles = getValues('files') ?? [];
 

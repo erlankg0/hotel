@@ -14,4 +14,4 @@ export { useRoomCreate } from './create';
 export { useRoomUpdate } from './update';
 
 export { CreateForm } from './create';
-export { UpdateForm } from './update';
+export { UpdateForm, UpdateSkeleton } from './update';

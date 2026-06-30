@@ -11,6 +11,7 @@ import { Category } from '@/entities/room/model/type';
 import {
   RoomUpdateFormSchema,
   UpdateForm,
+  UpdateSkeleton,
   useRoomUpdate,
 } from '@/features/room';
 import { useUploadFile } from '@/shared/lib/hooks/useUploadFile';
@@ -65,9 +66,7 @@ export default function RoomDetail() {
     requestsIds: data?.requests?.map((request) => request.id) || [],
     photosIds: data?.photos?.map((photo) => photo.id) || [],
     files: [],
-    uai: data?.uai ?? true,
     videoId: '',
-    galleryId: '',
   };
 
   const onSubmit = useCallback(async (formData: RoomUpdateFormValues) => {
@@ -111,7 +110,7 @@ export default function RoomDetail() {
           })}
 
         </nav>
-        {isLoading ? (<p>Loading...</p>) : (
+        {isLoading ? (  <UpdateSkeleton />) : (
           <WrapperForm<RoomUpdateFormInput, RoomUpdateFormValues>
             options={{
               defaultValues,

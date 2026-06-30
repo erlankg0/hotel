@@ -1,6 +1,6 @@
 'use client';
 
-import { X } from 'lucide-react';
+import { X, Hotel, User, Bed, Bath } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
@@ -16,7 +16,7 @@ import {
   FieldTitle,
 } from '@/shared/ui/field';
 import { ImageUI } from '@/shared/ui/image';
-import { Input } from '@/shared/ui/input';
+import { InputGroup, InputGroupInput, InputGroupAddon } from '@/shared/ui/input-group';
 import {
   Select,
   SelectContent,
@@ -139,7 +139,12 @@ export function UpdateForm({ existingPhotos = [] }: UpdateFormProps) {
         <div className={styles.card__content}>
           <FieldGroup>
             <FieldLabel htmlFor={'title'}>Название номера</FieldLabel>
-            <Input id={'title'} {...register('title')} placeholder={'Deluxe Sea View'} />
+            <InputGroup>
+              <InputGroupInput id={'title'} {...register('title')} placeholder={'Standard room'} />
+              <InputGroupAddon>
+                <Hotel size={12} />
+              </InputGroupAddon>
+            </InputGroup>
             {errors.title && <FieldError>{errors.title.message}</FieldError>}
           </FieldGroup>
 
@@ -200,34 +205,51 @@ export function UpdateForm({ existingPhotos = [] }: UpdateFormProps) {
         <div className={styles.card__content}>
           <FieldGroup>
             <FieldLabel htmlFor={'capacity'}>Вместимость</FieldLabel>
-            <Input
-              id={'capacity'}
-              type={'number'}
-              min={1}
-              {...register('capacity', { valueAsNumber: true })}
-            />
+            <InputGroup>
+              <InputGroupInput
+                id={'capacity'}
+                type={'number'}
+                min={1}
+                {...register('capacity', { valueAsNumber: true })}
+              />
+              <InputGroupAddon>
+                <User size={10} />
+              </InputGroupAddon>
+            </InputGroup>
             {errors.capacity && <FieldError>{errors.capacity.message}</FieldError>}
           </FieldGroup>
 
           <FieldGroup>
             <FieldLabel htmlFor={'bedRoomCount'}>Спален</FieldLabel>
-            <Input
-              id={'bedRoomCount'}
-              type={'number'}
-              min={1}
-              {...register('bedRoomCount', { valueAsNumber: true })}
-            />
+            <InputGroup>
+              <InputGroupInput
+                id={'bedRoomCount'}
+                type={'number'}
+                min={1}
+                {...register('bedRoomCount', { valueAsNumber: true })}
+              />
+              <InputGroupAddon>
+                <Bed size={10} />
+              </InputGroupAddon>
+            </InputGroup>
+
             {errors.bedRoomCount && <FieldError>{errors.bedRoomCount.message}</FieldError>}
           </FieldGroup>
 
           <FieldGroup>
             <FieldLabel htmlFor={'bathRoomCount'}>Ванных</FieldLabel>
-            <Input
-              id={'bathRoomCount'}
-              type={'number'}
-              min={1}
-              {...register('bathRoomCount', { valueAsNumber: true })}
-            />
+            <InputGroup>
+              <InputGroupInput
+                id={'bathRoomCount'}
+                type={'number'}
+                min={1}
+                {...register('bathRoomCount', { valueAsNumber: true })}
+              />
+              <InputGroupAddon>
+                <Bath size={10} />
+              </InputGroupAddon>
+            </InputGroup>
+
             {errors.bathRoomCount && <FieldError>{errors.bathRoomCount.message}</FieldError>}
           </FieldGroup>
         </div>
@@ -421,6 +443,17 @@ export function UpdateForm({ existingPhotos = [] }: UpdateFormProps) {
           </div>
         </div>
       )}
+
+      <section className={styles.card} id={'video'}>
+        <FieldTitle>
+          <Text size={'title'} tag={'p'}>Видео</Text>
+        </FieldTitle>
+        <FieldGroup>
+          <InputGroup id={'videoId'}>
+            <InputGroupInput type={'file'} {...register('videoId')} />
+          </InputGroup>
+        </FieldGroup>
+      </section>
     </FieldSet>
   );
 }

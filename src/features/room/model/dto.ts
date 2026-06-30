@@ -19,7 +19,6 @@ export const RoomSchema = z.object({
   capacity: z.number(IsNotEmpty),
   bedRoomCount: z.number(IsNotEmpty),
   bathRoomCount: z.number(IsNotEmpty),
-  uai: z.boolean(IsNotEmpty),
   amenityIds: z.array(z.string()).nonempty({ message: 'Удобства обязательны' }),
   requestsIds: z.array(z.string()).nonempty({ message: 'Запросы обязательны' }),
   photosIds: z.array(z.string()).nonempty({ message: 'Фото обязательны' }),

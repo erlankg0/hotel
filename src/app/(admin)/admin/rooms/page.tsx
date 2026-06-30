@@ -1,6 +1,6 @@
 'use client';
 
-import { Plus, Info, Loader } from 'lucide-react';
+import { Plus, Info } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 
@@ -38,24 +38,24 @@ export default function Rooms() {
         />}
     >
       <div className={'flex flex-col gap-6'}>
-{!isLoading && (!data || data.length === 0) && (
-  <div className="py-12 text-center text-muted-foreground">
-    Нет данных
-  </div>
-)}        {data && data.map((room) => (
-          <RoomCard key={room.id}>
-            <RoomCard.Slider>
-              <RoomSlider photos={room.photos} />
-            </RoomCard.Slider>
-            <RoomCard.Info id={room.id}>
-              <RoomInfo {...room} slot={
-                <div>
-                  <Link href={`/admin/rooms/${room.id}/detail`}>Детали</Link>
-                </div>
-              } />
-            </RoomCard.Info>
-          </RoomCard>
-        ))}
+        {!isLoading && (!data || data.length === 0) && (
+          <div className="py-12 text-center text-muted-foreground">
+            Нет данных
+          </div>
+        )} {data && data.map((room) => (
+        <RoomCard key={room.id}>
+          <RoomCard.Slider>
+            <RoomSlider photos={room.photos} />
+          </RoomCard.Slider>
+          <RoomCard.Info id={room.id}>
+            <RoomInfo {...room} slot={
+              <div>
+                <Link href={`/admin/rooms/${room.id}/detail`}>Детали</Link>
+              </div>
+            } />
+          </RoomCard.Info>
+        </RoomCard>
+      ))}
       </div>
     </Page>
   );

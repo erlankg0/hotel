@@ -1,6 +1,6 @@
 'use client';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 
 import { Button } from '@/shared/ui/button/button';
 import { ImageUI } from '@/shared/ui/image';
@@ -30,6 +30,23 @@ export function RoomSlider({ photos }: { photos: FileType[] }) {
     onSlideChange(swiper);
   }, [onSlideChange]);
 
+  const slides = useMemo(() =>
+      photos.map((image) => (
+        <ImageUI
+          key={image.id}
+          src={image.url}
+          alt={image.format}
+          aspectRatio="2 / 1"
+        />
+      )),
+    [photos],
+  );
+
+  if (!photos.length) {
+    return null;
+  }
+
+
   return (
     <div className={styles.slide}>
       <SwiperUI
@@ -37,20 +54,22 @@ export function RoomSlider({ photos }: { photos: FileType[] }) {
         spaceBetween={0}
         onSwiper={handleOnSwiper}
         onSlideChange={handleOnChange}
-        slides={photos.map((image) => (
-          <ImageUI src={image.url} alt={image.format} key={image.id} aspectRatio={'2 / 1'} />))
-        }
+        slides={slides}
       />
-      <nav className={styles.slide_left}>
-        <Button variant={'blur'} disabled={isStart} onClick={prev} className={styles.button}>
-          <ChevronLeft size={16} />
-        </Button>
-      </nav>
-      <nav className={styles.slide__right}>
-        <Button variant={'blur'} disabled={isEnd} onClick={next} className={styles.button}>
-          <ChevronRight size={16} />
-        </Button>
-      </nav>
+      {slides.length > 2 && (
+        <>
+          <nav className={styles.slide__left}>
+            <Button variant={'blur'} disabled={isStart} onClick={prev} className={styles.button}>
+              <ChevronLeft size={16} />
+            </Button>
+          </nav>
+          <nav className={styles.slide__right}>
+            <Button variant={'blur'} disabled={isEnd} onClick={next} className={styles.button}>
+              <ChevronRight size={16} />
+            </Button>
+          </nav>
+        </>
+      )}
     </div>
   );
 }

@@ -51,7 +51,6 @@ export default function New() {
             capacity: 2,
             bedRoomCount: 1,
             bathRoomCount: 1,
-            uai: false,
             amenityIds: [],
             requestsIds: [],
             files: [],

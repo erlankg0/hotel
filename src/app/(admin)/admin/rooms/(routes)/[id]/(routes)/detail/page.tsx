@@ -1,7 +1,7 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Image, Info, Pencil, Plus, Sparkles } from 'lucide-react';
+import { Image, Info, Loader, Pencil, Plus, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { useCallback } from 'react';
@@ -110,7 +110,7 @@ export default function RoomDetail() {
           })}
 
         </nav>
-        {isLoading ? (  <UpdateSkeleton />) : (
+        {isLoading ? (<UpdateSkeleton />) : (
           <WrapperForm<RoomUpdateFormInput, RoomUpdateFormValues>
             options={{
               defaultValues,
@@ -121,7 +121,8 @@ export default function RoomDetail() {
           >
             <UpdateForm existingPhotos={data?.photos ?? []} />
             <Button type={'submit'} disabled={isPending || uploadFile.isPending}>
-              {isPending || uploadFile.isPending ? 'Сохранение...' : 'Сохранить'}
+              {isPending || uploadFile.isPending ?
+                <p><Loader className="animate-spin" size={16} /></p> : 'Сохранить'}
             </Button>
           </WrapperForm>
         )}

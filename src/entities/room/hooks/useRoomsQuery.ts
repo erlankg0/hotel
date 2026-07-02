@@ -23,9 +23,11 @@ export const useRoomsQuery = (search?: string) => {
 
   return {
     data: result,
+    total: data?.data.total || 0,
+    limit: data?.data.limit || 10,
+    page: data?.data.page ?? page,
     setPage,
     isLoading,
     error,
   };
-
 };

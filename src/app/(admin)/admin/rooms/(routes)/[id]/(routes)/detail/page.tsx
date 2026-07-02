@@ -13,6 +13,7 @@ import {
   UpdateForm,
   UpdateSkeleton,
   useRoomUpdate,
+  useRoomDelete,
 } from '@/features/room';
 import { useUploadFile } from '@/shared/lib/hooks/useUploadFile';
 import { WrapperForm } from '@/shared/providers/form';
@@ -51,6 +52,7 @@ const navLinks = [
 export default function RoomDetail() {
   const { id } = useParams<{ id: string }>();
   const { handleOnSubmit, isPending } = useRoomUpdate();
+  const { handleOnDelete } = useRoomDelete();
   const { data, isLoading } = useRoomQuery(id);
   const uploadFile = useUploadFile();
 
@@ -129,13 +131,9 @@ export default function RoomDetail() {
 
         <section>
           <div className={styles.nav}>
-            <Text tag={'h4'} tone={'default'} size={'subtitle'}>Статус номера</Text>
-            <Text tag={'p'} size={'kicker'} tone={'success'}>Опубликовано</Text>
-            <Text tag={'p'} tone={'info'} size={'kicker'}>Скрыть номер</Text>
-          </div>
-          <div className={styles.nav}>
-            <Link href="#" target={'_blank'}>Посмотреть на сайте</Link>
-            <Text tag={'p'} tone={'danger'} size={'subtitle'}>Удалить</Text>
+            <Link href={`rooms/${id}`} target={'_blank'}>Посмотреть на сайте</Link>
+            <Button className={styles.delete} variant={'outline'} type={'button'}
+                    onClick={() => handleOnDelete(id)}>Удалить</Button>
           </div>
         </section>
       </section>

@@ -1,0 +1,1 @@
+export { useRoomDelete } from './hook/useRoomDelete';

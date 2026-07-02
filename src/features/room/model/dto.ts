@@ -1,15 +1,9 @@
 import { z } from 'zod';
 
+import { IsNotEmpty, fileSchema } from '@/shared/validator';
+
 import { Category } from './const';
 
-const IsNotEmpty = { message: 'Обязательное поле' };
-const fileSchema = z.custom<File>((value) => {
-  if (typeof File === 'undefined') {
-    return false;
-  }
-
-  return value instanceof File;
-}, 'Некорректный файл');
 
 export const RoomSchema = z.object({
   title: z.string(IsNotEmpty).min(3, { message: 'Минимум 3 символа' }),

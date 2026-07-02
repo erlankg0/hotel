@@ -45,7 +45,6 @@ export function CreateForm() {
   const selectedRequestsIds = watch('requestsIds');
   const selectedFiles = watch('files');
   const selectedCategory = watch('category');
-  const uai = watch('uai');
 
   const photoNames = useMemo(() => {
     return selectedFiles?.map(file => file.name) ?? [];
@@ -119,27 +118,6 @@ export function CreateForm() {
             </SelectContent>
           </Select>
           {errors.category && <FieldError>{errors.category.message}</FieldError>}
-        </FieldGroup>
-
-        <FieldGroup>
-          <FieldLabel htmlFor={'uai'}>UAI</FieldLabel>
-          <label
-            className={'flex h-9 items-center gap-3 rounded-md border border-input px-3 text-sm'}
-            htmlFor={'uai'}
-          >
-            <input
-              id={'uai'}
-              type={'checkbox'}
-              checked={uai}
-              onChange={(event) => setValue('uai', event.target.checked, {
-                shouldDirty: true,
-                shouldTouch: true,
-                shouldValidate: true,
-              })}
-            />
-            Ультра всё включено
-          </label>
-          {errors.uai && <FieldError>{errors.uai.message}</FieldError>}
         </FieldGroup>
       </div>
 

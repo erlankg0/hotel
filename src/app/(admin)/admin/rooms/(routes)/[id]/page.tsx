@@ -94,11 +94,6 @@ export default function RoomDetail() {
             <Text size={'title'} tag={'h3'} className={styles.header__title}>Редактирования номера</Text>
             <Text tag={'p'} size={'kicker'}>Обновите информацию о номере и его удобствах</Text>
           </div>
-          <div>
-            <Button type={'button'}>
-              Сохранить изменения
-            </Button>
-          </div>
         </div>
       </section>
       <section className={styles.content}>
@@ -131,7 +126,9 @@ export default function RoomDetail() {
 
         <section>
           <div className={styles.nav}>
-            <Link href={`rooms/${id}`} target={'_blank'}>Посмотреть на сайте</Link>
+            <Button variant={'secondary'}>
+                <Link href={`rooms/${id}`} target={'_blank'}>Посмотреть на сайте</Link>
+            </Button>
             <Button className={styles.delete} variant={'outline'} type={'button'}
                     onClick={() => handleOnDelete(id)}>Удалить</Button>
           </div>

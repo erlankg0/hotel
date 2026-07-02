@@ -43,20 +43,6 @@ export default function New() {
         options={{
           mode: 'onChange',
           resolver: zodResolver(RoomCreateFormSchema),
-          defaultValues: {
-            title: '',
-            description: '',
-            subDescription: '',
-            category: Category.ROOM,
-            capacity: 2,
-            bedRoomCount: 1,
-            bathRoomCount: 1,
-            amenityIds: [],
-            requestsIds: [],
-            files: [],
-            videoId: '',
-            galleryId: '',
-          },
         }}
       >
         <CreateForm />

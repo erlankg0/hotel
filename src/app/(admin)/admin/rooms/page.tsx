@@ -53,9 +53,9 @@ export default function Rooms() {
           </RoomCard.Slider>
           <RoomCard.Info id={room.id}>
             <RoomInfo {...room} slot={
-              <div>
-                <Link href={`/admin/rooms/${room.id}/detail`}>Детали</Link>
-              </div>
+              <Button variant={'outline'}>
+                <Link href={`/admin/rooms/${room.id}`}>Редактировать</Link>
+              </Button>
             } />
           </RoomCard.Info>
         </RoomCard>

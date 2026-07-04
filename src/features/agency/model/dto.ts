@@ -1,13 +1,19 @@
 import { z } from 'zod';
 
-import { IsNotEmpty, fileSchema } from '@/shared/validator';
+import { IsNotEmpty, fileSchema, phoneValidator } from '@/shared/validator';
 
-import { CategoryAgency, CategoryEmail } from '../model/enum';
+import { CategoryAgency, CategoryContact } from '../model/enum';
 
-const emailSchema = z.object({
+const agencyEmailSchema = z.object({
   title: z.string(IsNotEmpty).min(2, 'Минимум 2 символа'),
   email: z.string().email('Неверный email'),
-  category: z.enum([CategoryEmail.GENERAL, CategoryEmail.CONTACT, CategoryEmail.STOP_SALE, CategoryEmail.INFO, CategoryEmail.GUEST_RELATION, CategoryEmail.OTHER]),
+  category: z.enum([CategoryContact.GENERAL, CategoryContact.CONTACT, CategoryContact.STOP_SALE, CategoryContact.INFO, CategoryContact.GUEST_RELATION, CategoryContact.OTHER]),
+});
+
+const agencyPhoneSchema = z.object({
+  title: z.string(IsNotEmpty).min(4, 'Минимум 4 символа'),
+  phone: phoneValidator,
+  category: z.enum([CategoryContact.GENERAL, CategoryContact.CONTACT, CategoryContact.STOP_SALE, CategoryContact.INFO, CategoryContact.GUEST_RELATION, CategoryContact.OTHER]),
 });
 
 
@@ -33,7 +39,8 @@ export const agencyCreateSchema = agencySchema
   .omit({ iconId: true, emailIds: true })
   .extend({
     file: fileSchema,
-    emails: z.array(emailSchema).min(1, 'Добавьте минимум один email'),
+    emails: z.array(agencyEmailSchema).min(1, 'Добавьте минимум один email'),
+    phones: z.array(agencyPhoneSchema).min(1, 'Добавьте минимум один телефон'),
   });
 
 

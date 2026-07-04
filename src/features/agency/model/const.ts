@@ -1,12 +1,12 @@
-import { CategoryEmail, CategoryAgency } from './enum';
+import { CategoryContact, CategoryAgency } from './enum';
 
-export const emailCategories = [
-  { value: CategoryEmail.GENERAL, label: 'Общий' },
-  { value: CategoryEmail.GUEST_RELATION, label: 'Отношения с гостями' },
-  { value: CategoryEmail.CONTACT, label: 'Контактный' },
-  { value: CategoryEmail.STOP_SALE, label: 'Стоп-продажа' },
-  { value: CategoryEmail.INFO, label: 'Информационный' },
-  { value: CategoryEmail.OTHER, label: 'Другое' },
+export const contactCategories = [
+  { value: CategoryContact.GENERAL, label: 'Общий' },
+  { value: CategoryContact.GUEST_RELATION, label: 'Отношения с гостями' },
+  { value: CategoryContact.CONTACT, label: 'Контактный' },
+  { value: CategoryContact.STOP_SALE, label: 'Стоп-продажа' },
+  { value: CategoryContact.INFO, label: 'Информационный' },
+  { value: CategoryContact.OTHER, label: 'Другое' },
 ];
 
 export const categoryOptions = [

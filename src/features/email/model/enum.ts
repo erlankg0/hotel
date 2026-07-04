@@ -1,9 +1,4 @@
-export enum CategoryAgency {
-  AGENCY = 'AGENCY',
-  TOUR = 'TOUR',
-}
-
-export enum CategoryContact {
+export enum Category {
   GENERAL = 'GENERAL',
   GUEST_RELATION = 'GUEST_RELATION',
   INFO = 'INFO',

@@ -1,5 +1,5 @@
 import { Luggage, Camera, Plus, Trash2, User, Mails, Phone } from 'lucide-react';
-import { useFormContext, useFieldArray } from 'react-hook-form';
+import { useFormContext, useFieldArray, Controller } from 'react-hook-form';
 
 import { Button } from '@/shared/ui/button';
 import {
@@ -14,66 +14,80 @@ import { InputGroup, InputGroupInput, InputGroupAddon } from '@/shared/ui/input-
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/shared/ui/select';
 
 import { categoryOptions, contactCategories } from '../../model/const';
+import { CategoryContact } from '../../model/enum';
 
 import type { AgencyCreateForm } from '../../model/dto';
-import type { CategoryAgency } from '../../model/enum';
-
 
 export function CreateForm() {
-  const { register, formState: { errors }, watch, setValue } = useFormContext<AgencyCreateForm>();
-  const { fields: emailFields, append: emailAppend, remove: emailRemove } = useFieldArray({ name: 'emails' });
-  const { fields: phoneFields, append: phoneAppend, remove: phoneRemove } = useFieldArray({ name: 'phones' });
-  const selectedCategory = watch('category');
+  const {
+    register,
+    control,
+    formState: { errors },
+  } = useFormContext<AgencyCreateForm>();
+
+  const { fields: emailFields, append: emailAppend, remove: emailRemove } = useFieldArray({
+    control,
+    name: 'emails',
+  });
+  const { fields: phoneFields, append: phoneAppend, remove: phoneRemove } = useFieldArray({
+    control,
+    name: 'phones',
+  });
 
   return (
     <FieldSet>
       <article>
         <FieldTitle className={'text-xl font-bold text-center'}>Создание Оператора</FieldTitle>
       </article>
+
       <FieldGroup>
         <FieldLabel htmlFor={'title'}>Названия</FieldLabel>
         <InputGroup>
           <InputGroupInput {...register('title')} placeholder={'Anex Tour'} id={'title'} />
           <InputGroupAddon><Luggage /></InputGroupAddon>
         </InputGroup>
-        {errors ?
-          (<FieldError>{errors.title?.message}</FieldError>) :
-          (<FieldDescription>Введите уникальное названия</FieldDescription>)
-        }
+        {errors.title ? (
+          <FieldError>{errors.title.message}</FieldError>
+        ) : (
+          <FieldDescription>Введите уникальное названия</FieldDescription>
+        )}
       </FieldGroup>
+
       <FieldGroup>
         <FieldLabel htmlFor={'short'}>Тег</FieldLabel>
         <InputGroup>
           <InputGroupInput {...register('short')} placeholder={'ANEX'} id={'short'} />
         </InputGroup>
-        {errors ?
-          (<FieldError>{errors.short?.message}</FieldError>) :
-          (<FieldDescription>Введите уникальное тег</FieldDescription>)
-        }
+        {errors.short ? (
+          <FieldError>{errors.short.message}</FieldError>
+        ) : (
+          <FieldDescription>Введите уникальное тег</FieldDescription>
+        )}
       </FieldGroup>
+
       <FieldGroup>
         <FieldLabel>Категория</FieldLabel>
-        <Select
-          value={selectedCategory}
-          onValueChange={(value) => setValue('category', value as CategoryAgency, {
-            shouldDirty: true,
-            shouldTouch: true,
-            shouldValidate: true,
-          })}
-        >
-          <SelectTrigger className={'w-full'}>
-            <SelectValue placeholder={'Выберите категорию'} />
-          </SelectTrigger>
-          <SelectContent>
-            {categoryOptions.map(option => (
-              <SelectItem key={option.value} value={option.value}>
-                {option.label}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+        <Controller
+          name={'category'}
+          control={control}
+          render={({ field }) => (
+            <Select value={field.value} onValueChange={field.onChange}>
+              <SelectTrigger className={'w-full'}>
+                <SelectValue placeholder={'Выберите категорию'} />
+              </SelectTrigger>
+              <SelectContent>
+                {categoryOptions.map(option => (
+                  <SelectItem key={option.value} value={option.value}>
+                    {option.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          )}
+        />
         {errors.category && <FieldError>{errors.category.message}</FieldError>}
       </FieldGroup>
+
       <FieldGroup>
         <FieldLabel></FieldLabel>
         <InputGroup>
@@ -82,11 +96,16 @@ export function CreateForm() {
         </InputGroup>
       </FieldGroup>
 
+      {/* EMAILS */}
       <FieldGroup>
         <div className="flex justify-between items-center mb-3">
           <FieldLabel>Контактные Email</FieldLabel>
-          <Button type="button" variant="outline" size="sm"
-                  onClick={() => emailAppend({ title: '', email: '', category: 'GENERAL' })}>
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            onClick={() => emailAppend({ title: '', email: '', category: CategoryContact.GENERAL })}
+          >
             <Plus size={18} className="mr-1" />
             Добавить
           </Button>
@@ -111,6 +130,9 @@ export function CreateForm() {
                     <InputGroupInput {...register(`emails.${index}.title`)} placeholder="Имя получателя" />
                     <InputGroupAddon><User /></InputGroupAddon>
                   </InputGroup>
+                  {errors.emails?.[index]?.title && (
+                    <FieldError>{errors.emails[index]?.title?.message}</FieldError>
+                  )}
                 </div>
                 <div>
                   <FieldLabel>Email</FieldLabel>
@@ -118,33 +140,52 @@ export function CreateForm() {
                     <InputGroupInput {...register(`emails.${index}.email`)} placeholder="info@agency.com.tr" />
                     <InputGroupAddon><Mails /></InputGroupAddon>
                   </InputGroup>
+                  {errors.emails?.[index]?.email && (
+                    <FieldError>{errors.emails[index]?.email?.message}</FieldError>
+                  )}
                 </div>
                 <div className="md:col-span-2">
                   <FieldLabel>Категория</FieldLabel>
-                  <Select {...register(`emails.${index}.category`)}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Выберите категорию" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {contactCategories.map(cat => (
-                        <SelectItem key={cat.value} value={cat.value}>{cat.label}</SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                  <Controller
+                    name={`emails.${index}.category`}
+                    control={control}
+                    render={({ field }) => (
+                      <Select value={field.value} onValueChange={field.onChange}>
+                        <SelectTrigger className={'w-full'}>
+                          <SelectValue placeholder="Выберите категорию" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {contactCategories.map(cat => (
+                            <SelectItem key={cat.value} value={cat.value}>
+                              {cat.label}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    )}
+                  />
+                  {errors.emails?.[index]?.category && (
+                    <FieldError>{errors.emails[index]?.category?.message}</FieldError>
+                  )}
                 </div>
               </div>
             </FieldGroup>
           ))}
         </div>
 
-        {errors.emails && <FieldError>{errors.emails.message}</FieldError>}
+        {errors.emails?.root && <FieldError>{errors.emails.root.message}</FieldError>}
       </FieldGroup>
 
+      {/* PHONES */}
       <FieldGroup>
         <div className="flex justify-between items-center mb-3">
           <FieldLabel>Контактные телефон</FieldLabel>
-          <Button type="button" variant="outline" size="sm"
-                  onClick={() => phoneAppend({ title: '', email: '', category: 'GENERAL' })}>
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            onClick={() => phoneAppend({ title: '', phone: '', category: CategoryContact.GENERAL })}
+          >
             <Plus size={18} className="mr-1" />
             Добавить
           </Button>
@@ -169,6 +210,9 @@ export function CreateForm() {
                     <InputGroupInput {...register(`phones.${index}.title`)} placeholder="Имя получателя" />
                     <InputGroupAddon><User /></InputGroupAddon>
                   </InputGroup>
+                  {errors.phones?.[index]?.title && (
+                    <FieldError>{errors.phones[index]?.title?.message}</FieldError>
+                  )}
                 </div>
                 <div>
                   <FieldLabel>Телефон</FieldLabel>
@@ -176,26 +220,40 @@ export function CreateForm() {
                     <InputGroupInput {...register(`phones.${index}.phone`)} placeholder="+90 242 26 22 22" />
                     <InputGroupAddon><Phone /></InputGroupAddon>
                   </InputGroup>
+                  {errors.phones?.[index]?.phone && (
+                    <FieldError>{errors.phones[index]?.phone?.message}</FieldError>
+                  )}
                 </div>
                 <div className="md:col-span-2">
                   <FieldLabel>Категория</FieldLabel>
-                  <Select {...register(`phones.${index}.category`)}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Выберите категорию" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {contactCategories.map(cat => (
-                        <SelectItem key={cat.value} value={cat.value}>{cat.label}</SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                  <Controller
+                    name={`phones.${index}.category`}
+                    control={control}
+                    render={({ field }) => (
+                      <Select value={field.value} onValueChange={field.onChange}>
+                        <SelectTrigger className={'w-full'}>
+                          <SelectValue placeholder="Выберите категорию" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {contactCategories.map(cat => (
+                            <SelectItem key={cat.value} value={cat.value}>
+                              {cat.label}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    )}
+                  />
+                  {errors.phones?.[index]?.category && (
+                    <FieldError>{errors.phones[index]?.category?.message}</FieldError>
+                  )}
                 </div>
               </div>
             </FieldGroup>
           ))}
         </div>
 
-        {errors.emails && <FieldError>{errors.emails.message}</FieldError>}
+        {errors.phones?.root && <FieldError>{errors.phones.root.message}</FieldError>}
       </FieldGroup>
     </FieldSet>
   );

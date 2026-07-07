@@ -43,7 +43,9 @@ export const agencyCreateSchema = agencySchema
     phones: z.array(agencyPhoneSchema).min(1, 'Добавьте минимум один телефон'),
   });
 
-
 export type AgencyDto = z.infer<typeof agencySchema>;
+export type AgencyCreateFromInput = z.input<typeof agencyCreateSchema>
+export type AgencyCreateFormValues = z.output<typeof agencyCreateSchema>
+
 export type AgencyCreateDto = z.infer<typeof agencyCreateSchema>;
 export type AgencyCreateForm = z.input<typeof agencyCreateSchema>;

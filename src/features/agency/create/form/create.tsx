@@ -88,12 +88,28 @@ export function CreateForm() {
         {errors.category && <FieldError>{errors.category.message}</FieldError>}
       </FieldGroup>
 
+
       <FieldGroup>
         <FieldLabel></FieldLabel>
         <InputGroup>
-          <InputGroupInput {...register('file')} type={'file'} accept={'image/*'} />
+          <Controller
+            control={control}
+            name="file"
+            render={({ field }) => (
+              <InputGroupInput
+                type="file"
+                accept="image/*"
+                onChange={(e) => field.onChange(e.target.files?.[0])}
+              />
+            )}
+          />
           <InputGroupAddon><Camera /></InputGroupAddon>
         </InputGroup>
+        {errors.file ? (
+          <FieldError>{errors.file.message}</FieldError>
+        ) : (
+          <FieldDescription>Добавьте иконку агенство</FieldDescription>
+        )}
       </FieldGroup>
 
       {/* EMAILS */}

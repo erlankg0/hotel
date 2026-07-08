@@ -15,7 +15,7 @@ import { InputGroup, InputGroupInput, InputGroupAddon } from '@/shared/ui/input-
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/shared/ui/select';
 
 
-import type { AgencyCreateForm } from '../../model/dto';
+import type { AgencyCreateForm } from '../../model/schema';
 
 export function CreateForm() {
   const {

@@ -1,5 +1,7 @@
 import axiosInstance from '@/shared/axios/axios';
 
-export function post() {
-  return;
+import type { AgencyDto } from '../model/schema';
+
+export async function post(dto: AgencyDto) {
+  return await axiosInstance.post('agency', dto);
 }

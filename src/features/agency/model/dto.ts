@@ -1,19 +1,19 @@
 import { z } from 'zod';
 
+import { Category, CategoryAgency } from '@/shared/const/category';
 import { IsNotEmpty, fileSchema, phoneValidator } from '@/shared/validator';
 
-import { CategoryAgency, CategoryContact } from '../model/enum';
 
 const agencyEmailSchema = z.object({
   title: z.string(IsNotEmpty).min(2, 'Минимум 2 символа'),
   email: z.string().email('Неверный email'),
-  category: z.enum([CategoryContact.GENERAL, CategoryContact.CONTACT, CategoryContact.STOP_SALE, CategoryContact.INFO, CategoryContact.GUEST_RELATION, CategoryContact.OTHER]),
+  category: z.enum([Category.GENERAL, Category.CONTACT, Category.STOP_SALE, Category.INFO, Category.GUEST_RELATION, Category.OTHER]),
 });
 
 const agencyPhoneSchema = z.object({
   title: z.string(IsNotEmpty).min(4, 'Минимум 4 символа'),
   phone: phoneValidator,
-  category: z.enum([CategoryContact.GENERAL, CategoryContact.CONTACT, CategoryContact.STOP_SALE, CategoryContact.INFO, CategoryContact.GUEST_RELATION, CategoryContact.OTHER]),
+  category: z.enum([Category.GENERAL, Category.CONTACT, Category.STOP_SALE, Category.INFO, Category.GUEST_RELATION, Category.OTHER]),
 });
 
 

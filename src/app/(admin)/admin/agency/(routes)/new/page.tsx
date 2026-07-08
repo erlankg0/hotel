@@ -3,8 +3,9 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { CreateForm, agencyCreateSchema } from '@/features/agency';
+import { useEmailCreate } from '@/features/email';
+import { usePhoneCreate } from '@/features/phone';
 import { useUploadFile } from '@/shared/lib/hooks/useUploadFile';
-import { useEmail } from '@/features/email';
 import { WrapperForm } from '@/shared/providers/form';
 import { Button } from '@/shared/ui/button';
 import { Page } from '@/widget/page';
@@ -13,7 +14,9 @@ import type { AgencyCreateFormValues, AgencyCreateFromInput } from '@/features/a
 
 export default function AgencyNew() {
   const uploadFile = useUploadFile();
-  const {} = useEmail();
+  const { handleOnSubmit: handleOnSubmitEmail } = useEmailCreate();
+  const { handleOnSubmit: handleOnSubmitPhone } = usePhoneCreate();
+
   const handleSubmit = async (dto: AgencyCreateFormValues) => {
     console.log('handleSubmit');
     const { phones, emails, file, ...rest } = dto;
@@ -26,8 +29,12 @@ export default function AgencyNew() {
     console.log('file', file);
     console.log('rest', rest);
     const icon = await Promise.all([uploadFile.mutateAsync(file)]);
-    const emailIds = await Promise.all([...emails.map((mail) =>)]);
-
+    const emailIds = await Promise.all([...emails.map((mail) => {
+      handleOnSubmitEmail(mail);
+    })]);
+    const phoneIds = await Promise.all([...phones.map((phone) => {
+      handleOnSubmitPhone(phone);
+    })]);
   };
 
   return (

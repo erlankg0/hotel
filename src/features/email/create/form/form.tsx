@@ -17,10 +17,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { contactCategories } from '../../model/const';
 
 import type { Category } from '../../model/enum';
-import type { EmailDto } from '../../model/schema';
+import type { EmailType } from '../../model/schema';
 
 export function Create() {
-  const { register, formState: { errors }, watch, setValue } = useFormContext<EmailDto>();
+  const { register, formState: { errors }, watch, setValue } = useFormContext<EmailType>();
   const selectedCategory = watch('category');
 
   return (

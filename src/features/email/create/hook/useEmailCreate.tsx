@@ -4,30 +4,28 @@ import { toast } from 'sonner';
 
 import { handleAxiosError } from '@/shared/lib/handleAxiosError';
 
-import { QueryOptionRequest } from '../../model/query-option';
+import { QueryOptionEmail } from '../../model/query-option';
 
-import type { AmenityType } from '../../model/type';
-import type { AmenityDto } from '../model/dto';
+import type { EmailType } from '../../model/schema';
 
-export const useAmenityCreate = () => {
+export const useEmailCreate = () => {
   const router = useRouter();
   const queryClient = useQueryClient();
 
   const mutate = useMutation({
-    mutationFn: QueryOptionRequest.post,
+    mutationFn: QueryOptionEmail.post,
 
-    onMutate: async (data: AmenityDto) => {
+    onMutate: async (data: EmailType) => {
 
-      await queryClient.cancelQueries({ queryKey: [QueryOptionRequest.baseKey] });
+      await queryClient.cancelQueries({ queryKey: [QueryOptionEmail.baseKey] });
 
-      const previous = queryClient.getQueryData([QueryOptionRequest.baseKey]);
+      const previous = queryClient.getQueryData([QueryOptionEmail.baseKey]);
 
       const optimistic = {
         ...data,
-        id: new Date().getTime(),
       };
 
-      await queryClient.setQueryData([QueryOptionRequest.baseKey], (old?: AmenityType[]) => {
+      await queryClient.setQueryData([QueryOptionEmail.baseKey], (old?: EmailType[]) => {
         if (!old) return [optimistic];
         return [...old, optimistic];
       });
@@ -38,17 +36,17 @@ export const useAmenityCreate = () => {
     onError: async (error, _, context) => {
       await handleAxiosError(error);
       if (context?.previous) {
-        await queryClient.setQueryData([QueryOptionRequest.baseKey], context.previous);
+        await queryClient.setQueryData([QueryOptionEmail.baseKey], context.previous);
       }
     },
     onSuccess: async () => {
-      await queryClient.cancelQueries({ queryKey: [QueryOptionRequest.baseKey] });
+      await queryClient.cancelQueries({ queryKey: [QueryOptionEmail.baseKey] });
       toast.success('Успешно сохранено!');
       router.back();
     },
   });
 
-  function handleOnSubmit(dto: AmenityDto) {
+  function handleOnSubmit(dto: EmailType) {
     mutate.mutate({ ...dto });
   }
 

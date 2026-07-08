@@ -1,6 +1,7 @@
 import { Luggage, Camera, Plus, Trash2, User, Mails, Phone } from 'lucide-react';
 import { useFormContext, useFieldArray, Controller } from 'react-hook-form';
 
+import { Category , categoryOptions, contactCategories } from '@/shared/const/category';
 import { Button } from '@/shared/ui/button';
 import {
   FieldDescription,
@@ -13,8 +14,6 @@ import {
 import { InputGroup, InputGroupInput, InputGroupAddon } from '@/shared/ui/input-group';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/shared/ui/select';
 
-import { categoryOptions, contactCategories } from '../../model/const';
-import { CategoryContact } from '../../model/enum';
 
 import type { AgencyCreateForm } from '../../model/dto';
 
@@ -120,7 +119,7 @@ export function CreateForm() {
             type="button"
             variant="outline"
             size="sm"
-            onClick={() => emailAppend({ title: '', email: '', category: CategoryContact.GENERAL })}
+            onClick={() => emailAppend({ title: '', email: '', category: Category.GENERAL })}
           >
             <Plus size={18} className="mr-1" />
             Добавить
@@ -200,7 +199,7 @@ export function CreateForm() {
             type="button"
             variant="outline"
             size="sm"
-            onClick={() => phoneAppend({ title: '', phone: '', category: CategoryContact.GENERAL })}
+            onClick={() => phoneAppend({ title: '', phone: '', category: Category.GENERAL })}
           >
             <Plus size={18} className="mr-1" />
             Добавить

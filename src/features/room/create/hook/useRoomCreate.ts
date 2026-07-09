@@ -1,52 +1,24 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useRouter } from 'next/navigation';
-import { toast } from 'sonner';
-
-import { handleAxiosError } from '@/shared/lib/handleAxiosError';
+import { useBaseCreate } from "@/shared/hooks/useBaseCreate"
 
 import { QueryOptionRooms } from '../../model/query-option';
 
-import type { RoomDto } from '../../model/dto';
-import type { RoomType } from '../../model/type';
+import type { RoomDto, RoomType } from '../../model/schema';
 
-export const useRoomCreate = () => {
-  const router = useRouter();
-  const queryClient = useQueryClient();
-
-  const mutate = useMutation({
+export const useRoomCreate = ()=>{
+  const mutate = useBaseCreate<RoomDto, RoomType>({
+    queryKey: [QueryOptionRooms.baseKey],
     mutationFn: QueryOptionRooms.post,
-    onError: handleAxiosError,
-    onMutate: async (data: RoomDto) => {
+    backOnSuccess: true,
+    successMessage: "Успешно сохранено!"
+  })
 
-      await queryClient.cancelQueries({ queryKey: [QueryOptionRooms.baseKey] });
-
-      const previous = queryClient.getQueryData([QueryOptionRooms.baseKey]);
-
-      const optimistic = {
-        ...data,
-      };
-
-      await queryClient.setQueryData([QueryOptionRooms.baseKey], (old?: RoomType[]) => {
-        if (!old) return [optimistic];
-        return [...old, optimistic];
-      });
-
-      return { previous };
-
-    },
-    onSuccess: async () => {
-      await queryClient.cancelQueries({ queryKey: [QueryOptionRooms.baseKey] });
-      toast.success('Успешно сохранено!');
-      router.back();
-    },
-  });
-
-  function handleOnSubmit(dto: RoomDto) {
-    mutate.mutate({ ...dto });
+  
+  async function handleOnSubmit(dto: RoomDto) {
+   await mutate.handleOnSubmit({ ...dto });
   }
 
   return {
     isPending: mutate.isPending,
-    handleOnSubmit,
-  };
-};
+    handleOnSubmit: handleOnSubmit,
+  }
+}

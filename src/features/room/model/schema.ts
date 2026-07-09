@@ -37,6 +37,7 @@ export const RoomUpdateFormSchema = RoomSchema.omit({
 );
 
 export type RoomDto = z.infer<typeof RoomSchema>;
+export type RoomType = RoomDto & { id: string };
 export type RoomCreateFormInput = z.input<typeof RoomCreateFormSchema>;
 export type RoomCreateFormValues = z.output<typeof RoomCreateFormSchema>;
 export type RoomUpdateFormInput = z.input<typeof RoomUpdateFormSchema>;

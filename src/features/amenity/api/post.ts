@@ -1,7 +1,6 @@
 import axiosInstance from '@/shared/axios/axios';
 
-import type { AmenityDto } from '../create/model/dto';
-import type { AmenityType } from '../model/type';
+import type { AmenityType, AmenityDto } from "../model/schema" 
 import type { BaseResponse } from '@/shared/types/response';
 
 export async function post(dto: AmenityDto) {

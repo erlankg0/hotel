@@ -2,6 +2,7 @@ import { Mails } from 'lucide-react';
 import { useFormContext } from 'react-hook-form';
 
 
+import  { contactCategories } from '@/shared/const/category';
 import {
   FieldSet,
   FieldLabel,
@@ -14,10 +15,8 @@ import {
 import { InputGroup, InputGroupInput, InputGroupAddon } from '@/shared/ui/input-group';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/shared/ui/select';
 
-import { contactCategories } from '../../model/const';
-
-import type { Category } from '../../model/enum';
 import type { EmailDto } from '../../model/schema';
+import type { Category } from '@/shared/const/category';
 
 export function Create() {
   const { register, formState: { errors }, watch, setValue } = useFormContext<EmailDto>();

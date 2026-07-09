@@ -5,13 +5,13 @@ import { handleAxiosError } from '@/shared/lib/handleAxiosError';
 
 import { QueryOptionRequest } from '../../model/query-option';
 
-import type { RequestType } from '../../model/type';
+import type { RequestType } from '../../model/schema';
 
 export const useRequestDelete = () => {
   const queryClient = useQueryClient();
 
   const mutate = useMutation({
-    mutationFn: (id: string) => QueryOptionRequest.delete(id),
+    mutationFn: (id: string) => QueryOptionRequest.remove(id),
     onMutate: async (id: string) => {
       await queryClient.cancelQueries({ queryKey: [QueryOptionRequest.baseKey] });
 

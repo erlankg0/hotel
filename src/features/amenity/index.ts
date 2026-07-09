@@ -1,3 +1,4 @@
-export { useAmenityCreate, AmenitySchema, CreateForm } from './create';
-export type { AmenityDto } from './create';
+export { useAmenityCreate, CreateForm } from './create';
+export type { AmenityDto, AmenityType } from './model/schema';
+export { AmenitySchema } from './model/schema';
 export { useAmenityDelete } from './delete';

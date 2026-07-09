@@ -32,7 +32,7 @@ import { categoryOptions } from '../../model/const';
 import styles from './update.module.scss';
 
 import type { Category } from '../../model/const';
-import type { RoomUpdateFormInput } from '../../model/dto';
+import type { RoomUpdateFormInput } from '../../model/schema';
 import type { FileType } from '@/shared/types/types';
 
 interface UpdateFormProps {

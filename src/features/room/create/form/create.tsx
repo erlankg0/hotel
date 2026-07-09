@@ -27,7 +27,7 @@ import { Textarea } from '@/shared/ui/textarea';
 import { categoryOptions } from '../../model/const';
 
 import type { Category } from '../../model/const';
-import type { RoomCreateFormInput } from '../../model/dto';
+import type { RoomCreateFormInput } from '../../model/schema';
 
 
 export function CreateForm() {

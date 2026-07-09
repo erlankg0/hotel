@@ -6,7 +6,7 @@ import { handleAxiosError } from '@/shared/lib/handleAxiosError';
 
 import { QueryOptionRooms } from '../../model/query-option';
 
-import type { RoomType } from '../../model/type';
+import type { RoomType } from '../../model/schema';
 
 export const useRoomDelete = () => {
   const router = useRouter();

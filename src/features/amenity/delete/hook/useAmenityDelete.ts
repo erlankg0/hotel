@@ -3,22 +3,22 @@ import { toast } from 'sonner';
 
 import { handleAxiosError } from '@/shared/lib/handleAxiosError';
 
-import { QueryOptionRequest } from '../../model/query-option';
+import { QueryOptionAmenity } from '../../model/query-option';
 
-import type { AmenityType } from '../../model/type';
+import type { AmenityType } from '../../model/schema';
 
 export const useAmenityDelete = () => {
   const queryClient = useQueryClient();
 
   const mutate = useMutation({
-    mutationFn: (id: string) => QueryOptionRequest.delete(id),
+    mutationFn: (id: string) => QueryOptionAmenity.delete(id),
     onMutate: async (id: string) => {
-      await queryClient.cancelQueries({ queryKey: [QueryOptionRequest.baseKey] });
+      await queryClient.cancelQueries({ queryKey: [QueryOptionAmenity.baseKey] });
 
-      const previous = queryClient.getQueryData([QueryOptionRequest.baseKey]);
+      const previous = queryClient.getQueryData([QueryOptionAmenity.baseKey]);
 
       queryClient.setQueryData(
-        [QueryOptionRequest.baseKey],
+        [QueryOptionAmenity.baseKey],
         (old?: AmenityType[]) => old?.filter(item => item.id != id),
       );
 
@@ -26,7 +26,7 @@ export const useAmenityDelete = () => {
     },
     onSuccess: async () => {
       toast.info('Успешно удалено!');
-      await queryClient.invalidateQueries({ queryKey: [QueryOptionRequest.baseKey] });
+      await queryClient.invalidateQueries({ queryKey: [QueryOptionAmenity.baseKey] });
     },
     onError: handleAxiosError,
   });

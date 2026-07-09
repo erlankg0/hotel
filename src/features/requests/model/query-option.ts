@@ -1,8 +1,8 @@
-import { createApi } from '../create/api/create';
-import { deleteApi } from '../delete/api/delete';
+import { delete_ } from '../api/delete';
+import { post } from '../api/post';
 
 export const QueryOptionRequest = {
   baseKey: 'requests',
-  create: createApi,
-  delete: (id: string) => deleteApi(id),
+  post: post,
+  remove: (id: string) => delete_(id),
 };

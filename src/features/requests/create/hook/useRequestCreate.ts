@@ -1,53 +1,21 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useRouter } from 'next/navigation';
-import { toast } from 'sonner';
-
-import { handleAxiosError } from '@/shared/lib/handleAxiosError';
+import { useBaseCreate } from "@/shared/hooks/useBaseCreate";
 
 import { QueryOptionRequest } from '../../model/query-option';
-import { createApi } from '../api/create';
 
-import type { RequestType } from '../../model/type';
-import type { RequestDto } from '../model/dto';
+import type { RequestType, RequestDto } from '../../model/schema';
 
 export const useRequestCreate = () => {
-  const router = useRouter();
-  const queryClient = useQueryClient();
-
-  const mutate = useMutation({
-    mutationFn: createApi,
-    onError: handleAxiosError,
-    onMutate: async (data: RequestDto) => {
-
-      await queryClient.cancelQueries({ queryKey: [QueryOptionRequest.baseKey] });
-
-      const previous = queryClient.getQueryData([QueryOptionRequest.baseKey]);
-
-      const optimistic = {
-        ...data,
-      };
-
-      await queryClient.setQueryData([QueryOptionRequest.baseKey], (old?: RequestType[]) => {
-        if (!old) return [optimistic];
-        return [...old, optimistic];
-      });
-
-      return { previous };
-
-    },
-    onSuccess: async () => {
-      await queryClient.cancelQueries({ queryKey: [QueryOptionRequest.baseKey] });
-      toast.success('Успешно сохранено!');
-      router.back();
-    },
+  
+  const mutate = useBaseCreate<RequestDto, RequestType>({
+    queryKey: [QueryOptionRequest.baseKey],
+    mutationFn: QueryOptionRequest.post,
   });
-
-  function handleOnSubmit(dto: RequestDto) {
-    mutate.mutate({ ...dto });
-  }
 
   return {
     isPending: mutate.isPending,
-    handleOnSubmit,
+    handleOnSubmit: async (dto: RequestDto)=>{
+      const response = await mutate.handleOnSubmit(dto);
+      return response.data.data;
+    }
   };
 };

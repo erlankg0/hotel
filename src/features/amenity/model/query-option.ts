@@ -1,8 +1,8 @@
+import { delete_ } from '../api/delete';
 import { post } from '../api/post';
-import { deleteApi } from '../delete/api/delete';
 
-export const QueryOptionRequest = {
+export const QueryOptionAmenity = {
   baseKey: 'amenity',
   post: post,
-  delete: (id: string) => deleteApi(id),
+  delete: (id: string) => delete_(id),
 };

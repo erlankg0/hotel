@@ -44,6 +44,7 @@ export const agencyCreateSchema = agencySchema
   });
 
 export type AgencyDto = z.infer<typeof agencySchema>;
+export type AgencyType = AgencyDto & { id: string }
 export type AgencyCreateFromInput = z.input<typeof agencyCreateSchema>
 export type AgencyCreateFormValues = z.output<typeof agencyCreateSchema>
 

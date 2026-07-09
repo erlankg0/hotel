@@ -1,9 +1,0 @@
-export enum Category {
-  GENERAL = 'GENERAL',
-  GUEST_RELATION = 'GUEST_RELATION',
-  INFO = 'INFO',
-  STOP_SALE = 'STOP_SALE',
-  CONTACT = 'CONTACT',
-  OTHER = 'OTHER',
-}
-

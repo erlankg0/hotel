@@ -6,8 +6,7 @@ import { handleAxiosError } from '@/shared/lib/handleAxiosError';
 
 import { QueryOptionRooms } from '../../model/query-option';
 
-import type { RoomDto } from '../../model/dto';
-import type { RoomType } from '../../model/type';
+import type { RoomDto, RoomType } from '../../model/schema';
 
 interface UpdateRoomArgs {
   id: string;

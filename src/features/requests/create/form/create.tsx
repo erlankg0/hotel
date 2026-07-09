@@ -12,7 +12,7 @@ import {
 } from '@/shared/ui/field';
 import { InputGroup, InputGroupAddon, InputGroupInput } from '@/shared/ui/input-group';
 
-import type { RequestDto } from '../model/dto';
+import type { RequestDto } from '../../model/schema';
 
 export function CreateForm() {
   const { register, formState: { errors } } = useFormContext<RequestDto>();

@@ -1,5 +1,3 @@
-import type { MouseEvent } from 'react';
-
 import {
   Pagination,
   PaginationContent,
@@ -9,6 +7,9 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from '../pagination';
+
+import type { MouseEvent } from 'react';
+
 
 type Props = {
   page: number;

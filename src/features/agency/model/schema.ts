@@ -30,6 +30,10 @@ export const agencySchema = z.object({
     z.string().uuid({ message: 'Неверный формат UUID' }),
   ).min(1, { message: 'Необходимо указать хотя бы один email' }),
 
+  phones: z.array(
+    z.string().uuid({ message: 'Неверный формат UUID' }),
+  ).min(1, { message: 'Необходимо указать хотя бы один номер телефона' }),
+
   iconId: z.string()
     .optional()
     .or(z.literal('')),

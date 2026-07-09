@@ -16,7 +16,7 @@ export default function AgencyNew() {
   const uploadFile = useUploadFile();
   const { handleOnSubmit: handleOnSubmitEmail } = useEmailCreate();
   const { handleOnSubmit: handleOnSubmitPhone } = usePhoneCreate();
-  const {} = useAgencyCreate();
+  const { handleOnSubmit, isPending } = useAgencyCreate();
 
   const handleSubmit = async (dto: AgencyCreateFormValues) => {
     const { phones, emails, file, ...rest } = dto;
@@ -27,6 +27,7 @@ export default function AgencyNew() {
     const phoneIds = await Promise.all([...phones.map((phone) => {
       return handleOnSubmitPhone(phone);
     })]);
+    handleOnSubmit({ ...rest, emailIds: emailIds, phones: phoneIds });
   };
 
   return (
@@ -39,7 +40,7 @@ export default function AgencyNew() {
         }}
       >
         <CreateForm />
-        <Button>Save</Button>
+        <Button disabled={isPending}>Save</Button>
       </WrapperForm>
     </Page>
   );

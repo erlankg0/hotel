@@ -12,3 +12,6 @@ export const phoneSchema = z.object({
 export type PhoneDto = z.infer<typeof phoneSchema>
 export type PhoneFormInput = z.input<typeof phoneSchema>
 export type PhoneFormValues = z.output<typeof phoneSchema>
+export type PhoneType = PhoneDto & {
+  id: number;
+};

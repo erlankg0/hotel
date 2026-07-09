@@ -19,24 +19,14 @@ export default function AgencyNew() {
   const {} = useAgencyCreate();
 
   const handleSubmit = async (dto: AgencyCreateFormValues) => {
-    console.log('handleSubmit');
     const { phones, emails, file, ...rest } = dto;
-    emails.forEach(email => {
-      console.log('email', email);
-    });
-    phones.forEach(phone => {
-      console.log('phone', phone);
-    });
-    console.log('file', file);
-    console.log('rest', rest);
     const icon = await Promise.all([uploadFile.mutateAsync(file)]);
     const emailIds = await Promise.all([...emails.map((mail) => {
-      handleOnSubmitEmail(mail);
+      return handleOnSubmitEmail(mail);
     })]);
     const phoneIds = await Promise.all([...phones.map((phone) => {
-      handleOnSubmitPhone(phone);
+      return handleOnSubmitPhone(phone);
     })]);
-
   };
 
   return (

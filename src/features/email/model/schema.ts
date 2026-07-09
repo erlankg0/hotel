@@ -10,4 +10,7 @@ export const emailSchema = z.object({
   category: z.enum([Category.GENERAL, Category.CONTACT, Category.STOP_SALE, Category.INFO, Category.GUEST_RELATION, Category.OTHER]),
 });
 
-export type EmailType = z.infer<typeof emailSchema>
+export type EmailDto = z.infer<typeof emailSchema>
+export type EmailType = EmailDto & {
+  id: string;
+}

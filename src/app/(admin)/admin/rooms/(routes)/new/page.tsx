@@ -52,7 +52,7 @@ export default function New() {
           className={styles.button}
         >
           {isPending || uploadFile.isPending ? (
-            <span className={styles.loader}><Loader size={14} />Сохранение...</span>
+            <span className={'loader'}><Loader size={14} />Сохранение...</span>
           ) : (
             'Сохранить'
           )}

@@ -321,3 +321,21 @@ button[type="button"] {
 .margin_top {
     margin-top: var(--header-height);
 }
+
+
+.loader {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: .5rem;
+
+    & svg {
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+}

@@ -51,20 +51,3 @@
   cursor: pointer;
   font-weight: 600;
 }
-
-.loader {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: .5rem;
-
-  & svg {
-    animation: spin 1s linear infinite;
-  }
-
-  @keyframes spin {
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-}

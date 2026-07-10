@@ -1,6 +1,6 @@
 'use client';
-
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Loader } from 'lucide-react';
 
 import { CreateForm, agencyCreateSchema, useAgencyCreate } from '@/features/agency';
 import { useEmailCreate } from '@/features/email';
@@ -20,14 +20,20 @@ export default function AgencyNew() {
 
   const handleSubmit = async (dto: AgencyCreateFormValues) => {
     const { phones, emails, file, ...rest } = dto;
-    const icon = await Promise.all([uploadFile.mutateAsync(file)]);
-    const emailIds = await Promise.all([...emails.map((mail) => {
-      return handleOnSubmitEmail(mail);
-    })]);
-    const phoneIds = await Promise.all([...phones.map((phone) => {
-      return handleOnSubmitPhone(phone);
-    })]);
-    handleOnSubmit({ ...rest, emailIds: emailIds, phones: phoneIds });
+
+    const [icon, emaiIds, phoneIds] = await Promise.all([
+      uploadFile.mutateAsync(file),
+      Promise.all(emails.map(handleOnSubmitEmail)),
+      Promise.all(phones.map(handleOnSubmitPhone)),
+    ]);
+
+    await handleOnSubmit({
+      ...rest,
+      iconId: icon?.id,
+      emailIds: emaiIds.map(i => i.id),
+      phones: phoneIds.map(i => i.id),
+    });
+
   };
 
   return (
@@ -40,7 +46,13 @@ export default function AgencyNew() {
         }}
       >
         <CreateForm />
-        <Button disabled={isPending}>Save</Button>
+        <Button disabled={isPending}>
+          {isPending || uploadFile.isPending ? (
+            <span className={'loader'}><Loader size={14} />Сохранение...</span>
+          ) : (
+            'Сохранить'
+          )}
+        </Button>
       </WrapperForm>
     </Page>
   );

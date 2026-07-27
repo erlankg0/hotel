@@ -16,6 +16,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 
 
 import type { AgencyCreateForm } from '../../model/schema';
+import styles from './form.module.scss';
 
 export function CreateForm() {
   const {
@@ -34,7 +35,7 @@ export function CreateForm() {
   });
 
   return (
-    <FieldSet>
+    <FieldSet className={styles.form}>
       <article>
         <FieldTitle className={'text-xl font-bold text-center'}>Создание Оператора</FieldTitle>
       </article>

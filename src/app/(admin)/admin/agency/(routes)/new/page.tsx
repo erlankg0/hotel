@@ -21,19 +21,24 @@ export default function AgencyNew() {
   const handleSubmit = async (dto: AgencyCreateFormValues) => {
     const { phones, emails, file, ...rest } = dto;
 
-    const [icon, emaiIds, phoneIds] = await Promise.all([
-      uploadFile.mutateAsync(file),
-      Promise.all(emails.map(handleOnSubmitEmail)),
-      Promise.all(phones.map(handleOnSubmitPhone)),
-    ]);
+   console.log('1');
 
-    await handleOnSubmit({
-      ...rest,
-      iconId: icon?.id,
-      emailIds: emaiIds.map(i => i.id),
-      phones: phoneIds.map(i => i.id),
-    });
+const [icon, emailIds, phoneIds] = await Promise.all([
+  uploadFile.mutateAsync(file),
+  Promise.all(emails.map(handleOnSubmitEmail)),
+  Promise.all(phones.map(handleOnSubmitPhone)),
+]);
 
+console.log('2', icon, emailIds, phoneIds);
+
+const result = await handleOnSubmit({
+  ...rest,
+  iconId: icon?.id,
+  emailIds: emailIds.map(i => i.id),
+  phones: phoneIds.map(i => i.id),
+});
+
+console.log('3', result);
   };
 
   return (

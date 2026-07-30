@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 import { Category } from '@/shared/const/category';
-import { phoneValidator, IsNotEmpty } from '@/shared/validator';
+import { phoneValidator, IsNotEmpty } from '@/shared/zod';
 
 export const phoneSchema = z.object({
   title: z.string(IsNotEmpty).min(4, 'Минимум 4 символа'),

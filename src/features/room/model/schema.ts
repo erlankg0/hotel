@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { IsNotEmpty, fileSchema } from '@/shared/validator';
+import { IsNotEmpty, fileSchema } from '@/shared/zod';
 
 import { Category } from './const';
 

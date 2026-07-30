@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 import { Category } from '@/shared/const/category';
-import { IsNotEmpty } from '@/shared/validator';
+import { IsNotEmpty } from '@/shared/zod';
 
 
 export const emailSchema = z.object({

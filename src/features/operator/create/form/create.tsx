@@ -4,6 +4,7 @@ import { Luggage } from 'lucide-react';
 import { useFormContext, useFieldArray, Controller } from 'react-hook-form';
 
 import { Category, contactCategories } from '@/shared/const/category';
+import { Button } from '@/shared/ui/button';
 import {
   FieldDescription,
   FieldError,
@@ -11,6 +12,7 @@ import {
   FieldLabel,
   FieldSet,
   FieldTitle,
+  FieldContent,
 } from '@/shared/ui/field';
 import {
   InputGroup,
@@ -36,6 +38,7 @@ export function Create() {
     remove: phoneRemove,
   } = useFieldArray({
     name: 'phones',
+    control,
   });
 
   const file = watch('file');
@@ -126,56 +129,59 @@ export function Create() {
         <div className="flex flex-col gap-4">
 
           {phonesFields.map((field, index) => (
-            <div
+            <FieldContent
               key={field.id}
               className={'rounded-lg border p-4 space-y-3'}
             >
-
-              <Controller
-                control={control}
-                render={({ field }) => (
-                  <Select value={field.value} onOpenChange={field.onChange}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Выберите категорию" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectContent>
+              <FieldLabel>
+                Телефон + {index + 1}
+              </FieldLabel>
+              <div>
+                <Controller
+                  control={control}
+                  render={({ field }) => (
+                    <Select
+                      value={field.value}
+                      onValueChange={field.onChange}
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder="Выберите категорию" />
+                      </SelectTrigger>
+                      <SelectContent className={'w-full min-w-1/2'}>
                         {contactCategories.map(cat => (
                           <SelectItem key={cat.value} value={cat.value}>
                             {cat.label}
                           </SelectItem>
                         ))}
                       </SelectContent>
-                    </SelectContent>
-                  </Select>
-                )}
-                name={`phones.${index}.category`} />
+                    </Select>
+                  )}
+                  name={`phones.${index}.category`} />
+                <div>
+                  <FieldLabel>
+                    Название
+                  </FieldLabel>
 
-              {/* Title */}
-              <div>
-                <FieldLabel>
-                  Название
-                </FieldLabel>
+                  <InputGroup>
+                    <InputGroupInput
+                      {...register(`phones.${index}.title`)}
+                      placeholder="Sales Department"
+                    />
+                  </InputGroup>
 
-                <InputGroup>
-                  <InputGroupInput
-                    {...register(`phones.${index}.title`)}
-                    placeholder="Sales Department"
-                  />
-                </InputGroup>
-
-                {errors.phones?.[index]?.title && (
-                  <FieldError>
-                    {errors.phones[index]?.title?.message}
-                  </FieldError>
-                )}
+                  {errors.phones?.[index]?.title && (
+                    <FieldError>
+                      {errors.phones[index]?.title?.message}
+                    </FieldError>
+                  )}
+                </div>
               </div>
 
-            </div>
+            </FieldContent>
           ))}
 
 
-          <button
+          <Button
             type="button"
             onClick={() =>
               phoneAppend({
@@ -193,7 +199,7 @@ export function Create() {
       "
           >
             + Добавить телефон
-          </button>
+          </Button>
 
         </div>
       </FieldGroup>

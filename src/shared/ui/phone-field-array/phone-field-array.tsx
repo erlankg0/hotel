@@ -1,4 +1,5 @@
-import { Plus, User } from 'lucide-react';
+import { Plus, Trash2, User } from 'lucide-react';
+import { useCallback, useEffect } from 'react';
 import { Controller, useFieldArray, get } from 'react-hook-form';
 
 import { Category, contactCategories } from '@/shared/const/category';
@@ -6,23 +7,53 @@ import { Button } from '@/shared/ui/button';
 import { FieldDescription, FieldError } from '@/shared/ui/field';
 import { InputGroup, InputGroupAddon, InputGroupInput } from '@/shared/ui/input-group';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/shared/ui/select';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableFooter, TableRow, TableCaption } from '@/shared/ui/table';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableFooter, TableRow } from '@/shared/ui/table';
 
 import type { Props } from './model/types';
-import type { Path, FieldValues } from 'react-hook-form';
+import type { ArrayPath, FieldArray, FieldValues, Path } from 'react-hook-form';
 
+const MIN_PHONES = 2;
+
+function createDefaultPhoneRow<T extends FieldValues>(): FieldArray<T, ArrayPath<T>> {
+  return {
+    title: '',
+    phone: '',
+    category: Category.GENERAL,
+  } as FieldArray<T, ArrayPath<T>>;
+}
 
 export function PhoneFieldArray<T extends FieldValues>({
                                                          control,
                                                          register,
                                                          errors,
                                                          path,
-                                                         labels = 'Телефоны',
                                                        }: Props<T>) {
   const { fields, append, remove } = useFieldArray({
     control,
     name: path,
   });
+
+  useEffect(() => {
+    if (fields.length < MIN_PHONES) {
+      const toAdd = MIN_PHONES - fields.length;
+      for (let i = 0; i < toAdd; i++) {
+        append(createDefaultPhoneRow<T>());
+      }
+    }
+  }, [append, fields.length]);
+
+  const canRemove = fields.length > MIN_PHONES;
+
+  const handleAdd = useCallback(() => {
+    append(createDefaultPhoneRow<T>());
+  }, [append]);
+
+  const handleRemove = useCallback(
+    (index: number) => {
+      remove(index);
+    },
+    [remove],
+  );
 
   return (
     <Table>
@@ -81,12 +112,12 @@ export function PhoneFieldArray<T extends FieldValues>({
               <TableCell>
                 <Controller
                   control={control}
-                  render={({ field }) => (
+                  render={({ field: selectField }) => (
                     <Select
-                      value={field.value}
-                      onValueChange={field.onChange}
+                      value={selectField.value}
+                      onValueChange={selectField.onChange}
                     >
-                      <SelectTrigger>
+                      <SelectTrigger className="w-full">
                         <SelectValue placeholder="Выберите категорию" />
                       </SelectTrigger>
                       <SelectContent className={'w-full min-w-1/2'}>
@@ -98,30 +129,43 @@ export function PhoneFieldArray<T extends FieldValues>({
                       </SelectContent>
                     </Select>
                   )}
-                  name={`${field}.${index}.category` as Path<T>} />
+                  name={`${path}.${index}.category` as Path<T>} />
                 {categoryError ? (
                   <FieldError>{categoryError?.message}</FieldError>
                 ) : (
-                  <FieldDescription>Выберите правильную категори</FieldDescription>
+                  <FieldDescription>Выберите правильную категорию</FieldDescription>
                 )}
               </TableCell>
-              <TableCell>
-                № {index + 1}
+
+              <TableCell className="text-end">
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="icon"
+                  className={'hover:bg-red-400 transition'}
+                  disabled={!canRemove}
+                  onClick={() => handleRemove(index)}
+                  title={canRemove ? 'Удалить телефон' : `Минимум ${MIN_PHONES} телефона`}
+                >
+                  <Trash2 size={18} />
+                </Button>
               </TableCell>
             </TableRow>
           );
         })}
       </TableBody>
       <TableFooter>
-        <Button
-          type="button"
-          variant="outline"
-          size="sm"
-          onClick={() => append({ title: '', email: '', category: Category.GENERAL })}
-        >
-          <Plus size={18} className="mr-1" />
-          Добавить
-        </Button>
+        <TableCell colSpan={5}>
+          <Button
+            type="button"
+            variant="outline"
+            className={'w-full min-w-1/2 border-2 border-dashed border-gray-200'}
+            onClick={handleAdd}
+          >
+            <Plus size={18} className="mr-1" />
+            Добавить
+          </Button>
+        </TableCell>
       </TableFooter>
     </Table>
   );

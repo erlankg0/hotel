@@ -8,3 +8,5 @@ export const PhoneSchema = z.object({
   phone: phoneValidator,
   category: z.enum([Category.GENERAL, Category.CONTACT, Category.STOP_SALE, Category.INFO, Category.GUEST_RELATION, Category.OTHER]),
 });
+
+export type PhoneType = z.infer<typeof PhoneSchema>;

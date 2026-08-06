@@ -17,7 +17,7 @@ import {
   InputGroupAddon,
 } from '@/shared/ui/input-group';
 import { PhoneFieldArray } from '@/shared/ui/phone-field-array/phone-field-array';
-
+import type { PhoneType } from '@/shared/zod';
 import type { OperatorFormInput } from '../../model/types';
 
 export function Create() {
@@ -28,7 +28,7 @@ export function Create() {
     control,
     watch,
   } = useFormContext<OperatorFormInput>();
-  
+
   const file = watch('file');
 
   return (
@@ -109,7 +109,7 @@ export function Create() {
         )}
 
       </FieldGroup>
-      <PhoneFieldArray register={register} control={control} path={"phones"} errors={errors} />
+      <PhoneFieldArray register={register} control={control} path={'phones'} errors={errors} />
 
       <FieldGroup>
         <FieldLabel>Э-почты</FieldLabel>

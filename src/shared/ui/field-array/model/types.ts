@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import type {
   ArrayPath,
   Control,
@@ -13,3 +14,9 @@ export interface Props<T extends FieldValues> {
   path: ArrayPath<T>;
   labels?: string;
 }
+
+export type FieldTableProps = {
+  children: ReactNode;
+  valueLabel: string;
+  handleAdd: () => void;
+};

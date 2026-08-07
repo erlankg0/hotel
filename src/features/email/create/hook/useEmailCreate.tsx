@@ -8,7 +8,8 @@ export const useEmailCreate = () => {
   const mutation = useBaseCreate<EmailDto, EmailType>({
     queryKey: [QueryOptionEmail.baseKey],
     mutationFn: QueryOptionEmail.post,
-    backOnSuccess: false
+    backOnSuccess: false,
+    isSuccessMessage: false,
   });
 
   return {

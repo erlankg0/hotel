@@ -11,13 +11,13 @@ import {
   FieldSet,
   FieldTitle,
 } from '@/shared/ui/field';
+import { PhoneFieldArray, EmailFieldArray } from '@/shared/ui/field-array';
 import {
   InputGroup,
   InputGroupInput,
   InputGroupAddon,
 } from '@/shared/ui/input-group';
-import { PhoneFieldArray } from '@/shared/ui/phone-field-array/phone-field-array';
-import type { PhoneType } from '@/shared/zod';
+
 import type { OperatorFormInput } from '../../model/types';
 
 export function Create() {
@@ -109,10 +109,15 @@ export function Create() {
         )}
 
       </FieldGroup>
-      <PhoneFieldArray register={register} control={control} path={'phones'} errors={errors} />
+
+      <FieldGroup>
+        <FieldLabel>Телефоны</FieldLabel>
+        <PhoneFieldArray register={register} control={control} path={'phones'} errors={errors} />
+      </FieldGroup>
 
       <FieldGroup>
         <FieldLabel>Э-почты</FieldLabel>
+        <EmailFieldArray register={register} control={control} path={'emails'} errors={errors} />
       </FieldGroup>
 
     </FieldSet>

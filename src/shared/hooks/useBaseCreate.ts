@@ -10,12 +10,13 @@ import type { AxiosResponse } from 'axios';
 interface UseBaseCreateProps<TDto, TResponse> {
   queryKey: readonly unknown[];
   mutationFn: (
-    dto: TDto
+    dto: TDto,
   ) => Promise<AxiosResponse<BaseResponse<TResponse>>>;
 
   successMessage?: string;
   optimistic?: boolean;
   backOnSuccess?: boolean;
+  isSuccessMessage?: boolean;
 }
 
 export function useBaseCreate<TDto, TResponse>({
@@ -24,6 +25,7 @@ export function useBaseCreate<TDto, TResponse>({
                                                  successMessage = 'Успешно сохранено!',
                                                  optimistic = true,
                                                  backOnSuccess = true,
+                                                 isSuccessMessage = true,
                                                }: UseBaseCreateProps<TDto, TResponse>) {
   const router = useRouter();
   const queryClient = useQueryClient();
@@ -57,7 +59,9 @@ export function useBaseCreate<TDto, TResponse>({
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey });
 
-      toast.success(successMessage);
+      if (isSuccessMessage) {
+        toast.success(successMessage);
+      }
 
       if (backOnSuccess) {
         router.back();

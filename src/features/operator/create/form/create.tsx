@@ -3,6 +3,7 @@
 import { Luggage } from 'lucide-react';
 import { useFormContext } from 'react-hook-form';
 
+import { Card, CardHeader, CardFooter, CardContent, CardTitle } from '@/shared/ui/card';
 import {
   FieldDescription,
   FieldError,
@@ -10,6 +11,7 @@ import {
   FieldLabel,
   FieldSet,
   FieldTitle,
+  FieldSeparator,
 } from '@/shared/ui/field';
 import { PhoneFieldArray, EmailFieldArray } from '@/shared/ui/field-array';
 import {
@@ -32,41 +34,43 @@ export function Create() {
   const file = watch('file');
 
   return (
-    <FieldSet>
-      <article>
-        <FieldTitle className="text-xl font-bold text-center">
-          Создание Оператора
-        </FieldTitle>
-      </article>
-
-      <FieldGroup>
+    <FieldSet className={'py-8'}>
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-xl font-bold text-center">
+            Создание Оператора
+          </CardTitle>
+        </CardHeader>
+      </Card>
+      <Card>
         <FieldLabel htmlFor="title">
-          Title
+          Названия
         </FieldLabel>
+        <CardContent>
+          <InputGroup>
+            <InputGroupInput
+              {...register('title')}
+              placeholder="anex Tour"
+              id="title"
+            />
 
-        <InputGroup>
-          <InputGroupInput
-            {...register('title')}
-            placeholder="anex Tour"
-            id="title"
-          />
+            <InputGroupAddon>
+              <Luggage />
+            </InputGroupAddon>
+          </InputGroup>
 
-          <InputGroupAddon>
-            <Luggage />
-          </InputGroupAddon>
-        </InputGroup>
-
-        {errors.title ? (
-          <FieldError>
-            {errors.title.message}
-          </FieldError>
-        ) : (
-          <FieldDescription>
-            Введите уникальное название
-          </FieldDescription>
-        )}
-      </FieldGroup>
-
+          {errors.title ? (
+            <FieldError>
+              {errors.title.message}
+            </FieldError>
+          ) : (
+            <FieldDescription>
+              Введите уникальное название
+            </FieldDescription>
+          )}
+        </CardContent>
+      </Card>
+      <FieldSeparator />
 
       <FieldGroup>
         <FieldLabel htmlFor="file">
@@ -90,7 +94,6 @@ export function Create() {
           />
         </InputGroup>
 
-
         {errors.file ? (
           <FieldError>
             {errors.file.message}
@@ -109,17 +112,17 @@ export function Create() {
         )}
 
       </FieldGroup>
-
+      <FieldSeparator />
       <FieldGroup>
         <FieldLabel>Телефоны</FieldLabel>
         <PhoneFieldArray register={register} control={control} path={'phones'} errors={errors} />
       </FieldGroup>
-
+      <FieldSeparator />
       <FieldGroup>
         <FieldLabel>Э-почты</FieldLabel>
         <EmailFieldArray register={register} control={control} path={'emails'} errors={errors} />
       </FieldGroup>
-
+      <FieldSeparator />
     </FieldSet>
   );
 }

@@ -1,4 +1,4 @@
-import { Trash2, User } from 'lucide-react';
+import { Trash2, User, Mail } from 'lucide-react';
 import { useCallback, useEffect } from 'react';
 import { Controller, useFieldArray, get } from 'react-hook-form';
 
@@ -73,7 +73,7 @@ export function EmailFieldArray<T extends FieldValues>({
 
             <TableCell>
               <InputGroup>
-                <InputGroupInput  {...register(`${path}.${index}.title` as Path<T>)} />
+                <InputGroupInput type={'text'} {...register(`${path}.${index}.title` as Path<T>)} />
                 <InputGroupAddon>
                   <User />
                 </InputGroupAddon>
@@ -87,9 +87,9 @@ export function EmailFieldArray<T extends FieldValues>({
 
             <TableCell>
               <InputGroup>
-                <InputGroupInput type={'tel'} {...register(`${path}.${index}.email` as Path<T>)} />
+                <InputGroupInput type={'email'} {...register(`${path}.${index}.email` as Path<T>)} />
                 <InputGroupAddon>
-                  <User />
+                  <Mail />
                 </InputGroupAddon>
               </InputGroup>
               {emailError ? (

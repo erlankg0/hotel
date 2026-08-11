@@ -1,4 +1,4 @@
-import { Trash2, User } from 'lucide-react';
+import { Trash2, User, Phone } from 'lucide-react';
 import { useCallback, useEffect } from 'react';
 import { Controller, useFieldArray, get } from 'react-hook-form';
 
@@ -87,7 +87,7 @@ export function PhoneFieldArray<T extends FieldValues>({
               <InputGroup>
                 <InputGroupInput type={'tel'} {...register(`${path}.${index}.phone` as Path<T>)} />
                 <InputGroupAddon>
-                  <User />
+                  <Phone />
                 </InputGroupAddon>
               </InputGroup>
               {phoneError ? (

@@ -16,7 +16,7 @@ export default function AgencyPage() {
     <Page
       headerSlog={
         <PageHeader
-          title={'Операторы'}
+          title={'Агенство'}
           searchValue={search}
           onSearchOnChange={setSearch}
           slot={

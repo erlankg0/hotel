@@ -17,7 +17,7 @@ export const useOperator = (search?: string) => {
     ...QueryOptionOperator.get({ title: debouncedSearch, page }),
   });
 
-  const result = data?.data.data;
+  const result = data?.data.data || [];
 
   return {
     data: result,

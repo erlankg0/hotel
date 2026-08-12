@@ -1,15 +1,13 @@
-import type {
-  ColumnDef,
-  TableFeatures,
-} from '@tanstack/react-table';
+import type { ColumnDef, RowData, TableFeatures, TableOptions } from '@tanstack/react-table';
+
 
 export type DataTableProps<
-  TData extends TableFeatures,
   TFeatures extends TableFeatures,
+  TData extends RowData,
 > = {
   data: TData[];
-  columns: ColumnDef<TData, TFeatures>[];
-  features?: TFeatures;
-  caption?: string;
+  columns: TableOptions<TFeatures, TData>['columns'];
+  features: TableOptions<TFeatures, TData>['features'];
   isLoading?: boolean;
+  caption?: string;
 };

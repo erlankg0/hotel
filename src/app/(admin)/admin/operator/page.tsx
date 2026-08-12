@@ -4,13 +4,17 @@ import { Plus } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 
-import { TableOperator } from '@/entities/operator';
+import { columns, useOperator } from '@/entities/operator';
+import type { OperatorType } from '@/entities/operator';
 import { Button } from '@/shared/ui/button';
 import { Page } from '@/widget/page';
 import { PageHeader } from '@/widget/page-header';
+import { DataTable } from '@/shared/ui/data-table';
+
 
 export default function AgencyPage() {
   const [search, setSearch] = useState<string>('');
+  const { data } = useOperator()
   return (
     <Page
       headerSlog={
@@ -30,9 +34,7 @@ export default function AgencyPage() {
         />}
     >
       <div className={'flex flex-col gap-6'}>
-        <div className={'flex flex-col gap-6'}>
-          <TableOperator />
-        </div>
+        <DataTable<OperatorType> caption={'Операторы'} columns={columns} data={data} />
       </div>
     </Page>
   );

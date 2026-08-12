@@ -1,2 +1,3 @@
 export { useOperator } from './hook/useOperator';
-export { TableOperator } from './ui/table-operator';
+export { columns } from './model/columns'
+export type { OperatorType} from './model/types'

@@ -1,15 +1,14 @@
 'use client';
 
-import { ChevronLeft, ChevronRight, MartiniIcon, ChartBar } from 'lucide-react';
+import { MartiniIcon, ChartBar } from 'lucide-react';
 import Link from 'next/link';
 import { useCallback } from 'react';
 
 import { AMENITY_ICONS } from '@/shared/const/icon_amenities';
 import { Button } from '@/shared/ui/button/button';
-import { ImageUI } from '@/shared/ui/image';
 import { Popover, PopoverContent, PopoverTrigger } from '@/shared/ui/popover';
 import { Separator } from '@/shared/ui/separator';
-import { SwiperUI, useSwiperNav } from '@/widget/swiper';
+import { useSwiperNav } from '@/widget/swiper';
 
 import styles from './styles.module.scss';
 
@@ -20,7 +19,6 @@ import type { Swiper as SwiperType } from 'swiper';
 export function RoomPrice({
                             id,
                             title,
-                            photos,
                             uai,
                             amenity,
                             capacity,
@@ -29,10 +27,6 @@ export function RoomPrice({
   const {
     onSwiper,
     onSlideChange,
-    prev,
-    next,
-    isStart,
-    isEnd,
   } = useSwiperNav();
 
   const handleOnSwiper = useCallback((swiper: SwiperType) => {

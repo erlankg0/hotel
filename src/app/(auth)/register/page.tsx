@@ -15,7 +15,7 @@ export default function Page() {
   const { mutate, isPending } = useRegister();
   return (
     <WrapperForm<RegisterDto>
-      onSubmit={mutate}
+      onSubmit={(data) => mutate(data)}
       className={styles.form}
       options={{
         mode: 'onChange',

@@ -5,7 +5,6 @@ import { Loader } from 'lucide-react';
 
 import styles from '@/app/(auth)/layout.module.scss';
 import {
-  Category,
   CreateForm,
   RoomCreateFormSchema,
   useRoomCreate,

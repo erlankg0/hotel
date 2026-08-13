@@ -1,7 +1,3 @@
-import Link from 'next/link';
-
-import { Button } from '@/shared/ui/button';
-
 import styles from './styles.module.scss';
 
 import type { FC, ReactNode } from 'react';

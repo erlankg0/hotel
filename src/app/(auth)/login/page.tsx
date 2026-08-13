@@ -16,7 +16,7 @@ export default function Page() {
   const { mutate, isPending } = useLogin();
   return (
     <WrapperForm<LoginDto>
-      onSubmit={mutate}
+      onSubmit={(data) => mutate(data)}
       className={styles.form}
       options={{
         mode: 'onChange',

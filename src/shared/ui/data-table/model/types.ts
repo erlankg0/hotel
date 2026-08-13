@@ -1,13 +1,11 @@
-import type { ColumnDef, RowData, TableFeatures, TableOptions } from '@tanstack/react-table';
+import type { features } from '../hook/useTable';
+import type { ColumnDef, RowData } from '@tanstack/react-table';
+import type { ReactNode } from 'react';
 
-
-export type DataTableProps<
-  TFeatures extends TableFeatures,
-  TData extends RowData,
-> = {
+export type DataTableProps<TData extends RowData> = {
   data: TData[];
-  columns: TableOptions<TFeatures, TData>['columns'];
-  features: TableOptions<TFeatures, TData>['features'];
+  columns: ColumnDef<typeof features, TData>[];
   isLoading?: boolean;
   caption?: string;
+  children?: ReactNode
 };

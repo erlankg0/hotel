@@ -45,7 +45,7 @@ export default function Operator() {
           mode: 'onChange',
           resolver: zodResolver(operatorCreateSchema),
         }}
-
+        className={'flex flex-col gap-6'}
       >
         <Create />
         <Button disabled={isPending}>

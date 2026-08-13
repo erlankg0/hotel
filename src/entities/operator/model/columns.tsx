@@ -1,4 +1,10 @@
-import { tableFeatures } from '@tanstack/react-table';
+import {
+  createPaginatedRowModel,
+  createSortedRowModel,
+  rowPaginationFeature,
+  rowSortingFeature, sortFn_alphanumeric,
+  tableFeatures,
+} from '@tanstack/react-table';
 import Link from 'next/link';
 
 import { ImageUI } from '@/shared/ui/image';
@@ -6,7 +12,13 @@ import { ImageUI } from '@/shared/ui/image';
 import type { OperatorType } from './types';
 import type { ColumnDef } from '@tanstack/react-table';
 
-export const features = tableFeatures({});
+export const features = tableFeatures({
+  rowSortingFeature,
+  rowPaginationFeature,
+  sortedRowModel: createSortedRowModel(),
+  paginatedRowModel: createPaginatedRowModel(),
+  sortFns: { alphanumeric: sortFn_alphanumeric },
+});
 
 export const columns: Array<ColumnDef<typeof features, OperatorType>> = [
   {

@@ -3,14 +3,13 @@
 import { Luggage } from 'lucide-react';
 import { useFormContext } from 'react-hook-form';
 
-import { Card, CardHeader, CardFooter, CardContent, CardTitle } from '@/shared/ui/card';
+import { Card, CardHeader, CardContent, CardTitle } from '@/shared/ui/card';
 import {
   FieldDescription,
   FieldError,
   FieldGroup,
   FieldLabel,
   FieldSet,
-  FieldTitle,
   FieldSeparator,
 } from '@/shared/ui/field';
 import { PhoneFieldArray, EmailFieldArray } from '@/shared/ui/field-array';
@@ -35,7 +34,7 @@ export function Create() {
 
   return (
     <FieldSet className={'py-8'}>
-      <Card>
+      <Card className={'p-6'}>
         <CardHeader>
           <CardTitle className="text-xl font-bold text-center">
             Создание Оператора
@@ -43,10 +42,10 @@ export function Create() {
         </CardHeader>
       </Card>
       <Card>
-        <FieldLabel htmlFor="title">
-          Названия
-        </FieldLabel>
-        <CardContent>
+        <CardContent className={'flex flex-col gap-6'}>
+          <FieldLabel className={'text-center'} htmlFor="title">
+            Названия
+          </FieldLabel>
           <InputGroup>
             <InputGroupInput
               {...register('title')}
@@ -72,57 +71,61 @@ export function Create() {
       </Card>
       <FieldSeparator />
 
-      <FieldGroup>
-        <FieldLabel htmlFor="file">
-          Иконка
-        </FieldLabel>
+      <Card>
+        <CardContent className={'flex flex-col gap-6'}>
+          <FieldLabel htmlFor="file">
+            Иконка
+          </FieldLabel>
 
-        <InputGroup>
-          <InputGroupInput
-            id="file"
-            type="file"
-            accept="image/*"
-            onChange={(event) => {
-              const selectedFile = event.target.files?.[0];
+          <InputGroup>
+            <InputGroupInput
+              id="file"
+              type="file"
+              accept="image/*"
+              onChange={(event) => {
+                const selectedFile = event.target.files?.[0];
 
-              if (selectedFile) {
-                setValue('file', selectedFile, {
-                  shouldValidate: true,
-                });
-              }
-            }}
-          />
-        </InputGroup>
+                if (selectedFile) {
+                  setValue('file', selectedFile, {
+                    shouldValidate: true,
+                  });
+                }
+              }}
+            />
+          </InputGroup>
 
-        {errors.file ? (
-          <FieldError>
-            {errors.file.message}
-          </FieldError>
-        ) : (
-          <FieldDescription>
-            Загрузите изображение оператора
-          </FieldDescription>
-        )}
+          {errors.file ? (
+            <FieldError>
+              {errors.file.message}
+            </FieldError>
+          ) : (
+            <FieldDescription>
+              Загрузите изображение оператора
+            </FieldDescription>
+          )}
 
+          {file && (
+            <p className="text-sm mt-2">
+              Выбран файл: {file.name}
+            </p>
+          )}
+        </CardContent>
 
-        {file && (
-          <p className="text-sm mt-2">
-            Выбран файл: {file.name}
-          </p>
-        )}
-
-      </FieldGroup>
+      </Card>
       <FieldSeparator />
-      <FieldGroup>
-        <FieldLabel>Телефоны</FieldLabel>
-        <PhoneFieldArray register={register} control={control} path={'phones'} errors={errors} />
-      </FieldGroup>
-      <FieldSeparator />
-      <FieldGroup>
-        <FieldLabel>Э-почты</FieldLabel>
-        <EmailFieldArray register={register} control={control} path={'emails'} errors={errors} />
-      </FieldGroup>
-      <FieldSeparator />
+      <Card>
+        <CardContent className={'flex flex-col gap-6'}>
+          <FieldGroup>
+            <FieldLabel>Телефоны</FieldLabel>
+            <PhoneFieldArray register={register} control={control} path={'phones'} errors={errors} />
+          </FieldGroup>
+          <FieldSeparator />
+          <FieldGroup>
+            <FieldLabel>Э-почты</FieldLabel>
+            <EmailFieldArray register={register} control={control} path={'emails'} errors={errors} />
+          </FieldGroup>
+        </CardContent>
+      </Card>
     </FieldSet>
   );
 }

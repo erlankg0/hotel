@@ -1,10 +1,9 @@
 'use client';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Loader } from 'lucide-react';
+import { useParams } from 'next/navigation';
 
-import { CreateForm, agencyCreateSchema, useAgencyCreate } from '@/features/agency';
-import { useEmailCreate } from '@/features/email';
-import { usePhoneCreate } from '@/features/phone';
+import { CreateForm, agencySchema, useAgencyCreate } from '@/features/agency';
 import { useUploadFile } from '@/shared/lib/hooks/useUploadFile';
 import { WrapperForm } from '@/shared/providers/form';
 import { Button } from '@/shared/ui/button';
@@ -14,35 +13,22 @@ import type { AgencyCreateFormValues, AgencyCreateFromInput } from '@/features/a
 
 export default function AgencyNew() {
   const uploadFile = useUploadFile();
-  const { handleOnSubmit: handleOnSubmitEmail } = useEmailCreate();
-  const { handleOnSubmit: handleOnSubmitPhone } = usePhoneCreate();
   const { handleOnSubmit, isPending } = useAgencyCreate();
+  const params = useParams<{ id: string }>();
 
-  const handleSubmit = async (dto: AgencyCreateFormValues) => {
-    const { phones, emails, file, ...rest } = dto;
+  const id = params.id;
 
-    const [icon, emaiIds, phoneIds] = await Promise.all([
-      uploadFile.mutateAsync(file),
-      Promise.all(emails.map(handleOnSubmitEmail)),
-      Promise.all(phones.map(handleOnSubmitPhone)),
-    ]);
-
-    await handleOnSubmit({
-      ...rest,
-      iconId: icon?.id,
-      emailIds: emaiIds.map(i => i.id),
-      phones: phoneIds.map(i => i.id),
-    });
-
-  };
+  async function handleOnSubmitForm(dto: AgencyCreateFromInput) {
+    await handleOnSubmit({ title: dto.title, id: id });
+  }
 
   return (
     <Page>
       <WrapperForm<AgencyCreateFromInput, AgencyCreateFormValues>
-        onSubmit={handleSubmit}
+        onSubmit={handleOnSubmitForm}
         options={{
           mode: 'onChange',
-          resolver: zodResolver(agencyCreateSchema),
+          resolver: zodResolver(agencySchema),
         }}
       >
         <CreateForm />

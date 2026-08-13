@@ -20,12 +20,12 @@ import type { DataTableProps } from '../model/types';
 import type { RowData } from '@tanstack/react-table';
 
 export function DataTable<TData extends RowData>({
-                                                   data,
-                                                   columns,
-                                                   isLoading = false,
-                                                   children,
-                                                   caption,
-                                                 }: DataTableProps<TData>) {
+  data,
+  columns,
+  isLoading = false,
+  children,
+  caption,
+}: DataTableProps<TData>) {
   const table = useAppTable({
     columns,
     data,

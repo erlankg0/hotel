@@ -7,9 +7,7 @@ import {
 } from '@tanstack/react-table';
 import Link from 'next/link';
 
-import { ImageUI } from '@/shared/ui/image';
-
-import type { OperatorType } from './types';
+import type { AgencyType } from '../model/types';
 import type { ColumnDef } from '@tanstack/react-table';
 
 export const features = tableFeatures({
@@ -20,7 +18,7 @@ export const features = tableFeatures({
   sortFns: { alphanumeric: sortFn_alphanumeric },
 });
 
-export const columns: Array<ColumnDef<typeof features, OperatorType>> = [
+export const columns: Array<ColumnDef<typeof features, AgencyType>> = [
   {
     id: 'number',
     header: '№',
@@ -28,18 +26,6 @@ export const columns: Array<ColumnDef<typeof features, OperatorType>> = [
       <span className="font-mono text-xs text-slate-400">
         {row.index + 1}
       </span>
-    ),
-  },
-  {
-    accessorKey: 'icon.url',
-    header: 'Иконка',
-    cell: ({ getValue, row }) => (
-      <div className="relative w-10 h-10 rounded-xl overflow-hidden border border-slate-200/80 bg-slate-50 flex items-center justify-center shadow-xs">
-        <ImageUI
-          src={getValue<string>()}
-          alt={row.original.title}
-        />
-      </div>
     ),
   },
   {
@@ -52,14 +38,34 @@ export const columns: Array<ColumnDef<typeof features, OperatorType>> = [
     ),
   },
   {
+    accessorKey: 'createdAt',
+    header: 'Дата создания',
+    cell: ({ getValue }) => (
+      <span className="font-medium text-secondary text-sm">
+        {getValue<string>()}
+      </span>
+    ),
+
+  },
+  {
+    accessorKey: 'updatedAt',
+    header: 'Дата обновления',
+    cell: ({ getValue }) => (
+      <span className="font-medium text-accent text-sm">
+        {getValue<string>()}
+      </span>
+    ),
+
+  },
+  {
     accessorKey: 'id',
-    header: 'Агентства',
+    header: 'Контракты',
     cell: ({ row }) => (
       <Link
-        href={`/admin/operator/${row.original.id}/agencies`}
+        href={`/admin/operator/${row.original.id}/agencies/${row.original.id}`}
         className="inline-flex items-center text-xs font-medium text-slate-700 bg-slate-100 hover:bg-slate-200/80 px-2.5 py-1.5 rounded-lg transition-colors border border-slate-200/60"
       >
-        Агентства
+        Контракты
       </Link>
     ),
   },

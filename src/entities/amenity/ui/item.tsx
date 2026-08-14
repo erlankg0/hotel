@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { AMENITY_ICONS } from '@/shared/const/icon_amenities';
 import { Item, ItemContent, ItemTitle, ItemMedia, ItemActions } from '@/shared/ui/item';
 
-import type { AmenityType } from '../model/type';
+import type { AmenityType } from '../model/types';
 
 export function ItemUI({ id, name, icon }: AmenityType) {
   const Icon = AMENITY_ICONS[icon];

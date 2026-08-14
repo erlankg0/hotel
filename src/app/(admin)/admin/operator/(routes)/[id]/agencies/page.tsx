@@ -4,13 +4,17 @@ import { Plus } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 
+import { columns, useAgency } from '@/entities/agency';
 import { Button } from '@/shared/ui/button';
+import { DataTable } from '@/shared/ui/data-table';
 import { Page } from '@/widget/page';
 import { PageHeader } from '@/widget/page-header';
 
+import type { AgencyType } from '@/entities/agency';
 
 export default function AgencyPage() {
   const [search, setSearch] = useState<string>('');
+  const { data, isLoading } = useAgency(search);
 
   return (
     <Page
@@ -31,7 +35,7 @@ export default function AgencyPage() {
         />}
     >
       <div className={'flex flex-col gap-6'}>
-
+        <DataTable<AgencyType> data={data} columns={columns} isLoading={isLoading} />
       </div>
     </Page>
   );

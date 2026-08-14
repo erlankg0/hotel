@@ -4,12 +4,12 @@ import { get } from '../api/get';
 
 import type { QueryOptions } from '@/shared/types/response';
 
-export const QueryOptionOperator = {
-  baseKey: 'operator',
+export const QueryOptionAgency = {
+  baseKey: 'agency',
   get: ({ title, limit, enabled, page }: QueryOptions) => {
     return queryOptions({
       queryFn: () => get({ title, limit, page }),
-      queryKey: ['operator', { title, limit, page }],
+      queryKey: ['agency', { title, limit, page }],
       placeholderData: keepPreviousData,
       enabled: enabled,
     });

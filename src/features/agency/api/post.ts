@@ -8,5 +8,6 @@ export async function post(dto: AgencyDto & { id: string }): Promise<AxiosRespon
   return await axiosInstance.post<BaseResponse<AgencyType>>('agency', {
     title: dto.title,
     operatorId: dto.id,
+    shortTitle: dto.shortTitle,
   });
 }

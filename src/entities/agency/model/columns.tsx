@@ -38,22 +38,34 @@ export const columns: Array<ColumnDef<typeof features, AgencyType>> = [
     ),
   },
   {
+    accessorKey: 'shortTitle',
+    header: 'Код',
+    cell: ({ getValue }) => (
+      <span className="font-medium text-slate-800 text-sm">
+        {getValue<string>() ? getValue<string>() : 'N/A'}
+      </span>
+    ),
+  },
+  {
     accessorKey: 'createdAt',
     header: 'Дата создания',
     cell: ({ getValue }) => (
-      <span className="font-medium text-secondary text-sm">
-        {getValue<string>()}
-      </span>
+      <span className="text-sm text-slate-500">
+      {new Intl.DateTimeFormat('ru-RU').format(
+        new Date(getValue<string>()),
+      )}
+    </span>
     ),
-
   },
   {
     accessorKey: 'updatedAt',
     header: 'Дата обновления',
     cell: ({ getValue }) => (
-      <span className="font-medium text-accent text-sm">
-        {getValue<string>()}
-      </span>
+      <span className="text-sm text-slate-500">
+      {new Intl.DateTimeFormat('ru-RU').format(
+        new Date(getValue<string>()),
+      )}
+    </span>
     ),
 
   },

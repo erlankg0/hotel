@@ -5,7 +5,7 @@ import { useDebounce } from '@/shared/lib/useDebounce';
 
 import { QueryOptionAgency } from '../model/query-option';
 
-export const useAgency = (search?: string) => {
+export const useAgency = ({ search, id }: { search?: string, id?: string }) => {
   const debouncedSearch = useDebounce<string | undefined>(search, 500);
   const [page, setPage] = useState<number>(1);
   const {
@@ -13,7 +13,7 @@ export const useAgency = (search?: string) => {
     error,
     isLoading,
   } = useQuery({
-    ...QueryOptionAgency.get({ title: debouncedSearch, page }),
+    ...QueryOptionAgency.get({ title: debouncedSearch, page, id: id }),
   });
 
   const result = data?.data.data || [];

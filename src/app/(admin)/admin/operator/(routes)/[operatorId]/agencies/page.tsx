@@ -2,9 +2,10 @@
 
 import { Plus } from 'lucide-react';
 import Link from 'next/link';
+import { useParams } from 'next/navigation';
 import { useState } from 'react';
 
-import { columns, useAgency } from '@/entities/agency';
+import { columnsOperator, useAgency } from '@/entities/agency';
 import { Button } from '@/shared/ui/button';
 import { DataTable } from '@/shared/ui/data-table';
 import { Page } from '@/widget/page';
@@ -14,7 +15,8 @@ import type { AgencyType } from '@/entities/agency';
 
 export default function AgencyPage() {
   const [search, setSearch] = useState<string>('');
-  const { data, isLoading } = useAgency(search);
+  const { operatorId } = useParams<{ operatorId: string }>();
+  const { data, isLoading } = useAgency({ search: search, id: operatorId });
 
   return (
     <Page
@@ -35,7 +37,7 @@ export default function AgencyPage() {
         />}
     >
       <div className={'flex flex-col gap-6'}>
-        <DataTable<AgencyType> data={data} columns={columns} isLoading={isLoading} />
+        <DataTable<AgencyType> data={data} columns={columnsOperator} isLoading={isLoading} />
       </div>
     </Page>
   );

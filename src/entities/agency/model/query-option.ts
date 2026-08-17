@@ -6,9 +6,9 @@ import type { QueryOptions } from '@/shared/types/response';
 
 export const QueryOptionAgency = {
   baseKey: 'agency',
-  get: ({ title, limit, enabled, page }: QueryOptions) => {
+  get: ({ title, limit, enabled, page, id }: QueryOptions) => {
     return queryOptions({
-      queryFn: () => get({ title, limit, page }),
+      queryFn: () => get({ title, limit, page, operatorId: id }),
       queryKey: ['agency', { title, limit, page }],
       placeholderData: keepPreviousData,
       enabled: enabled,

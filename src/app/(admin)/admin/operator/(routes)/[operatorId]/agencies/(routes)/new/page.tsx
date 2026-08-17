@@ -14,14 +14,17 @@ import type { AgencyCreateFormValues, AgencyCreateFromInput } from '@/features/a
 export default function AgencyNew() {
   const uploadFile = useUploadFile();
   const { handleOnSubmit, isPending } = useAgencyCreate();
-  const params = useParams<{ id: string }>();
+  const params = useParams<{ operatorId: string }>();
 
-  const id = params.id;
+  const id = params.operatorId;
 
   async function handleOnSubmitForm(dto: AgencyCreateFromInput) {
-    await handleOnSubmit({ title: dto.title, id: id });
+    await handleOnSubmit({
+      title: dto.title,
+      shortTitle: dto.shortTitle,
+      operatorId: id,
+    });
   }
-
   return (
     <Page>
       <WrapperForm<AgencyCreateFromInput, AgencyCreateFormValues>

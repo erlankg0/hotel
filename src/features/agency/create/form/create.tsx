@@ -1,6 +1,7 @@
 import { Luggage } from 'lucide-react';
 import { useFormContext } from 'react-hook-form';
 
+import { Card, CardContent } from '@/shared/ui/card'
 import {
   FieldDescription,
   FieldError,
@@ -10,7 +11,6 @@ import {
   FieldTitle,
 } from '@/shared/ui/field';
 import { InputGroup, InputGroupInput, InputGroupAddon } from '@/shared/ui/input-group';
-import { Card, CardContent } from '@/shared/ui/card'
 
 import type { AgencyDto } from '../../model/types';
 
@@ -30,7 +30,7 @@ export function CreateForm() {
           <FieldGroup>
             <FieldLabel htmlFor={'title'}>Названия</FieldLabel>
             <InputGroup>
-              <InputGroupInput {...register('title')} placeholder={'Anex-RU'} id={'title'} />
+              <InputGroupInput {...register('title')} placeholder={'Anex-KYRGYZSTAN'} id={'title'} />
               <InputGroupAddon><Luggage /></InputGroupAddon>
             </InputGroup>
             {errors.title ? (
@@ -40,9 +40,9 @@ export function CreateForm() {
             )}
           </FieldGroup>
           <FieldGroup>
-            <FieldLabel htmlFor={'shotTitle'}>Короткое названия</FieldLabel>
+            <FieldLabel htmlFor={'shortTitle'}>Короткое названия</FieldLabel>
             <InputGroup>
-              <InputGroupInput {...register('shotTitle')} placeholder={'Anex'} id={'shotTitle'} />
+              <InputGroupInput {...register('shortTitle')} placeholder={'Anex-KGZ'} id={'shortTitle'} />
               <InputGroupAddon><Luggage /></InputGroupAddon>
             </InputGroup>
             {errors.title ? (

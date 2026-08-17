@@ -1,8 +1,14 @@
 export type AgencyType = {
-    id: string;
-    title: string;
-    shortTitle?: string
+  readonly id: string;
 
-    createdAt: Date;
-    updatedAt: Date;
-}
+  title: string;
+  shortTitle?: string;
+
+  operator: {
+    readonly id: string;
+    readonly title: string;
+  };
+
+  readonly createdAt: Date;
+  readonly updatedAt: Date;
+};

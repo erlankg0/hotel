@@ -5,12 +5,12 @@ import { QueryOptionAgency } from '../../model/query-option';
 import type { AgencyDto, AgencyType } from '../../model/types';
 
 export const useAgencyCreate = () => {
-  const mutation = useBaseCreate<AgencyDto & { id: string }, AgencyType>({
+  const mutation = useBaseCreate<AgencyDto & { operatorId: string }, AgencyType>({
     queryKey: [QueryOptionAgency.baseKey],
     mutationFn: QueryOptionAgency.post,
   });
 
-  async function handleOnSubmit(dto: AgencyDto & { id: string }) {
+  async function handleOnSubmit(dto: AgencyDto & { operatorId: string }) {
     const response = await mutation.handleOnSubmit({ ...dto });
     if (response.status !== 200) {
       return response.data.data;

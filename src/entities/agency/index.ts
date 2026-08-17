@@ -1,3 +1,3 @@
 export { useAgency } from './hook/useAgency';
-export { columns } from './model/columns';
+export { columnsOperator, columns } from './model/columnsOperator';
 export type { AgencyType } from './model/types';

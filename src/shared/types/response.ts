@@ -12,4 +12,5 @@ export interface QueryOptions {
   page?: number;
   limit?: number;
   enabled?: boolean,
+  id?: string,
 }

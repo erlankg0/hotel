@@ -1,4 +1,4 @@
-import { Luggage, Tag } from 'lucide-react';
+import { Hotel } from 'lucide-react';
 import { useFormContext } from 'react-hook-form';
 
 import { Card, CardContent } from '@/shared/ui/card'
@@ -10,28 +10,28 @@ import {
   FieldSet,
   FieldTitle,
 } from '@/shared/ui/field';
-import { InputGroup, InputGroupInput, InputGroupAddon } from '@/shared/ui/input-group';
+import { InputGroup, InputGroupInput, InputGroupAddon,InputGroupTextarea } from '@/shared/ui/input-group';
 
-import type { AgencyDto } from '../../model/types';
+import type { HotelDto } from '../../model/types';
 
 export function CreateForm() {
   const {
     register,
     formState: { errors },
-  } = useFormContext<AgencyDto>();
+  } = useFormContext<HotelDto>();
 
   return (
     <FieldSet>
       <article>
-        <FieldTitle className={'text-xl font-bold text-center'}>Создание Оператора</FieldTitle>
+        <FieldTitle className={'text-xl font-bold text-center'}>Создание Отеля</FieldTitle>
       </article>
       <Card>
         <CardContent>
           <FieldGroup>
             <FieldLabel htmlFor={'title'}>Названия</FieldLabel>
             <InputGroup>
-              <InputGroupInput {...register('title')} placeholder={'Anex-KYRGYZSTAN'} id={'title'} />
-              <InputGroupAddon><Luggage /></InputGroupAddon>
+              <InputGroupInput {...register('title')} placeholder={'Hotel Name'} id={'title'} />
+              <InputGroupAddon><Hotel /></InputGroupAddon>
             </InputGroup>
             {errors.title ? (
               <FieldError>{errors.title.message}</FieldError>
@@ -40,15 +40,15 @@ export function CreateForm() {
             )}
           </FieldGroup>
           <FieldGroup>
-            <FieldLabel htmlFor={'shortTitle'}>Короткое названия</FieldLabel>
+            <FieldLabel htmlFor={'description'}>Короткое названия</FieldLabel>
             <InputGroup>
-              <InputGroupInput {...register('shortTitle')} placeholder={'Anex-KGZ'} id={'shortTitle'} />
-              <InputGroupAddon><Tag /></InputGroupAddon>
+              <InputGroupTextarea rows={3} {...register('description')} id={'description'} />
+    
             </InputGroup>
-            {errors.shortTitle ? (
-              <FieldError>{errors.shortTitle.message}</FieldError>
+            {errors.description ? (
+              <FieldError>{errors.description.message}</FieldError>
             ) : (
-              <FieldDescription>Введите уникальный код</FieldDescription>
+              <FieldDescription>Введите краткое описания отеля</FieldDescription>
             )}
           </FieldGroup>
         </CardContent>

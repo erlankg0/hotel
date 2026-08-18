@@ -27,7 +27,7 @@ export default function Page() {
       <Button
         disabled={isPending}
         type={'submit'}
-        className={styles.button}
+        className={'w-full flex items-center gap-2'}
       >
         {isPending ? (<span className={styles.loader}><Loader size={14} />Вход...</span>) : ('Войти')}
       </Button>

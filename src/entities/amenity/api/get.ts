@@ -1,12 +1,7 @@
-import axiosInstance from '@/shared/axios/axios';
-
 import type { AmenityType } from '../model/types';
-import type { BaseResponse, QueryOptions } from '@/shared/types/response';
+import type { QueryOptions } from '@/shared/types/response';
+import { api } from '@/shared/api'
 
-export async function get(params: QueryOptions) {
-  return await axiosInstance.get<BaseResponse<AmenityType[]>>('/amenity', {
-    params: {
-      ...params,
-    },
-  });
+export const get = async (params: QueryOptions) => {
+  return await api.get<AmenityType[]>('amenity', params)
 }

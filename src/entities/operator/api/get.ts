@@ -1,11 +1,7 @@
-import axiosInstance from '@/shared/axios/axios';
-
 import type { OperatorType } from '../model/types';
-import type { BaseResponse, QueryOptions } from '@/shared/types/response';
-import type { AxiosResponse } from 'axios';
+import type { QueryOptions } from '@/shared/types/response';
+import { api } from '@/shared/api'
 
-export const get = async (params: QueryOptions): Promise<AxiosResponse<BaseResponse<OperatorType[]>>> => {
-  return await axiosInstance.get<BaseResponse<OperatorType[]>>('/operator', {
-    params: params,
-  });
+export const get = async (params: QueryOptions) => {
+  return await api.get<OperatorType[]>('operator', params)
 };

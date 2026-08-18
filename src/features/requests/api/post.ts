@@ -1,8 +1,6 @@
-import axiosInstance from '@/shared/axios/axios';
-
+import { api } from '@/shared/api';
 import type { RequestType, RequestDto } from '../model/schema';
-import type { BaseResponse } from '@/shared/types/response';
 
 export async function post(dto: RequestDto) {
-  return await axiosInstance.post<BaseResponse<RequestType>>('/request', dto);
+  return await api.post<RequestType, RequestDto>('/request', dto);
 }

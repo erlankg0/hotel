@@ -1,10 +1,6 @@
-import axiosInstance from '@/shared/axios/axios';
-
+import { api } from '@/shared/api';
 import type { EmailDto, EmailType } from '../model/schema';
-import type { BaseResponse } from '@/shared/types/response';
 
 export async function post(dto: EmailDto) {
-  return axiosInstance.post<BaseResponse<EmailType>>('email', {
-    ...dto,
-  });
+  return api.post<EmailType, EmailDto>('email', dto);
 }

@@ -1,9 +1,6 @@
-import axiosInstance from '@/shared/axios/axios';
-
 import type { AgencyDto, AgencyType } from '../model/types';
-import type { BaseResponse } from '@/shared/types/response';
-import type { AxiosResponse } from 'axios';
+import { api } from '@/shared/api'
 
-export async function post(dto: AgencyDto & { operatorId: string }): Promise<AxiosResponse<BaseResponse<AgencyType>>> {
-  return await axiosInstance.post<BaseResponse<AgencyType>>('agency', dto);
+export async function post(dto: AgencyDto & { operatorId: string }) {
+  return await api.post<AgencyType, AgencyDto & { operatorId: string }>('agency', dto);
 }

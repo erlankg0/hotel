@@ -83,7 +83,7 @@ export const columnsOperator: Array<ColumnDef<typeof features, AgencyType>> = [
   },
   {
     accessorKey: 'id',
-    header: 'Действия',
+    header: 'Подробнее',
     cell: ({ row }) => (
       <Link
         href={`/admin/operator/${row.original.id}/detail`}
@@ -162,7 +162,7 @@ export const columns: Array<ColumnDef<typeof features, AgencyType>> = [
   },
   {
     accessorKey: 'id',
-    header: 'Действия',
+    header: 'Подробнее',
     cell: ({ row }) => (
       <Link
         href={`/admin/operator/${row.original.id}/detail`}

@@ -1,12 +1,7 @@
-import axiosInstance from '@/shared/axios/axios';
-
 import type { RequestType } from '../model/type';
-import type { QueryOptions, BaseResponse } from '@/shared/types/response';
+import type { QueryOptions } from '@/shared/types/response';
+import { api } from '@/shared/api'
 
 export async function get(params: QueryOptions) {
-  return await axiosInstance.get<BaseResponse<RequestType[]>>('request', {
-    params: {
-      ...params,
-    },
-  });
+  return await api.get<RequestType[]>('request', params)
 }

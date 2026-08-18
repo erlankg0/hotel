@@ -14,4 +14,9 @@ export const sitemap: Record<string, string> = {
   edit: 'Обновить',
   amenity: 'Удобства',
   options: 'Информация',
+  hotel: 'Отель',
+  detail: 'Информация',
+  operator: 'Тур-Оператор',
+  agencies: 'Агенства',
+  agency: 'Агенства'
 };

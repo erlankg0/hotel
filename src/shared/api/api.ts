@@ -1,7 +1,7 @@
 import axiosInstance from '../axios/axios'
 
-import type { AxiosResponse } from 'axios'
 import type { QueryOptions, BaseResponse } from '../types/response'
+import type { AxiosResponse } from 'axios'
 
 export const api = {
     get: async <T>(url: string, params?: QueryOptions): Promise<AxiosResponse<BaseResponse<T[]>>> => {

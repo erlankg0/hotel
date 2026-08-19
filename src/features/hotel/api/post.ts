@@ -1,4 +1,5 @@
 import { api } from '@/shared/api';
+
 import type { HotelType, HotelDto } from '../model/types';
 
 export const post = async (dto: HotelDto) => {

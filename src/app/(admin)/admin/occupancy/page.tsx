@@ -4,20 +4,20 @@ import { Plus } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 
-import { columns, useHotel, type HotelType } from '@/entities/hotel'
+import { columns, useOccupanciesQuery, type OccupancyType } from '@/entities/occupancy';
 import { Button } from '@/shared/ui/button';
 import { DataTable } from '@/shared/ui/data-table';
 import { Page } from '@/widget/page';
 import { PageHeader } from '@/widget/page-header';
 
-export default function HotelPage() {
+export default function OccupancyPage() {
   const [search, setSearch] = useState<string>('');
-  const { data, isLoading } = useHotel({ search: search })
+  const { data, isLoading } = useOccupanciesQuery({ search: search });
   return (
     <Page
       headerSlog={
         <PageHeader
-          title={'Отели'}
+          title={'Размещение'}
           searchValue={search}
           onSearchOnChange={setSearch}
           slot={
@@ -32,7 +32,7 @@ export default function HotelPage() {
         />}
     >
       <div className={'flex flex-col gap-6'}>
-        <DataTable<HotelType> data={data} columns={columns} isLoading={isLoading} />
+        <DataTable<OccupancyType> data={data} columns={columns} isLoading={isLoading} />
       </div>
     </Page>
   );

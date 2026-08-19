@@ -23,7 +23,7 @@ export default function OccupancyPage() {
           slot={
             <div className={'flex flex-row items-center gap-2'}>
               <Button type={'button'}>
-                <Link href={'/admin/hotel/new'}>
+                <Link href={'/admin/occupancy/new'}>
                   <Plus size={14} />
                 </Link>
               </Button>

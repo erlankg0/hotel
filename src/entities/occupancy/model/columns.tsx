@@ -43,7 +43,7 @@ export const columns: Array<ColumnDef<typeof features, OccupancyType>> = [
     header: 'Взрослые',
     cell: ({ getValue }) => (
       <p className="font-medium text-slate-800 text-sm">
-        {getValue<string>() ? getValue<string>() : 'N/A'}
+        {getValue<number>()}
       </p>
     ),
   },
@@ -52,7 +52,7 @@ export const columns: Array<ColumnDef<typeof features, OccupancyType>> = [
     header: 'Дети',
     cell: ({ getValue }) => (
       <p className="font-medium text-slate-800 text-sm">
-        {getValue<string>() ? getValue<string>() : 'N/A'}
+        {getValue<number>()}
       </p>
     ),
   },
@@ -61,7 +61,7 @@ export const columns: Array<ColumnDef<typeof features, OccupancyType>> = [
     header: 'Малыш',
     cell: ({ getValue }) => (
       <p className="font-medium text-slate-800 text-sm">
-        {getValue<string>() ? getValue<string>() : 'N/A'}
+        {getValue<number>()}
       </p>
     ),
   },
@@ -70,10 +70,10 @@ export const columns: Array<ColumnDef<typeof features, OccupancyType>> = [
     header: 'Дата создания',
     cell: ({ getValue }) => (
       <span className="text-sm text-slate-500">
-      {new Intl.DateTimeFormat('ru-RU').format(
-        new Date(getValue<string>()),
-      )}
-    </span>
+        {new Intl.DateTimeFormat('ru-RU').format(
+          new Date(getValue<string>()),
+        )}
+      </span>
     ),
   },
   {

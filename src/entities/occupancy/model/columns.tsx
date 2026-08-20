@@ -76,12 +76,24 @@ export const columns: Array<ColumnDef<typeof features, OccupancyType>> = [
       </span>
     ),
   },
+   {
+    accessorKey: 'id',
+    header: 'Коэффициент',
+    cell: ({ row }) => (
+      <Link
+        href={`/admin/occupancy/${row.original.id}/rule`}
+        className="inline-flex items-center gap-1 text-xs font-medium text-indigo-600 hover:text-indigo-700 hover:underline"
+      >
+        {row.original.id}
+      </Link>
+    ),
+  },
   {
     accessorKey: 'id',
     header: 'Подробнее',
     cell: ({ row }) => (
       <Link
-        href={`/admin/operator/${row.original.id}/detail`}
+        href={`/admin/occupancy/${row.original.id}/detail`}
         className="inline-flex items-center gap-1 text-xs font-medium text-indigo-600 hover:text-indigo-700 hover:underline"
       >
         Подробнее

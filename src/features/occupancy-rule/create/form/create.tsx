@@ -31,9 +31,11 @@ export function CreateForm() {
             <FieldLabel htmlFor={'multiplier'}>Названия</FieldLabel>
             <InputGroup>
               <InputGroupInput
-                {...register('multiplier')}
+                type={'number'}
+                {...register('multiplier', { valueAsNumber: true })}
                 placeholder={'2'}
-                id={'multiplier'} />
+                id={'multiplier'}
+                min={1} />
               <InputGroupAddon><Asterisk /></InputGroupAddon>
             </InputGroup>
             {errors.multiplier ? (

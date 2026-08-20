@@ -5,4 +5,5 @@ export type OccupancyType = {
   children: number;
   babies: number;
   createdAt: Date;
+  rules: []
 };

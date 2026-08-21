@@ -35,6 +35,7 @@ export function CreateForm() {
                 {...register('multiplier', { valueAsNumber: true })}
                 placeholder={'2'}
                 id={'multiplier'}
+                step="0.01"
                 min={1} />
               <InputGroupAddon><Asterisk /></InputGroupAddon>
             </InputGroup>

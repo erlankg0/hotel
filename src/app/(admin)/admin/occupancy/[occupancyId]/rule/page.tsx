@@ -1,7 +1,7 @@
 'use client';
-import { useParams } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Loader } from 'lucide-react';
+import { useParams } from 'next/navigation';
 
 import { CreateForm, useOccupancyRuleCreate, occupancyRuleSchema } from '@/features/occupancy-rule';
 import { WrapperForm } from '@/shared/providers/form';
@@ -15,7 +15,6 @@ export default function CreatePage() {
     const { handleOnSubmit, isPending } = useOccupancyRuleCreate();
 
     const handleOnSubmitRule = async (dto: OccupancyRuleInput) => {
-        console.log(dto, occupancyId)
         await handleOnSubmit({
             multiplier: dto.multiplier,
             occupancyId: occupancyId

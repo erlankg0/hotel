@@ -19,5 +19,7 @@ export const sitemap: Record<string, string> = {
   operator: 'Тур-Оператор',
   agencies: 'Агенства',
   agency: 'Агенства',
-  occupancy: 'Размещение'
+  occupancy: 'Размещение',
+  rule: 'Коэффициент',
+  market: 'Страны',
 };

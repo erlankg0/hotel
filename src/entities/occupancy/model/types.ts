@@ -5,5 +5,12 @@ export type OccupancyType = {
   children: number;
   babies: number;
   createdAt: Date;
-  rules: []
+  rule: OccupancyRuleType | null;
 };
+
+type OccupancyRuleType = {
+  id: string;
+  occupancyId: string;
+  multiplier: number;
+  createdAt: Date;
+}

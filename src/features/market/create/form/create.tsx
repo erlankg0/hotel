@@ -1,4 +1,4 @@
-import { Flag, Tag } from 'lucide-react';
+import { Group } from 'lucide-react';
 import { useFormContext } from 'react-hook-form';
 
 import { Card, CardContent } from '@/shared/ui/card';
@@ -23,32 +23,20 @@ export function CreateForm() {
   return (
     <FieldSet>
       <article>
-        <FieldTitle className={'text-xl font-bold text-center'}>Создание Оператора</FieldTitle>
+        <FieldTitle className={'text-xl font-bold text-center'}>Создание групп рынков</FieldTitle>
       </article>
       <Card>
         <CardContent>
           <FieldGroup>
-            <FieldLabel htmlFor={'title'}>Названия</FieldLabel>
+            <FieldLabel htmlFor={'title'}>Рынок</FieldLabel>
             <InputGroup>
-              <InputGroupInput {...register('title')} placeholder={'KYRGYZSTAN'} id={'title'} />
-              <InputGroupAddon><Flag /></InputGroupAddon>
+              <InputGroupInput {...register('title')} placeholder={'СНГ'} id={'title'} />
+              <InputGroupAddon><Group /></InputGroupAddon>
             </InputGroup>
             {errors.title ? (
               <FieldError>{errors.title.message}</FieldError>
             ) : (
               <FieldDescription>Введите уникальное названия</FieldDescription>
-            )}
-          </FieldGroup>
-          <FieldGroup>
-            <FieldLabel htmlFor={'shortTitle'}>Короткое названия</FieldLabel>
-            <InputGroup>
-              <InputGroupInput {...register('shortTitle')} placeholder={'KGZ'} id={'shortTitle'} />
-              <InputGroupAddon><Tag /></InputGroupAddon>
-            </InputGroup>
-            {errors.shortTitle ? (
-              <FieldError>{errors.shortTitle.message}</FieldError>
-            ) : (
-              <FieldDescription>Введите уникальный код</FieldDescription>
             )}
           </FieldGroup>
         </CardContent>

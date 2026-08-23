@@ -38,15 +38,6 @@ export const columns: Array<ColumnDef<typeof features, MarketType>> = [
     ),
   },
   {
-    accessorKey: 'shortTitle',
-    header: 'Код',
-    cell: ({ getValue }) => (
-      <span className="font-medium text-slate-800 text-sm">
-        {getValue<string>()}
-      </span>
-    ),
-  },
-  {
     accessorKey: 'id',
     header: 'Подробнее',
     cell: ({ row }) => (

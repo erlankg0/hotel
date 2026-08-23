@@ -17,7 +17,7 @@ export default function MarketPage() {
     <Page
       headerSlog={
         <PageHeader
-          title={'Страны'}
+          title={'Рынки'}
           searchValue={search}
           onSearchOnChange={setSearch}
           slot={

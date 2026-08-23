@@ -31,7 +31,7 @@ export default function New() {
       photosIds: uploadedFiles.map(file => file.id),
     };
 
-    handleOnSubmit(dto);
+    await handleOnSubmit(dto);
   }
 
   return (

@@ -3,21 +3,20 @@ import { useState } from 'react';
 
 import { useDebounce } from '@/shared/lib/useDebounce';
 
-import { QueryOptionRequest } from '../model/query-option';
+import { QueryOptionAgency } from '../model/query-option';
 
-export const useRequest = (search?: string) => {
+export const useAgenciesQuery = ({ search, id }: { search?: string, id?: string }) => {
   const debouncedSearch = useDebounce<string | undefined>(search, 500);
   const [page, setPage] = useState<number>(1);
-
   const {
     data,
     error,
     isLoading,
   } = useQuery({
-    ...QueryOptionRequest.get({ title: debouncedSearch, page }),
+    ...QueryOptionAgency.get({ title: debouncedSearch, page, id: id }),
   });
 
-  const result = data?.data.data;
+  const result = data?.data.data || [];
 
   return {
     data: result,

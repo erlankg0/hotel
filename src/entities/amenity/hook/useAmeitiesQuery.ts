@@ -5,7 +5,7 @@ import { useDebounce } from '@/shared/lib/useDebounce';
 
 import { QueryOptionAmenity } from '../model/query-option';
 
-export const useAmenity = (search?: string) => {
+export const useAmenitiesQuery = (search?: string) => {
   const debouncedSearch = useDebounce<string | undefined>(search, 500);
   const [page, setPage] = useState<number>(1);
   const {

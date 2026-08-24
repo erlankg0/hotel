@@ -3,18 +3,17 @@ import { useState } from 'react';
 
 import { useDebounce } from '@/shared/lib/useDebounce';
 
-import { QueryOptionOperator } from '../model/query-option';
+import { QueryOptionCountry } from '../model/query-option';
 
-export const useOperator = (search?: string) => {
+export const useCountryQueries = ({ search }: { search?: string }) => {
   const debouncedSearch = useDebounce<string | undefined>(search, 500);
   const [page, setPage] = useState<number>(1);
-
   const {
     data,
     error,
     isLoading,
   } = useQuery({
-    ...QueryOptionOperator.get({ title: debouncedSearch, page }),
+    ...QueryOptionCountry.get({ title: debouncedSearch, page }),
   });
 
   const result = data?.data.data || [];
@@ -24,9 +23,6 @@ export const useOperator = (search?: string) => {
     setPage,
     isLoading,
     error,
-    page,
-    total: data?.data.total || 0,
-    limit: data?.data.limit || 10,
   };
 
 };

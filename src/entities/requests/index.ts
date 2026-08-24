@@ -1,2 +1,2 @@
-export { useRequest } from './hook/useRequest';
+export { useRequestsQuery } from './hook/useRequestsQuery';
 export { RequestItem } from './ui/request';

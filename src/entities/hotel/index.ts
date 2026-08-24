@@ -6,4 +6,4 @@ export { HotelGallery } from './ui/gallery';
 
 export type { HotelType } from './model/types'
 export { columns } from './model/columns'
-export { useHotel } from './hook/useHotel'
+export { useHotelsQuery } from './hook/useHotelsQuery'

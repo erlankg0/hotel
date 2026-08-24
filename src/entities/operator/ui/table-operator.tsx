@@ -3,7 +3,7 @@ import { Loader } from 'lucide-react';
 
 import { Table, TableBody, TableCell, TableHeader, TableHead, TableRow, TableCaption } from '@/shared/ui/table';
 
-import { useOperator } from '../hook/useOperator';
+import { useOperator } from '../hook/useOperatorsQuery';
 import { features, columns } from '../model/columns';
 
 export function TableOperator() {

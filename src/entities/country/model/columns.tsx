@@ -7,7 +7,7 @@ import {
 } from '@tanstack/react-table';
 import Link from 'next/link';
 
-import type { MarketType } from '../model/types';
+import type { CountryType } from '../model/types';
 import type { ColumnDef } from '@tanstack/react-table';
 
 export const features = tableFeatures({
@@ -19,7 +19,7 @@ export const features = tableFeatures({
 });
 
 
-export const columns: Array<ColumnDef<typeof features, MarketType>> = [
+export const columns: Array<ColumnDef<typeof features, CountryType>> = [
   {
     id: 'number',
     header: '№',
@@ -31,7 +31,18 @@ export const columns: Array<ColumnDef<typeof features, MarketType>> = [
   },
   {
     accessorKey: 'title',
-    header: 'Рынок',
+    header: 'Названия',
+    cell: ({ getValue }) => (
+      <div className="flex items-center gap-3">
+        <div className="flex size-9 rounded-lg bg-indigo-50 text-sm font-semibold text-indigo-600">
+          {getValue<string>().toUpperCase()}
+        </div>
+      </div>
+    ),
+  },
+  {
+    header: 'Страны',
+    accessorKey: 'shortTitle',
     cell: ({ getValue }) => (
       <div className="flex items-center gap-3">
         <div className="flex size-9 rounded-lg bg-indigo-50 text-sm font-semibold text-indigo-600">
@@ -42,33 +53,11 @@ export const columns: Array<ColumnDef<typeof features, MarketType>> = [
   },
 
   {
-    id: 'countries',
-    header: 'Страны',
-    cell: ({ row }) => (
-      <Link
-        href={`/admin/market/${row.original.id}/countries`}
-        className="
-          inline-flex items-center gap-1.5 rounded-md
-          border border-slate-200 bg-white px-3 py-1.5
-          text-xs font-medium text-slate-600
-          transition
-          hover:border-indigo-200
-          hover:bg-indigo-50
-          hover:text-indigo-600
-        "
-      >
-        <span>Добавить страну</span>
-        <span className="text-sm">+</span>
-      </Link>
-    ),
-  },
-
-  {
     id: 'details',
     header: '',
     cell: ({ row }) => (
       <Link
-        href={`/admin/market/${row.original.id}/detail`}
+        href={`/admin/market/${row.original.id}`}
         className="
           inline-flex items-center gap-1.5
           text-xs font-semibold text-indigo-600

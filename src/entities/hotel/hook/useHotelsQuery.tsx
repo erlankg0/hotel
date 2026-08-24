@@ -3,9 +3,9 @@ import { useState } from 'react';
 
 import { useDebounce } from '@/shared/lib/useDebounce';
 
-import { QueryOptionAgency } from '../model/query-option';
+import { QueryOptionHotel } from '../model/query-option';
 
-export const useAgency = ({ search, id }: { search?: string, id?: string }) => {
+export const useHotelsQuery = ({ search }: { search?: string }) => {
   const debouncedSearch = useDebounce<string | undefined>(search, 500);
   const [page, setPage] = useState<number>(1);
   const {
@@ -13,7 +13,7 @@ export const useAgency = ({ search, id }: { search?: string, id?: string }) => {
     error,
     isLoading,
   } = useQuery({
-    ...QueryOptionAgency.get({ title: debouncedSearch, page, id: id }),
+    ...QueryOptionHotel.get({ title: debouncedSearch, page }),
   });
 
   const result = data?.data.data || [];

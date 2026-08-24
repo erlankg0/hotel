@@ -4,14 +4,14 @@ import { Loader, Plus } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 
-import { useRequest, RequestItem } from '@/entities/requests';
+import { useRequestsQuery, RequestItem } from '@/entities/requests';
 import { Button } from '@/shared/ui/button';
 import { Page } from '@/widget/page';
 import { PageHeader } from '@/widget/page-header';
 
 export default function RequestPage() {
   const [search, setSearch] = useState<string>('');
-  const { data, isLoading } = useRequest(search);
+  const { data, isLoading } = useRequestsQuery(search);
 
   if (isLoading) {
     return <Loader className="animate-spin text-gray-500" size={32} />;

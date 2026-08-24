@@ -4,7 +4,7 @@ import { Plus } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 
-import { columns, useOperator } from '@/entities/operator';
+import { columns, useOperatorsQuery } from '@/entities/operator';
 import { Button } from '@/shared/ui/button';
 import { DataTable } from '@/shared/ui/data-table';
 import { PaginationUI } from '@/shared/ui/paginator/pagination';
@@ -16,7 +16,7 @@ import type { OperatorType } from '@/entities/operator';
 
 export default function AgencyPage() {
   const [search, setSearch] = useState<string>('');
-  const { data, isLoading, page, setPage, total, limit } = useOperator(search);
+  const { data, isLoading, page, setPage, total, limit } = useOperatorsQuery(search);
 
   return (
     <Page

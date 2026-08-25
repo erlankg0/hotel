@@ -14,7 +14,7 @@ import { InputGroup, InputGroupInput, InputGroupAddon } from '@/shared/ui/input-
 
 import type { CountryDto } from '../../model/types';
 
-export function CreateForm() {
+export function UpdateForm() {
   const {
     register,
     formState: { errors },
@@ -23,7 +23,7 @@ export function CreateForm() {
   return (
     <FieldSet>
       <article>
-        <FieldTitle className={'text-xl font-bold text-center'}>Добавления страны</FieldTitle>
+        <FieldTitle className={'text-xl font-bold text-center'}>Обновления</FieldTitle>
       </article>
       <Card>
         <CardContent>

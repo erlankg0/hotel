@@ -34,30 +34,29 @@ export const columns: Array<ColumnDef<typeof features, CountryType>> = [
     header: 'Названия',
     cell: ({ getValue }) => (
       <div className="flex items-center gap-3">
-        <div className="flex size-9 rounded-lg bg-indigo-50 text-sm font-semibold text-indigo-600">
+        <div className="flex w-full rounded-lg p-3 bg-indigo-50 text-sm font-semibold text-indigo-600">
           {getValue<string>().toUpperCase()}
         </div>
       </div>
     ),
   },
   {
-    header: 'Страны',
+    header: 'Код',
     accessorKey: 'shortTitle',
     cell: ({ getValue }) => (
       <div className="flex items-center gap-3">
-        <div className="flex size-9 rounded-lg bg-indigo-50 text-sm font-semibold text-indigo-600">
+        <div className="flex w-full rounded-lg p-3 bg-indigo-50 text-sm font-semibold ">
           {getValue<string>().toUpperCase()}
         </div>
       </div>
     ),
   },
-
   {
     id: 'details',
-    header: '',
+    header: 'Обновить',
     cell: ({ row }) => (
       <Link
-        href={`/admin/market/${row.original.id}`}
+        href={`/admin/country/${row.original.id}/detail`}
         className="
           inline-flex items-center gap-1.5
           text-xs font-semibold text-indigo-600

@@ -8,6 +8,6 @@ export const countrySchema = z.object({
   marketId: z.uuid(),
 });
 
-export const countryCreateSchema = countrySchema.omit({
+export const countryFormSchema = countrySchema.omit({
   marketId: true,
 });

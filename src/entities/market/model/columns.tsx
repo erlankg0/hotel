@@ -34,7 +34,7 @@ export const columns: Array<ColumnDef<typeof features, MarketType>> = [
     header: 'Рынок',
     cell: ({ getValue }) => (
       <div className="flex items-center gap-3">
-        <div className="flex size-9 rounded-lg bg-indigo-50 text-sm font-semibold text-indigo-600">
+        <div className="flex p-3 w-full rounded-lg bg-indigo-50 text-sm font-semibold text-indigo-600">
           {getValue<string>().toUpperCase()}
         </div>
       </div>
@@ -65,7 +65,7 @@ export const columns: Array<ColumnDef<typeof features, MarketType>> = [
 
   {
     id: 'details',
-    header: '',
+    header: 'Подробнее',
     cell: ({ row }) => (
       <Link
         href={`/admin/market/${row.original.id}/detail`}

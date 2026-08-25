@@ -5,7 +5,7 @@ import { useDebounce } from '@/shared/lib/useDebounce';
 
 import { QueryOptionCountry } from '../model/query-option';
 
-export const useCountryQueries = ({ search }: { search?: string }) => {
+export const useCountiesQuery = ({ search, id }: { search?: string, id?: string }) => {
   const debouncedSearch = useDebounce<string | undefined>(search, 500);
   const [page, setPage] = useState<number>(1);
   const {
@@ -13,7 +13,7 @@ export const useCountryQueries = ({ search }: { search?: string }) => {
     error,
     isLoading,
   } = useQuery({
-    ...QueryOptionCountry.get({ title: debouncedSearch, page }),
+    ...QueryOptionCountry.get({ title: debouncedSearch, page, id: id }),
   });
 
   const result = data?.data.data || [];

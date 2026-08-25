@@ -24,5 +24,5 @@ export const useAmenitiesQuery = (search?: string) => {
     isLoading,
     error,
   };
-
+  
 };

@@ -1,14 +1,14 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { QueryOptionCountry } from '../model/query-option';
+import { QueryOptionAmenity } from '../model/query-option';
 
-export const useCountryQuery = (id: string) => {
+export const useAmenityQuery = (id: string) => {
   const {
     data,
     error,
     isLoading,
   } = useQuery({
-    ...QueryOptionCountry.getById(id),
+    ...QueryOptionAmenity.getById(id),
   });
 
   return {

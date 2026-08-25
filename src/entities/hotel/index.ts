@@ -4,6 +4,7 @@ export { HotelAccordion } from './ui/accordion';
 export { HotelAbout } from './ui/about';
 export { HotelGallery } from './ui/gallery';
 
-export type { HotelType } from './model/types'
-export { columns } from './model/columns'
-export { useHotelsQuery } from './hook/useHotelsQuery'
+export type { HotelType } from './model/types';
+export { columns } from './model/columns';
+export { useHotelsQuery } from './hook/useHotelsQuery';
+export { useCountryQuery } from './hook/useHotelQuery';

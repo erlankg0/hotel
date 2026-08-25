@@ -1,4 +1,4 @@
-import type { RequestType } from '../model/type';
+import type { RequestType } from '../model/types';
 import type { QueryOptions } from '@/shared/types/response';
 import { api } from '@/shared/api'
 

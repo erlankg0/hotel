@@ -2,7 +2,7 @@ import { BadgeInfoIcon } from 'lucide-react';
 
 import { Item, ItemContent, ItemActions, ItemMedia, ItemTitle } from '@/shared/ui/item';
 
-import type { RequestType } from '../model/type';
+import type { RequestType } from '../model/types';
 import type { ReactNode } from 'react';
 
 export function RequestItem({ name, slot }: Partial<RequestType> & { slot: ReactNode }) {

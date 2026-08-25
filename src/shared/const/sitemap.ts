@@ -21,5 +21,7 @@ export const sitemap: Record<string, string> = {
   agency: 'Агенства',
   occupancy: 'Размещение',
   rule: 'Коэффициент',
-  market: 'Страны',
+  market: 'Рынок',
+  country: 'Страны',
+  countries: 'Стараны'
 };

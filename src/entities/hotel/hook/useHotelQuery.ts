@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { QueryOptionCountry } from '../model/query-option';
+import { QueryOptionHotel } from '../model/query-option';
 
 export const useCountryQuery = (id: string) => {
   const {
@@ -8,7 +8,7 @@ export const useCountryQuery = (id: string) => {
     error,
     isLoading,
   } = useQuery({
-    ...QueryOptionCountry.getById(id),
+    ...QueryOptionHotel.getById(id),
   });
 
   return {

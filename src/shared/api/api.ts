@@ -12,8 +12,8 @@ export const api = {
   post: async <T, D>(url: string, dto: D): Promise<AxiosResponse<BaseResponse<T>>> => {
     return axiosInstance.post<BaseResponse<T>>(url, dto);
   },
-  put: async <T, D>(url: string, dto: D): Promise<AxiosResponse<BaseResponse<T>>> => {
-    return axiosInstance.put<BaseResponse<T>>(url, dto);
+  put: async <T, D>(url: string, id: string, dto: D): Promise<AxiosResponse<BaseResponse<T>>> => {
+    return axiosInstance.put<BaseResponse<T>>(`${url}/${id}`, dto);
   },
   delete: async <T>(
     url: string,

@@ -22,9 +22,6 @@ export function UpdateForm() {
 
   return (
     <FieldSet>
-      <article>
-        <FieldTitle className={'text-xl font-bold text-center'}>Обновления</FieldTitle>
-      </article>
       <Card>
         <CardContent>
           <FieldGroup>

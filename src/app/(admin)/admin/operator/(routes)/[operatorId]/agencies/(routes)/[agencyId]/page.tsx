@@ -34,7 +34,7 @@ export default function AgencyNew() {
       >
         <CreateForm />
         <Button disabled={isPending}>
-          {isPending ? (
+          {isPending  ? (
             <span className={'loader'}><Loader size={14} />Сохранение...</span>
           ) : (
             'Сохранить'

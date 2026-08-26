@@ -8,7 +8,7 @@ import type {
 } from '../../model/types';
 
 export const useCountryUpdate = () => {
-  const mutation = useBaseUpdate<CountryUpdateDto, CountryType>({
+  const mutation = useBaseUpdate<CountryUpdateDto & { marketId: string }, CountryType>({
     queryKey: [QueryOptionCountry.baseKey],
     mutationFn: QueryOptionCountry.put,
   });

@@ -56,7 +56,7 @@ export const columns: Array<ColumnDef<typeof features, CountryType>> = [
     header: 'Обновить',
     cell: ({ row }) => (
       <Link
-        href={`/admin/country/${row.original.id}`}
+        href={`countries/${row.original.id}`}
         className="
           inline-flex items-center gap-1.5
           text-xs font-semibold text-indigo-600
@@ -71,5 +71,4 @@ export const columns: Array<ColumnDef<typeof features, CountryType>> = [
       </Link>
     ),
   },
-
 ];

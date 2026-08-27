@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { useState } from 'react';
 
-import { columnsOperator, useAgency } from '@/entities/agency';
+import { columnsOperator, useAgenciesQuery } from '@/entities/agency';
 import { Button } from '@/shared/ui/button';
 import { DataTable } from '@/shared/ui/data-table';
 import { Page } from '@/widget/page';
@@ -16,7 +16,7 @@ import type { AgencyType } from '@/entities/agency';
 export default function AgencyPage() {
   const [search, setSearch] = useState<string>('');
   const { operatorId } = useParams<{ operatorId: string }>();
-  const { data, isLoading } = useAgency({ search: search, id: operatorId });
+  const { data, isLoading } = useAgenciesQuery({ search: search, id: operatorId });
 
   return (
     <Page

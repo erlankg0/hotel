@@ -86,7 +86,7 @@ export const columnsOperator: Array<ColumnDef<typeof features, AgencyType>> = [
     header: 'Подробнее',
     cell: ({ row }) => (
       <Link
-        href={`/admin/operator/${row.original.id}/detail`}
+        href={`agencies/${row.original.id}`}
         className="inline-flex items-center gap-1 text-xs font-medium text-indigo-600 hover:text-indigo-700 hover:underline"
       >
         Подробнее
@@ -153,7 +153,7 @@ export const columns: Array<ColumnDef<typeof features, AgencyType>> = [
     header: 'Оператор',
     cell: ({ row }) => (
       <Link
-        href={`/admin/operator/${row.original.operator.id}}`}
+        href={`/admin/operator/${row.original.operator.id}`}
         className="inline-flex items-center text-xs font-medium text-slate-700 bg-slate-100 hover:bg-slate-200/80 px-2.5 py-1.5 rounded-lg transition-colors border border-slate-200/60"
       >
         {row.original.operator.title}
@@ -165,7 +165,7 @@ export const columns: Array<ColumnDef<typeof features, AgencyType>> = [
     header: 'Подробнее',
     cell: ({ row }) => (
       <Link
-        href={`/admin/operator/${row.original.id}/detail`}
+        href={`agencies/${row.original.id}`}
         className="inline-flex items-center gap-1 text-xs font-medium text-indigo-600 hover:text-indigo-700 hover:underline"
       >
         Подробнее

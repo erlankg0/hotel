@@ -3,44 +3,54 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Loader } from 'lucide-react';
 import { useParams } from 'next/navigation';
 
-import { CreateForm, agencySchema, useAgencyCreate } from '@/features/agency';
+import { useAgencyQuery } from '@/entities/agency';
+import { UpdateForm, FormSkeleton, agencyUpdateSchema, useAgencyUpdate } from '@/features/agency';
 import { WrapperForm } from '@/shared/providers/form';
 import { Button } from '@/shared/ui/button';
 import { Page } from '@/widget/page';
 
-import type { AgencyCreateFormValues, AgencyCreateFromInput } from '@/features/agency';
+import type { AgencyUpdateFormOutput, AgencyUpdateFromInput, AgencyUpdateDto } from '@/features/agency';
 
-export default function AgencyNew() {
-  const { handleOnSubmit, isPending } = useAgencyCreate();
-  const params = useParams<{ operatorId: string }>();
+export default function AgencyUpdatePage() {
+  const { operatorId, agencyId } = useParams<{ operatorId: string, agencyId: string }>();
+  const { handleOnSubmit, isPending } = useAgencyUpdate();
+  const { data, isLoading } = useAgencyQuery(agencyId);
 
-  const id = params.operatorId;
-
-  async function handleOnSubmitForm(dto: AgencyCreateFromInput) {
+  async function handleOnSubmitForm(dto: AgencyUpdateDto) {
     await handleOnSubmit({
-      title: dto.title,
-      shortTitle: dto.shortTitle,
-      operatorId: id,
+      id: operatorId,
+      dto: {
+        title: dto.title,
+        shortTitle: dto.shortTitle,
+        operatorId: operatorId,
+        market: dto.market,
+      },
     });
   }
+
   return (
     <Page>
-      <WrapperForm<AgencyCreateFromInput, AgencyCreateFormValues>
-        onSubmit={handleOnSubmitForm}
-        options={{
-          mode: 'onChange',
-          resolver: zodResolver(agencySchema),
-        }}
-      >
-        <CreateForm />
-        <Button disabled={isPending}>
-          {isPending  ? (
-            <span className={'loader'}><Loader size={14} />Сохранение...</span>
-          ) : (
-            'Сохранить'
-          )}
-        </Button>
-      </WrapperForm>
+      {isLoading ?
+        (<FormSkeleton />) :
+        (<WrapperForm<AgencyUpdateFormOutput, AgencyUpdateFromInput>
+            onSubmit={handleOnSubmitForm}
+            options={{
+              mode: 'onChange',
+              resolver: zodResolver(agencyUpdateSchema),
+              defaultValues: { ...data },
+            }}
+
+          >
+            <UpdateForm />
+            <Button disabled={isPending}>
+              {isPending ? (
+                <span className={'loader'}><Loader size={14} />Сохранение...</span>
+              ) : (
+                'Сохранить'
+              )}
+            </Button>
+          </WrapperForm>
+        )}
     </Page>
   );
 }

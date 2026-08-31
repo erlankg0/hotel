@@ -16,7 +16,7 @@ export const useAmenitiesQuery = (search?: string) => {
     ...QueryOptionAmenity.get({ title: debouncedSearch, page }),
   });
 
-  const result = data?.data.data;
+  const result = data?.data.data || [];
 
   return {
     data: result,

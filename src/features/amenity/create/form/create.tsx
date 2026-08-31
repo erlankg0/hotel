@@ -12,10 +12,10 @@ import {
 } from '@/shared/ui/field';
 import { InputGroup, InputGroupAddon, InputGroupInput } from '@/shared/ui/input-group';
 
-import type { AmenityDto } from '../../model/schema';
+import type { AmenityFormInput } from '../../model/types';
 
 export function CreateForm() {
-  const { register, formState: { errors } } = useFormContext<AmenityDto>();
+  const { register, formState: { errors } } = useFormContext<AmenityFormInput>();
   return (
     <FieldSet className={'flex flex-col gap-6'}>
       <article>

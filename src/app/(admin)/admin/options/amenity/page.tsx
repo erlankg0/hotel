@@ -4,10 +4,13 @@ import { Loader, Plus } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 
-import { useAmenitiesQuery, ItemUI } from '@/entities/amenity';
+import { useAmenitiesQuery, columns } from '@/entities/amenity';
 import { Button } from '@/shared/ui/button';
+import { DataTable } from '@/shared/ui/data-table';
 import { Page } from '@/widget/page';
 import { PageHeader } from '@/widget/page-header';
+
+import type { AmenityType } from '@/entities/amenity';
 
 export default function RequestPage() {
   const [search, setSearch] = useState<string>('');
@@ -35,9 +38,7 @@ export default function RequestPage() {
     >
 
       <div className={'flex flex-row items-center gap-2'}>
-        {data && data.map((item) => (
-          <ItemUI {...item} key={item.id} />
-        ))}
+        <DataTable<AmenityType> columns={columns} data={data} isLoading={isLoading} />
       </div>
 
     </Page>

@@ -5,7 +5,6 @@ import { REQUEST_ICONS, REQUEST_LABEL_RU } from '@/shared/const/icon_requests';
 import {
   FieldSet,
   FieldGroup,
-  FieldTitle,
   FieldLabel,
   FieldError,
   FieldDescription,
@@ -14,14 +13,10 @@ import { InputGroup, InputGroupAddon, InputGroupInput } from '@/shared/ui/input-
 
 import type { RequestFormInput } from '../../model/types';
 
-export function CreateForm() {
+export function UpdateForm() {
   const { register, formState: { errors } } = useFormContext<RequestFormInput>();
   return (
     <FieldSet className={'flex flex-col gap-6'}>
-      <article>
-        <FieldTitle className={'text-xl font-bold text-center'}>Создания нового запроса</FieldTitle>
-      </article>
-
       <FieldGroup>
         <FieldLabel htmlFor={'name'}>Названия</FieldLabel>
         <InputGroup>

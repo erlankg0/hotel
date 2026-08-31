@@ -4,7 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Loader } from 'lucide-react';
 
 import styles from '@/app/(auth)/layout.module.scss';
-import { useRequestCreate, RequestSchema, CreateForm } from '@/features/requests';
+import { useRequestCreate, requestSchema, CreateForm } from '@/features/requests';
 import { WrapperForm } from '@/shared/providers/form';
 import { Button } from '@/shared/ui/button';
 import { Page } from '@/widget/page';
@@ -20,7 +20,7 @@ export default function NewPage() {
         onSubmit={handleOnSubmit}
         options={{
           mode: 'onChange',
-          resolver: zodResolver(RequestSchema),
+          resolver: zodResolver(requestSchema),
         }}
 
       >

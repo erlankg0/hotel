@@ -1,6 +1,6 @@
 import axiosInstance from '@/shared/axios/axios';
 
-import type { AmenityType } from '../model/schema';
+import type { AmenityType } from '../model/types';
 import type { BaseResponse } from '@/shared/types/response';
 
 export async function delete_(id: string) {

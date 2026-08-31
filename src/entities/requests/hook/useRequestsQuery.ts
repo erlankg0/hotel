@@ -17,7 +17,7 @@ export const useRequestsQuery = (search?: string) => {
     ...QueryOptionRequest.get({ title: debouncedSearch, page }),
   });
 
-  const result = data?.data.data;
+  const result = data?.data.data || [];
 
   return {
     data: result,

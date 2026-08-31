@@ -4,10 +4,11 @@ import { Plus } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 
-import { useRequestsQuery, RequestItem } from '@/entities/requests';
+import { useRequestsQuery, type RequestType, columns } from '@/entities/requests';
 import { Button } from '@/shared/ui/button';
 import { Page } from '@/widget/page';
 import { PageHeader } from '@/widget/page-header';
+import { DataTable } from '@/shared/ui/data-table';
 
 export default function RequestPage() {
   const [search, setSearch] = useState<string>('');
@@ -32,11 +33,8 @@ export default function RequestPage() {
         />}
     >
       <div className={'flex flex-row items-center gap-2'}>
-        {data && data.map((item) => (
-          <RequestItem slot={<></>} key={item.id} name={item.name} />
-        ))}
+        <DataTable<RequestType> data={data} isLoading={isLoading} columns={columns} />
       </div>
-
     </Page>
   );
 }

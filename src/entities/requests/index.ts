@@ -1,3 +1,4 @@
 export { useRequestsQuery } from './hook/useRequestsQuery';
 export { useRequestQuery } from './hook/useRequestQuery';
-export { RequestItem } from './ui/request';
+export { columns } from './model/columns';
+export type { RequestType } from './model/types';

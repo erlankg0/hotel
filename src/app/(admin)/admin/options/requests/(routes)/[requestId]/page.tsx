@@ -41,6 +41,7 @@ export default function UpdatePage() {
               resolver: zodResolver(requestSchema),
               defaultValues: {
                 name: data?.name,
+                icon: data?.icon
               },
             }}
 

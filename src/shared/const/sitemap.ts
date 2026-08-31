@@ -23,5 +23,6 @@ export const sitemap: Record<string, string> = {
   rule: 'Коэффициент',
   market: 'Рынок',
   country: 'Страны',
-  countries: 'Стараны'
+  countries: 'Стараны',
+  requests: 'Запросы',
 };

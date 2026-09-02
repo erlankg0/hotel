@@ -1,9 +1,8 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Loader } from 'lucide-react';
+import {  Loader2 } from 'lucide-react';
 
-import styles from '@/app/(auth)/layout.module.scss';
 import { useAmenityCreate, AmenitySchema, CreateForm } from '@/features/amenity';
 import { WrapperForm } from '@/shared/providers/form';
 import { Button } from '@/shared/ui/button';
@@ -27,10 +26,17 @@ export default function NewPage() {
         <CreateForm />
         <Button
           disabled={isPending}
-          type={'submit'}
-          className={styles.button}
+          type="submit"
+          className="relative w-full"
         >
-          {isPending ? (<span className={styles.loader}><Loader size={14} />Сохранение...</span>) : ('Сохранить')}
+          <p
+            className={`flex items-center justify-center gap-2 transition-all duration-200 ${
+              isPending ? 'opacity-100' : 'opacity-100'
+            }`}
+          >
+            {isPending && <Loader2 className="size-4 animate-spin" />}
+            <span>{isPending ? 'Сохранение...' : 'Сохранить'}</span>
+          </p>
         </Button>
 
       </WrapperForm>

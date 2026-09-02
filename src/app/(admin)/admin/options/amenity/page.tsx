@@ -1,6 +1,6 @@
 'use client';
 
-import { Loader, Plus } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 
@@ -15,10 +15,6 @@ import type { AmenityType } from '@/entities/amenity';
 export default function RequestPage() {
   const [search, setSearch] = useState<string>('');
   const { data, isLoading } = useAmenitiesQuery(search);
-
-  if (isLoading) {
-    return <Loader className="animate-spin text-gray-500" size={32} />;
-  }
 
   return (
     <Page

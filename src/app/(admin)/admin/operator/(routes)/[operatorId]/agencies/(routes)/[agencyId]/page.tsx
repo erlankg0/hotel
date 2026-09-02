@@ -1,6 +1,6 @@
 'use client';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Loader } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 import { useParams } from 'next/navigation';
 
 import { useAgencyQuery } from '@/entities/agency';
@@ -42,12 +42,19 @@ export default function AgencyUpdatePage() {
 
           >
             <UpdateForm />
-            <Button disabled={isPending}>
-              {isPending ? (
-                <span className={'loader'}><Loader size={14} />Сохранение...</span>
-              ) : (
-                'Сохранить'
-              )}
+            <Button
+              disabled={isPending}
+              type="submit"
+              className="relative w-full"
+            >
+              <p
+                className={`flex items-center justify-center gap-2 transition-all duration-200 ${
+                  isPending ? 'opacity-100' : 'opacity-100'
+                }`}
+              >
+                {isPending && <Loader2 className="size-4 animate-spin" />}
+                <span>{isPending ? 'Обновление...' : 'Обновить'}</span>
+              </p>
             </Button>
           </WrapperForm>
         )}

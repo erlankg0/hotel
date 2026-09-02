@@ -6,9 +6,9 @@ import { useState } from 'react';
 
 import { useRequestsQuery, type RequestType, columns } from '@/entities/requests';
 import { Button } from '@/shared/ui/button';
+import { DataTable } from '@/shared/ui/data-table';
 import { Page } from '@/widget/page';
 import { PageHeader } from '@/widget/page-header';
-import { DataTable } from '@/shared/ui/data-table';
 
 export default function RequestPage() {
   const [search, setSearch] = useState<string>('');

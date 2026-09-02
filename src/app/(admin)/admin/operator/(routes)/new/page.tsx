@@ -1,7 +1,7 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Loader } from 'lucide-react';
+import {  Loader2 } from 'lucide-react';
 
 import { useEmailCreate } from '@/features/email';
 import { Create, useCreateOperator, operatorCreateSchema } from '@/features/operator';
@@ -48,12 +48,19 @@ export default function Operator() {
         className={'flex flex-col gap-6'}
       >
         <Create />
-        <Button disabled={isPending}>
-          {isPending || uploadFile.isPending ? (
-            <span className={'loader'}><Loader size={14} />Сохранение...</span>
-          ) : (
-            'Сохранить'
-          )}
+        <Button
+          disabled={isPending}
+          type="submit"
+          className="relative w-full"
+        >
+          <p
+            className={`flex items-center justify-center gap-2 transition-all duration-200 ${
+              isPending ? 'opacity-100' : 'opacity-100'
+            }`}
+          >
+            {isPending && <Loader2 className="size-4 animate-spin" />}
+            <span>{isPending ? 'Сохранение...' : 'Сохранить'}</span>
+          </p>
         </Button>
       </WrapperForm>
     </Page>

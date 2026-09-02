@@ -57,16 +57,16 @@ export default function RoomDetail() {
   const uploadFile = useUploadFile();
 
   const defaultValues: RoomUpdateFormInput = {
-    title: data?.title || '',
-    category: data?.category || Category.ROOM,
-    description: data?.description || '',
-    subDescription: data?.subDescription || '',
-    capacity: data?.capacity || 1,
-    bedRoomCount: data?.bedRoomCount || 1,
-    bathRoomCount: data?.bathRoomCount || 1,
-    amenityIds: data?.amenity.map((amenity) => amenity.id) || [],
-    requestsIds: data?.requests?.map((request) => request.id) || [],
-    photosIds: data?.photos?.map((photo) => photo.id) || [],
+    title: data?.data.title || '',
+    category: data?.data.category || Category.ROOM,
+    description: data?.data.description || '',
+    subDescription: data?.data.subDescription || '',
+    capacity: data?.data.capacity || 1,
+    bedRoomCount: data?.data.bedRoomCount || 1,
+    bathRoomCount: data?.data.bathRoomCount || 1,
+    amenityIds: data?.data.amenity.map((amenity) => amenity.id) || [],
+    requestsIds: data?.data.requests?.map((request) => request.id) || [],
+    photosIds: data?.data.photos?.map((photo) => photo.id) || [],
     files: [],
     videoId: '',
   };
@@ -116,7 +116,7 @@ export default function RoomDetail() {
             }}
             onSubmit={onSubmit}
           >
-            <UpdateForm existingPhotos={data?.photos ?? []} />
+            <UpdateForm existingPhotos={data?.data.photos ?? []} />
             <Button type={'submit'} disabled={isPending || uploadFile.isPending}>
               {isPending || uploadFile.isPending ?
                 <p><Loader className="animate-spin" size={16} /></p> : 'Сохранить'}

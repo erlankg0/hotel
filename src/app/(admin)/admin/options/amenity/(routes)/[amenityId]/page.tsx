@@ -1,7 +1,7 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Loader } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 import { useParams } from 'next/navigation';
 import { useCallback } from 'react';
 
@@ -49,10 +49,17 @@ export default function UpdatePage() {
             <UpdateForm />
             <Button
               disabled={isPending}
-              type={'submit'}
-              className={'loader'}
+              type="submit"
+              className="relative w-full"
             >
-              {isPending ? (<span><Loader size={14} />Сохранение...</span>) : ('Сохранить')}
+              <p
+                className={`flex items-center justify-center gap-2 transition-all duration-200 ${
+                  isPending ? 'opacity-100' : 'opacity-100'
+                }`}
+              >
+                {isPending && <Loader2 className="size-4 animate-spin" />}
+                <span>{isPending ? 'Обновление...' : 'Обновить'}</span>
+              </p>
             </Button>
 
           </WrapperForm>

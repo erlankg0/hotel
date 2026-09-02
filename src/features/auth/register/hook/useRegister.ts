@@ -8,20 +8,24 @@ import { handleAxiosError } from '@/shared/lib/handleAxiosError';
 
 import { registerApi } from '../api/register';
 
-import type { RegisterDto } from '../model/dto';
-
 export const useRegister = () => {
   const queryClient = useQueryClient();
   const router = useRouter();
 
   return useMutation({
-    mutationFn: (dto: RegisterDto) => registerApi(dto),
+    mutationFn: registerApi,
+
     onError: handleAxiosError,
-    onSuccess: async (response) => {
+
+    onSuccess: (response) => {
       const { data, message } = response;
-      const welcomeMessage = message || 'Успешная регистрация пользователя!';
-      await queryClient.setQueryData(['session'], data);
-      toast.success(welcomeMessage);
+
+      queryClient.setQueryData(['session'], data);
+
+      toast.success(
+        message || 'Успешная регистрация пользователя!',
+      );
+
       router.push('/');
     },
   });

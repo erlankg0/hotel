@@ -1,7 +1,7 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Loader } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 
 import { LoginForm, useLogin, LoginSchema } from '@/features/auth/login';
 import { WrapperForm } from '@/shared/providers/form';
@@ -26,10 +26,17 @@ export default function Page() {
       <LoginForm />
       <Button
         disabled={isPending}
-        type={'submit'}
-        className={'w-full flex items-center gap-2'}
+        type="submit"
+        className="relative w-full"
       >
-        {isPending ? (<span className={styles.loader}><Loader size={14} />Вход...</span>) : ('Войти')}
+        <p
+          className={`flex items-center justify-center gap-2 transition-all duration-200 ${
+            isPending ? 'opacity-100' : 'opacity-100'
+          }`}
+        >
+          {isPending && <Loader2 className="size-4 animate-spin" />}
+          <span>{isPending ? 'Вход...' : 'Войти'}</span>
+        </p>
       </Button>
     </WrapperForm>
   );

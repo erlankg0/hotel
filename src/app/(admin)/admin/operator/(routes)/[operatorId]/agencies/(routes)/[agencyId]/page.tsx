@@ -33,30 +33,32 @@ export default function AgencyUpdatePage() {
       {isLoading ?
         (<FormSkeleton />) :
         (<WrapperForm<AgencyUpdateFormOutput, AgencyUpdateFromInput>
-            onSubmit={handleOnSubmitForm}
-            options={{
-              mode: 'onChange',
-              resolver: zodResolver(agencyUpdateSchema),
-              defaultValues: { ...data },
-            }}
+          onSubmit={handleOnSubmitForm}
+          options={{
+            mode: 'onChange',
+            resolver: zodResolver(agencyUpdateSchema),
+            defaultValues: {
+              title: data?.title,
+              shortTitle: data?.shortTitle,
+            },
+          }}
 
+        >
+          <UpdateForm />
+          <Button
+            disabled={isPending}
+            type="submit"
+            className="relative w-full"
           >
-            <UpdateForm />
-            <Button
-              disabled={isPending}
-              type="submit"
-              className="relative w-full"
-            >
-              <p
-                className={`flex items-center justify-center gap-2 transition-all duration-200 ${
-                  isPending ? 'opacity-100' : 'opacity-100'
+            <p
+              className={`flex items-center justify-center gap-2 transition-all duration-200 ${isPending ? 'opacity-100' : 'opacity-100'
                 }`}
-              >
-                {isPending && <Loader2 className="size-4 animate-spin" />}
-                <span>{isPending ? 'Обновление...' : 'Обновить'}</span>
-              </p>
-            </Button>
-          </WrapperForm>
+            >
+              {isPending && <Loader2 className="size-4 animate-spin" />}
+              <span>{isPending ? 'Обновление...' : 'Обновить'}</span>
+            </p>
+          </Button>
+        </WrapperForm>
         )}
     </Page>
   );

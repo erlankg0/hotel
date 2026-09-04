@@ -23,7 +23,7 @@ import { CategorySection, categorySectionOptions } from '@/shared/const/room-cat
 import type { RoomCategoryFormInput } from '../../model/types';
 
 
-export function CreateForm() {
+export function UpdateForm() {
   const {
     register,
     setValue,

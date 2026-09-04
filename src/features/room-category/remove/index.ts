@@ -1,0 +1,1 @@
+export { useRoomCategortDelete } from './hook/useRoomCategoryRemove';

@@ -1,5 +1,5 @@
 import { Group } from 'lucide-react';
-import { useFormContext } from 'react-hook-form';
+import { useFormContext, useFieldArray } from 'react-hook-form';
 
 import { Card, CardContent } from '@/shared/ui/card';
 import {

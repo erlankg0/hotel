@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 
 export type SelectOption = {
   id: string;
-  label: string;
+  title: string;
 }
 
 export interface Props {

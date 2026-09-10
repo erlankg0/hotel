@@ -1,6 +1,5 @@
 import { Group } from 'lucide-react';
-import { useFormContext, useFieldArray } from 'react-hook-form';
-
+import { useFormContext, Controller } from 'react-hook-form';
 import { Card, CardContent } from '@/shared/ui/card';
 import {
   FieldDescription,
@@ -12,13 +11,18 @@ import {
 } from '@/shared/ui/field';
 import { InputGroup, InputGroupInput, InputGroupAddon } from '@/shared/ui/input-group';
 
-import type { MarketDto } from '../../model/types';
+import type { MarketCreateInput } from '../../model/types';
+import type { Props } from '../../model/props';
+import { MultiSelect } from '@/shared/ui/multi-select';
+import Link from 'next/link';
 
-export function CreateForm() {
+
+export function CreateForm({ data, isLoading, page, search, setPage, setSearch }: Props) {
   const {
     register,
     formState: { errors },
-  } = useFormContext<MarketDto>();
+    control
+  } = useFormContext<MarketCreateInput>();
 
   return (
     <FieldSet>
@@ -39,6 +43,34 @@ export function CreateForm() {
               <FieldDescription>Введите уникальное названия</FieldDescription>
             )}
           </FieldGroup>
+        </CardContent>
+
+        <CardContent>
+          <Controller
+            control={control}
+            name={'countries'}
+            render={({ field, fieldState }) => (
+              <>
+                <MultiSelect
+                  options={data}
+                  page={page}
+                  value={field.value}
+                  onChange={field.onChange}
+                  isLoading={isLoading}
+                  search={search}
+                  onChangePage={setPage}
+                  total={data.length}
+                  onSearchChange={setSearch}
+                  empty={(<Link href={'/'} target={'_blank'}>Добавить Страну</Link>)}
+                />
+                {fieldState.error ? (
+                  <FieldError>{fieldState.error.message}</FieldError>
+                ) : (
+                  <FieldDescription>Выберите страны</FieldDescription>
+                )}
+              </>
+            )}
+          />
         </CardContent>
       </Card>
 

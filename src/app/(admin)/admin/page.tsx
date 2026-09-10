@@ -8,12 +8,12 @@ export default function Page() {
 
   const [search, setSearch] = useState<string>('');
   const { data, isLoading, setPage } = useCountiesQuery({ search: search });
-  const [ids, setIds] = useState<{ id: string, label: string }[]>([]);
-  const normalize = data.map(country => ({ id: country.id, label: country.title }));
+  const [ids, setIds] = useState<{ id: string, title: string }[]>([]);
+  
   return (
     <section className={'h-screen flex flex-col items-center justify-center'}>
       <MultiSelect
-        options={normalize}
+        options={data}
         page={1}
         value={ids}
         onChange={setIds}

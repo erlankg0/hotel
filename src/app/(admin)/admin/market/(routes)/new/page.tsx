@@ -2,12 +2,14 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Loader2 } from 'lucide-react';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
+
+import { useCountiesQuery } from '@/entities/country';
 import { CreateForm, useMarketCreate, MarketCreateFormSchema } from '@/features/market';
 import { WrapperForm } from '@/shared/providers/form';
 import { Button } from '@/shared/ui/button';
 import { Page } from '@/widget/page';
-import { useCountiesQuery } from '@/entities/country'
+
 import type { MarketCreateInput, MarketCreateOutput } from '@/features/market';
 
 export default function MarketNew() {
@@ -16,16 +18,24 @@ export default function MarketNew() {
   const [search, setSearch] = useState<string>('');
   const { data, isLoading } = useCountiesQuery({ search: search });
 
+  const onHandleSubmit = useCallback(async (dto: MarketCreateInput) => {
+    await handleOnSubmit({
+      title: dto.title,
+      countries: dto.countries.map((item) => item.id),
+    });
+  }, [handleOnSubmit]);
+
   return (
     <Page>
       <WrapperForm<MarketCreateOutput, MarketCreateInput>
-        onSubmit={handleOnSubmit}
+        onSubmit={onHandleSubmit}
         options={{
           mode: 'onChange',
           resolver: zodResolver(MarketCreateFormSchema),
         }}
       >
-        <CreateForm data={data} isLoading={isLoading}  page={page} setPage={setPage} search={search} setSearch={setSearch}/>
+        <CreateForm data={data} isLoading={isLoading} page={page} setPage={setPage} search={search}
+                    setSearch={setSearch} />
         <Button
           disabled={isPending}
           type="submit"
@@ -33,7 +43,7 @@ export default function MarketNew() {
         >
           <p
             className={`flex items-center justify-center gap-2 transition-all duration-200 ${isPending ? 'opacity-100' : 'opacity-100'
-              }`}
+            }`}
           >
             {isPending && <Loader2 className="size-4 animate-spin" />}
             <span>{isPending ? 'Сохранение...' : 'Сохранить'}</span>

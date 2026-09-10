@@ -8,9 +8,9 @@ export type SelectOption = {
 export interface Props {
   className?: string;
   empty?: ReactNode;
-  value: string[];
+  value: SelectOption[];
   options: SelectOption[];
-  onChange: (value: string[])=> void;
+  onChange: (value: SelectOption[])=> void;
   search: string;
   onSearchChange: (value: string)=> void;
   page: number;

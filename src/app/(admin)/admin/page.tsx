@@ -8,7 +8,7 @@ export default function Page() {
 
   const [search, setSearch] = useState<string>('');
   const { data, isLoading, setPage } = useCountiesQuery({ search: search });
-  const [ids, setIds] = useState<string[]>([]);
+  const [ids, setIds] = useState<{ id: string, label: string }[]>([]);
   const normalize = data.map(country => ({ id: country.id, label: country.title }));
   return (
     <section className={'h-screen flex flex-col items-center justify-center'}>

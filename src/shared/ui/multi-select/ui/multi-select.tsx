@@ -1,7 +1,7 @@
 'use client';
 
-import { Loader2, Search } from 'lucide-react';
-import {  Fragment } from 'react';
+import { Search } from 'lucide-react';
+import { Fragment } from 'react';
 
 import { cn } from '@/shared/lib/utils';
 import {
@@ -19,7 +19,9 @@ import {
 import { InputGroup, InputGroupAddon } from '@/shared/ui/input-group';
 import { PaginationUI } from '@/shared/ui/paginator/pagination';
 
-import type { Props } from '../model/props';
+import { MultiSelectSkeleton } from './multi-select-skeleton';
+
+import type { Props, SelectOption } from '../model/props';
 import type { ChangeEvent } from 'react';
 
 export function MultiSelect({
@@ -48,6 +50,9 @@ export function MultiSelect({
       <Combobox
         autoHighlight={true}
         multiple={true}
+        items={options}
+        filter={null}
+        isItemEqualToValue={(item: SelectOption, value: SelectOption) => item.id === value.id}
         value={value}
         onValueChange={onChange}
       >
@@ -55,8 +60,8 @@ export function MultiSelect({
           <ComboboxValue>
             {(values) => (
               <Fragment>
-                {values.map((value: string) => (
-                  <ComboboxChip key={value}>{value}</ComboboxChip>
+                {values.map((value: SelectOption) => (
+                  <ComboboxChip key={value.id}>{value.label}</ComboboxChip>
                 ))}
                 <InputGroup>
                   <ComboboxChipsInput
@@ -68,23 +73,22 @@ export function MultiSelect({
                     <Search />
                   </InputGroupAddon>
                 </InputGroup>
-
               </Fragment>
             )}
           </ComboboxValue>
         </ComboboxChips>
         <ComboboxContent anchor={anchor} className={cn(className)}>
+          <ComboboxEmpty>
+            {empty ?? 'Нету данных'}
+          </ComboboxEmpty>
           {isLoading ? (
-            <Loader2 className="size-4 animate-spin" />
+            <MultiSelectSkeleton />
           ) : (
             <ComboboxList>
-              <ComboboxEmpty>
-                {empty ?? 'Нету данных'}
-              </ComboboxEmpty>
               {options.map((item) => (
                 <ComboboxItem
                   key={item.id}
-                  value={item.id}
+                  value={item}
                 >
                   {item.label}
                 </ComboboxItem>

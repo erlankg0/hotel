@@ -34,8 +34,14 @@ export default function MarketNew() {
           resolver: zodResolver(MarketCreateFormSchema),
         }}
       >
-        <CreateForm data={data} isLoading={isLoading} page={page} setPage={setPage} search={search}
-                    setSearch={setSearch} />
+        <CreateForm
+         data={data}
+          isLoading={isLoading}
+          page={page} 
+          setPage={setPage} 
+          search={search}
+          setSearch={setSearch}
+          />
         <Button
           disabled={isPending}
           type="submit"

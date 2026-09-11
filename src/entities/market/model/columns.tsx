@@ -57,7 +57,7 @@ export const columns: Array<ColumnDef<typeof features, MarketType>> = [
           hover:text-indigo-600
         "
       >
-        <span>Добавить страну</span>
+        <span>Страны</span>
         <span className="text-sm">+</span>
       </Link>
     ),

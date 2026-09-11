@@ -22,7 +22,7 @@ export const sitemap: Record<string, string> = {
   occupancy: 'Размещение',
   rule: 'Коэффициент',
   market: 'Рынок',
-  country: 'Страны',
-  countries: 'Стараны',
+  country: 'Страна',
+  countries: 'Страны',
   requests: 'Запросы',
 };

@@ -4,7 +4,7 @@ import { Plus } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 
-import { , useHotelsQuery, type HotelType } from '@/entities/room-category'
+import { useRoomCategoriesQuery, type RoomCategortType } from '@/entities/room-category'
 import { Button } from '@/shared/ui/button';
 import { DataTable } from '@/shared/ui/data-table';
 import { Page } from '@/widget/page';
@@ -12,7 +12,7 @@ import { PageHeader } from '@/widget/page-header';
 
 export default function HotelPage() {
   const [search, setSearch] = useState<string>('');
-  const { data, isLoading } = useHotelsQuery({ search: search })
+  const { data, isLoading } = useRoomCategoriesQuery({ search: search })
   return (
     <Page
       headerSlog={
@@ -32,7 +32,7 @@ export default function HotelPage() {
         />}
     >
       <div className={'flex flex-col gap-6'}>
-        <DataTable<HotelType> data={data} columns={columns} isLoading={isLoading} />
+        <DataTable<RoomCategortType> data={data} columns={columns} isLoading={isLoading} />
       </div>
     </Page>
   );

@@ -7,4 +7,4 @@ export { HotelGallery } from './ui/gallery';
 export type { HotelType } from './model/types';
 export { columns } from './model/columns';
 export { useHotelsQuery } from './hook/useHotelsQuery';
-export { useCountryQuery } from './hook/useHotelQuery';
+export { useHotelQuery } from './hook/useHotelQuery';

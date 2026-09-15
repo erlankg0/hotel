@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import { QueryOptionHotel } from '../model/query-option';
 
-export const useCountryQuery = (id: string) => {
+export const useHotelQuery = (id: string) => {
   const {
     data,
     error,

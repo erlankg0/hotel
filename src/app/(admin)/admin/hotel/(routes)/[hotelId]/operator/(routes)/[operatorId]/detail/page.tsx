@@ -1,6 +1,7 @@
 'use client';
 
 import { useParams } from 'next/navigation'
+
 import { useOperatorQuery } from '@/entities/operator';
 import { Page } from '@/widget/page';
 

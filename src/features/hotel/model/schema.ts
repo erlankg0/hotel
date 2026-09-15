@@ -1,4 +1,5 @@
 import { z } from 'zod';
+
 import { IsNotEmpty } from '@/shared/zod'
 
 export const hotelSchema = z.object({

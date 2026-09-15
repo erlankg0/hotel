@@ -2,28 +2,35 @@
 
 import { Plus } from 'lucide-react';
 import Link from 'next/link';
+import { useParams } from 'next/navigation';
 import { useState } from 'react';
 
-import { useRoomCategoriesQuery, type RoomCategortType } from '@/entities/room-category'
+import { columns, useOperatorsQuery } from '@/entities/operator';
 import { Button } from '@/shared/ui/button';
 import { DataTable } from '@/shared/ui/data-table';
+import { PaginationUI } from '@/shared/ui/paginator/pagination';
 import { Page } from '@/widget/page';
 import { PageHeader } from '@/widget/page-header';
 
-export default function HotelPage() {
+import type { OperatorType } from '@/entities/operator';
+
+
+export default function AgencyPage() {
   const [search, setSearch] = useState<string>('');
-  const { data, isLoading } = useRoomCategoriesQuery({ search: search })
+  const { hotelId } = useParams<{ hotelId: string }>();
+  const { data, isLoading, page, setPage, total, limit } = useOperatorsQuery({ search, id: hotelId });
+
   return (
     <Page
       headerSlog={
         <PageHeader
-          title={'Отели'}
+          title={'Операторы'}
           searchValue={search}
           onSearchOnChange={setSearch}
           slot={
             <div className={'flex flex-row items-center gap-2'}>
               <Button type={'button'}>
-                <Link href={'/admin/hotel/new'}>
+                <Link href={'operator/new'}>
                   <Plus size={14} />
                 </Link>
               </Button>
@@ -32,7 +39,9 @@ export default function HotelPage() {
         />}
     >
       <div className={'flex flex-col gap-6'}>
-        <DataTable<RoomCategortType> data={data} columns={columns} isLoading={isLoading} />
+        <DataTable<OperatorType> caption={'Операторы'} columns={columns} data={data} isLoading={isLoading}>
+          <PaginationUI page={page} total={total} limit={limit} onPage={setPage} />
+        </DataTable>
       </div>
     </Page>
   );

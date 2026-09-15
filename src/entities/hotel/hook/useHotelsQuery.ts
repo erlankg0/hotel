@@ -23,6 +23,8 @@ export const useHotelsQuery = ({ search }: { search?: string }) => {
     setPage,
     isLoading,
     error,
+    page,
+    total: data?.data.total
   };
 
 };

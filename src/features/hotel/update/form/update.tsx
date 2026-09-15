@@ -8,23 +8,19 @@ import {
   FieldGroup,
   FieldLabel,
   FieldSet,
-  FieldTitle,
 } from '@/shared/ui/field';
 import { InputGroup, InputGroupInput, InputGroupAddon, InputGroupTextarea } from '@/shared/ui/input-group';
 
-import type { HotelFromInput } from '../../model/types';
+import type { HotelFormValues } from '../../model/types';
 
-export function CreateForm() {
+export function UpdateForm() {
   const {
     register,
     formState: { errors },
-  } = useFormContext<HotelFromInput>();
+  } = useFormContext<HotelFormValues>();
 
   return (
     <FieldSet>
-      <article>
-        <FieldTitle className={'text-xl font-bold text-center'}>Создание Отеля</FieldTitle>
-      </article>
       <Card>
         <CardContent>
           <FieldGroup>

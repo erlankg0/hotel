@@ -15,8 +15,7 @@ export default function AgencyPage() {
 
   return (
     <Page
-      headerSlog={<PageHeader title={'Агенство'} searchValue={search} onSearchOnChange={setSearch} />}
-    >
+      headerSlog={<PageHeader title={'Агенство'} searchValue={search} onSearchOnChange={setSearch} />}>
       <div className={'flex flex-col gap-6'}>
         <DataTable<AgencyType> data={data} columns={columns} isLoading={isLoading} />
       </div>

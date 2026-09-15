@@ -1,28 +1,39 @@
 'use client';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Loader2 } from 'lucide-react';
+import { useParams } from 'next/navigation';
 
-import { CreateForm, hotelSchema, useHotelCreate } from '@/features/hotel';
+import {
+  CreateForm,
+  ContractSchema,
+  useCreateContract,
+} from '@/features/contract';
 import { WrapperForm } from '@/shared/providers/form';
 import { Button } from '@/shared/ui/button';
 import { Page } from '@/widget/page';
 
-import type { HotelFormValues, HotelFromInput, HotelDto } from '@/features/hotel';
+import type { ContractFormInput, ContractFormOutput } from '@/features/contract';
 
-export default function HotelNew() {
-  const { handleOnSubmit, isPending } = useHotelCreate();
+export default function ContractNew() {
+  const { handleOnSubmit, isPending } = useCreateContract();
+  const { hotelId, agencyId } = useParams<{ hotelId: string, agencyId: string }>();
 
-  async function handleOnSubmitForm(dto: HotelDto) {
-    await handleOnSubmit(dto);
+  async function handleOnSubmitForm(dto: ContractFormInput) {
+    await handleOnSubmit({
+      ...dto,
+      countryId: agencyId,
+      agencyId: agencyId,
+      hotelId: hotelId,
+    });
   }
 
   return (
     <Page>
-      <WrapperForm<HotelFromInput, HotelFormValues>
+      <WrapperForm<ContractFormInput, ContractFormOutput>
         onSubmit={handleOnSubmitForm}
         options={{
           mode: 'onChange',
-          resolver: zodResolver(hotelSchema),
+          resolver: zodResolver(ContractSchema),
         }}
       >
         <CreateForm />

@@ -5,7 +5,7 @@ import { useDebounce } from '@/shared/lib/useDebounce';
 
 import { QueryOptionOperator } from '../model/query-option';
 
-export const useOperatorsQuery = (search?: string) => {
+export const useOperatorsQuery = ({ search, id }: { search?: string, id?: string }) => {
   const debouncedSearch = useDebounce<string | undefined>(search, 500);
   const [page, setPage] = useState<number>(1);
 
@@ -14,7 +14,7 @@ export const useOperatorsQuery = (search?: string) => {
     error,
     isLoading,
   } = useQuery({
-    ...QueryOptionOperator.get({ title: debouncedSearch, page }),
+    ...QueryOptionOperator.get({ title: debouncedSearch, page, id }),
   });
 
   const result = data?.data.data || [];

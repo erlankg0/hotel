@@ -74,7 +74,7 @@ export const columnsOperator: Array<ColumnDef<typeof features, AgencyType>> = [
     header: 'Контракты',
     cell: ({ row }) => (
       <Link
-        href={`/admin/operator/${row.original.id}/agencies/${row.original.id}`}
+        href={`agencies/${row.original.id}/agencies/${row.original.id}/contracts`}
         className="inline-flex items-center text-xs font-medium text-slate-700 bg-slate-100 hover:bg-slate-200/80 px-2.5 py-1.5 rounded-lg transition-colors border border-slate-200/60"
       >
         Контракты
@@ -153,7 +153,7 @@ export const columns: Array<ColumnDef<typeof features, AgencyType>> = [
     header: 'Оператор',
     cell: ({ row }) => (
       <Link
-        href={`/admin/operator/${row.original.operator.id}`}
+        href={`/src/app/(admin)/admin/hotel/(routes)/%5BhotelId%5D/operator/${row.original.operator.id}`}
         className="inline-flex items-center text-xs font-medium text-slate-700 bg-slate-100 hover:bg-slate-200/80 px-2.5 py-1.5 rounded-lg transition-colors border border-slate-200/60"
       >
         {row.original.operator.title}

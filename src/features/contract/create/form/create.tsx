@@ -6,7 +6,6 @@ import {
     ContractStatus,
     Currency,
 } from '@/shared/const/enums';
-
 import { Card, CardContent } from '@/shared/ui/card';
 import {
     FieldDescription,
@@ -21,7 +20,8 @@ import {
     InputGroupAddon,
     InputGroupInput,
 } from '@/shared/ui/input-group';
-import { Select, SelectContent, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/shared/ui/select';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/shared/ui/select';
+
 import type { ContractFormInput } from '../../model/types';
 
 export function CreateForm() {

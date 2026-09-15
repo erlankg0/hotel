@@ -1,7 +1,7 @@
 'use client';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Loader2 } from 'lucide-react';
-import { useParams } from 'next/navigation';
+import { useParams, useSearchParams } from 'next/navigation';
 
 import {
   CreateForm,
@@ -16,7 +16,9 @@ import type { ContractFormInput, ContractFormOutput } from '@/features/contract'
 
 export default function ContractNew() {
   const { handleOnSubmit, isPending } = useCreateContract();
-  const { hotelId, agencyId } = useParams<{ hotelId: string, agencyId: string }>();
+  const searchParams = useSearchParams();
+  const { hotelId } = useParams<{ hotelId: string }>();
+  const agencyId = searchParams.get('agencyId') || '';
 
   async function handleOnSubmitForm(dto: ContractFormInput) {
     await handleOnSubmit({
@@ -43,9 +45,8 @@ export default function ContractNew() {
           className="relative w-full"
         >
           <p
-            className={`flex items-center justify-center gap-2 transition-all duration-200 ${
-              isPending ? 'opacity-100' : 'opacity-100'
-            }`}
+            className={`flex items-center justify-center gap-2 transition-all duration-200 ${isPending ? 'opacity-100' : 'opacity-100'
+              }`}
           >
             {isPending && <Loader2 className="size-4 animate-spin" />}
             <span>{isPending ? 'Сохранение...' : 'Сохранить'}</span>

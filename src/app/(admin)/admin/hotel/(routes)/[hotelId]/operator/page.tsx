@@ -2,7 +2,7 @@
 
 import { Plus } from 'lucide-react';
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 
 import { columns, useOperatorsQuery } from '@/entities/operator';
@@ -16,8 +16,10 @@ import type { OperatorType } from '@/entities/operator';
 
 
 export default function AgencyPage() {
+  const searchParams = useSearchParams();
+
   const [search, setSearch] = useState<string>('');
-  const { hotelId } = useParams<{ hotelId: string }>();
+  const hotelId = searchParams.get('hotelId') || '';
   const { data, isLoading, page, setPage, total, limit } = useOperatorsQuery({ search, id: hotelId });
 
   return (

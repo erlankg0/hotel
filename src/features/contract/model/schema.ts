@@ -18,7 +18,7 @@ export const ContractSchema = z
             ],
             IsNotEmpty,
         ),
-
+        marketId: z.uuid(IsNotEmpty),
         currency: z.enum(
             [
                 Currency.EUR,
@@ -54,4 +54,5 @@ export const ContractSchema = z
                 path: ['endDate'],
             });
         }
-    });
+    }
+    );

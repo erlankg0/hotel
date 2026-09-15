@@ -1,24 +1,10 @@
-import {
-  createPaginatedRowModel,
-  createSortedRowModel,
-  rowPaginationFeature,
-  rowSortingFeature, sortFn_alphanumeric,
-  tableFeatures,
-} from '@tanstack/react-table';
 import Link from 'next/link';
+import { features } from '@/shared/const/table-features'
 
 
 import type { AmenityType } from './types';
 import type { ColumnDef } from '@tanstack/react-table';
 import { AMENITY_ICONS } from '@/shared/const/icon_amenities';
-
-export const features = tableFeatures({
-  rowSortingFeature,
-  rowPaginationFeature,
-  sortedRowModel: createSortedRowModel(),
-  paginatedRowModel: createPaginatedRowModel(),
-  sortFns: { alphanumeric: sortFn_alphanumeric },
-});
 
 export const columns: Array<ColumnDef<typeof features, AmenityType>> = [
   {

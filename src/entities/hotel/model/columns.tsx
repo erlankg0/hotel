@@ -42,7 +42,7 @@ export const columns: Array<ColumnDef<typeof features, HotelType>> = [
     header: 'Операторы',
     cell: ({ row }) => (
       <Link
-        href={`hotel/${row.original.id}/operator`}
+        href={`operator?hotelId=${row.original.id}`}
         className="inline-flex items-center text-xs font-medium text-slate-700 bg-slate-100 hover:bg-slate-200/80 px-2.5 py-1.5 rounded-lg transition-colors border border-slate-200/60"
       >
         Операторы

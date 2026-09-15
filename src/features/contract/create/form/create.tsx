@@ -156,7 +156,7 @@ export function CreateForm() {
                                 })}
                             >
                                 <SelectTrigger className={'w-full'}>
-                                    <SelectValue>Тип питанияR</SelectValue>
+                                    <SelectValue>Тип питания</SelectValue>
                                 </SelectTrigger>
                                 <SelectContent>
                                     <SelectItem value={BoardType.RO}>RO</SelectItem>

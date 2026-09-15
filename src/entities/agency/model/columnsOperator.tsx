@@ -1,22 +1,10 @@
-import {
-  createPaginatedRowModel,
-  createSortedRowModel,
-  rowPaginationFeature,
-  rowSortingFeature, sortFn_alphanumeric,
-  tableFeatures,
-} from '@tanstack/react-table';
+
 import Link from 'next/link';
+import { features } from '@/shared/const/table-features'
 
 import type { AgencyType } from '../model/types';
 import type { ColumnDef } from '@tanstack/react-table';
 
-export const features = tableFeatures({
-  rowSortingFeature,
-  rowPaginationFeature,
-  sortedRowModel: createSortedRowModel(),
-  paginatedRowModel: createPaginatedRowModel(),
-  sortFns: { alphanumeric: sortFn_alphanumeric },
-});
 
 export const columnsOperator: Array<ColumnDef<typeof features, AgencyType>> = [
   {
@@ -74,7 +62,7 @@ export const columnsOperator: Array<ColumnDef<typeof features, AgencyType>> = [
     header: 'Контракты',
     cell: ({ row }) => (
       <Link
-        href={`agencies/${row.original.id}/agencies/${row.original.id}/contracts`}
+        href={`contracts?=agency${row.original.id}`}
         className="inline-flex items-center text-xs font-medium text-slate-700 bg-slate-100 hover:bg-slate-200/80 px-2.5 py-1.5 rounded-lg transition-colors border border-slate-200/60"
       >
         Контракты
@@ -153,19 +141,19 @@ export const columns: Array<ColumnDef<typeof features, AgencyType>> = [
     header: 'Оператор',
     cell: ({ row }) => (
       <Link
-        href={`/src/app/(admin)/admin/hotel/(routes)/%5BhotelId%5D/operator/${row.original.operator.id}`}
+        href={`operator/${row.original.operator.id}`}
         className="inline-flex items-center text-xs font-medium text-slate-700 bg-slate-100 hover:bg-slate-200/80 px-2.5 py-1.5 rounded-lg transition-colors border border-slate-200/60"
       >
         {row.original.operator.title}
       </Link>
     ),
   },
-  {
+   {
     accessorKey: 'id',
     header: 'Подробнее',
     cell: ({ row }) => (
       <Link
-        href={`agencies/${row.original.id}`}
+        href={`operator/${row.original.id}`}
         className="inline-flex items-center gap-1 text-xs font-medium text-indigo-600 hover:text-indigo-700 hover:underline"
       >
         Подробнее

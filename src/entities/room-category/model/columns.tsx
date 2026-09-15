@@ -1,23 +1,7 @@
-import {
-  createPaginatedRowModel,
-  createSortedRowModel,
-  rowPaginationFeature,
-  rowSortingFeature, sortFn_alphanumeric,
-  tableFeatures,
-} from '@tanstack/react-table';
-import Link from 'next/link';
+import { features } from '@/shared/const/table-features'
 
 import type { RoomCategortType } from '../model/types';
 import type { ColumnDef } from '@tanstack/react-table';
-
-export const features = tableFeatures({
-  rowSortingFeature,
-  rowPaginationFeature,
-  sortedRowModel: createSortedRowModel(),
-  paginatedRowModel: createPaginatedRowModel(),
-  sortFns: { alphanumeric: sortFn_alphanumeric },
-});
-
 
 export const columns: Array<ColumnDef<typeof features, RoomCategortType>> = [
   {

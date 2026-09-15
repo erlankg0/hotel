@@ -2,7 +2,7 @@
 
 import { Plus } from 'lucide-react';
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 
 import { columnsOperator, useAgenciesQuery } from '@/entities/agency';
@@ -15,8 +15,10 @@ import type { AgencyType } from '@/entities/agency';
 
 export default function AgencyPage() {
   const [search, setSearch] = useState<string>('');
-  const { operatorId } = useParams<{ operatorId: string }>();
+  const searchParams = useSearchParams();
+  const operatorId = searchParams.get('operatorId') || '';
   const { data, isLoading } = useAgenciesQuery({ search: search, id: operatorId });
+
 
   return (
     <Page
@@ -28,7 +30,7 @@ export default function AgencyPage() {
           slot={
             <div className={'flex flex-row items-center gap-2'}>
               <Button type={'button'}>
-                <Link href={'agencies/new'}>
+                <Link href={`agencies/new?operatorId=${operatorId}`}>
                   <Plus size={14} />
                 </Link>
               </Button>

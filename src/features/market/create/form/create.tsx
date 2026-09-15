@@ -1,5 +1,7 @@
 import { Group } from 'lucide-react';
+import Link from 'next/link';
 import { useFormContext, Controller } from 'react-hook-form';
+
 import { Card, CardContent } from '@/shared/ui/card';
 import {
   FieldDescription,
@@ -10,11 +12,10 @@ import {
   FieldTitle,
 } from '@/shared/ui/field';
 import { InputGroup, InputGroupInput, InputGroupAddon } from '@/shared/ui/input-group';
+import { MultiSelect } from '@/shared/ui/multi-select';
 
 import type { MarketCreateInput } from '../../model/types';
-import type { Props } from '../../model/props';
-import { MultiSelect } from '@/shared/ui/multi-select';
-import Link from 'next/link';
+import type { Props } from '@/shared/types/types';
 
 
 export function CreateForm({ data, isLoading, page, search, setPage, setSearch }: Props) {

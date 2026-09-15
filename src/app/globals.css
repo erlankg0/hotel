@@ -172,7 +172,6 @@ body::-webkit-scrollbar {
     display: none;
 }
 
-
 .wrapper {
     position: relative;
 }
@@ -181,7 +180,6 @@ body::-webkit-scrollbar {
     width: 100%;
     position: relative;
 }
-
 
 .divider {
     width: 1px;
@@ -243,7 +241,6 @@ button[type="button"] {
     width: 100%;
 }
 
-
 .segments {
     display: flex;
     gap: 8px;
@@ -255,7 +252,6 @@ button[type="button"] {
     overflow: hidden;
     backdrop-filter: blur(20px);
 }
-
 
 .segment {
     height: 1rem;
@@ -305,7 +301,6 @@ button[type="button"] {
     }
 }
 
-
 .row {
     display: flex;
     flex-direction: row;
@@ -321,7 +316,6 @@ button[type="button"] {
 .margin_top {
     margin-top: var(--header-height);
 }
-
 
 .loader {
     display: flex;

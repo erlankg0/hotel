@@ -23,6 +23,7 @@ export const useMarketsQuery = ({ search }: { search?: string }) => {
     setPage,
     isLoading,
     error,
+    page,
   };
 
 };

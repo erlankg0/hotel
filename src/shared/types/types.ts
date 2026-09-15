@@ -18,3 +18,16 @@ export type FileType = {
   url: string;
   format: string;
 };
+
+type Option = {
+  id: string,
+  title: string
+}
+export type Props = {
+  data: Option[];
+  isLoading: boolean,
+  page: number,
+  setPage: (page: number) => void;
+  search: string,
+  setSearch: (search: string) => void
+}

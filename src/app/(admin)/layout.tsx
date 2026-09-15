@@ -3,7 +3,8 @@
 import { Loader } from 'lucide-react';
 
 import { useSession } from '@/entities/session';
-import { Header } from '@/widget/header';
+import { SidebarProvider } from '@/shared/ui/sidebar';
+import { AdminSidebar } from '@/widget/admin-sidebar';
 
 import NotFound from '../not-found';
 
@@ -19,7 +20,10 @@ export default function AdminLayout({
   if (isLoading) {
     return (
       <div className="flex min-h-screen items-center justify-center">
-        <Loader className="animate-spin text-gray-500" size={32} />
+        <Loader
+          className="animate-spin text-muted-foreground"
+          size={32}
+        />
       </div>
     );
   }
@@ -29,11 +33,17 @@ export default function AdminLayout({
   }
 
   return (
-    <>
-      <Header />
-      <main>
-        {children}
-      </main>
-    </>
+    <SidebarProvider>
+      <AdminSidebar />
+
+      <div className="flex min-h-screen flex-1 flex-col">
+
+        <main className="flex-1">
+          <div className="container mx-auto px-4 py-6 lg:px-6">
+            {children}
+          </div>
+        </main>
+      </div>
+    </SidebarProvider>
   );
 }

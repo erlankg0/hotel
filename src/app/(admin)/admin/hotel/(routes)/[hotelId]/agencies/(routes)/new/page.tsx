@@ -1,7 +1,7 @@
 'use client';
 import { zodResolver } from '@hookform/resolvers/zod';
-import {  Loader2 } from 'lucide-react';
-import { useParams } from 'next/navigation';
+import { Loader2 } from 'lucide-react';
+import {  useSearchParams } from 'next/navigation';
 
 import { CreateForm, agencySchema, useAgencyCreate } from '@/features/agency';
 import { WrapperForm } from '@/shared/providers/form';
@@ -12,17 +12,21 @@ import type { AgencyCreateFormValues, AgencyCreateFromInput } from '@/features/a
 
 export default function AgencyNew() {
   const { handleOnSubmit, isPending } = useAgencyCreate();
-  const params = useParams<{ operatorId: string }>();
-
-  const id = params.operatorId;
+  const searchParams = useSearchParams();
+  const operatorId = searchParams.get('operatorId') || '';
 
   async function handleOnSubmitForm(dto: AgencyCreateFromInput) {
+    if (!operatorId) {
+      throw new Error('Operator ID не найден');
+    }
+
     await handleOnSubmit({
       title: dto.title,
       shortTitle: dto.shortTitle,
-      operatorId: id,
+      operatorId: operatorId,
     });
   }
+
   return (
     <Page>
       <WrapperForm<AgencyCreateFromInput, AgencyCreateFormValues>

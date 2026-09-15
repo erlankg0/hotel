@@ -1,7 +1,8 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import {  Loader2 } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
+import { useParams } from 'next/navigation';
 
 import { useEmailCreate } from '@/features/email';
 import { Create, useCreateOperator, operatorCreateSchema } from '@/features/operator';
@@ -14,6 +15,7 @@ import { Page } from '@/widget/page';
 import type { OperatorFormInput, OperatorFormOutput } from '@/features/operator';
 
 export default function Operator() {
+  const { hotelId } = useParams<{ hotelId: string }>();
   const uploadFile = useUploadFile();
   const { handleOnSubmit: handleOnSubmitEmail } = useEmailCreate();
   const { handleOnSubmit: handleOnSubmitPhone } = usePhoneCreate();
@@ -33,6 +35,7 @@ export default function Operator() {
       iconId: icon?.id,
       emailIds: emaiIds.map(i => i.id),
       phoneIds: phoneIds.map(i => i.id),
+      hotelId: hotelId,
     });
 
   };

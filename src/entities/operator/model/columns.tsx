@@ -1,9 +1,9 @@
 import Link from 'next/link';
 
 import { ImageUI } from '@/shared/ui/image';
-import { features } from '@/shared/const/table-features'
 
 import type { OperatorType } from './types';
+import type { features } from '@/shared/const/table-features'
 import type { ColumnDef } from '@tanstack/react-table';
 
 export const columns: Array<ColumnDef<typeof features, OperatorType>> = [
@@ -42,7 +42,7 @@ export const columns: Array<ColumnDef<typeof features, OperatorType>> = [
     header: 'Агентства',
     cell: ({ row }) => (
       <Link
-        href={`agency?operatorId=${row.original.id}`}
+        href={`agencies?operatorId=${row.original.id}`}
         className="inline-flex items-center text-xs font-medium text-slate-700 bg-slate-100 hover:bg-slate-200/80 px-2.5 py-1.5 rounded-lg transition-colors border border-slate-200/60"
       >
         Агентства

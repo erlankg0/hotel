@@ -14,7 +14,7 @@ import { FieldTable } from './field-table';
 import type { Props } from './model/types';
 import type { ArrayPath, FieldArray, FieldValues, Path } from 'react-hook-form';
 
-const MIN_PHONES = 2;
+const MIN_EMAILS = 1;
 
 function createDefaultPhoneRow<T extends FieldValues>(): FieldArray<T, ArrayPath<T>> {
   return {
@@ -37,15 +37,15 @@ export function EmailFieldArray<T extends FieldValues>({
   });
 
   useEffect(() => {
-    if (fields.length < MIN_PHONES) {
-      const toAdd = MIN_PHONES - fields.length;
+    if (fields.length < MIN_EMAILS) {
+      const toAdd = MIN_EMAILS - fields.length;
       for (let i = 0; i < toAdd; i++) {
         append(createDefaultPhoneRow<T>());
       }
     }
   }, [append, fields.length]);
 
-  const canRemove = fields.length > MIN_PHONES;
+  const canRemove = fields.length > MIN_EMAILS;
 
 
   const handleRemove = useCallback(
@@ -135,7 +135,7 @@ export function EmailFieldArray<T extends FieldValues>({
                 className={'hover:bg-red-400 transition'}
                 disabled={!canRemove}
                 onClick={() => handleRemove(index)}
-                title={canRemove ? 'Удалить Э-почту' : `Минимум ${MIN_PHONES} э-почт`}
+                title={canRemove ? 'Удалить Э-почту' : `Минимум ${MIN_EMAILS} э-почт`}
               >
                 <Trash2 size={18} />
               </Button>

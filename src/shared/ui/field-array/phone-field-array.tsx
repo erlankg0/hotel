@@ -14,7 +14,7 @@ import { FieldTable } from './field-table';
 import type { Props } from './model/types';
 import type { ArrayPath, FieldArray, FieldValues, Path } from 'react-hook-form';
 
-const MIN_PHONES = 2;
+const MIN_PHONES = 1;
 
 function createDefaultPhoneRow<T extends FieldValues>(): FieldArray<T, ArrayPath<T>> {
   return {

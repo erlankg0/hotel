@@ -12,6 +12,8 @@ import {
   Search,
   Users,
   UserRoundCog,
+  Gem,
+  Info
 } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -37,27 +39,29 @@ const groups = [
     items: [{ title: 'Панель управления', href: '/admin', icon: LayoutDashboard }],
   },
   {
-    label: 'Номерной фонд',
+    label: 'Управления',
     items: [
       { title: 'Отели', href: '/admin/hotel', icon: Hotel },
       { title: 'Категории номеров', href: '/admin/room-categories', icon: BedDouble },
-    ],
-  },
-  {
-    label: 'Партнёры',
-    items: [
-      { title: 'Туроператоры', href: '/admin/operator', icon: Building2 },
+      { title: 'Размещение', href: '/admin/occupancies', icon: UserRoundCog },
+      { title: 'Тарифные планы', href: '/admin/rate-plans', icon: FileText },
+      { title: 'Пакеты', href: '/admin/packages', icon: Package },
       { title: 'Агентства', href: '/admin/agency', icon: Users },
       { title: 'Рынки', href: '/admin/market', icon: Map },
       { title: 'Страны', href: '/admin/country', icon: Map },
     ],
   },
   {
-    label: 'Настройки',
+    label: 'Партнёры',
     items: [
-      { title: 'Размещение', href: '/admin/occupancies', icon: UserRoundCog },
-      { title: 'Тарифные планы', href: '/admin/rate-plans', icon: FileText },
-      { title: 'Пакеты', href: '/admin/packages', icon: Package },
+      { title: 'Туроператоры', href: '/admin/operator', icon: Building2 },
+    ],
+  },
+  {
+    label: 'Информация',
+    items: [
+      { title: 'Удобства', href: '/admin/amenity', icon: Info },
+      { title: 'Запросы', href: '/admin/request', icon: Gem },
     ],
   },
   {
@@ -88,26 +92,6 @@ export function AdminSidebar() {
   return (
     <SidebarRoot collapsible="icon">
       <SidebarHeader className="gap-3 border-b pb-3">
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton asChild size="lg" tooltip="Utopia PMS">
-              <Link href="/">
-                <div className="flex size-8 items-center justify-center rounded-lg bg-foreground text-background">
-                  <Hotel size={17} />
-                </div>
-
-                <div className="flex flex-col leading-none">
-                  <span className="font-semibold tracking-tight">
-                    UTOPIA PMS
-                  </span>
-                  <span className="text-xs text-muted-foreground">
-                    Hotel Management
-                  </span>
-                </div>
-              </Link>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-        </SidebarMenu>
 
         <div className="relative px-1 group-data-[collapsible=icon]:hidden">
           <Search

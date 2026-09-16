@@ -4,18 +4,12 @@ import {
   BarChart3,
   BedDouble,
   Building2,
-  CalendarDays,
-  ChevronsUpDown,
-  ClipboardList,
   FileText,
   Hotel,
   LayoutDashboard,
-  LogOut,
   Map,
   Package,
   Search,
-  Settings,
-  User,
   Users,
   UserRoundCog,
 } from 'lucide-react';
@@ -23,18 +17,10 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useMemo, useState } from 'react';
 
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@/shared/ui/dropdown-menu';
 import { Input } from '@/shared/ui/input';
 import {
   Sidebar as SidebarRoot,
   SidebarContent,
-  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
@@ -47,52 +33,39 @@ import {
 
 const groups = [
   {
-    label: 'General',
-    items: [{ title: 'Dashboard', href: '/admin', icon: LayoutDashboard }],
+    label: 'Общее',
+    items: [{ title: 'Панель управления', href: '/admin', icon: LayoutDashboard }],
   },
   {
-    label: 'Operations',
+    label: 'Номерной фонд',
     items: [
-      { title: 'Contracts', href: '/contracts', icon: FileText },
-      { title: 'Calendar', href: '/calendar', icon: CalendarDays },
-      { title: 'Reservations', href: '/reservations', icon: ClipboardList },
+      { title: 'Отели', href: '/admin/hotel', icon: Hotel },
+      { title: 'Категории номеров', href: '/admin/room-categories', icon: BedDouble },
     ],
   },
   {
-    label: 'Inventory',
+    label: 'Партнёры',
     items: [
-      { title: 'Hotels', href: '/hotels', icon: Hotel },
-      { title: 'Room Categories', href: '/room-categories', icon: BedDouble },
+      { title: 'Туроператоры', href: '/admin/operator', icon: Building2 },
+      { title: 'Агентства', href: '/admin/agency', icon: Users },
+      { title: 'Рынки', href: '/admin/market', icon: Map },
+      { title: 'Страны', href: '/admin/country', icon: Map },
     ],
   },
   {
-    label: 'Partners',
+    label: 'Настройки',
     items: [
-      { title: 'Operators', href: '/operators', icon: Building2 },
-      { title: 'Agencies', href: '/agencies', icon: Users },
-      { title: 'Markets', href: '/markets', icon: Map },
+      { title: 'Размещение', href: '/admin/occupancies', icon: UserRoundCog },
+      { title: 'Тарифные планы', href: '/admin/rate-plans', icon: FileText },
+      { title: 'Пакеты', href: '/admin/packages', icon: Package },
     ],
   },
   {
-    label: 'Configuration',
-    items: [
-      { title: 'Occupancy', href: '/occupancies', icon: UserRoundCog },
-      { title: 'Rate Plans', href: '/rate-plans', icon: FileText },
-      { title: 'Packages', href: '/packages', icon: Package },
-    ],
-  },
-  {
-    label: 'Analytics',
-    items: [{ title: 'Sales', href: '/analytics/sales', icon: BarChart3 }],
+    label: 'Аналитика',
+    items: [{ title: 'Продажи', href: '/admin/analytics/sales', icon: BarChart3 }],
   },
 ];
 
-// Заменить на реального пользователя (сессия/контекст)
-const currentUser = {
-  name: 'Aigerim Bekova',
-  email: 'aigerim@utopia-pms.com',
-  avatarUrl: '',
-};
 
 export function AdminSidebar() {
   const pathname = usePathname();
@@ -114,7 +87,6 @@ export function AdminSidebar() {
 
   return (
     <SidebarRoot collapsible="icon">
-      {/* Logo */}
       <SidebarHeader className="gap-3 border-b pb-3">
         <SidebarMenu>
           <SidebarMenuItem>
@@ -137,7 +109,6 @@ export function AdminSidebar() {
           </SidebarMenuItem>
         </SidebarMenu>
 
-        {/* Search — скрывается в icon-режиме */}
         <div className="relative px-1 group-data-[collapsible=icon]:hidden">
           <Search
             size={15}
@@ -152,12 +123,12 @@ export function AdminSidebar() {
         </div>
       </SidebarHeader>
 
-      {/* Navigation */}
       <SidebarContent className="px-2 py-1">
         {filteredGroups.map((group, idx) => (
           <div key={group.label}>
             <SidebarGroup className="py-1">
-              <SidebarGroupLabel className="px-2 text-[11px] font-medium uppercase tracking-wider text-muted-foreground/80">
+              <SidebarGroupLabel
+                className="px-2 text-[11px] font-medium uppercase tracking-wider text-muted-foreground/80">
                 {group.label}
               </SidebarGroupLabel>
 
@@ -203,68 +174,6 @@ export function AdminSidebar() {
         )}
       </SidebarContent>
 
-      {/* Footer */}
-      <SidebarFooter className="gap-1 border-t pt-2">
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton asChild tooltip="Settings">
-              <Link href="/settings">
-                <Settings size={17} />
-                <span>Settings</span>
-              </Link>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-
-          {/* Переключатель пользователя */}
-          <SidebarMenuItem>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <SidebarMenuButton
-                  size="lg"
-                  tooltip={currentUser.name}
-                  className="data-[state=open]:bg-accent"
-                >
-                
-
-                  <div className="flex flex-col leading-none">
-                    <span className="text-sm font-medium">{currentUser.name}</span>
-                    <span className="text-xs text-muted-foreground">
-                      {currentUser.email}
-                    </span>
-                  </div>
-
-                  <ChevronsUpDown size={15} className="ml-auto text-muted-foreground" />
-                </SidebarMenuButton>
-              </DropdownMenuTrigger>
-
-              <DropdownMenuContent side="top" align="start" className="w-56">
-                <DropdownMenuItem asChild>
-                  <Link href="/profile">
-                    <User size={15} className="mr-2" />
-                    Профиль
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/settings">
-                    <Settings size={15} className="mr-2" />
-                    Настройки
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem
-                  className="text-destructive focus:text-destructive"
-                  onClick={() => {
-                    // TODO: подключить реальный logout
-                  }}
-                >
-                  <LogOut size={15} className="mr-2" />
-                  Выйти
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </SidebarMenuItem>
-        </SidebarMenu>
-      </SidebarFooter>
     </SidebarRoot>
   );
 }

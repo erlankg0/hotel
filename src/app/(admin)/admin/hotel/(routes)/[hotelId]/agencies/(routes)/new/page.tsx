@@ -21,8 +21,7 @@ export default function AgencyNew() {
     }
 
     await handleOnSubmit({
-      title: dto.title,
-      shortTitle: dto.shortTitle,
+     ...dto,
       operatorId: operatorId,
     });
   }

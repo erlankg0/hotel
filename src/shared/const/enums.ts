@@ -1,3 +1,4 @@
+
 export enum ContractStatus {
   DRAFT = 'DRAFT',
   ACTIVE = 'ACTIVE',
@@ -21,4 +22,20 @@ export enum Currency {
   RUB = 'RUB',
   KGZ = 'KGZ',
   KZ = 'KZ'
+}
+
+export enum PaymentType {
+  CASH = 'CASH',
+  PREPAYMENT = 'PREPAYMENT',
+  CREDIT = 'CREDIT',
+  CASH_BY_GUEST = 'CASH_BY_GUEST'
+}
+
+
+export enum AgencyType {
+  AGENCY = 'AGENCY',
+  COMPAMNY = 'COMPAMNY',
+  INVIDUAL = 'INVIDUAL',
+  SOURCE = 'SOURCE',
+  WALKIN = 'WALKIN'
 }

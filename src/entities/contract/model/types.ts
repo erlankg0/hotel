@@ -1,4 +1,4 @@
-import type { ContractStatus, BoardType, AgencyType } from '@/shared/const/enums';
+import type { ContractStatus, BoardType, AgencyType, Currency } from '@/shared/const/enums';
 
 export type ContractType = {
   readonly id: string;
@@ -7,6 +7,7 @@ export type ContractType = {
   readonly status: ContractStatus;
   readonly boardType: BoardType;
   readonly agencyType: AgencyType;
+  readonly currency: Currency;
 
   readonly isMaleControl?: boolean;
 

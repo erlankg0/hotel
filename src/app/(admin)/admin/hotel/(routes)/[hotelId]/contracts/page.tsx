@@ -33,7 +33,7 @@ export default function ContractsPage() {
                     slot={
                         <div className={'flex flex-row items-center gap-2'}>
                             <Button type={'button'}>
-                                <Link href={'contracts/new?agencyId=${agencyId}'}>
+                                <Link href={`contracts/new?operatorId=${agencyId}`}>
                                     <Plus size={14} />
                                 </Link>
                             </Button>

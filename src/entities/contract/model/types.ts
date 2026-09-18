@@ -6,7 +6,6 @@ export type ContractType = {
 
   readonly status: ContractStatus;
   readonly boardType: BoardType;
-  readonly agencyType: AgencyType;
   readonly currency: Currency;
 
   readonly isMaleControl?: boolean;

@@ -4,7 +4,7 @@ import type { ContractType } from '../model/types';
 import type { features } from '@/shared/const/table-features';
 import type { ColumnDef } from '@tanstack/react-table';
 import { Checkbox } from '@/shared/ui/checkbox';
-import { agencyTypeLabels, boardTypeLabels, currencyLabels, contractStatusLabels } from '@/shared/const/enums'
+import {  boardTypeLabels, currencyLabels, contractStatusLabels } from '@/shared/const/enums'
 
 export const columns: Array<ColumnDef<typeof features, ContractType>> = [
   {
@@ -44,15 +44,6 @@ export const columns: Array<ColumnDef<typeof features, ContractType>> = [
     cell: ({ row }) => (
       <span className="font-medium text-slate-800 text-sm">
         {boardTypeLabels[row.original.boardType]}
-      </span>
-    ),
-  },
-  {
-    accessorKey: 'agencyType',
-    header: 'Тип Агенства',
-    cell: ({ row }) => (
-      <span className="font-medium text-slate-800 text-sm">
-        {agencyTypeLabels[row.original.agencyType]}
       </span>
     ),
   },

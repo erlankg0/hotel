@@ -6,6 +6,9 @@ import {
   BoardType,
   ContractStatus,
   Currency,
+  boardTypeLabels,
+  contractStatusLabels,
+  currencyLabels,
 } from '@/shared/const/enums';
 import { Card, CardContent } from '@/shared/ui/card';
 import {
@@ -34,14 +37,14 @@ import type { ContractFormInput } from '../../model/types';
 import type { Props } from '@/shared/types/types';
 
 export function CreateForm({
-                             search,
-                             setSearch,
-                             data,
-                             isLoading,
-                             page,
-                             setPage,
-                             total,
-                           }: Props) {
+  search,
+  setSearch,
+  data,
+  isLoading,
+  page,
+  setPage,
+  total,
+}: Props) {
   const {
     register,
     formState: { errors },
@@ -50,7 +53,6 @@ export function CreateForm({
 
   return (
     <FieldSet className="mx-auto w-full">
-      {/* Header */}
       <div className="mb-6 space-y-1">
         <FieldTitle className="text-2xl font-semibold tracking-tight">
           Создание контракта
@@ -62,7 +64,6 @@ export function CreateForm({
       </div>
 
       <div className="space-y-6">
-        {/* Основная информация */}
         <Card>
           <CardContent className="space-y-6 pt-6">
             <div className="space-y-1">
@@ -76,7 +77,6 @@ export function CreateForm({
             </div>
 
             <div className="grid gap-5 md:grid-cols-2">
-              {/* Название */}
               <FieldGroup className="md:col-span-2">
                 <FieldLabel htmlFor="title">
                   Название
@@ -105,7 +105,6 @@ export function CreateForm({
                 )}
               </FieldGroup>
 
-              {/* Статус */}
               <Controller
                 control={control}
                 name="status"
@@ -125,19 +124,20 @@ export function CreateForm({
 
                       <SelectContent>
                         <SelectItem value={ContractStatus.DRAFT}>
-                          Черновик
+                          {contractStatusLabels[ContractStatus.DRAFT]}
                         </SelectItem>
 
                         <SelectItem value={ContractStatus.ACTIVE}>
-                          Активный
+                          {contractStatusLabels[ContractStatus.ACTIVE]}
+
                         </SelectItem>
 
                         <SelectItem value={ContractStatus.SUSPENDED}>
-                          Приостановлен
+                          {contractStatusLabels[ContractStatus.SUSPENDED]}
                         </SelectItem>
 
                         <SelectItem value={ContractStatus.EXPIRED}>
-                          Истёкший
+                          {contractStatusLabels[ContractStatus.EXPIRED]}
                         </SelectItem>
                       </SelectContent>
                     </Select>
@@ -151,7 +151,6 @@ export function CreateForm({
                 )}
               />
 
-              {/* Валюта */}
               <Controller
                 control={control}
                 name="currency"
@@ -171,27 +170,28 @@ export function CreateForm({
 
                       <SelectContent>
                         <SelectItem value={Currency.EUR}>
-                          EUR
+                          {currencyLabels[Currency.EUR]}
                         </SelectItem>
 
                         <SelectItem value={Currency.USD}>
-                          USD
+                          {currencyLabels[Currency.USD]}
                         </SelectItem>
 
                         <SelectItem value={Currency.TRY}>
-                          TRY
+                          {currencyLabels[Currency.TRY]}
+
                         </SelectItem>
 
                         <SelectItem value={Currency.RUB}>
-                          RUB
+                          {currencyLabels[Currency.RUB]}
                         </SelectItem>
 
                         <SelectItem value={Currency.KGZ}>
-                          KGZ
+                          {currencyLabels[Currency.KGZ]}
                         </SelectItem>
 
                         <SelectItem value={Currency.KZ}>
-                          KZ
+                          {currencyLabels[Currency.KZ]}
                         </SelectItem>
                       </SelectContent>
                     </Select>
@@ -205,7 +205,6 @@ export function CreateForm({
                 )}
               />
 
-              {/* Питание */}
               <Controller
                 control={control}
                 name="boardType"
@@ -225,27 +224,27 @@ export function CreateForm({
 
                       <SelectContent>
                         <SelectItem value={BoardType.RO}>
-                          RO
+                           [boardTypeLabels[BoardType.RO]]
                         </SelectItem>
 
                         <SelectItem value={BoardType.BB}>
-                          BB
+                           [boardTypeLabels[BoardType.BB]]
                         </SelectItem>
 
                         <SelectItem value={BoardType.HB}>
-                          HB
+                           [boardTypeLabels[BoardType.HB]]
                         </SelectItem>
 
                         <SelectItem value={BoardType.FB}>
-                          FB
+                           [boardTypeLabels[BoardType.FB]]
                         </SelectItem>
 
                         <SelectItem value={BoardType.AI}>
-                          AI
+                           [boardTypeLabels[BoardType.AI]]
                         </SelectItem>
 
                         <SelectItem value={BoardType.UAI}>
-                          UAI
+                           [boardTypeLabels[BoardType.UAI]]
                         </SelectItem>
                       </SelectContent>
                     </Select>
@@ -262,7 +261,6 @@ export function CreateForm({
           </CardContent>
         </Card>
 
-        {/* Периоды */}
         <Card>
           <CardContent className="space-y-6 pt-6">
             <div className="space-y-1">

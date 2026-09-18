@@ -1,16 +1,14 @@
 import Link from 'next/link';
 
-import { ImageUI } from '@/shared/ui/image';
-
-import type { OperatorType } from './types';
+import type { ContractType } from '../model/types';
 import type { features } from '@/shared/const/table-features';
 import type { ColumnDef } from '@tanstack/react-table';
 
-export const columns: Array<ColumnDef<typeof features, OperatorType>> = [
+
+export const columns: Array<ColumnDef<typeof features, ContractType>> = [
   {
     id: 'number',
     header: '№',
-    enableSorting: true,
     cell: ({ row }) => (
       <span className="font-mono text-xs text-slate-400">
         {row.index + 1}
@@ -18,36 +16,24 @@ export const columns: Array<ColumnDef<typeof features, OperatorType>> = [
     ),
   },
   {
-    accessorKey: 'icon.url',
-    header: 'Иконка',
-    cell: ({ getValue, row }) => (
-      <div
-        className="relative w-10 h-10 rounded-xl overflow-hidden border border-slate-200/80 bg-slate-50 flex items-center justify-center shadow-xs">
-        <ImageUI
-          src={getValue<string>()}
-          alt={row.original.title}
-        />
-      </div>
-    ),
-  },
-  {
     accessorKey: 'title',
     header: 'Название',
-    cell: ({ getValue }) => (
+    cell: ({ row }) => (
       <span className="font-medium text-slate-800 text-sm">
-        {getValue<string>()}
+        {row.original.title}
       </span>
     ),
   },
+
   {
     accessorKey: 'id',
-    header: 'Агентства',
+    header: 'Контракты',
     cell: ({ row }) => (
       <Link
-        href={`agencies?operatorId=${row.original.id}`}
+        href={`contracts?=agency${row.original.id}`}
         className="inline-flex items-center text-xs font-medium text-slate-700 bg-slate-100 hover:bg-slate-200/80 px-2.5 py-1.5 rounded-lg transition-colors border border-slate-200/60"
       >
-        Агентства
+        Контракты
       </Link>
     ),
   },
@@ -56,7 +42,7 @@ export const columns: Array<ColumnDef<typeof features, OperatorType>> = [
     header: 'Подробнее',
     cell: ({ row }) => (
       <Link
-        href={`operator/${row.original.id}/detail`}
+        href={`agencies/${row.original.id}`}
         className="inline-flex items-center gap-1 text-xs font-medium text-indigo-600 hover:text-indigo-700 hover:underline"
       >
         Подробнее
@@ -64,4 +50,28 @@ export const columns: Array<ColumnDef<typeof features, OperatorType>> = [
       </Link>
     ),
   },
+  {
+    accessorKey: 'createdAt',
+    header: 'Дата создания',
+    cell: ({ getValue }) => (
+      <span className="text-sm text-slate-500">
+      {new Intl.DateTimeFormat('ru-RU').format(
+        new Date(getValue<string>()),
+      )}
+    </span>
+    ),
+  },
+  {
+    accessorKey: 'updatedAt',
+    header: 'Дата обновления',
+    cell: ({ getValue }) => (
+      <span className="text-sm text-slate-500">
+      {new Intl.DateTimeFormat('ru-RU').format(
+        new Date(getValue<string>()),
+      )}
+    </span>
+    ),
+
+  },
 ];
+

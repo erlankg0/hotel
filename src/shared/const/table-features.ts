@@ -2,7 +2,8 @@ import {
   createPaginatedRowModel,
   createSortedRowModel,
   rowPaginationFeature,
-  rowSortingFeature, sortFn_alphanumeric,
+  rowSortingFeature,
+  sortFn_alphanumeric,
   tableFeatures,
 } from '@tanstack/react-table';
 

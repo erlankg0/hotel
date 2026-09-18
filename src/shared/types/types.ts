@@ -30,4 +30,5 @@ export type Props = {
   setPage: (page: number) => void;
   search: string,
   setSearch: (search: string) => void
+  total?: number
 }

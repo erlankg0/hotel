@@ -31,9 +31,9 @@ export default function ContractNew() {
 
   const [search, setSearch] = useState('');
 
-  const { data, isLoading, page, setPage } = useMarketsQuery({});
+  const { data, isLoading, page, setPage, total } = useMarketsQuery({});
 
-  async function handleOnSubmitForm(dto: ContractFormInput) {
+  async function handleOnSubmitForm(dto: ContractFormOutput) {
     if (!agencyId) {
       throw new Error('Agency ID не найден');
     }
@@ -55,6 +55,9 @@ export default function ContractNew() {
           onSubmit={handleOnSubmitForm}
           options={{
             mode: 'onChange',
+            defaultValues: {
+              marketIds: [],
+            },
             resolver: zodResolver(ContractCreateFormSchema),
           }}
         >
@@ -65,6 +68,7 @@ export default function ContractNew() {
             setPage={setPage}
             isLoading={isLoading}
             data={data}
+            total={total}
           />
 
           <Button

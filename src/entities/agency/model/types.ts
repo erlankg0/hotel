@@ -2,7 +2,7 @@ export type AgencyType = {
   readonly id: string;
 
   title: string;
-  shortTitle?: string;
+  code: string;
 
   operator: {
     readonly id: string;

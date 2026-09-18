@@ -12,5 +12,7 @@ export const marketSchema = z.object({
 });
 
 export const MarketCreateFormSchema = marketSchema.extend({
-  countries: z.array(countrySchema),
+  countries: z
+    .array(countrySchema)
+    .min(1, 'Выберите хотя бы одну страну'),
 });

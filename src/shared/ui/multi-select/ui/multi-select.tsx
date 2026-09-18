@@ -15,14 +15,12 @@ import {
   ComboboxList,
   ComboboxItem,
 } from '@/shared/ui/combobox';
-import { InputGroup, InputGroupAddon } from '@/shared/ui/input-group';
 import { PaginationUI } from '@/shared/ui/paginator/pagination';
-import { Popover, PopoverTrigger, PopoverContent, PopoverHeader, PopoverTitle, PopoverDescription } from '@/shared/ui/popover';
 
 import { MultiSelectSkeleton } from './multi-select-skeleton';
 
 import type { Props, SelectOption } from '../model/props';
-import type { ChangeEvent } from 'react';
+import type { ChangeEvent, MouseEvent } from 'react';
 
 export function MultiSelect({
   page,
@@ -36,98 +34,94 @@ export function MultiSelect({
   options,
   search,
   value,
+  invalid,
 }: Props) {
   const anchor = useComboboxAnchor();
+  const selected = value ?? [];
 
   const handleSearchChange = (
     event: ChangeEvent<HTMLInputElement>,
   ) => {
     onSearchChange(event.target.value);
+
+    if (page !== 1) {
+      onChangePage(1);
+    }
+  };
+
+  const handlePaginationMouseDown = (event: MouseEvent<HTMLDivElement>) => {
+    event.preventDefault();
   };
 
   return (
-    <div>
-      <Combobox
-        autoHighlight={true}
-        multiple={true}
-        items={options}
-        filter={null}
-        isItemEqualToValue={(item: SelectOption, value: SelectOption) => item.id === value.id}
-        value={value}
-        onValueChange={onChange}
+    <Combobox
+      autoHighlight={true}
+      multiple={true}
+      items={options}
+      filter={null}
+      isItemEqualToValue={(item: SelectOption, itemValue: SelectOption) => item.id === itemValue.id}
+      value={selected}
+      onValueChange={onChange}
+    >
+      <ComboboxChips
+        ref={anchor}
+        aria-invalid={invalid || undefined}
+        className="w-full"
       >
-        <ComboboxChips ref={anchor} className={'w-full '}>
-          <ComboboxValue>
-            {(values) => {
-              const maxVisible = values.length > 5 ? 4 : 5;
+        <ComboboxValue>
+          {(values: SelectOption[]) => {
+            const maxVisible = values.length > 5 ? 4 : 5;
+            const visibleValues = values.slice(0, maxVisible);
+            const hiddenCount = values.length - maxVisible;
+            const hiddenTitles = values
+              .slice(maxVisible)
+              .map((item) => item.title)
+              .join(', ');
 
-              const visibleValues = values.slice(0, maxVisible);
-              const hiddenCount = values.length - maxVisible;
+            return (
+              <>
+                {visibleValues.map((item) => (
+                  <ComboboxChip
+                    key={item.id}
+                    className="max-w-40"
+                  >
+                    <span className="truncate">
+                      {item.title}
+                    </span>
+                  </ComboboxChip>
+                ))}
 
-              return (
-                <>
-                  {visibleValues.map((value: SelectOption) => (
-                    <ComboboxChip
-                      key={value.id}
-                      className="max-w-40"
-                    >
-                      <span className="truncate">
-                        {value.title}
-                      </span>
-                    </ComboboxChip>
-                  ))}
+                {hiddenCount > 0 && (
+                  <span
+                    className="inline-flex h-[22px] shrink-0 items-center rounded-sm bg-muted px-1.5 text-xs font-medium text-muted-foreground"
+                    title={hiddenTitles}
+                  >
+                    +{hiddenCount}
+                  </span>
+                )}
+              </>
+            );
+          }}
+        </ComboboxValue>
 
-                  {hiddenCount > 0 && (
-                    <Popover>
-                      <PopoverTrigger>
-                        <span className="inline-flex shrink-0 items-center rounded-md bg-muted px-2 py-1 text-sm">
-                          +{hiddenCount}
-                        </span>
-                      </PopoverTrigger>
-                      <PopoverContent className="w-64">
-                        <PopoverHeader>
-                          <PopoverTitle>Выбранные</PopoverTitle>
-                          <PopoverDescription>
-                            Всего выбрано: {values.length}
-                          </PopoverDescription>
-                        </PopoverHeader>
+        <ComboboxChipsInput
+          placeholder={selected.length ? 'Ещё...' : 'Поиск...'}
+          value={search}
+          onChange={handleSearchChange}
+          aria-invalid={invalid || undefined}
+        />
 
-                        <div className="mt-3 max-h-60 space-y-1 overflow-y-auto">
-                          {values.map((item: SelectOption) => (
-                            <div
-                              key={item.id}
-                              className="rounded-md px-2 py-1.5 text-sm hover:bg-muted"
-                            >
-                              {item.title}
-                            </div>
-                          ))}
-                        </div>
-                      </PopoverContent>
-                    </Popover>
-                  )}
-                </>
-              );
-            }}
-          </ComboboxValue>
-          <InputGroup className="min-w-24  border-0 shadow-none">
-            <ComboboxChipsInput
-              placeholder={'Поиск...'}
-              value={search}
-              onChange={handleSearchChange}
-            />
+        <Search className="size-4 shrink-0 text-muted-foreground" />
+      </ComboboxChips>
 
-            <InputGroupAddon>
-              <Search className="size-4" />
-            </InputGroupAddon>
-          </InputGroup>
-        </ComboboxChips>
-        <ComboboxContent anchor={anchor} className={cn(className)}>
-          <ComboboxEmpty>
-            {empty ?? 'Нету данных'}
-          </ComboboxEmpty>
-          {isLoading ? (
-            <MultiSelectSkeleton />
-          ) : (
+      <ComboboxContent anchor={anchor} className={cn(className)}>
+        {isLoading ? (
+          <MultiSelectSkeleton />
+        ) : (
+          <>
+            <ComboboxEmpty>
+              {empty ?? 'Нет данных'}
+            </ComboboxEmpty>
             <ComboboxList>
               {options.map((item) => (
                 <ComboboxItem
@@ -138,10 +132,18 @@ export function MultiSelect({
                 </ComboboxItem>
               ))}
             </ComboboxList>
-          )}
-        </ComboboxContent>
-        <PaginationUI page={page} onPage={onChangePage} total={total} limit={10} />
-      </Combobox>
-    </div>
+          </>
+        )}
+
+        {total > 10 && (
+          <div
+            className="border-t py-1"
+            onMouseDown={handlePaginationMouseDown}
+          >
+            <PaginationUI page={page} onPage={onChangePage} total={total} limit={10} />
+          </div>
+        )}
+      </ComboboxContent>
+    </Combobox>
   );
 }

@@ -3,6 +3,8 @@ import { z } from 'zod';
 import { BoardType, ContractStatus, Currency } from '@/shared/const/enums';
 import { IsNotEmpty } from '@/shared/zod';
 
+const isoDate = z.date(IsNotEmpty).transform((date) => date.toISOString());
+
 export const marketSchema = z.object({
   title: z.string(IsNotEmpty),
   id: z.uuid(),
@@ -20,8 +22,8 @@ export const ContractSchema = z
       [
         ContractStatus.ACTIVE,
         ContractStatus.DRAFT,
-        ContractStatus.EXRIRED,
-        ContractStatus.SUSTENDED,
+        ContractStatus.EXPIRED,
+        ContractStatus.SUSPENDED,
       ],
       IsNotEmpty,
     ),
@@ -50,20 +52,31 @@ export const ContractSchema = z
       IsNotEmpty,
     ),
 
-    startDate: z.date(IsNotEmpty),
-
-    endDate: z.date(IsNotEmpty),
-  })
-  .superRefine((data, ctx) => {
-    if (data.endDate < data.startDate) {
+    checkIn: isoDate,
+    checkOut: isoDate,
+    salesStart: isoDate,
+    salesEnd: isoDate,
+  }).superRefine((data, ctx) => {
+    if (data.salesEnd < data.salesStart) {
       ctx.addIssue({
         code: 'custom',
         message: 'Дата окончания не может быть раньше даты начала',
-        path: ['endDate'],
+        path: ['salesEnd'],
+      });
+    }
+
+    if (data.checkOut < data.checkIn) {
+      ctx.addIssue({
+        code: 'custom',
+        message: 'Дата выезда не может быть раньше даты заезда',
+        path: ['checkOut'],
       });
     }
   });
 
+
 export const ContractCreateFormSchema = ContractSchema.extend({
-  marketIds: z.array(marketSchema),
+  marketIds: z
+    .array(marketSchema)
+    .min(1, 'Выберите хотя бы один рынок'),
 });

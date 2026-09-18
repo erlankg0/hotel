@@ -1,4 +1,4 @@
-import { CalendarDays, Luggage } from 'lucide-react';
+import { CalendarDays, Coins, FileText } from 'lucide-react';
 import Link from 'next/link';
 import { Controller, useFormContext } from 'react-hook-form';
 
@@ -22,257 +22,466 @@ import {
   InputGroupInput,
 } from '@/shared/ui/input-group';
 import { MultiSelect } from '@/shared/ui/multi-select';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/shared/ui/select';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/shared/ui/select';
 
 import type { ContractFormInput } from '../../model/types';
 import type { Props } from '@/shared/types/types';
 
-export function CreateForm({ search, setSearch, data, isLoading, page, setPage }: Props) {
+export function CreateForm({
+                             search,
+                             setSearch,
+                             data,
+                             isLoading,
+                             page,
+                             setPage,
+                             total,
+                           }: Props) {
   const {
     register,
     formState: { errors },
     control,
   } = useFormContext<ContractFormInput>();
 
-
   return (
-    <FieldSet>
-      <article>
-        <FieldTitle className="text-center text-xl font-bold">
+    <FieldSet className="mx-auto w-full">
+      {/* Header */}
+      <div className="mb-6 space-y-1">
+        <FieldTitle className="text-2xl font-semibold tracking-tight">
           Создание контракта
         </FieldTitle>
-      </article>
 
-      <Card>
-        <CardContent>
-          <FieldGroup>
-            <FieldGroup>
-              <FieldLabel htmlFor="title">
-                Название
-              </FieldLabel>
+        <p className="text-sm text-muted-foreground">
+          Заполните основные параметры, периоды действия и рынки контракта.
+        </p>
+      </div>
 
-              <InputGroup>
-                <InputGroupInput
-                  id="title"
-                  {...register('title')}
-                  placeholder="Например: Summer 2026"
-                />
+      <div className="space-y-6">
+        {/* Основная информация */}
+        <Card>
+          <CardContent className="space-y-6 pt-6">
+            <div className="space-y-1">
+              <h2 className="text-base font-semibold">
+                Основная информация
+              </h2>
 
-                <InputGroupAddon>
-                  <Luggage />
-                </InputGroupAddon>
-              </InputGroup>
+              <p className="text-sm text-muted-foreground">
+                Основные параметры договора.
+              </p>
+            </div>
 
-              {errors.title ? (
-                <FieldError>
-                  {errors.title.message}
-                </FieldError>
-              ) : (
-                <FieldDescription>
-                  Введите название контракта
-                </FieldDescription>
-              )}
-            </FieldGroup>
+            <div className="grid gap-5 md:grid-cols-2">
+              {/* Название */}
+              <FieldGroup className="md:col-span-2">
+                <FieldLabel htmlFor="title">
+                  Название
+                </FieldLabel>
 
-            <Controller
-              control={control}
-              name="status"
-              render={({ field, fieldState }) => (
-                <FieldGroup>
-                  <FieldLabel htmlFor="status">
-                    Статус
-                  </FieldLabel>
+                <InputGroup>
+                  <InputGroupInput
+                    id="title"
+                    {...register('title')}
+                    placeholder="Например: Summer 2026"
+                  />
 
-                  <Select
-                    value={field.value}
-                    onValueChange={field.onChange}
-                  >
-                    <SelectTrigger className="w-full">
-                      <SelectValue placeholder="Выберите статус" />
-                    </SelectTrigger>
+                  <InputGroupAddon>
+                    <FileText />
+                  </InputGroupAddon>
+                </InputGroup>
 
-                    <SelectContent>
-                      <SelectItem value={ContractStatus.DRAFT}>
-                        Черновик
-                      </SelectItem>
-
-                      <SelectItem value={ContractStatus.ACTIVE}>
-                        Активный
-                      </SelectItem>
-
-                      <SelectItem value={ContractStatus.EXPIRED}>
-                        Истёкший
-                      </SelectItem>
-
-                      <SelectItem value={ContractStatus.SUSPENDED}>
-                        Приостановлен
-                      </SelectItem>
-                    </SelectContent>
-                  </Select>
-
-                  {fieldState.error && (
-                    <FieldError>
-                      {fieldState.error.message}
-                    </FieldError>
-                  )}
-                </FieldGroup>
-              )}
-            />
-
-
-            <Controller
-              control={control}
-              name="currency"
-              render={({ field, fieldState }) => (
-                <FieldGroup>
-                  <FieldLabel htmlFor="currency">
-                    Валюта
-                  </FieldLabel>
-
-                  <Select
-                    value={field.value}
-                    onValueChange={field.onChange}
-                  >
-                    <SelectTrigger className="w-full">
-                      <SelectValue placeholder="Выберите валюту" />
-                    </SelectTrigger>
-
-                    <SelectContent>
-                      <SelectItem value={Currency.EUR}>EUR</SelectItem>
-                      <SelectItem value={Currency.USD}>USD</SelectItem>
-                      <SelectItem value={Currency.TRY}>TRY</SelectItem>
-                      <SelectItem value={Currency.RUB}>RUB</SelectItem>
-                      <SelectItem value={Currency.KGZ}>KGZ</SelectItem>
-                      <SelectItem value={Currency.KZ}>KZ</SelectItem>
-                    </SelectContent>
-                  </Select>
-
-                  {fieldState.error && (
-                    <FieldError>
-                      {fieldState.error.message}
-                    </FieldError>
-                  )}
-                </FieldGroup>
-              )}
-            />
-
-            <Controller
-              control={control}
-              name="boardType"
-              render={({ field, fieldState }) => (
-                <FieldGroup>
-                  <FieldLabel htmlFor="boardType">
-                    Тип питания
-                  </FieldLabel>
-
-                  <Select
-                    value={field.value}
-                    onValueChange={field.onChange}
-                  >
-                    <SelectTrigger className="w-full">
-                      <SelectValue placeholder="Выберите тип питания" />
-                    </SelectTrigger>
-
-                    <SelectContent>
-                      <SelectItem value={BoardType.RO}>RO</SelectItem>
-                      <SelectItem value={BoardType.BB}>BB</SelectItem>
-                      <SelectItem value={BoardType.HB}>HB</SelectItem>
-                      <SelectItem value={BoardType.FB}>FB</SelectItem>
-                      <SelectItem value={BoardType.AI}>AI</SelectItem>
-                      <SelectItem value={BoardType.UAI}>UAI</SelectItem>
-                    </SelectContent>
-                  </Select>
-
-                  {fieldState.error && (
-                    <FieldError>
-                      {fieldState.error.message}
-                    </FieldError>
-                  )}
-                </FieldGroup>
-              )}
-            />
-            <FieldGroup>
-              <FieldLabel htmlFor="startDate">
-                Дата начала
-              </FieldLabel>
-
-              <InputGroup>
-                <InputGroupInput
-                  id="startDate"
-                  type="date"
-                  {...register('startDate', {
-                    valueAsDate: true,
-                  })}
-                />
-
-                <InputGroupAddon>
-                  <CalendarDays />
-                </InputGroupAddon>
-              </InputGroup>
-
-              {errors.startDate && (
-                <FieldError>
-                  {errors.startDate.message}
-                </FieldError>
-              )}
-            </FieldGroup>
-
-            <FieldGroup>
-              <FieldLabel htmlFor="endDate">
-                Дата окончания
-              </FieldLabel>
-
-              <InputGroup>
-                <InputGroupInput
-                  id="endDate"
-                  type="date"
-                  {...register('endDate', {
-                    valueAsDate: true,
-                  })}
-                />
-
-                <InputGroupAddon>
-                  <CalendarDays />
-                </InputGroupAddon>
-              </InputGroup>
-
-              {errors.endDate && (
-                <FieldError>
-                  {errors.endDate.message}
-                </FieldError>
-              )}
-            </FieldGroup>
-          </FieldGroup>
-        </CardContent>
-        <CardContent>
-          <Controller
-            control={control}
-            name={'marketIds'}
-            render={({ field, fieldState }) => (
-              <>
-                <MultiSelect
-                  options={data}
-                  page={page}
-                  value={field.value}
-                  onChange={field.onChange}
-                  isLoading={isLoading}
-                  search={search}
-                  onChangePage={setPage}
-                  total={data.length}
-                  onSearchChange={setSearch}
-                  empty={(<Link href={'/'} target={'_blank'}>Добавить Страну</Link>)}
-                />
-                {fieldState.error ? (
-                  <FieldError>{fieldState.error.message}</FieldError>
+                {errors.title ? (
+                  <FieldError>
+                    {errors.title.message}
+                  </FieldError>
                 ) : (
-                  <FieldDescription>Выберите рынки</FieldDescription>
+                  <FieldDescription>
+                    Введите название контракта.
+                  </FieldDescription>
                 )}
-              </>
-            )}
-          />
-        </CardContent>
+              </FieldGroup>
 
-      </Card>
+              {/* Статус */}
+              <Controller
+                control={control}
+                name="status"
+                render={({ field, fieldState }) => (
+                  <FieldGroup>
+                    <FieldLabel htmlFor="status">
+                      Статус
+                    </FieldLabel>
+
+                    <Select
+                      value={field.value}
+                      onValueChange={field.onChange}
+                    >
+                      <SelectTrigger id="status" className="w-full">
+                        <SelectValue placeholder="Выберите статус" />
+                      </SelectTrigger>
+
+                      <SelectContent>
+                        <SelectItem value={ContractStatus.DRAFT}>
+                          Черновик
+                        </SelectItem>
+
+                        <SelectItem value={ContractStatus.ACTIVE}>
+                          Активный
+                        </SelectItem>
+
+                        <SelectItem value={ContractStatus.SUSPENDED}>
+                          Приостановлен
+                        </SelectItem>
+
+                        <SelectItem value={ContractStatus.EXPIRED}>
+                          Истёкший
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+
+                    {fieldState.error && (
+                      <FieldError>
+                        {fieldState.error.message}
+                      </FieldError>
+                    )}
+                  </FieldGroup>
+                )}
+              />
+
+              {/* Валюта */}
+              <Controller
+                control={control}
+                name="currency"
+                render={({ field, fieldState }) => (
+                  <FieldGroup>
+                    <FieldLabel htmlFor="currency">
+                      Валюта
+                    </FieldLabel>
+
+                    <Select
+                      value={field.value}
+                      onValueChange={field.onChange}
+                    >
+                      <SelectTrigger id="currency" className="w-full">
+                        <SelectValue placeholder="Выберите валюту" />
+                      </SelectTrigger>
+
+                      <SelectContent>
+                        <SelectItem value={Currency.EUR}>
+                          EUR
+                        </SelectItem>
+
+                        <SelectItem value={Currency.USD}>
+                          USD
+                        </SelectItem>
+
+                        <SelectItem value={Currency.TRY}>
+                          TRY
+                        </SelectItem>
+
+                        <SelectItem value={Currency.RUB}>
+                          RUB
+                        </SelectItem>
+
+                        <SelectItem value={Currency.KGZ}>
+                          KGZ
+                        </SelectItem>
+
+                        <SelectItem value={Currency.KZ}>
+                          KZ
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+
+                    {fieldState.error && (
+                      <FieldError>
+                        {fieldState.error.message}
+                      </FieldError>
+                    )}
+                  </FieldGroup>
+                )}
+              />
+
+              {/* Питание */}
+              <Controller
+                control={control}
+                name="boardType"
+                render={({ field, fieldState }) => (
+                  <FieldGroup>
+                    <FieldLabel htmlFor="boardType">
+                      Тип питания
+                    </FieldLabel>
+
+                    <Select
+                      value={field.value}
+                      onValueChange={field.onChange}
+                    >
+                      <SelectTrigger id="boardType" className="w-full">
+                        <SelectValue placeholder="Выберите тип питания" />
+                      </SelectTrigger>
+
+                      <SelectContent>
+                        <SelectItem value={BoardType.RO}>
+                          RO
+                        </SelectItem>
+
+                        <SelectItem value={BoardType.BB}>
+                          BB
+                        </SelectItem>
+
+                        <SelectItem value={BoardType.HB}>
+                          HB
+                        </SelectItem>
+
+                        <SelectItem value={BoardType.FB}>
+                          FB
+                        </SelectItem>
+
+                        <SelectItem value={BoardType.AI}>
+                          AI
+                        </SelectItem>
+
+                        <SelectItem value={BoardType.UAI}>
+                          UAI
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+
+                    {fieldState.error && (
+                      <FieldError>
+                        {fieldState.error.message}
+                      </FieldError>
+                    )}
+                  </FieldGroup>
+                )}
+              />
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Периоды */}
+        <Card>
+          <CardContent className="space-y-6 pt-6">
+            <div className="space-y-1">
+              <h2 className="text-base font-semibold">
+                Периоды контракта
+              </h2>
+
+              <p className="text-sm text-muted-foreground">
+                Укажите период продаж и период проживания гостей.
+              </p>
+            </div>
+
+            <div className="grid gap-6 lg:grid-cols-2">
+              {/* Продажи */}
+              <div className="space-y-4 rounded-lg border p-4">
+                <div className="flex items-center gap-2">
+                  <div className="flex size-8 items-center justify-center rounded-md bg-muted">
+                    <Coins className="size-4" />
+                  </div>
+
+                  <div>
+                    <h3 className="text-sm font-medium">
+                      Период продаж
+                    </h3>
+
+                    <p className="text-xs text-muted-foreground">
+                      Когда контракт доступен для продажи.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <FieldGroup>
+                    <FieldLabel htmlFor="salesStart">
+                      Начало
+                    </FieldLabel>
+
+                    <InputGroup>
+                      <InputGroupInput
+                        id="salesStart"
+                        type="date"
+                        {...register('salesStart', {
+                          valueAsDate: true,
+                        })}
+                      />
+
+                      <InputGroupAddon>
+                        <CalendarDays />
+                      </InputGroupAddon>
+                    </InputGroup>
+
+                    {errors.salesStart && (
+                      <FieldError>
+                        {errors.salesStart.message}
+                      </FieldError>
+                    )}
+                  </FieldGroup>
+
+                  <FieldGroup>
+                    <FieldLabel htmlFor="salesEnd">
+                      Окончание
+                    </FieldLabel>
+
+                    <InputGroup>
+                      <InputGroupInput
+                        id="salesEnd"
+                        type="date"
+                        {...register('salesEnd', {
+                          valueAsDate: true,
+                        })}
+                      />
+
+                      <InputGroupAddon>
+                        <CalendarDays />
+                      </InputGroupAddon>
+                    </InputGroup>
+
+                    {errors.salesEnd && (
+                      <FieldError>
+                        {errors.salesEnd.message}
+                      </FieldError>
+                    )}
+                  </FieldGroup>
+                </div>
+              </div>
+
+              {/* Проживание */}
+              <div className="space-y-4 rounded-lg border p-4">
+                <div className="flex items-center gap-2">
+                  <div className="flex size-8 items-center justify-center rounded-md bg-muted">
+                    <CalendarDays className="size-4" />
+                  </div>
+
+                  <div>
+                    <h3 className="text-sm font-medium">
+                      Период проживания
+                    </h3>
+
+                    <p className="text-xs text-muted-foreground">
+                      Когда гости могут проживать по контракту.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <FieldGroup>
+                    <FieldLabel htmlFor="checkIn">
+                      Заезд
+                    </FieldLabel>
+
+                    <InputGroup>
+                      <InputGroupInput
+                        id="checkIn"
+                        type="date"
+                        {...register('checkIn', {
+                          valueAsDate: true,
+                        })}
+                      />
+
+                      <InputGroupAddon>
+                        <CalendarDays />
+                      </InputGroupAddon>
+                    </InputGroup>
+
+                    {errors.checkIn && (
+                      <FieldError>
+                        {errors.checkIn.message}
+                      </FieldError>
+                    )}
+                  </FieldGroup>
+
+                  <FieldGroup>
+                    <FieldLabel htmlFor="checkOut">
+                      Выезд
+                    </FieldLabel>
+
+                    <InputGroup>
+                      <InputGroupInput
+                        id="checkOut"
+                        type="date"
+                        {...register('checkOut', {
+                          valueAsDate: true,
+                        })}
+                      />
+
+                      <InputGroupAddon>
+                        <CalendarDays />
+                      </InputGroupAddon>
+                    </InputGroup>
+
+                    {errors.checkOut && (
+                      <FieldError>
+                        {errors.checkOut.message}
+                      </FieldError>
+                    )}
+                  </FieldGroup>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Рынки */}
+        <Card>
+          <CardContent className="space-y-6 pt-6">
+            <div className="space-y-1">
+              <h2 className="text-base font-semibold">
+                Рынки
+              </h2>
+
+              <p className="text-sm text-muted-foreground">
+                Выберите страны и рынки, для которых действует контракт.
+              </p>
+            </div>
+
+            <Controller
+              control={control}
+              name="marketIds"
+              render={({ field, fieldState }) => (
+                <FieldGroup>
+                  <FieldLabel>
+                    Рынки контракта
+                  </FieldLabel>
+
+                  <MultiSelect
+                    options={data}
+                    page={page}
+                    value={field.value ?? []}
+                    onChange={field.onChange}
+                    isLoading={isLoading}
+                    search={search}
+                    onChangePage={setPage}
+                    total={total ?? data.length}
+                    onSearchChange={setSearch}
+                    invalid={Boolean(fieldState.error)}
+                    empty={
+                      <Link
+                        href="/"
+                        target="_blank"
+                        className="text-sm underline underline-offset-4"
+                      >
+                        Добавить страну
+                      </Link>
+                    }
+                  />
+
+                  {fieldState.error ? (
+                    <FieldError errors={[fieldState.error]} />
+                  ) : (
+                    <FieldDescription>
+                      Можно выбрать несколько рынков.
+                    </FieldDescription>
+                  )}
+                </FieldGroup>
+              )}
+            />
+          </CardContent>
+        </Card>
+      </div>
     </FieldSet>
   );
 }

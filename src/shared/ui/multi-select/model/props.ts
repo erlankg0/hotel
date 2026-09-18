@@ -17,4 +17,5 @@ export interface Props {
   total: number;
   isLoading: boolean;
   onChangePage: (page: number)=> void;
+  invalid?: boolean;
 }

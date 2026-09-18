@@ -24,6 +24,7 @@ export const useMarketsQuery = ({ search }: { search?: string }) => {
     isLoading,
     error,
     page,
+    total: data?.data.total || 0,
   };
 
 };

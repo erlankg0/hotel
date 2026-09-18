@@ -55,17 +55,18 @@ export function CreateForm({ data, isLoading, page, search, setPage, setSearch }
                 <MultiSelect
                   options={data}
                   page={page}
-                  value={field.value}
+                  value={field.value ?? []}
                   onChange={field.onChange}
                   isLoading={isLoading}
                   search={search}
                   onChangePage={setPage}
                   total={data.length}
                   onSearchChange={setSearch}
+                  invalid={Boolean(fieldState.error)}
                   empty={(<Link href={'/'} target={'_blank'}>Добавить Страну</Link>)}
                 />
                 {fieldState.error ? (
-                  <FieldError>{fieldState.error.message}</FieldError>
+                  <FieldError errors={[fieldState.error]} />
                 ) : (
                   <FieldDescription>Выберите страны</FieldDescription>
                 )}

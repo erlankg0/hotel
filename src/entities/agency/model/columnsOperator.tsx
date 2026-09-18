@@ -1,8 +1,7 @@
-
 import Link from 'next/link';
-import { features } from '@/shared/const/table-features'
 
 import type { AgencyType } from '../model/types';
+import type { features } from '@/shared/const/table-features';
 import type { ColumnDef } from '@tanstack/react-table';
 
 
@@ -19,43 +18,25 @@ export const columnsOperator: Array<ColumnDef<typeof features, AgencyType>> = [
   {
     accessorKey: 'title',
     header: 'Название',
-    cell: ({ getValue }) => (
+    cell: ({ row }) => (
       <span className="font-medium text-slate-800 text-sm">
-        {getValue<string>()}
+         <Link
+           href={`agencies/${row.original.id}`}
+           className="inline-flex items-center gap-1 font-medium "
+         >
+        {row.original.title}
+      </Link>
       </span>
     ),
   },
   {
-    accessorKey: 'shortTitle',
+    accessorKey: 'code',
     header: 'Код',
     cell: ({ getValue }) => (
       <span className="font-medium text-slate-800 text-sm">
         {getValue<string>() ? getValue<string>() : 'N/A'}
       </span>
     ),
-  },
-  {
-    accessorKey: 'createdAt',
-    header: 'Дата создания',
-    cell: ({ getValue }) => (
-      <span className="text-sm text-slate-500">
-      {new Intl.DateTimeFormat('ru-RU').format(
-        new Date(getValue<string>()),
-      )}
-    </span>
-    ),
-  },
-  {
-    accessorKey: 'updatedAt',
-    header: 'Дата обновления',
-    cell: ({ getValue }) => (
-      <span className="text-sm text-slate-500">
-      {new Intl.DateTimeFormat('ru-RU').format(
-        new Date(getValue<string>()),
-      )}
-    </span>
-    ),
-
   },
   {
     accessorKey: 'id',
@@ -81,6 +62,29 @@ export const columnsOperator: Array<ColumnDef<typeof features, AgencyType>> = [
         <span aria-hidden="true">&rarr;</span>
       </Link>
     ),
+  },
+  {
+    accessorKey: 'createdAt',
+    header: 'Дата создания',
+    cell: ({ getValue }) => (
+      <span className="text-sm text-slate-500">
+      {new Intl.DateTimeFormat('ru-RU').format(
+        new Date(getValue<string>()),
+      )}
+    </span>
+    ),
+  },
+  {
+    accessorKey: 'updatedAt',
+    header: 'Дата обновления',
+    cell: ({ getValue }) => (
+      <span className="text-sm text-slate-500">
+      {new Intl.DateTimeFormat('ru-RU').format(
+        new Date(getValue<string>()),
+      )}
+    </span>
+    ),
+
   },
 ];
 
@@ -148,7 +152,7 @@ export const columns: Array<ColumnDef<typeof features, AgencyType>> = [
       </Link>
     ),
   },
-   {
+  {
     accessorKey: 'id',
     header: 'Подробнее',
     cell: ({ row }) => (

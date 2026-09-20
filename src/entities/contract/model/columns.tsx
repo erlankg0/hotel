@@ -1,10 +1,12 @@
 import Link from 'next/link';
 
+import {  boardTypeLabels, currencyLabels, contractStatusLabels } from '@/shared/const/enums'
+import { Checkbox } from '@/shared/ui/checkbox';
+
 import type { ContractType } from '../model/types';
 import type { features } from '@/shared/const/table-features';
 import type { ColumnDef } from '@tanstack/react-table';
-import { Checkbox } from '@/shared/ui/checkbox';
-import {  boardTypeLabels, currencyLabels, contractStatusLabels } from '@/shared/const/enums'
+
 
 export const columns: Array<ColumnDef<typeof features, ContractType>> = [
   {
@@ -23,7 +25,7 @@ export const columns: Array<ColumnDef<typeof features, ContractType>> = [
     cell: ({ row }) => (
       <Link
         href={`/contracts/${row.original.id}`}
-        className="block max-w-[220px] truncate text-sm font-medium text-slate-800 hover:text-primary"
+        className="block max-w-55 truncate text-sm font-medium text-slate-800 hover:text-primary"
       >
         {row.original.title}
       </Link>

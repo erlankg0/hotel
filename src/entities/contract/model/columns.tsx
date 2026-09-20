@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import {  boardTypeLabels, currencyLabels, contractStatusLabels } from '@/shared/const/enums'
+import { boardTypeLabels, currencyLabels, contractStatusLabels } from '@/shared/const/enums'
 import { Checkbox } from '@/shared/ui/checkbox';
 
 import type { ContractType } from '../model/types';
@@ -122,9 +122,6 @@ export const columns: Array<ColumnDef<typeof features, ContractType>> = [
     ),
 
   },
-
-
-
   {
     accessorKey: 'createdAt',
     header: 'Дата создания',

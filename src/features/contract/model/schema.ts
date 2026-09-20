@@ -2,8 +2,7 @@ import { z } from 'zod';
 
 import { BoardType, ContractStatus, Currency } from '@/shared/const/enums';
 import { IsNotEmpty } from '@/shared/zod';
-
-const isoDate = z.date(IsNotEmpty).transform((date) => date.toISOString());
+import { isoDate } from '@/shared/zod';
 
 export const marketSchema = z.object({
   title: z.string(IsNotEmpty),

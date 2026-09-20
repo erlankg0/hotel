@@ -38,6 +38,18 @@ export enum AgencyType {
   WALKIN = 'WALKIN',
 }
 
+export enum AvailabilityStatus {
+  BOOKABLE = 'BOOKABLE',
+  STOP_SELL = 'STOP_SELL',
+  CLOSED = 'CLOSED',
+}
+
+export const availabilityStatusLabel: Record<AvailabilityStatus, string> = {
+  [AvailabilityStatus.BOOKABLE]: 'Доступно для бронирования',
+  [AvailabilityStatus.STOP_SELL]: 'Продажи остановлены',
+  [AvailabilityStatus.CLOSED]: 'Закрыто',
+};
+
 export const contractStatusLabels: Record<ContractStatus, string> = {
   [ContractStatus.DRAFT]: 'Черновик',
   [ContractStatus.ACTIVE]: 'Активный',

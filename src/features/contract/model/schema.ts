@@ -4,7 +4,7 @@ import { BoardType, ContractStatus, Currency } from '@/shared/const/enums';
 import { IsNotEmpty } from '@/shared/zod';
 import { isoDate } from '@/shared/zod';
 
-export const marketSchema = z.object({
+export const optionSchema = z.object({
   title: z.string(IsNotEmpty),
   id: z.uuid(),
 });
@@ -76,6 +76,10 @@ export const ContractSchema = z
 
 export const ContractCreateFormSchema = ContractSchema.extend({
   marketIds: z
-    .array(marketSchema)
+    .array(optionSchema)
     .min(1, 'Выберите хотя бы один рынок'),
 });
+
+export const ContractRoomAddFormSchema = z.object({
+  roomCategoryIds: z.array(optionSchema).min(1, "Выберите хотя бы одну категорию номера")
+})

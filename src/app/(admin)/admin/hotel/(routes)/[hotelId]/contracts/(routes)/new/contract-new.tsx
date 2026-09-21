@@ -31,7 +31,7 @@ export default function ContractNew() {
 
   const [search, setSearch] = useState('');
 
-  const { data, isLoading, page, setPage, total } = useMarketsQuery({});
+  const { data, isLoading, page, setPage, total } = useMarketsQuery({ search });
 
   async function handleOnSubmitForm(dto: ContractFormOutput) {
     if (!agencyId) {
@@ -82,8 +82,8 @@ export default function ContractNew() {
               )}
 
               <span>
-              {isPending ? 'Сохранение...' : 'Сохранить'}
-            </span>
+                {isPending ? 'Сохранение...' : 'Сохранить'}
+              </span>
             </p>
           </Button>
         </WrapperForm>

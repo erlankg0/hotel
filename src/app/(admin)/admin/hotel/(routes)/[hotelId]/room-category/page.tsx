@@ -2,6 +2,7 @@
 
 import { Plus } from 'lucide-react';
 import Link from 'next/link';
+import { useParams } from 'next/navigation';
 import { useState } from 'react';
 
 import { useRoomCategoriesQuery, columns, type RoomCategortType } from '@/entities/room-category';
@@ -10,9 +11,11 @@ import { DataTable } from '@/shared/ui/data-table';
 import { Page } from '@/widget/page';
 import { PageHeader } from '@/widget/page-header';
 
-export default function HotelPage() {
+export default function RoomPagr() {
   const [search, setSearch] = useState<string>('');
-  const { data, isLoading } = useRoomCategoriesQuery({ search: search })
+  const { hotelId } = useParams<{ hotelId: string }>();
+  const { data, isLoading } = useRoomCategoriesQuery({ search: search, id: hotelId });
+
   return (
     <Page
       headerSlog={
@@ -23,7 +26,7 @@ export default function HotelPage() {
           slot={
             <div className={'flex flex-row items-center gap-2'}>
               <Button type={'button'}>
-                <Link href={'/admin/hotel/new'}>
+                <Link href={`room-category/new?=hotelId=${hotelId}`}>
                   <Plus size={14} />
                 </Link>
               </Button>

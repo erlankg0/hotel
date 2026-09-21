@@ -7,7 +7,7 @@ import { useDebounce } from '@/shared/lib/useDebounce';
 
 import { QueryOptionRoomCategory } from '../model/query-option';
 
-export const useRoomCategoriesQuery = ({ search }: { search?: string }) => {
+export const useRoomCategoriesQuery = ({ search, id }: { search?: string, id?: string }) => {
   const debouncedSearch = useDebounce<string | undefined>(search, 500);
   const [page, setPage] = useState<number>(1);
 
@@ -16,7 +16,7 @@ export const useRoomCategoriesQuery = ({ search }: { search?: string }) => {
     error,
     isLoading,
   } = useQuery({
-    ...QueryOptionRoomCategory.get({ title: debouncedSearch, page }),
+    ...QueryOptionRoomCategory.get({ title: debouncedSearch, page, id }),
   });
 
   const result = data?.data.data || [];

@@ -3,4 +3,4 @@ export { useRoomCategortDelete } from './remove';
 export { useRoomCategoryUpdate, UpdateForm } from './update';
 
 export { RoomCategorySchema } from './model/schema';
-export type { RoomCategortType, RoomCategoryDto, RoomCategoryFormOutput, RoomCategoryFormInput } from './model/types';
+export type { RoomCategoryType, RoomCategoryDto, RoomCategoryFormOutput, RoomCategoryFormInput } from './model/types';

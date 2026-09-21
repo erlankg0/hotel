@@ -50,6 +50,18 @@ export const columns: Array<ColumnDef<typeof features, HotelType>> = [
     ),
   },
   {
+    accessorKey: 'rooms',
+    header: 'Категории номеров',
+    cell: ({ row }) => (
+      <Link
+        href={`hotel/${row.original.id}/room-category`}
+        className="inline-flex items-center text-xs font-medium text-slate-700 bg-slate-100 hover:bg-slate-200/80 px-2.5 py-1.5 rounded-lg transition-colors border border-slate-200/60"
+      >
+        Категории номеров
+      </Link>
+    ),
+  },
+  {
     header: 'Подробнее',
     cell: ({ row }) => (
       <Link

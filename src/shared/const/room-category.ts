@@ -1,6 +1,6 @@
 export enum CategorySection {
-  MAIN = 'MAIN',
-  BUNGALOW = 'BUNGALOW',
+  MAIN = 'ROOM',
+  BUNGALOW = 'SUIT',
   VILLA = 'VILLA',
 }
 
@@ -9,4 +9,3 @@ export const categorySectionOptions = [
   { label: 'Бунгалов', value: CategorySection.BUNGALOW },
   { label: 'Вилла', value: CategorySection.VILLA },
 ];
-

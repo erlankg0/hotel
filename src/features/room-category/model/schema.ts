@@ -1,6 +1,7 @@
 import { z } from 'zod';
-import { IsNotEmpty } from '@/shared/zod'
+
 import { CategorySection } from '@/shared/const/room-category';
+import { IsNotEmpty } from '@/shared/zod'
 
 export const RoomCategorySchema = z.object({
     title: z.string(IsNotEmpty).max(100, { message: 'Максимум 100 символов' }).min(5, { message: 'Минимум 5 симоволов' }),

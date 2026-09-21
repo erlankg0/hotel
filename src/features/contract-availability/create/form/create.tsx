@@ -12,13 +12,13 @@ import {
 } from '@/shared/ui/field';
 import { InputGroup, InputGroupInput, InputGroupAddon } from '@/shared/ui/input-group';
 
-import type { ContractRoomFromInput } from '../../model/types';
+import type { ContactAvailabilityFormInput } from '../../model/types';
 
 export function CreateForm() {
   const {
     register,
     formState: { errors },
-  } = useFormContext<ContractRoomFromInput>();
+  } = useFormContext<ContactAvailabilityFormInput>();
 
   return (
     <FieldSet>
@@ -30,13 +30,13 @@ export function CreateForm() {
       <Card>
         <CardContent>
           <FieldGroup>
-            <FieldLabel htmlFor={'isActive'}>Активна</FieldLabel>
+            <FieldLabel htmlFor={'date'}>Активна</FieldLabel>
             <InputGroup>
-              <InputGroupInput {...register('isActive')} id={'title'} />
+              <InputGroupInput {...register('date')} id={'date'} />
               <InputGroupAddon><Check /></InputGroupAddon>
             </InputGroup>
-            {errors.isActive ? (
-              <FieldError>{errors.isActive.message}</FieldError>
+            {errors.date ? (
+              <FieldError>{errors.date.message}</FieldError>
             ) : (
               <FieldDescription>
                 Выберите, если категория номера активна в контракте

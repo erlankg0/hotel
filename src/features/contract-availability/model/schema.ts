@@ -1,6 +1,7 @@
 import { z } from 'zod';
-import { isoDate, IsNotEmpty } from '@/shared/zod';
+
 import { AvailabilityStatus } from '@/shared/const/enums';
+import { isoDate, IsNotEmpty } from '@/shared/zod';
 
 export const contractAvailabilitySchema = z.object({
     date: isoDate,

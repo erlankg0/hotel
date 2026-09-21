@@ -6,7 +6,6 @@ import {
   BoardType,
   ContractStatus,
   Currency,
-  boardTypeLabels,
   contractStatusLabels,
   currencyLabels,
 } from '@/shared/const/enums';
@@ -37,14 +36,14 @@ import type { ContractFormInput } from '../../model/types';
 import type { Props } from '@/shared/types/types';
 
 export function CreateForm({
-  search,
-  setSearch,
-  data,
-  isLoading,
-  page,
-  setPage,
-  total,
-}: Props) {
+                             search,
+                             setSearch,
+                             data,
+                             isLoading,
+                             page,
+                             setPage,
+                             total,
+                           }: Props) {
   const {
     register,
     formState: { errors },
@@ -224,27 +223,27 @@ export function CreateForm({
 
                       <SelectContent>
                         <SelectItem value={BoardType.RO}>
-                           [boardTypeLabels[BoardType.RO]]
+                          [boardTypeLabels[BoardType.RO]]
                         </SelectItem>
 
                         <SelectItem value={BoardType.BB}>
-                           [boardTypeLabels[BoardType.BB]]
+                          [boardTypeLabels[BoardType.BB]]
                         </SelectItem>
 
                         <SelectItem value={BoardType.HB}>
-                           [boardTypeLabels[BoardType.HB]]
+                          [boardTypeLabels[BoardType.HB]]
                         </SelectItem>
 
                         <SelectItem value={BoardType.FB}>
-                           [boardTypeLabels[BoardType.FB]]
+                          [boardTypeLabels[BoardType.FB]]
                         </SelectItem>
 
                         <SelectItem value={BoardType.AI}>
-                           [boardTypeLabels[BoardType.AI]]
+                          [boardTypeLabels[BoardType.AI]]
                         </SelectItem>
 
                         <SelectItem value={BoardType.UAI}>
-                           [boardTypeLabels[BoardType.UAI]]
+                          [boardTypeLabels[BoardType.UAI]]
                         </SelectItem>
                       </SelectContent>
                     </Select>

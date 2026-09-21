@@ -1,4 +1,4 @@
-import { RoomCategorySchema } from './schema';
+import type { RoomCategorySchema } from './schema';
 import type { z } from 'zod';
 
 export type RoomCategoryDto = z.infer<typeof RoomCategorySchema> & {
@@ -8,4 +8,4 @@ export type RoomCategoryDto = z.infer<typeof RoomCategorySchema> & {
 export type RoomCategoryFormInput = z.input<typeof RoomCategorySchema>;
 export type RoomCategoryFormOutput = z.output<typeof RoomCategorySchema>;
 
-export type RoomCategortType = RoomCategoryDto & { id: string }
+export type RoomCategoryType = RoomCategoryDto & { id: string }

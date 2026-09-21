@@ -6,7 +6,7 @@ import { handleAxiosError } from '@/shared/lib/handleAxiosError';
 
 import { QueryOptionRoomCategory } from '../../model/query-option';
 
-import type { RoomCategoryDto, RoomCategortType } from '../../model/types';
+import type { RoomCategoryDto, RoomCategoryType } from '../../model/types';
 
 interface UpdateRoomArgs {
   id: string;
@@ -24,14 +24,14 @@ export const useRoomCategoryUpdate = () => {
 
       await queryClient.cancelQueries({ queryKey: [QueryOptionRoomCategory.baseKey] });
 
-      const previous = queryClient.getQueryData<RoomCategortType[]>([QueryOptionRoomCategory.baseKey]);
+      const previous = queryClient.getQueryData<RoomCategoryType[]>([QueryOptionRoomCategory.baseKey]);
 
       const optimistic = {
         ...dto,
         id: id,
       };
 
-      await queryClient.setQueryData([QueryOptionRoomCategory.baseKey], (old?: RoomCategortType[]) => {
+      await queryClient.setQueryData([QueryOptionRoomCategory.baseKey], (old?: RoomCategoryType[]) => {
         if (!old) {
           return [optimistic];
         }

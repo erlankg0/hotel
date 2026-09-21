@@ -6,7 +6,7 @@ import { handleAxiosError } from '@/shared/lib/handleAxiosError';
 
 import { QueryOptionRoomCategory } from '../../model/query-option';
 
-import type { RoomCategortType } from '../../model/types';
+import type { RoomCategoryType } from '../../model/types';
 
 export const useRoomCategortDelete = () => {
   const router = useRouter();
@@ -18,9 +18,9 @@ export const useRoomCategortDelete = () => {
     onMutate: async (id: string) => {
       await queryClient.cancelQueries({ queryKey: [QueryOptionRoomCategory.baseKey] });
 
-      const previous = queryClient.getQueryData<RoomCategortType[]>([QueryOptionRoomCategory.baseKey]);
+      const previous = queryClient.getQueryData<RoomCategoryType[]>([QueryOptionRoomCategory.baseKey]);
 
-      queryClient.setQueryData<RoomCategortType[]>([QueryOptionRoomCategory.baseKey], (old = []) => {
+      queryClient.setQueryData<RoomCategoryType[]>([QueryOptionRoomCategory.baseKey], (old = []) => {
         return old.filter(room => room.id !== id);
       });
 

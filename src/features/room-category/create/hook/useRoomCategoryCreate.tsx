@@ -2,10 +2,10 @@ import { useBaseCreate } from "@/shared/hooks/useBaseCreate"
 
 import { QueryOptionRoomCategory } from '../../model/query-option';
 
-import type { RoomCategoryDto, RoomCategortType } from '../../model/types';
+import type { RoomCategoryDto, RoomCategoryType } from '../../model/types';
 
 export const useRoomCategoryCreate = ()=>{
-  const mutate = useBaseCreate<RoomCategoryDto, RoomCategortType>({
+  const mutate = useBaseCreate<RoomCategoryDto, RoomCategoryType>({
     queryKey: [QueryOptionRoomCategory.baseKey],
     mutationFn: QueryOptionRoomCategory.post,
     backOnSuccess: true,

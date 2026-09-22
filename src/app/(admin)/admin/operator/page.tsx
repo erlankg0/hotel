@@ -2,10 +2,10 @@
 
 import { Plus } from 'lucide-react';
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
 import { useState } from 'react';
 
 import { columns, useOperatorsQuery } from '@/entities/operator';
+import { useHotelSwitch } from '@/shared/store';
 import { Button } from '@/shared/ui/button';
 import { DataTable } from '@/shared/ui/data-table';
 import { PaginationUI } from '@/shared/ui/paginator/pagination';
@@ -16,10 +16,10 @@ import type { OperatorType } from '@/entities/operator';
 
 
 export default function AgencyPage() {
-  const { hotelId } = useParams<{ hotelId: string }>();
+  const hotelId = useHotelSwitch((state) => state.hotelId);
 
   const [search, setSearch] = useState<string>('');
-  const { data, isLoading, page, setPage, total, limit } = useOperatorsQuery({ search, id: hotelId });
+  const { data, isLoading, page, setPage, total, limit } = useOperatorsQuery({ search, id: hotelId || '' });
 
   return (
     <Page

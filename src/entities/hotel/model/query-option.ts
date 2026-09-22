@@ -1,6 +1,7 @@
 import { keepPreviousData, queryOptions } from '@tanstack/react-query';
 
 import { get } from '../api/get';
+import { getAll } from '../api/getAll';
 import { getById } from '../api/getById';
 
 import type { QueryOptions } from '@/shared/types/response';
@@ -13,6 +14,13 @@ export const QueryOptionHotel = {
       queryKey: ['hotel', { title, limit, page }],
       placeholderData: keepPreviousData,
       enabled: enabled,
+    });
+  },
+  getAll: () => {
+    return queryOptions({
+      queryFn: () => getAll(),
+      queryKey: ['hotel', 'all'],
+      placeholderData: keepPreviousData,
     });
   },
   getById: (id: string) =>

@@ -3,7 +3,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Loader2 } from 'lucide-react';
 import Link from 'next/link';
-import { useParams, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 
 import { useMarketsQuery } from '@/entities/market';
@@ -13,6 +13,7 @@ import {
   useCreateContract,
 } from '@/features/contract';
 import { WrapperForm } from '@/shared/providers/form';
+import { useHotelSwitch } from '@/shared/store';
 import { Button } from '@/shared/ui/button';
 import { Page } from '@/widget/page';
 
@@ -24,7 +25,7 @@ import type {
 export default function ContractNew() {
   const { handleOnSubmit, isPending } = useCreateContract();
 
-  const { hotelId } = useParams<{ hotelId: string }>();
+  const hotelId = useHotelSwitch((state) => state.hotelId);
   const searchParams = useSearchParams();
 
   const agencyId = searchParams.get('agencyId');
@@ -34,14 +35,14 @@ export default function ContractNew() {
   const { data, isLoading, page, setPage, total } = useMarketsQuery({ search });
 
   async function handleOnSubmitForm(dto: ContractFormOutput) {
-    if (!agencyId) {
-      throw new Error('Agency ID не найден');
+    if (!agencyId || !hotelId) {
+      throw new Error('ID не найден');
     }
 
     await handleOnSubmit({
       ...dto,
       agencyId,
-      hotelId,
+      hotelId: hotelId,
       marketIds: dto.marketIds.map((item) => item.id),
     });
   }

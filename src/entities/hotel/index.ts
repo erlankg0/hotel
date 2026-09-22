@@ -8,3 +8,4 @@ export type { HotelType } from './model/types';
 export { columns } from './model/columns';
 export { useHotelsQuery } from './hook/useHotelsQuery';
 export { useHotelQuery } from './hook/useHotelQuery';
+export { useHotelAllQuery } from './hook/useHotelAllQuery';

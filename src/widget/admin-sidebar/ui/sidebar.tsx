@@ -13,7 +13,7 @@ import {
   Users,
   UserRoundCog,
   Gem,
-  Info
+  Info,
 } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -32,6 +32,7 @@ import {
   SidebarMenuItem,
   SidebarSeparator,
 } from '@/shared/ui/sidebar';
+import { HotelSwitch } from '@/widget/hotel-switch';
 
 const groups = [
   {
@@ -92,6 +93,7 @@ export function AdminSidebar() {
   return (
     <SidebarRoot collapsible="icon">
       <SidebarHeader className="gap-3 border-b pb-3">
+        <HotelSwitch />
 
         <div className="relative px-1 group-data-[collapsible=icon]:hidden">
           <Search

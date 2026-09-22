@@ -1,0 +1,1 @@
+export { useHotelSwitch } from './hotel/useHotelSwitch';

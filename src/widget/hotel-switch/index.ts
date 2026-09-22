@@ -1,0 +1,1 @@
+export { HotelSwitch } from './ui/hotel-switch';

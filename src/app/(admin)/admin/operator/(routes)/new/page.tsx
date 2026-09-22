@@ -2,20 +2,20 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Loader2 } from 'lucide-react';
-import { useParams } from 'next/navigation';
 
 import { useEmailCreate } from '@/features/email';
 import { Create, useCreateOperator, operatorCreateSchema } from '@/features/operator';
 import { usePhoneCreate } from '@/features/phone';
 import { useUploadFile } from '@/shared/lib/hooks/useUploadFile';
 import { WrapperForm } from '@/shared/providers/form';
+import { useHotelSwitch } from '@/shared/store';
 import { Button } from '@/shared/ui/button';
 import { Page } from '@/widget/page';
 
 import type { OperatorFormInput, OperatorFormOutput } from '@/features/operator';
 
 export default function Operator() {
-  const { hotelId } = useParams<{ hotelId: string }>();
+  const hotelId = useHotelSwitch((state) => state.hotelId);
   const uploadFile = useUploadFile();
   const { handleOnSubmit: handleOnSubmitEmail } = useEmailCreate();
   const { handleOnSubmit: handleOnSubmitPhone } = usePhoneCreate();
@@ -24,11 +24,15 @@ export default function Operator() {
   const handleSubmit = async (dto: OperatorFormOutput) => {
     const { phones, emails, file, ...rest } = dto;
 
+    if(!hotelId){
+      throw new Error('Нету ID')
+    }
     const [icon, emaiIds, phoneIds] = await Promise.all([
       uploadFile.mutateAsync(file),
       Promise.all(emails.map(handleOnSubmitEmail)),
       Promise.all(phones.map(handleOnSubmitPhone)),
     ]);
+
 
     await handleOnSubmit({
       ...rest,

@@ -1,0 +1,1 @@
+export { useHotelRemove } from './hook/useHotelRemove';

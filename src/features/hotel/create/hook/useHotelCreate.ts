@@ -1,25 +1,18 @@
+// features/hotel/hooks/useHotelCreate.ts
 import { useBaseCreate } from '@/shared/hooks/useBaseCreate';
 
 import { QueryOptionHotel } from '../../model/query-option';
 
-import type { HotelDto, HotelType } from '../../model/types';
+import type { HotelType, HotelDto } from '../../model/types';
 
 export const useHotelCreate = () => {
-  const mutation = useBaseCreate<HotelDto, HotelType>({
+  const { isPending, handleOnSubmit, ConfirmDialog } = useBaseCreate<HotelDto, HotelType>({
     queryKey: [QueryOptionHotel.baseKey],
     mutationFn: QueryOptionHotel.post,
+    successMessage: 'Отель успешно создан!',
+    dialogTitle: 'Создать отель?',
+    dialogDescription: 'Проверьте данные перед сохранением.',
   });
 
-  async function handleOnSubmit(dto: HotelDto) {
-    const response = await mutation.handleOnSubmit({ ...dto });
-    if (response.status !== 200) {
-      return response.data.data;
-    }
-    return response.data.message;
-  }
-
-  return {
-    isPending: mutation.isPending,
-    handleOnSubmit: handleOnSubmit,
-  };
+  return { isPending, handleOnSubmit, ConfirmDialog };
 };

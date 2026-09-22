@@ -10,7 +10,7 @@ import { Page } from '@/widget/page';
 import type { HotelFormValues, HotelFromInput, HotelDto } from '@/features/hotel';
 
 export default function HotelNew() {
-  const { handleOnSubmit, isPending } = useHotelCreate();
+  const { handleOnSubmit, isPending, ConfirmDialog } = useHotelCreate();
 
   async function handleOnSubmitForm(dto: HotelDto) {
     await handleOnSubmit(dto);
@@ -32,15 +32,15 @@ export default function HotelNew() {
           className="relative w-full"
         >
           <p
-            className={`flex items-center justify-center gap-2 transition-all duration-200 ${
-              isPending ? 'opacity-100' : 'opacity-100'
-            }`}
+            className={`flex items-center justify-center gap-2 transition-all duration-200 ${isPending ? 'opacity-100' : 'opacity-100'
+              }`}
           >
             {isPending && <Loader2 className="size-4 animate-spin" />}
             <span>{isPending ? 'Сохранение...' : 'Сохранить'}</span>
           </p>
         </Button>
       </WrapperForm>
+      {ConfirmDialog}
     </Page>
   );
 }

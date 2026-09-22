@@ -1,10 +1,10 @@
 'use client';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Loader2 } from 'lucide-react';
+import { Loader2, Trash2Icon } from 'lucide-react';
 import { useParams } from 'next/navigation';
 
 import { useHotelQuery } from '@/entities/hotel';
-import { UpdateForm, hotelSchema, useHotelUpdate, FormSkeleton } from '@/features/hotel';
+import { UpdateForm, hotelSchema, useHotelUpdate, FormSkeleton, useHotelRemove } from '@/features/hotel';
 import { WrapperForm } from '@/shared/providers/form';
 import { Button } from '@/shared/ui/button';
 import { Page } from '@/widget/page';
@@ -12,20 +12,26 @@ import { Page } from '@/widget/page';
 import type { HotelFormValues, HotelFromInput, HotelDto } from '@/features/hotel';
 
 export default function HotelUpdate() {
-  const { handleOnSubmit, isPending } = useHotelUpdate();
   const { hotelId } = useParams<{ hotelId: string }>();
+
+  const { handleOnSubmit, isPending, ConfirmDialog } = useHotelUpdate();
+  const {
+    handleOnDelete,
+    isPending: isPendingRemove,
+    ConfirmDialog: ConfirmDialogRemove,
+  } = useHotelRemove(hotelId);
+
   const { data, isLoading } = useHotelQuery(hotelId);
 
-  async function handleOnSubmitForm(dto: HotelDto) {
-    await handleOnSubmit({
-      dto: dto,
-      id: hotelId,
-    });
+  function handleOnSubmitForm(dto: HotelDto) {
+    handleOnSubmit({ dto, id: hotelId });
   }
 
   return (
     <Page>
-      {isLoading ? (<FormSkeleton />) : (
+      {isLoading ? (
+        <FormSkeleton />
+      ) : (
         <WrapperForm<HotelFromInput, HotelFormValues>
           onSubmit={handleOnSubmitForm}
           options={{
@@ -38,22 +44,30 @@ export default function HotelUpdate() {
           }}
         >
           <UpdateForm />
-          <Button
-            disabled={isPending}
-            type="submit"
-            className="relative w-full"
-          >
-            <p
-              className={`flex items-center justify-center gap-2 transition-all duration-200 ${
-                isPending ? 'opacity-100' : 'opacity-100'
-              }`}
+
+          <div className='flex flex-col gap-2'>
+            <Button disabled={isPending} type="submit" className="relative w-full">
+              <p className="flex items-center justify-center gap-2">
+                {isPending && <Loader2 className="size-4 animate-spin" />}
+                <span>{isPending ? 'Обновление...' : 'Обновить'}</span>
+              </p>
+            </Button>
+            <Button
+              type="button"
+              variant="destructive"
+              disabled={isPending || isPendingRemove}
+              onClick={handleOnDelete}
             >
-              {isPending && <Loader2 className="size-4 animate-spin" />}
-              <span>{isPending ? 'Обновление...' : 'Обновить'}</span>
-            </p>
-          </Button>
+              <Trash2Icon />
+              Удалить
+            </Button>
+          </div>
+
         </WrapperForm>
       )}
+
+      {ConfirmDialog}
+      {ConfirmDialogRemove}
     </Page>
   );
 }

@@ -1,22 +1,9 @@
-import {
-  createPaginatedRowModel,
-  createSortedRowModel,
-  rowPaginationFeature,
-  rowSortingFeature, sortFn_alphanumeric,
-  tableFeatures,
-} from '@tanstack/react-table';
+
 import Link from 'next/link';
 
 import type { HotelType } from '../model/types';
 import type { ColumnDef } from '@tanstack/react-table';
-
-export const features = tableFeatures({
-  rowSortingFeature,
-  rowPaginationFeature,
-  sortedRowModel: createSortedRowModel(),
-  paginatedRowModel: createPaginatedRowModel(),
-  sortFns: { alphanumeric: sortFn_alphanumeric },
-});
+import { features } from '@/shared/const/table-features'
 
 export const columns: Array<ColumnDef<typeof features, HotelType>> = [
   {
@@ -38,38 +25,15 @@ export const columns: Array<ColumnDef<typeof features, HotelType>> = [
     ),
   },
   {
-    accessorKey: 'id',
-    header: 'Операторы',
-    cell: ({ row }) => (
-      <Link
-        href={`hotel/${row.original.id}/operator`}
-        className="inline-flex items-center text-xs font-medium text-slate-700 bg-slate-100 hover:bg-slate-200/80 px-2.5 py-1.5 rounded-lg transition-colors border border-slate-200/60"
-      >
-        Операторы
-      </Link>
-    ),
-  },
-  {
-    accessorKey: 'rooms',
-    header: 'Категории номеров',
-    cell: ({ row }) => (
-      <Link
-        href={`hotel/${row.original.id}/room-category`}
-        className="inline-flex items-center text-xs font-medium text-slate-700 bg-slate-100 hover:bg-slate-200/80 px-2.5 py-1.5 rounded-lg transition-colors border border-slate-200/60"
-      >
-        Категории номеров
-      </Link>
-    ),
-  },
-  {
-    header: 'Подробнее',
+    id: 'actions',
+    header: 'Действия',
     cell: ({ row }) => (
       <Link
         href={`hotel/${row.original.id}/detail`}
         className="inline-flex items-center gap-1 text-xs font-medium text-indigo-600 hover:text-indigo-700 hover:underline"
       >
-        Подробнее
-        <span aria-hidden="true">&rarr;</span>
+        Изменить
+        <span aria-hidden="true">→</span>
       </Link>
     ),
   },

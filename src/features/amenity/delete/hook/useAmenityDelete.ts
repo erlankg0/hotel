@@ -1,38 +1,17 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { toast } from 'sonner';
-
-import { handleAxiosError } from '@/shared/lib/handleAxiosError';
+import { useBaseDelete } from '@/shared/hooks';
 
 import { QueryOptionAmenity } from '../../model/query-option';
-
-import type { AmenityType } from '../../model/schema';
+import type { AmenityType } from '../../model/types';
 
 export const useAmenityDelete = () => {
-  const queryClient = useQueryClient();
+  return useBaseDelete<AmenityType, Awaited<ReturnType<typeof QueryOptionAmenity.delete>>>({
+    queryKey: [QueryOptionAmenity.baseKey],
+    mutationFn: QueryOptionAmenity.delete,
 
-  const mutate = useMutation({
-    mutationFn: (id: string) => QueryOptionAmenity.delete(id),
-    onMutate: async (id: string) => {
-      await queryClient.cancelQueries({ queryKey: [QueryOptionAmenity.baseKey] });
+    successMessage: 'Удобство успешно удалено!',
 
-      const previous = queryClient.getQueryData([QueryOptionAmenity.baseKey]);
-
-      queryClient.setQueryData(
-        [QueryOptionAmenity.baseKey],
-        (old?: AmenityType[]) => old?.filter(item => item.id != id),
-      );
-
-      return { previous };
-    },
-    onSuccess: async () => {
-      toast.info('Успешно удалено!');
-      await queryClient.invalidateQueries({ queryKey: [QueryOptionAmenity.baseKey] });
-    },
-    onError: handleAxiosError,
+    dialogTitle: 'Удалить удобство?',
+    dialogDescription:
+      'Вы уверены, что хотите удалить это удобство? Это действие нельзя отменить.',
   });
-
-  return {
-    isPending: mutate.isPending,
-  };
-
 };

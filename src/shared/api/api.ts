@@ -13,7 +13,7 @@ export const api = {
     return axiosInstance.post<BaseResponse<T>>(url, dto);
   },
   put: async <T, D>(url: string, id: string, dto: D): Promise<AxiosResponse<BaseResponse<T>>> => {
-    return axiosInstance.put<BaseResponse<T>>(`${url}/${id}`, dto);
+    return axiosInstance.patch<BaseResponse<T>>(`${url}/${id}`, dto);
   },
   delete: async <T>(
     url: string,

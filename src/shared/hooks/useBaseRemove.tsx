@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
-
+import { useRouter } from 'next/navigation';
 import { handleAxiosError } from '@/shared/lib/handleAxiosError';
 import { AlertDialogDestructive } from '@/shared/ui/alerts';
 
@@ -30,6 +30,7 @@ export function useBaseDelete<TItem extends { id: string }, TResponse>({
   dialogDescription = 'Вы уверены, что хотите удалить эту запись?',
 }: UseBaseDeleteProps<TResponse>) {
   const queryClient = useQueryClient();
+  const router = useRouter();
 
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [pendingId, setPendingId] = useState<string | null>(null);
@@ -66,6 +67,7 @@ export function useBaseDelete<TItem extends { id: string }, TResponse>({
       }
 
       await queryClient.invalidateQueries({ queryKey });
+      router.back();
     },
 
     onSettled: () => {

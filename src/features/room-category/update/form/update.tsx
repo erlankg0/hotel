@@ -1,7 +1,8 @@
 'use client';
 import { ChartBarStacked, Tag } from 'lucide-react';
-
 import { useFormContext } from 'react-hook-form';
+
+import { categorySectionOptions } from '@/shared/const/room-category';
 import {
   FieldError,
   FieldGroup,
@@ -10,7 +11,6 @@ import {
   FieldTitle,
 } from '@/shared/ui/field';
 import { InputGroup, InputGroupInput, InputGroupAddon } from '@/shared/ui/input-group';
-
 import {
   Select,
   SelectContent,
@@ -19,8 +19,8 @@ import {
   SelectValue,
 } from '@/shared/ui/select';
 
-import { CategorySection, categorySectionOptions } from '@/shared/const/room-category';
 import type { RoomCategoryFormInput } from '../../model/types';
+import type { CategorySection} from '@/shared/const/room-category';
 
 
 export function UpdateForm() {

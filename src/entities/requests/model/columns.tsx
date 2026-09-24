@@ -1,11 +1,11 @@
-import { features } from '@/shared/const/table-features'
-
 import Link from 'next/link';
 
+import { REQUEST_ICONS } from '@/shared/const/icon_requests';
 
 import type { RequestType } from './types';
+import type { features } from '@/shared/const/table-features'
 import type { ColumnDef } from '@tanstack/react-table';
-import { REQUEST_ICONS } from '@/shared/const/icon_requests';
+
 
 export const columns: Array<ColumnDef<typeof features, RequestType>> = [
   {

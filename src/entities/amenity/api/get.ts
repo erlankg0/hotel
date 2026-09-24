@@ -1,4 +1,5 @@
 import { api } from '@/shared/api'
+
 import type { AmenityType } from '../model/types';
 import type { QueryOptions } from '@/shared/types/response';
 

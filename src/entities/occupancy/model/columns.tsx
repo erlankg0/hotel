@@ -1,8 +1,7 @@
-import { features } from '@/shared/const/table-features'
-
 import Link from 'next/link';
 
 import type { OccupancyType } from '../model/types';
+import type { features } from '@/shared/const/table-features'
 import type { ColumnDef } from '@tanstack/react-table';
 
 

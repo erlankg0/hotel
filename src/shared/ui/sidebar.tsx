@@ -1,10 +1,10 @@
 "use client"
 
-import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "cn"
 import { PanelLeftIcon } from "lucide-react"
 import { Slot } from "radix-ui"
+import * as React from "react"
 
 import { useIsMobile } from "@/shared/hooks/use-mobile"
 import { Button } from "@/shared/ui/button"

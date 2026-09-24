@@ -1,4 +1,4 @@
-import { ContractRoomSchema } from './schema';
+import type { ContractRoomSchema } from './schema';
 import type { z } from 'zod';
 
 export type ContractRoomType = z.infer<typeof ContractRoomSchema>;

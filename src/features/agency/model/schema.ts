@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
-import { IsNotEmpty } from '@/shared/zod';
 import { Currency, PaymentType, AgencyType } from '@/shared/const/enums'
+import { IsNotEmpty } from '@/shared/zod';
 
 
 export const agencySchema = z.object({

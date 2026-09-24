@@ -3,7 +3,6 @@
 import { FileCode2, Hash, RefreshCcw, ToggleLeft } from 'lucide-react';
 import { Controller, useFormContext } from 'react-hook-form';
 
-import type { RatePlanFromInput } from '../../model/types';
 
 import { Card, CardContent } from '@/shared/ui/card';
 import {
@@ -20,6 +19,8 @@ import {
   InputGroupInput,
 } from '@/shared/ui/input-group';
 import { Switch } from '@/shared/ui/switch';
+
+import type { RatePlanFromInput } from '../../model/types';
 
 export function CreateForm() {
   const {

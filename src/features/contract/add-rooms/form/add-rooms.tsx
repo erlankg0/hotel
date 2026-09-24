@@ -11,8 +11,8 @@ import {
 } from '@/shared/ui/field';
 import { MultiSelect } from '@/shared/ui/multi-select';
 
-import type { Props } from '@/shared/types/types';
 import type { ContractAddRoomFormInput } from '../../model/types';
+import type { Props } from '@/shared/types/types';
 
 export function AddForm({
     search,

@@ -2,6 +2,7 @@ import { keepPreviousData, queryOptions } from '@tanstack/react-query';
 
 import { get } from '../api/get';
 import { getById } from '../api/getById';
+
 import type { QueryOptions } from '@/shared/types/response';
 
 export const QueryOptionAgency = {

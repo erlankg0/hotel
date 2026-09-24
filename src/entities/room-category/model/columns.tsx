@@ -1,6 +1,5 @@
-import { features } from '@/shared/const/table-features'
-
 import type { RoomCategortType } from '../model/types';
+import type { features } from '@/shared/const/table-features'
 import type { ColumnDef } from '@tanstack/react-table';
 
 export const columns: Array<ColumnDef<typeof features, RoomCategortType>> = [

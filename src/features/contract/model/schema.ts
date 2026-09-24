@@ -1,8 +1,7 @@
 import { z } from 'zod';
 
 import { BoardType, ContractStatus, Currency } from '@/shared/const/enums';
-import { IsNotEmpty } from '@/shared/zod';
-import { isoDate } from '@/shared/zod';
+import { IsNotEmpty , isoDate } from '@/shared/zod';
 
 export const optionSchema = z.object({
   title: z.string(IsNotEmpty),

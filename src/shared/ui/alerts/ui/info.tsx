@@ -11,6 +11,7 @@ import {
     AlertDialogMedia,
     AlertDialogTitle,
 } from '@/shared/ui/alert-dialog';
+
 import type { Props } from '../model/types';
 
 export function AlertDialogInfo({

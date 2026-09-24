@@ -1,10 +1,10 @@
 import Link from 'next/link';
-import { features } from '@/shared/const/table-features'
 
+import { AMENITY_ICONS } from '@/shared/const/icon_amenities';
 
 import type { AmenityType } from './types';
+import type { features } from '@/shared/const/table-features'
 import type { ColumnDef } from '@tanstack/react-table';
-import { AMENITY_ICONS } from '@/shared/const/icon_amenities';
 
 export const columns: Array<ColumnDef<typeof features, AmenityType>> = [
   {

@@ -2,8 +2,8 @@
 import Link from 'next/link';
 
 import type { HotelType } from '../model/types';
+import type { features } from '@/shared/const/table-features'
 import type { ColumnDef } from '@tanstack/react-table';
-import { features } from '@/shared/const/table-features'
 
 export const columns: Array<ColumnDef<typeof features, HotelType>> = [
   {

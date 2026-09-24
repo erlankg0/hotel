@@ -14,6 +14,7 @@ import {
   UserRoundCog,
   Gem,
   Info,
+  DockIcon
 } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -43,11 +44,12 @@ const groups = [
     label: 'Управления',
     items: [
       { title: 'Отели', href: '/admin/hotel', icon: Hotel },
+      { title: 'Контракты', href: '/admin/contracts', icon: DockIcon },
       { title: 'Категории номеров', href: '/admin/room-categories', icon: BedDouble },
-      { title: 'Размещение', href: '/admin/occupancies', icon: UserRoundCog },
+      { title: 'Размещение', href: '/admin/occupancy', icon: UserRoundCog },
       { title: 'Тарифные планы', href: '/admin/rate-plans', icon: FileText },
       { title: 'Пакеты', href: '/admin/packages', icon: Package },
-      { title: 'Агентства', href: '/admin/agency', icon: Users },
+      { title: 'Агентства', href: '/admin/agencies', icon: Users },
       { title: 'Рынки', href: '/admin/market', icon: Map },
       { title: 'Страны', href: '/admin/country', icon: Map },
     ],
@@ -61,8 +63,8 @@ const groups = [
   {
     label: 'Информация',
     items: [
-      { title: 'Удобства', href: '/admin/amenity', icon: Info },
-      { title: 'Запросы', href: '/admin/request', icon: Gem },
+      { title: 'Удобства', href: '/admin/options/amenity', icon: Info },
+      { title: 'Запросы', href: '/admin/options/requests', icon: Gem },
     ],
   },
   {

@@ -1,7 +1,8 @@
-import { useCallback, useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
+import { useCallback, useState } from 'react';
+import { toast } from 'sonner';
+
 import { handleAxiosError } from '@/shared/lib/handleAxiosError';
 import { AlertDialogDestructive } from '@/shared/ui/alerts';
 

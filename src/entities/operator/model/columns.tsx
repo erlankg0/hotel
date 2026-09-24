@@ -8,7 +8,7 @@ import type { ColumnDef } from '@tanstack/react-table';
 
 export const columns: Array<ColumnDef<typeof features, OperatorType>> = [
   {
-    id: 'number',
+    id: 'id',
     header: '№',
     enableSorting: true,
     cell: ({ row }) => (
@@ -40,7 +40,7 @@ export const columns: Array<ColumnDef<typeof features, OperatorType>> = [
     ),
   },
   {
-    accessorKey: 'id',
+    accessorKey: 'acency',
     header: 'Агентства',
     cell: ({ row }) => (
       <Link
@@ -52,7 +52,7 @@ export const columns: Array<ColumnDef<typeof features, OperatorType>> = [
     ),
   },
   {
-    accessorKey: 'id',
+    accessorKey: 'detail',
     header: 'Подробнее',
     cell: ({ row }) => (
       <Link

@@ -1,6 +1,7 @@
 import { useBaseDelete } from '@/shared/hooks';
 
 import { QueryOptionAmenity } from '../../model/query-option';
+
 import type { AmenityType } from '../../model/types';
 
 export const useAmenityDelete = () => {

@@ -24,7 +24,7 @@ export const columns: Array<ColumnDef<typeof features, ContractType>> = [
 
     cell: ({ row }) => (
       <Link
-        href={`/contracts/${row.original.id}`}
+        href={`contracts/${row.original.id}`}
         className="block max-w-55 truncate text-sm font-medium text-slate-800 hover:text-primary"
       >
         {row.original.title}
@@ -42,7 +42,7 @@ export const columns: Array<ColumnDef<typeof features, ContractType>> = [
   },
   {
     accessorKey: 'boardType',
-    header: 'Тип типания',
+    header: 'Тип питания',
     cell: ({ row }) => (
       <span className="font-medium text-slate-800 text-sm">
         {boardTypeLabels[row.original.boardType]}

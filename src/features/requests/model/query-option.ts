@@ -5,6 +5,6 @@ import { put } from '../api/put';
 export const QueryOptionRequest = {
   baseKey: 'requests',
   post: post,
-  remove: (id: string) => delete_(id),
+  remove: delete_,
   put: put,
 };

@@ -2,24 +2,17 @@ import { useBaseCreate } from '@/shared/hooks/useBaseCreate';
 
 import { QueryOptionOccupancyRule } from '../../model/query-option';
 
-import type { OccupancyRuleType, OccupancyRuleDto } from '../../model/types';
+import type {
+  OccupancyRuleType,
+  OccupancyRuleDto,
+} from '../../model/types';
 
 export const useOccupancyRuleCreate = () => {
-  const mutation = useBaseCreate<OccupancyRuleDto & { occupancyId: string }, OccupancyRuleType>({
+  return useBaseCreate<
+    OccupancyRuleDto & { occupancyId: string },
+    OccupancyRuleType
+  >({
     queryKey: [QueryOptionOccupancyRule.baseKey],
     mutationFn: QueryOptionOccupancyRule.post,
   });
-
-  async function handleOnSubmit(dto: OccupancyRuleDto & { occupancyId: string }) {
-    const response = await mutation.handleOnSubmit({ ...dto });
-    if (response.status !== 200) {
-      return response.data.data;
-    }
-    return response.data.message;
-  }
-
-  return {
-    isPending: mutation.isPending,
-    handleOnSubmit: handleOnSubmit,
-  };
 };

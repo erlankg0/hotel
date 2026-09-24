@@ -1,6 +1,7 @@
 import { useBaseDelete } from '@/shared/hooks';
 
 import { QueryOptionHotel } from '../../model/query-option';
+
 import type { HotelType } from '../../model/types';
 
 export const useHotelRemove = (hotelId: string) => {

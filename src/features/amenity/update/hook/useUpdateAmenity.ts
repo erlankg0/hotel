@@ -8,13 +8,8 @@ import type {
 } from '../../model/types';
 
 export const useUpdateAmenity = () => {
-  const mutation = useBaseUpdate<AmenityDto & { id: string }, AmenityType>({
+  return useBaseUpdate<AmenityDto, AmenityType>({
     queryKey: [QueryOptionAmenity.baseKey],
     mutationFn: QueryOptionAmenity.put,
   });
-
-  return {
-    isPending: mutation.isPending,
-    handleOnSubmit: mutation.handleOnSubmit,
-  };
 };

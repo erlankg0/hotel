@@ -8,13 +8,11 @@ import type {
 } from '../../model/types';
 
 export const useAgencyUpdate = () => {
-  const mutation = useBaseUpdate<AgencyUpdateDto & { operatorId: string }, AgencyType>({
+  return useBaseUpdate<
+    AgencyUpdateDto & { operatorId: string },
+    AgencyType
+  >({
     queryKey: [QueryOptionAgency.baseKey],
     mutationFn: QueryOptionAgency.put,
   });
-
-  return {
-    isPending: mutation.isPending,
-    handleOnSubmit: mutation.handleOnSubmit,
-  };
 };

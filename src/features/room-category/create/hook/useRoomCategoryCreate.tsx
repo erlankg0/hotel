@@ -1,24 +1,14 @@
-import { useBaseCreate } from "@/shared/hooks/useBaseCreate"
+import { useBaseCreate } from '@/shared/hooks/useBaseCreate';
 
 import { QueryOptionRoomCategory } from '../../model/query-option';
 
 import type { RoomCategoryDto, RoomCategoryType } from '../../model/types';
 
-export const useRoomCategoryCreate = ()=>{
-  const mutate = useBaseCreate<RoomCategoryDto, RoomCategoryType>({
+export const useRoomCategoryCreate = () => {
+  return useBaseCreate<RoomCategoryDto, RoomCategoryType>({
     queryKey: [QueryOptionRoomCategory.baseKey],
     mutationFn: QueryOptionRoomCategory.post,
     backOnSuccess: true,
-    successMessage: "Успешно сохранено!"
-  })
-
-  
-  async function handleOnSubmit(dto: RoomCategoryDto) {
-   await mutate.handleOnSubmit({ ...dto });
-  }
-
-  return {
-    isPending: mutate.isPending,
-    handleOnSubmit: handleOnSubmit,
-  }
-}
+    successMessage: 'Успешно сохранено!',
+  });
+};

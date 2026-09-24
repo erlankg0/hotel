@@ -1,6 +1,6 @@
-import { useCallback, useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
+import { useCallback, useState } from 'react';
 import { toast } from 'sonner';
 
 import { handleAxiosError } from '@/shared/lib/handleAxiosError';
@@ -22,15 +22,15 @@ interface UseBaseCreateProps<TDto, TResponse> {
 }
 
 export function useBaseCreate<TDto, TResponse>({
-  queryKey,
-  mutationFn,
-  successMessage = 'Успешно сохранено!',
-  optimistic = true,
-  backOnSuccess = true,
-  isSuccessMessage = true,
-  dialogTitle = 'Подтвердить создание?',
-  dialogDescription = 'Вы уверены, что хотите сохранить новую запись?',
-}: UseBaseCreateProps<TDto, TResponse>) {
+                                                 queryKey,
+                                                 mutationFn,
+                                                 successMessage = 'Успешно сохранено!',
+                                                 optimistic = true,
+                                                 backOnSuccess = true,
+                                                 isSuccessMessage = true,
+                                                 dialogTitle = 'Подтвердить создание?',
+                                                 dialogDescription = 'Вы уверены, что хотите сохранить новую запись?',
+                                               }: UseBaseCreateProps<TDto, TResponse>) {
   const router = useRouter();
   const queryClient = useQueryClient();
 
@@ -49,6 +49,7 @@ export function useBaseCreate<TDto, TResponse>({
 
       queryClient.setQueryData(queryKey, (old?: TDto[]) => {
         if (!old) return [data];
+
         return [...old, data];
       });
 
@@ -86,14 +87,27 @@ export function useBaseCreate<TDto, TResponse>({
     setIsDialogOpen(true);
   }, []);
 
+  const create = useCallback(
+    async (dto: TDto): Promise<TResponse> => {
+      const response = await mutation.mutateAsync(dto);
+
+      return response.data.data;
+    },
+    [mutation],
+  );
+
   const handleConfirm = useCallback(() => {
     if (!pendingDto) return;
+
     mutation.mutate(pendingDto);
   }, [pendingDto, mutation]);
 
   const handleOpenChange = useCallback((open: boolean) => {
     setIsDialogOpen(open);
-    if (!open) setPendingDto(null);
+
+    if (!open) {
+      setPendingDto(null);
+    }
   }, []);
 
   const ConfirmDialog = (
@@ -110,6 +124,7 @@ export function useBaseCreate<TDto, TResponse>({
   return {
     isPending: mutation.isPending,
     handleOnSubmit,
+    create,
     ConfirmDialog,
   };
 }

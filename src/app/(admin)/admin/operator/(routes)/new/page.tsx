@@ -17,15 +17,20 @@ import type { OperatorFormInput, OperatorFormOutput } from '@/features/operator'
 export default function Operator() {
   const hotelId = useHotelSwitch((state) => state.hotelId);
   const uploadFile = useUploadFile();
-  const { handleOnSubmit: handleOnSubmitEmail } = useEmailCreate();
-  const { handleOnSubmit: handleOnSubmitPhone } = usePhoneCreate();
-  const { handleOnSubmit, isPending } = useCreateOperator();
+  const { create: handleOnSubmitEmail, isPending: isPendingEmail } = useEmailCreate();
+  const { create: handleOnSubmitPhone, isPending: isPendingPhone } = usePhoneCreate();
+  const { create, isPending } = useCreateOperator();
+
+  const isSaving =
+    isPending ||
+    isPendingPhone ||
+    isPendingEmail;
 
   const handleSubmit = async (dto: OperatorFormOutput) => {
     const { phones, emails, file, ...rest } = dto;
 
-    if(!hotelId){
-      throw new Error('Нету ID')
+    if (!hotelId) {
+      throw new Error('Нету ID');
     }
     const [icon, emaiIds, phoneIds] = await Promise.all([
       uploadFile.mutateAsync(file),
@@ -34,7 +39,7 @@ export default function Operator() {
     ]);
 
 
-    await handleOnSubmit({
+    await create({
       ...rest,
       iconId: icon?.id,
       emailIds: emaiIds.map(i => i.id),
@@ -62,11 +67,11 @@ export default function Operator() {
         >
           <p
             className={`flex items-center justify-center gap-2 transition-all duration-200 ${
-              isPending ? 'opacity-100' : 'opacity-100'
+              isSaving ? 'opacity-100' : 'opacity-100'
             }`}
           >
-            {isPending && <Loader2 className="size-4 animate-spin" />}
-            <span>{isPending ? 'Сохранение...' : 'Сохранить'}</span>
+            {isSaving && <Loader2 className="size-4 animate-spin" />}
+            <span>{isSaving ? 'Сохранение...' : 'Сохранить'}</span>
           </p>
         </Button>
       </WrapperForm>

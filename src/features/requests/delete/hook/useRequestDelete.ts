@@ -1,38 +1,13 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { toast } from 'sonner';
-
-import { handleAxiosError } from '@/shared/lib/handleAxiosError';
+import { useBaseDelete } from '@/shared/hooks/useBaseRemove';
 
 import { QueryOptionRequest } from '../../model/query-option';
 
-import type { RequestType } from '../../model/schema';
+import type { RequestType } from '../../model/types';
+
 
 export const useRequestDelete = () => {
-  const queryClient = useQueryClient();
-
-  const mutate = useMutation({
-    mutationFn: (id: string) => QueryOptionRequest.remove(id),
-    onMutate: async (id: string) => {
-      await queryClient.cancelQueries({ queryKey: [QueryOptionRequest.baseKey] });
-
-      const previous = queryClient.getQueryData([QueryOptionRequest.baseKey]);
-
-      queryClient.setQueryData(
-        [QueryOptionRequest.baseKey],
-        (old?: RequestType[]) => old?.filter(item => item.id != id),
-      );
-
-      return { previous };
-    },
-    onSuccess: async () => {
-      toast.info('Успешно удалено!');
-      await queryClient.invalidateQueries({ queryKey: [QueryOptionRequest.baseKey] });
-    },
-    onError: handleAxiosError,
+  return useBaseDelete<RequestType, RequestType>({
+    queryKey: [QueryOptionRequest.baseKey],
+    mutationFn: QueryOptionRequest.remove,
   });
-
-  return {
-    isPending: mutate.isPending,
-  };
-
 };

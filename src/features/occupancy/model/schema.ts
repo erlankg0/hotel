@@ -18,5 +18,4 @@ export const occupancySchema = z.object({
     .number(IsNotEmpty)
     .int()
     .min(0),
-
 });

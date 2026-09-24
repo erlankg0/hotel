@@ -1,98 +1,43 @@
 'use client';
 
-import { zodResolver } from '@hookform/resolvers/zod';
-import { Loader2 } from 'lucide-react';
-import { useParams } from 'next/navigation';
+import { Plus } from 'lucide-react';
+import Link from 'next/link';
 import { useState } from 'react';
 
-import { useRoomCategoriesQuery } from '@/entities/room-category';
-import {
-  AddForm,
-  ContractRoomAddFormSchema,
-  useContractRoomAdd,
-} from '@/features/contract';
-import { WrapperForm } from '@/shared/providers/form';
+import { useRoomCategoriesQuery, columns, type RoomCategortType } from '@/entities/room-category';
 import { useHotelSwitch } from '@/shared/store';
 import { Button } from '@/shared/ui/button';
+import { DataTable } from '@/shared/ui/data-table';
 import { Page } from '@/widget/page';
+import { PageHeader } from '@/widget/page-header';
 
-import type {
-  ContractAddRoomFormInput,
-  ContractAddRoomFormOutput,
-} from '@/features/contract';
-
-
-export default function ContractNew() {
-  const { handleOnSubmit, isPending } = useContractRoomAdd();
-
-  const { contractId } = useParams<{ contractId: string }>();
+export default function RoomPage() {
   const hotelId = useHotelSwitch((state) => state.hotelId);
 
-  const [search, setSearch] = useState('');
-
-  const { data, isLoading, page, setPage, total } = useRoomCategoriesQuery({ search, id: hotelId || '' });
-
-  async function handleOnSubmitForm(dto: ContractAddRoomFormInput) {
-
-    await handleOnSubmit({
-      contractId: contractId,
-      roomCategoryIds: dto.roomCategoryIds.map(
-        ({ id }) => id,
-      ),
-    });
-  }
-
+  const [search, setSearch] = useState<string>('');
+  const { data, isLoading } = useRoomCategoriesQuery({ search: search, id: hotelId || '' });
 
   return (
-    <Page>
-
-      {contractId ? (
-        <WrapperForm<ContractAddRoomFormInput, ContractAddRoomFormOutput>
-          onSubmit={handleOnSubmitForm}
-          options={{
-            mode: 'onChange',
-            defaultValues: {
-              roomCategoryIds: [],
-            },
-            resolver: zodResolver(ContractRoomAddFormSchema),
-          }}
-        >
-          <AddForm
-            search={search}
-            setSearch={setSearch}
-            page={page}
-            setPage={setPage}
-            isLoading={isLoading}
-            data={data}
-            total={total}
-          />
-
-          <Button
-            disabled={isPending}
-            type="submit"
-            className="relative w-full"
-          >
-            <p className="flex items-center justify-center gap-2">
-              {isPending && (
-                <Loader2 className="size-4 animate-spin" />
-              )}
-
-              <span>
-                                {isPending ? 'Добавления...' : 'Добавить'}
-                            </span>
-            </p>
-          </Button>
-        </WrapperForm>
-      ) : (
-        <section className="flex flex-col items-center justify-center gap-3 py-20">
-          <h2 className="text-xl font-semibold">
-            контракт не выбрано
-          </h2>
-
-        </section>
-      )}
-
-
+    <Page
+      headerSlog={
+        <PageHeader
+          title={'Категории номеров'}
+          searchValue={search}
+          onSearchOnChange={setSearch}
+          slot={
+            <div className={'flex flex-row items-center gap-2'}>
+              <Button type={'button'}>
+                <Link href={`room-category/new?=hotelId=${hotelId}`}>
+                  <Plus size={14} />
+                </Link>
+              </Button>
+            </div>
+          }
+        />}
+    >
+      <div className={'flex flex-col gap-6'}>
+        <DataTable<RoomCategortType> data={data} columns={columns} isLoading={isLoading} />
+      </div>
     </Page>
   );
 }

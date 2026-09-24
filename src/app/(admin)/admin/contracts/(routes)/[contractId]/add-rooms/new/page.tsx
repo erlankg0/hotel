@@ -2,15 +2,14 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Loader2 } from 'lucide-react';
-import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import { useState } from 'react';
 
-import { useMarketsQuery } from '@/entities/market';
+import { useRoomCategoriesQuery } from '@/entities/room-category';
 import {
-  CreateForm,
-  ContractCreateFormSchema,
-  useCreateContract,
+  AddForm,
+  ContractRoomAddFormSchema,
+  useContractRoomAdd,
 } from '@/features/contract';
 import { WrapperForm } from '@/shared/providers/form';
 import { useHotelSwitch } from '@/shared/store';
@@ -18,32 +17,28 @@ import { Button } from '@/shared/ui/button';
 import { Page } from '@/widget/page';
 
 import type {
-  ContractFormInput,
-  ContractFormOutput,
+  ContractAddRoomFormInput,
+  ContractAddRoomFormOutput,
 } from '@/features/contract';
 
+
 export default function ContractNew() {
-  const { handleOnSubmit, isPending } = useCreateContract();
+  const { create, isPending } = useContractRoomAdd();
 
+  const { contractId } = useParams<{ contractId: string }>();
   const hotelId = useHotelSwitch((state) => state.hotelId);
-  const searchParams = useSearchParams();
-
-  const agencyId = searchParams.get('agencyId');
 
   const [search, setSearch] = useState('');
 
-  const { data, isLoading, page, setPage, total } = useMarketsQuery({ search });
+  const { data, isLoading, page, setPage, total } = useRoomCategoriesQuery({ search, id: hotelId || '' });
 
-  async function handleOnSubmitForm(dto: ContractFormOutput) {
-    if (!agencyId || !hotelId) {
-      throw new Error('ID не найден');
-    }
+  async function handleOnSubmitForm(dto: ContractAddRoomFormInput) {
 
-    handleOnSubmit({
-      ...dto,
-      agencyId,
-      hotelId: hotelId,
-      marketIds: dto.marketIds.map((item) => item.id),
+    await create({
+      contractId: contractId,
+      roomCategoryIds: dto.roomCategoryIds.map(
+        ({ id }) => id,
+      ),
     });
   }
 
@@ -51,18 +46,18 @@ export default function ContractNew() {
   return (
     <Page>
 
-      {agencyId ? (
-        <WrapperForm<ContractFormInput, ContractFormOutput>
+      {contractId ? (
+        <WrapperForm<ContractAddRoomFormInput, ContractAddRoomFormOutput>
           onSubmit={handleOnSubmitForm}
           options={{
             mode: 'onChange',
             defaultValues: {
-              marketIds: [],
+              roomCategoryIds: [],
             },
-            resolver: zodResolver(ContractCreateFormSchema),
+            resolver: zodResolver(ContractRoomAddFormSchema),
           }}
         >
-          <CreateForm
+          <AddForm
             search={search}
             setSearch={setSearch}
             page={page}
@@ -83,20 +78,17 @@ export default function ContractNew() {
               )}
 
               <span>
-                {isPending ? 'Сохранение...' : 'Сохранить'}
-              </span>
+                                {isPending ? 'Добавления...' : 'Добавить'}
+                            </span>
             </p>
           </Button>
         </WrapperForm>
       ) : (
         <section className="flex flex-col items-center justify-center gap-3 py-20">
           <h2 className="text-xl font-semibold">
-            Агентство не выбрано
+            контракт не выбрано
           </h2>
 
-          <Link href={`/admin/hotel/${hotelId}/agencies`} className="text-muted-foreground">
-            Для создания контракта необходимо выбрать агентство.
-          </Link>
         </section>
       )}
 

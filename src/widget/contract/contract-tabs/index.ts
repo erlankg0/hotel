@@ -1,0 +1,1 @@
+export { ContractTabs } from './ui/contract-tabs';

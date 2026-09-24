@@ -1,4 +1,5 @@
 import { Architects_Daughter, Cormorant_Garamond, Great_Vibes, Inter, Montserrat } from 'next/font/google';
+import NextTopLoader from 'nextjs-toploader';
 
 import { QueryProvider } from '@/shared/providers/tanstack/provider';
 import { Toaster } from '@/shared/ui/sonner';
@@ -53,42 +54,46 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-                                     children,
-                                   }: Readonly<{
+  children,
+}: Readonly<{
   children: ReactNode;
 }>) {
   return (
     <html lang="en">
-    <body
-      className={
-        `${montserrat.variable}
+      <body
+        className={
+          `${montserrat.variable}
        ${calligraffiti.variable} 
        ${inter.variable} 
        ${cormorant_garamond.variable}
        ${architects.variable}
         antialiased`
-      }>
-
-    <QueryProvider>
-      {children}
-    </QueryProvider>
-    <Toaster
-      position="top-right"
-      toastOptions={{
-        classNames: {
-          toast: 'rounded-xl border border-border bg-background shadow-lg px-4 py-3',
-          title: 'text-sm font-medium text-foreground',
-          description: 'text-xs text-muted-foreground mt-0.5',
-          error: 'border-destructive/20 bg-destructive/5',
-          success: 'border-green-500/20 bg-green-500/5',
-          actionButton: 'bg-foreground text-background text-xs rounded-md px-3 py-1.5',
-          icon: 'mt-0.5',
-        },
-      }}
-      gap={8}
-      visibleToasts={3}
-    />
-    </body>
+        }>
+        <NextTopLoader
+          color="#5e23f3"
+          height={2}
+          showSpinner={false}
+        />
+        <QueryProvider>
+          {children}
+        </QueryProvider>
+        <Toaster
+          position="top-right"
+          toastOptions={{
+            classNames: {
+              toast: 'rounded-xl border border-border bg-background shadow-lg px-4 py-3',
+              title: 'text-sm font-medium text-foreground',
+              description: 'text-xs text-muted-foreground mt-0.5',
+              error: 'border-destructive/20 bg-destructive/5',
+              success: 'border-green-500/20 bg-green-500/5',
+              actionButton: 'bg-foreground text-background text-xs rounded-md px-3 py-1.5',
+              icon: 'mt-0.5',
+            },
+          }}
+          gap={8}
+          visibleToasts={3}
+        />
+      </body>
     </html>
   );
 }

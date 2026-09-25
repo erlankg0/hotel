@@ -4,7 +4,7 @@ import { Plus } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 
-import { useRoomCategoriesQuery, columns, type RoomCategortType } from '@/entities/room-category';
+import { useRoomCategoriesByContract, columns, type RoomCategortType } from '@/entities/room-category';
 import { useHotelSwitch } from '@/shared/store';
 import { Button } from '@/shared/ui/button';
 import { DataTable } from '@/shared/ui/data-table';
@@ -15,7 +15,7 @@ export default function RoomPage() {
   const hotelId = useHotelSwitch((state) => state.hotelId);
 
   const [search, setSearch] = useState<string>('');
-  const { data, isLoading } = useRoomCategoriesQuery({ search: search, id: hotelId || '' });
+  const { data, isLoading } = useRoomCategoriesByContract({ search: search, id: hotelId || '' });
 
   return (
     <Page

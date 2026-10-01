@@ -1,8 +1,9 @@
 import type { addContractRoomsSchema } from './schema';
 import type { z } from 'zod';
 
-export type ContractRoomDto = z.infer<typeof addContractRoomsSchema> & {
+export type ContractRoomDto = {
     contractId: string;
+    roomCategoryIds: string[]
 }
 
 export type ContractRoomFromInput = z.input<typeof addContractRoomsSchema>;

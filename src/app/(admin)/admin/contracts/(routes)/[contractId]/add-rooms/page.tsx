@@ -5,8 +5,10 @@ import { BedDouble, Check, Loader2 } from 'lucide-react';
 import { useParams } from 'next/navigation';
 import { useState } from 'react';
 
-import { useRoomCategoriesByContract, columns, type RoomCategortType } from '@/entities/room-category';
-import { AddContractRoomForm, addContractRoomsSchema, useContractRoomAdd } from '@/features/contract-room';
+import { useContractRoomsQuery, columns } from '@/entities/contract-room';
+import type { ContractRoomType } from '@/entities/contract-room';
+
+import { AddContractRoomForm, addContractRoomsSchema, useContractRoomAdd, useContractRoomSwitch } from '@/features/contract-room';
 import { WrapperForm } from '@/shared/providers/form';
 import { Button } from '@/shared/ui/button';
 import { DataTable } from '@/shared/ui/data-table';
@@ -28,14 +30,19 @@ import type { ContractRoomFromInput, ContractRoomFromOutput } from '@/features/c
 export default function RoomPage() {
   const { contractId } = useParams<{ contractId: string }>();
   const [search, setSearch] = useState<string>('');
-  const { data, isLoading } = useRoomCategoriesByContract({ search: search, id: contractId });
+  const { data } = useContractRoomsQuery({ id: contractId })
   const { create, isPending } = useContractRoomAdd();
+  const { handleOnSubmit: handleOnSubmitSwitch } = useContractRoomSwitch();
 
   async function handleOnSubmit(dto: ContractRoomFromInput) {
     await create({
       contractId: contractId,
-      roomCategoryIds: dto.roomCategoryIds,
+      roomCategoryIds: dto.roomCategoryIds.map((room) => (room.id)),
     });
+  }
+
+  async function onToggleActive(id: string) {
+    handleOnSubmitSwitch({ dto: { id: id }, id })
   }
 
   return (
@@ -92,9 +99,7 @@ export default function RoomPage() {
           }
         />}
     >
-      <div className={'flex flex-col gap-6'}>
-        <DataTable<RoomCategortType> data={data} columns={columns} isLoading={isLoading} />
-      </div>
+      <DataTable<ContractRoomType> columns={columns({ onToggleActive })} data={data} />
     </Page>
   );
 }

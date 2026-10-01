@@ -1,0 +1,1 @@
+export { useContractRoomSwitch } from './hook/useContractRoomSwitch';

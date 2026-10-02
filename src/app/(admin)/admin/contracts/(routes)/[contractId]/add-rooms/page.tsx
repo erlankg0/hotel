@@ -6,9 +6,12 @@ import { useParams } from 'next/navigation';
 import { useState } from 'react';
 
 import { useContractRoomsQuery, columns } from '@/entities/contract-room';
-import type { ContractRoomType } from '@/entities/contract-room';
-
-import { AddContractRoomForm, addContractRoomsSchema, useContractRoomAdd, useContractRoomSwitch } from '@/features/contract-room';
+import {
+  AddContractRoomForm,
+  addContractRoomsSchema,
+  useContractRoomAdd,
+  useContractRoomSwitch,
+} from '@/features/contract-room';
 import { WrapperForm } from '@/shared/providers/form';
 import { Button } from '@/shared/ui/button';
 import { DataTable } from '@/shared/ui/data-table';
@@ -24,15 +27,16 @@ import {
 import { Page } from '@/widget/page';
 import { PageHeader } from '@/widget/page-header';
 
+import type { ContractRoomType } from '@/entities/contract-room';
 import type { ContractRoomFromInput, ContractRoomFromOutput } from '@/features/contract-room';
 
 
 export default function RoomPage() {
   const { contractId } = useParams<{ contractId: string }>();
   const [search, setSearch] = useState<string>('');
-  const { data } = useContractRoomsQuery({ id: contractId })
+  const { data } = useContractRoomsQuery({ id: contractId });
   const { create, isPending } = useContractRoomAdd();
-  const { handleOnSubmit: handleOnSubmitSwitch } = useContractRoomSwitch();
+  const { create: switchContractRoom } = useContractRoomSwitch();
 
   async function handleOnSubmit(dto: ContractRoomFromInput) {
     await create({
@@ -42,7 +46,7 @@ export default function RoomPage() {
   }
 
   async function onToggleActive(id: string) {
-    handleOnSubmitSwitch({ dto: { id: id }, id })
+    await switchContractRoom({ id });
   }
 
   return (

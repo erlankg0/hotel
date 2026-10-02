@@ -1,20 +1,18 @@
-import type { features } from '@/shared/const/table-features';
-
-
-import Link from 'next/link';
 import { MoreHorizontal } from 'lucide-react';
-import type { ColumnDef } from '@tanstack/react-table';
+import Link from 'next/link';
 
 import { Button } from '@/shared/ui/button';
-import { Switch } from '@/shared/ui/switch';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/shared/ui/dropdown-menu';
+import { Switch } from '@/shared/ui/switch';
 
 import type { ContractRoomType } from '../model/types';
+import type { features } from '@/shared/const/table-features';
+import type { ColumnDef } from '@tanstack/react-table';
 
 interface ColumnProps {
   onToggleActive: (id: string) => void;
@@ -110,7 +108,7 @@ export const columns = ({ onToggleActive }: ColumnProps) => {
     {
       id: 'actions',
       header: '',
-      cell: ({ row }) => (
+      cell: () => (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button

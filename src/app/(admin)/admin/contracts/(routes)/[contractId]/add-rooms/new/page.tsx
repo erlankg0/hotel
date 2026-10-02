@@ -77,9 +77,9 @@ export default function ContractNew() {
                 <Loader2 className="size-4 animate-spin" />
               )}
 
-              <span>
-                                {isPending ? 'Добавления...' : 'Добавить'}
-                            </span>
+              <p>
+                {isPending ? 'Добавления...' : 'Добавить'}
+              </p>
             </p>
           </Button>
         </WrapperForm>

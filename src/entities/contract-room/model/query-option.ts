@@ -9,7 +9,7 @@ export const QueryOptionContractRoom = {
     get: ({ title, limit, enabled, page, id }: QueryOptions) => {
         return queryOptions({
             queryFn: () => get({ title, limit, page, id: id }),
-            queryKey: ['country', { title, limit, page, id }],
+            queryKey: [QueryOptionContractRoom.baseKey, { title, limit, page, id }],
             placeholderData: keepPreviousData,
             enabled: enabled,
         });

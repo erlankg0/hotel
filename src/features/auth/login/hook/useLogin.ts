@@ -1,7 +1,6 @@
 'use client';
 
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useRouter } from 'next/navigation';
+import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
 import { handleAxiosError } from '@/shared/lib/handleAxiosError';
@@ -9,20 +8,16 @@ import { handleAxiosError } from '@/shared/lib/handleAxiosError';
 import { loginApi } from '../api/login';
 
 export const useLogin = () => {
-  const queryClient = useQueryClient();
-  const router = useRouter();
 
   return useMutation({
     mutationFn: loginApi,
 
     onSuccess: (response) => {
-      const { data, message } = response;
-
-      queryClient.setQueryData(['session'], data);
+      const { message } = response;
 
       toast.success(message || 'С возвращением!');
 
-      router.push('/');
+      window.location.href = '/';
     },
 
     onError: handleAxiosError,

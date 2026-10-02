@@ -26,6 +26,7 @@ import {
 } from '@/shared/ui/dialog';
 import { Page } from '@/widget/page';
 import { PageHeader } from '@/widget/page-header';
+import { PaginationUI } from '@/shared/ui/paginator/pagination';
 
 import type { ContractRoomType } from '@/entities/contract-room';
 import type { ContractRoomFromInput, ContractRoomFromOutput } from '@/features/contract-room';
@@ -34,7 +35,7 @@ import type { ContractRoomFromInput, ContractRoomFromOutput } from '@/features/c
 export default function RoomPage() {
   const { contractId } = useParams<{ contractId: string }>();
   const [search, setSearch] = useState<string>('');
-  const { data } = useContractRoomsQuery({ id: contractId });
+  const { data, isLoading, limit, page, setPage, total } = useContractRoomsQuery({ id: contractId });
   const { create, isPending } = useContractRoomAdd();
   const { create: switchContractRoom } = useContractRoomSwitch();
 
@@ -103,7 +104,9 @@ export default function RoomPage() {
           }
         />}
     >
-      <DataTable<ContractRoomType> columns={columns({ onToggleActive })} data={data} />
+      <DataTable<ContractRoomType> caption='Категория номеров' isLoading={isLoading} columns={columns({ onToggleActive })} data={data} >
+        <PaginationUI limit={limit || 10} onPage={setPage} page={page} total={total || 0} />
+      </DataTable>
     </Page>
   );
 }

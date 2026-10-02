@@ -1,3 +1,5 @@
+'use client';
+
 import { useQuery } from '@tanstack/react-query';
 
 import { getMeApi } from '../api/session';
@@ -17,7 +19,7 @@ export const useSession = () => {
   });
 
   return {
-    data: data,
+    data,
     isAuth: isSuccess && !!data,
     isLoading,
     isError,

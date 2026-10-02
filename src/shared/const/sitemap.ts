@@ -1,28 +1,32 @@
 export const sitemap: Record<string, string> = {
-  setting: 'Настройки',
+  settings: 'Настройки',
   profile: 'Профиль',
-  fqa: 'FQA',
+  faq: 'FAQ',
   about: 'О нас',
   support: 'Поддержка',
-  message: 'Чат',
+  messages: 'Чат',
+
   hotels: 'Отели',
-  booking: 'Бронирования',
-  rooms: 'Комнаты',
-  admin: 'Админ',
-  new: 'Добавить',
-  delete: 'Удалить',
-  edit: 'Обновить',
-  amenity: 'Удобства',
-  options: 'Информация',
-  hotel: 'Отель',
-  detail: 'Информация',
-  operator: 'Тур-Оператор',
-  agencies: 'Агенства',
-  agency: 'Агенства',
+  bookings: 'Бронирования',
+  rooms: 'Номера',
+
+  admin: 'Администратор',
+
+  amenities: 'Удобства',
+  operators: 'Туроператоры',
+  agencies: 'Агентства',
+
   occupancy: 'Размещение',
-  rule: 'Коэффициент',
-  market: 'Рынок',
-  country: 'Страна',
+  rules: 'Коэффициенты',
+
+  markets: 'Рынки',
   countries: 'Страны',
+
   requests: 'Запросы',
+  contracts: 'Контракты',
+
+  create: 'Добавить',
+  edit: 'Редактировать',
+  delete: 'Удалить',
+  details: 'Детали',
 };

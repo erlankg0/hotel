@@ -10,7 +10,7 @@ const tabs = (id: string) => {
   return (
     [
       { icon: Table2, title: 'Обзор', href: 'id' },
-      { icon: BedDouble, title: 'Комнаты', href: id + '/add-rooms' },
+      { icon: BedDouble, title: 'Комнаты', href: id + '/add_rooms' },
       { icon: Boxes, title: 'Пакеты', href: 'id' },
       { icon: Calendar, title: 'Периоды', href: 'id' },
       { icon: HandCoins, title: 'Тарифы и цены', href: 'id' },

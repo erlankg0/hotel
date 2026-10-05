@@ -1,4 +1,4 @@
-import { MoreHorizontal } from 'lucide-react';
+import { MoreHorizontal, Trash2, Users } from 'lucide-react';
 import Link from 'next/link';
 
 import { Button } from '@/shared/ui/button';
@@ -7,6 +7,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuSeparator
 } from '@/shared/ui/dropdown-menu';
 import { Switch } from '@/shared/ui/switch';
 
@@ -108,27 +109,44 @@ export const columns = ({ onToggleActive }: ColumnProps) => {
     {
       id: 'actions',
       header: '',
-      cell: () => (
+      cell: ({ row }) => (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button
               variant="ghost"
               size="icon"
-              className="h-8 w-8"
+              className="h-8 w-8 rounded-md text-muted-foreground hover:bg-muted hover:text-foreground"
             >
               <MoreHorizontal className="h-4 w-4" />
               <span className="sr-only">Открыть меню</span>
             </Button>
           </DropdownMenuTrigger>
 
-          <DropdownMenuContent align="end">
+          <DropdownMenuContent
+            align="end"
+            className="w-48"
+          >
+            <DropdownMenuItem asChild>
+              <Link
+                href={"add_rooms/"+row.original.id}
+                className="flex cursor-pointer items-center gap-2"
+              >
+                <Users className="h-4 w-4 text-green-600" />
+                <span>Размещение гостей</span>
+              </Link>
+            </DropdownMenuItem>
 
-            <DropdownMenuItem className="text-destructive focus:text-destructive">
-              Удалить
+            <DropdownMenuSeparator />
+
+            <DropdownMenuItem
+              className="cursor-pointer text-destructive focus:bg-destructive/10 focus:text-destructive"
+            >
+              <Trash2 className="h-4 w-4" />
+              <span>Удалить</span>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-      ),
+      )
     },
   ];
 

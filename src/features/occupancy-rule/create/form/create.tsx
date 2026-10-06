@@ -8,7 +8,6 @@ import {
   FieldGroup,
   FieldLabel,
   FieldSet,
-  FieldTitle,
 } from '@/shared/ui/field';
 import { InputGroup, InputGroupInput, InputGroupAddon } from '@/shared/ui/input-group';
 
@@ -22,9 +21,6 @@ export function CreateForm() {
 
   return (
     <FieldSet>
-      <article>
-        <FieldTitle className={'text-xl font-bold text-center'}>Правила размещения</FieldTitle>
-      </article>
       <Card>
         <CardContent>
           <FieldGroup>
@@ -79,7 +75,7 @@ export function CreateForm() {
           </FieldGroup>
 
           <FieldGroup>
-            <FieldLabel htmlFor={'babies'}>Количество взрослых</FieldLabel>
+            <FieldLabel htmlFor={'babies'}>Количество малышей</FieldLabel>
             <InputGroup>
               <InputGroupInput
                 type={'number'}
@@ -99,7 +95,7 @@ export function CreateForm() {
         </CardContent>
         <CardContent>
           <FieldGroup>
-            <FieldLabel htmlFor={'multiplier'}>Названия</FieldLabel>
+            <FieldLabel htmlFor={'multiplier'}>Коэффициент</FieldLabel>
             <InputGroup>
               <InputGroupInput
                 type={'number'}
@@ -113,7 +109,7 @@ export function CreateForm() {
             {errors.multiplier ? (
               <FieldError>{errors.multiplier.message}</FieldError>
             ) : (
-              <FieldDescription>Введите уникальное названия</FieldDescription>
+              <FieldDescription>Введите коэффициент умножителя</FieldDescription>
             )}
           </FieldGroup>
 

@@ -8,5 +8,7 @@ export const useOccupancyCreate = () => {
   return useBaseCreate<OccupancyDto, OccupancyType>({
     queryKey: [QueryOptionOccupancy.baseKey],
     mutationFn: QueryOptionOccupancy.post,
+    backOnSuccess: false,
+    isSuccessMessage: false
   });
 };

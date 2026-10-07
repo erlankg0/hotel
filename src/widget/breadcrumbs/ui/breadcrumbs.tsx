@@ -1,7 +1,8 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { Fragment } from 'react';
+import { ChevronLeft } from 'lucide-react'; 
 
 import { sitemap } from '@/shared/const/sitemap';
 import {
@@ -9,62 +10,85 @@ import {
   BreadcrumbList,
   BreadcrumbItem,
   BreadcrumbLink,
+  BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/shared/ui/breadcrumb';
 import { Text } from '@/shared/ui/text';
-
-const separator = '/';
-
-const uuidRegex =
-  /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+import { Button } from '@/shared/ui/button'; 
 
 export function BreadcrumbsUI() {
   const pathname = usePathname();
+  const router = useRouter();
 
-  const crumbs = pathname
-    .split(separator)
-    .filter(Boolean)
-    .filter((route) => !uuidRegex.test(route))
-    .map((route: string, index: number, array: string[]) => {
-      const path = `/${array.slice(0, index + 1).join('/')}`;
+  const segments = pathname.split('/').filter(Boolean);
 
-      return {
-        title: sitemap[route] ?? route,
-        path,
-      };
-    });
+  const crumbs = segments.map((route, index) => {
+    const path = `/${segments.slice(0, index + 1).join('/')}`;
+    return {
+      title: sitemap[route] ?? route,
+      path,
+      isLast: index === segments.length - 1,
+    };
+  });
 
-  if (pathname === '/') {
-    crumbs.unshift({
-      title: 'Профиль',
-      path: '/',
-    });
-  }
+  const handleBack = () => {
+    if (window.history.length > 1) {
+      router.back();
+    } else if (crumbs.length > 1) {
+      router.push(crumbs[crumbs.length - 2].path);
+    } else {
+      router.push('/admin');
+    }
+  };
+
+  if (pathname === '/admin') return null;
 
   return (
-    <Breadcrumb>
-      <BreadcrumbList>
-        {crumbs.map((crumb, index) => (
-          <Fragment key={crumb.path}>
-            <BreadcrumbItem>
-              <BreadcrumbLink href={crumb.path}>
-                {crumb.title.length <= 10 ? (
-                  <Text
-                    tag="p"
-                    className="mb-0! font-bold text-black"
+    <nav aria-label="Хлебные крошки" className="flex items-center gap-2">
+      <Button
+        variant="ghost"
+        size="icon"
+        onClick={handleBack}
+        className="shrink-0 size-8"
+        aria-label="Назад"
+      >
+        <ChevronLeft className="size-4" />
+      </Button>
+
+      <Breadcrumb className="hidden sm:block">
+        <BreadcrumbList>
+          {crumbs.map((crumb, index) => (
+            <Fragment key={crumb.path}>
+              <BreadcrumbItem>
+                {crumb.isLast ? (
+                  <BreadcrumbPage className="max-w-[180px] truncate font-medium">
+                    {crumb.title}
+                  </BreadcrumbPage>
+                ) : (
+                  <BreadcrumbLink
+                    href={crumb.path}
+                    className="max-w-[140px] truncate hover:underline"
+                    title={crumb.title} 
                   >
                     {crumb.title}
-                  </Text>
-                ) : (
-                  `${crumb.title.slice(0, 10)}...`
+                  </BreadcrumbLink>
                 )}
-              </BreadcrumbLink>
-            </BreadcrumbItem>
+              </BreadcrumbItem>
+              {!crumb.isLast && <BreadcrumbSeparator />}
+            </Fragment>
+          ))}
+        </BreadcrumbList>
+      </Breadcrumb>
 
-            {index < crumbs.length - 1 && <BreadcrumbSeparator />}
-          </Fragment>
-        ))}
-      </BreadcrumbList>
-    </Breadcrumb>
+      <div className="sm:hidden flex-1 min-w-0">
+        <Text
+          tag="p"
+          tone="default"
+          className="truncate font-semibold text-sm mb-0"
+        >
+          {crumbs[crumbs.length - 1]?.title}
+        </Text>
+      </div>
+    </nav>
   );
 }

@@ -14,7 +14,7 @@ export const useOccupancyRuleCreate = () => {
   >({
     queryKey: [QueryOptionOccupancyRule.baseKey],
     mutationFn: QueryOptionOccupancyRule.post,
-    backOnSuccess: false,
-    isSuccessMessage: false
+    backOnSuccess: true,
+    isSuccessMessage: true
   });
 };

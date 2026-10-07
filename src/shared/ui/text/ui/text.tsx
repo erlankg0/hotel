@@ -1,7 +1,5 @@
 import { cn } from '@/shared/lib/utils';
-
 import styles from './styles.module.scss';
-
 import type { TextProps, TextSize, TextTone } from '../model/type';
 
 const sizeClassNames: Record<TextSize, string> = {
@@ -19,12 +17,13 @@ const toneClassNames: Record<TextTone, string> = {
 };
 
 export function Text({
-                       children,
-                       tag: Tag = 'p',
-                       className,
-                       size = 'body',
-                       tone = 'default',
-                     }: TextProps) {
+  children,
+  tag: Tag = 'p',
+  className,
+  size = 'body',
+  tone = 'default',
+  ...rest 
+}: TextProps & React.HTMLAttributes<HTMLElement>) {
   return (
     <Tag
       className={cn(
@@ -32,6 +31,7 @@ export function Text({
         toneClassNames[tone],
         className,
       )}
+      {...rest} 
     >
       {children}
     </Tag>

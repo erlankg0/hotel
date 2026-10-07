@@ -128,7 +128,7 @@ export const columns = ({ onToggleActive }: ColumnProps) => {
           >
             <DropdownMenuItem asChild>
               <Link
-                href={"add_rooms/"+row.original.id}
+                href={"add_rooms/"+row.original.id + '/occupancy'}
                 className="flex cursor-pointer items-center gap-2"
               >
                 <Users className="h-4 w-4 text-green-600" />

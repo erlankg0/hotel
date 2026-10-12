@@ -1,8 +1,27 @@
 'use client';
 
-import { CalendarDays, Info } from 'lucide-react';
+import { useState } from 'react';
+import {
+    CalendarDays,
+    Info,
+    Calendar,
+    ChevronDown,
+} from 'lucide-react';
 import { useFormContext } from 'react-hook-form';
 
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+} from '@/shared/ui/card';
+
+import {
+    Collapsible,
+    CollapsibleContent,
+    CollapsibleTrigger,
+} from '@/shared/ui/collapsible';
 
 import {
     Field,
@@ -12,6 +31,7 @@ import {
     FieldLabel,
     FieldSet,
 } from '@/shared/ui/field';
+
 import {
     InputGroup,
     InputGroupAddon,
@@ -21,107 +41,147 @@ import {
 import type { ContractPeriodFormValues } from '../../model/types';
 
 export function CreatePeriod() {
+    const [open, setOpen] = useState(true);
+
     const {
         register,
         formState: { errors },
+        watch,
     } = useFormContext<ContractPeriodFormValues>();
 
+    const title = watch('title');
+    const startDate = watch('startDate');
+    const endDate = watch('endDate');
     return (
-        <FieldSet className={'flex flex-col gap-3 items-center'}>
-            <FieldGroup>
-                <Field data-invalid={!!errors.title}>
-                    <FieldLabel htmlFor="title">
-                        Название периода
-                    </FieldLabel>
+        <Collapsible open={open} onOpenChange={setOpen}>
+            <Card>
+                <CardHeader className="flex flex-row items-center justify-between gap-4">
+                    <CollapsibleTrigger asChild>
+                        <button
+                            type="button"
+                            className="flex min-w-0 flex-1 items-center gap-3 text-left"
+                        >
+                            <Calendar className="size-5 shrink-0 text-muted-foreground" />
 
-                    <InputGroup>
-                        <InputGroupInput
-                            id="title"
-                            placeholder="Например, первая неделя апреля"
-                            aria-invalid={!!errors.title}
-                            {...register('title')}
-                        />
+                            <div className="min-w-0 flex-1 space-y-1">
+                                <CardTitle className="truncate text-base">
+                                    {title || 'Новый период'}
+                                </CardTitle>
 
-                        <InputGroupAddon>
-                            <Info aria-hidden="true" />
-                        </InputGroupAddon>
-                    </InputGroup>
+                                <CardDescription>
+                                    {open
+                                        ? 'Заполните данные периода'
+                                        : 'Нажмите, чтобы редактировать'}
+                                </CardDescription>
+                            </div>
 
-                    {!errors.title && (
-                        <FieldDescription>
-                            Укажите название для идентификации периода.
-                        </FieldDescription>
-                    )}
-
-                    <FieldError errors={[errors.title]} />
-                </Field>
-            </FieldGroup>
-            <div className={'flex flex-row items-center gap-3 w-full'}>
-                <FieldGroup>
-                    <Field data-invalid={!!errors.startDate}>
-                        <FieldLabel htmlFor="startDate">
-                            Дата начала
-                        </FieldLabel>
-
-                        <InputGroup>
-                            <InputGroupInput
-                                id="startDate"
-                                type="date"
-                                aria-invalid={!!errors.startDate}
-                                {...register('startDate', {
-                                    valueAsDate: true,
-                                })}
+                            <ChevronDown
+                                className={`size-5 shrink-0 text-muted-foreground transition-transform duration-200 ${open ? 'rotate-180' : ''
+                                    }`}
                             />
+                        </button>
+                    </CollapsibleTrigger>
+                </CardHeader>
 
-                            <InputGroupAddon>
-                                <CalendarDays aria-hidden="true" />
-                            </InputGroupAddon>
-                        </InputGroup>
+                <CollapsibleContent>
+                    <CardContent>
+                        <FieldSet className="flex flex-col gap-4">
+                            <FieldGroup>
+                                <Field data-invalid={!!errors.title}>
+                                    <FieldLabel htmlFor="title">
+                                        Название периода
+                                    </FieldLabel>
 
-                        {!errors.startDate && (
-                            <FieldDescription>
-                                Первый день действия периода.
-                            </FieldDescription>
-                        )}
+                                    <InputGroup>
+                                        <InputGroupInput
+                                            id="title"
+                                            placeholder="Например, Low Season"
+                                            aria-invalid={!!errors.title}
+                                            {...register('title')}
+                                        />
 
-                        <FieldError errors={[errors.startDate]} />
-                    </Field>
-                </FieldGroup>
+                                        <InputGroupAddon>
+                                            <Info aria-hidden="true" />
+                                        </InputGroupAddon>
+                                    </InputGroup>
 
-                <FieldGroup>
-                    <Field data-invalid={!!errors.endDate}>
-                        <FieldLabel htmlFor="endDate">
-                            Дата окончания
-                        </FieldLabel>
+                                    {!errors.title && (
+                                        <FieldDescription>
+                                            Укажите название для идентификации периода.
+                                        </FieldDescription>
+                                    )}
 
-                        <InputGroup>
-                            <InputGroupInput
-                                id="endDate"
-                                type="date"
-                                aria-invalid={!!errors.endDate}
-                                min={
-                                    undefined
-                                }
-                                {...register('endDate', {
-                                    valueAsDate: true,
-                                })}
-                            />
+                                    <FieldError errors={[errors.title]} />
+                                </Field>
+                            </FieldGroup>
 
-                            <InputGroupAddon>
-                                <CalendarDays aria-hidden="true" />
-                            </InputGroupAddon>
-                        </InputGroup>
+                            <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2">
+                                <FieldGroup>
+                                    <Field data-invalid={!!errors.startDate}>
+                                        <FieldLabel htmlFor="startDate">
+                                            Дата начала
+                                        </FieldLabel>
 
-                        {!errors.endDate && (
-                            <FieldDescription>
-                                Последний день действия периода.
-                            </FieldDescription>
-                        )}
+                                        <InputGroup>
+                                            <InputGroupInput
+                                                id="startDate"
+                                                type="date"
+                                                aria-invalid={!!errors.startDate}
+                                                {...register('startDate', {
+                                                    valueAsDate: true,
+                                                })}
+                                            />
 
-                        <FieldError errors={[errors.endDate]} />
-                    </Field>
-                </FieldGroup>
-            </div>
-        </FieldSet>
+                                            <InputGroupAddon>
+                                                <CalendarDays aria-hidden="true" />
+                                            </InputGroupAddon>
+                                        </InputGroup>
+
+                                        {!errors.startDate && (
+                                            <FieldDescription>
+                                                Первый день действия периода.
+                                            </FieldDescription>
+                                        )}
+
+                                        <FieldError errors={[errors.startDate]} />
+                                    </Field>
+                                </FieldGroup>
+
+                                <FieldGroup>
+                                    <Field data-invalid={!!errors.endDate}>
+                                        <FieldLabel htmlFor="endDate">
+                                            Дата окончания
+                                        </FieldLabel>
+
+                                        <InputGroup>
+                                            <InputGroupInput
+                                                id="endDate"
+                                                type="date"
+                                                aria-invalid={!!errors.endDate}
+                                                {...register('endDate', {
+                                                    valueAsDate: true,
+                                                })}
+                                            />
+
+                                            <InputGroupAddon>
+                                                <CalendarDays aria-hidden="true" />
+                                            </InputGroupAddon>
+                                        </InputGroup>
+
+                                        {!errors.endDate && (
+                                            <FieldDescription>
+                                                Последний день действия периода.
+                                            </FieldDescription>
+                                        )}
+
+                                        <FieldError errors={[errors.endDate]} />
+                                    </Field>
+                                </FieldGroup>
+                            </div>
+                        </FieldSet>
+                    </CardContent>
+                </CollapsibleContent>
+            </Card>
+        </Collapsible>
     );
 }

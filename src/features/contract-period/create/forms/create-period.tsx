@@ -3,7 +3,7 @@
 import { CalendarDays, Info } from 'lucide-react';
 import { useFormContext } from 'react-hook-form';
 
-import type { ContractPeriodFormValues } from '../../model/types';
+
 import {
     Field,
     FieldDescription,
@@ -17,6 +17,8 @@ import {
     InputGroupAddon,
     InputGroupInput,
 } from '@/shared/ui/input-group';
+
+import type { ContractPeriodFormValues } from '../../model/types';
 
 export function CreatePeriod() {
     const {
@@ -68,7 +70,6 @@ export function CreatePeriod() {
                                 aria-invalid={!!errors.startDate}
                                 {...register('startDate', {
                                     valueAsDate: true,
-
                                 })}
                             />
 

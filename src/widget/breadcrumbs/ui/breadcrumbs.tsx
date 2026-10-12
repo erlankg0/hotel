@@ -57,17 +57,17 @@ export function BreadcrumbsUI() {
 
       <Breadcrumb className="hidden sm:block">
         <BreadcrumbList>
-          {crumbs.map((crumb, index) => (
+          {crumbs.map((crumb,) => (
             <Fragment key={crumb.path}>
               <BreadcrumbItem>
                 {crumb.isLast ? (
-                  <BreadcrumbPage className="max-w-[180px] truncate font-medium">
+                  <BreadcrumbPage className="max-w-25 truncate font-medium">
                     {crumb.title}
                   </BreadcrumbPage>
                 ) : (
                   <BreadcrumbLink
                     href={crumb.path}
-                    className="max-w-[140px] truncate hover:underline"
+                    className="max-w-15 truncate hover:underline"
                     title={crumb.title} 
                   >
                     {crumb.title}

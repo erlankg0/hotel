@@ -1,8 +1,8 @@
 import type { z } from 'zod';
-import { periodSchema } from './schema';
+import { contractPeriodSchema } from './schema';
 
 export type ContractPeriodFormValues = z.infer<
-  typeof periodSchema
+  typeof contractPeriodSchema
 >;
 
 export type ContractPeriodDto = ContractPeriodFormValues & {

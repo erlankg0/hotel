@@ -9,10 +9,15 @@ import styles from './styles.module.scss';
 export function Rooms() {
   return (
     <section className={styles.rooms}>
-      <div className={'container'}>
-        <Text tag={'h2'} size={'title'} className={'text-center'}>Наши номера & сьюты</Text>
+      <div className={`container ${styles.rooms__header}`}>
+        <Text tag="h2" size="title" className={styles.rooms__title}>
+          Номера и сьюты
+        </Text>
+        <p className={styles.rooms__subtitle}>
+          Пространство для отдыха с видом на Средиземное море
+        </p>
       </div>
-      <TabsUI defaultValue={'room'} triggers={ROOM_TABS} />
+      <TabsUI defaultValue="room" triggers={ROOM_TABS} />
     </section>
   );
 }

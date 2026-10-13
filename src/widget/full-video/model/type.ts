@@ -1,4 +1,5 @@
 export type Params = {
-  url: string,
-  poster?: string
-}
+  url: string;
+  poster?: string;
+  desktopOnly?: boolean;
+};

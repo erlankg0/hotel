@@ -28,14 +28,17 @@ export function RoomTab(props: RoomTabData) {
     <section className={styles.tab}>
       <ul className={styles.tab__list}>
         {media.slice(0, 3).map((content, index) => (
-          <li key={index}>
+          <li
+            key={content.images.url}
+            className={index === 0 ? styles.tab__imageLead : styles.tab__image}
+          >
             <ImageHover {...content} />
           </li>
         ))}
 
         <li className={styles.tab__content}>
           <div className={styles.tab__info}>
-            <h4 className={styles.tab__title}>{title}</h4>
+            <h3 className={styles.tab__title}>{title}</h3>
             <ul className={styles.tab__features}>
               <li className={styles.tab__feature}>
                 <Scan />

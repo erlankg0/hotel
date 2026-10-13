@@ -1,14 +1,17 @@
 'use client';
 
-import { useState } from 'react';
 import {
     CalendarDays,
     Info,
     Calendar,
     ChevronDown,
+    Trash2,
 } from 'lucide-react';
+import { useState } from 'react';
+import { get, type FieldValues, type Path } from 'react-hook-form';
 import { useFormContext } from 'react-hook-form';
 
+import { Button } from '@/shared/ui/button';
 import {
     Card,
     CardContent,
@@ -16,13 +19,11 @@ import {
     CardHeader,
     CardTitle,
 } from '@/shared/ui/card';
-
 import {
     Collapsible,
     CollapsibleContent,
     CollapsibleTrigger,
 } from '@/shared/ui/collapsible';
-
 import {
     Field,
     FieldDescription,
@@ -31,7 +32,6 @@ import {
     FieldLabel,
     FieldSet,
 } from '@/shared/ui/field';
-
 import {
     InputGroup,
     InputGroupAddon,
@@ -40,18 +40,26 @@ import {
 
 import type { ContractPeriodFormValues } from '../../model/types';
 
-export function CreatePeriod() {
+type CreatePeriodProps = {
+    name?: string;
+    onRemove?: () => void;
+};
+
+export function CreatePeriod({ name = '', onRemove }: CreatePeriodProps) {
     const [open, setOpen] = useState(true);
 
     const {
         register,
         formState: { errors },
         watch,
-    } = useFormContext<ContractPeriodFormValues>();
+    } = useFormContext<FieldValues>();
 
-    const title = watch('title');
-    const startDate = watch('startDate');
-    const endDate = watch('endDate');
+    const fieldName = (field: keyof ContractPeriodFormValues) =>
+        `${name ? `${name}.` : ''}${field}` as Path<FieldValues>;
+    const fieldError = (field: keyof ContractPeriodFormValues) =>
+        get(errors, fieldName(field));
+
+    const title = watch(fieldName('title'));
     return (
         <Collapsible open={open} onOpenChange={setOpen}>
             <Card>
@@ -81,23 +89,34 @@ export function CreatePeriod() {
                             />
                         </button>
                     </CollapsibleTrigger>
+                    {onRemove && (
+                        <Button
+                            type="button"
+                            variant="ghost"
+                            size="icon"
+                            aria-label="Удалить период"
+                            onClick={onRemove}
+                        >
+                            <Trash2 aria-hidden="true" />
+                        </Button>
+                    )}
                 </CardHeader>
 
                 <CollapsibleContent>
                     <CardContent>
                         <FieldSet className="flex flex-col gap-4">
                             <FieldGroup>
-                                <Field data-invalid={!!errors.title}>
-                                    <FieldLabel htmlFor="title">
+                                <Field data-invalid={!!fieldError('title')}>
+                                    <FieldLabel htmlFor={`${name}-title`}>
                                         Название периода
                                     </FieldLabel>
 
                                     <InputGroup>
                                         <InputGroupInput
-                                            id="title"
+                                            id={`${name}-title`}
                                             placeholder="Например, Low Season"
-                                            aria-invalid={!!errors.title}
-                                            {...register('title')}
+                                            aria-invalid={!!fieldError('title')}
+                                            {...register(fieldName('title'))}
                                         />
 
                                         <InputGroupAddon>
@@ -111,23 +130,23 @@ export function CreatePeriod() {
                                         </FieldDescription>
                                     )}
 
-                                    <FieldError errors={[errors.title]} />
+                                    <FieldError errors={[fieldError('title')]} />
                                 </Field>
                             </FieldGroup>
 
                             <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2">
                                 <FieldGroup>
-                                    <Field data-invalid={!!errors.startDate}>
-                                        <FieldLabel htmlFor="startDate">
+                                    <Field data-invalid={!!fieldError('startDate')}>
+                                        <FieldLabel htmlFor={`${name}-startDate`}>
                                             Дата начала
                                         </FieldLabel>
 
                                         <InputGroup>
                                             <InputGroupInput
-                                                id="startDate"
+                                                id={`${name}-startDate`}
                                                 type="date"
-                                                aria-invalid={!!errors.startDate}
-                                                {...register('startDate', {
+                                                aria-invalid={!!fieldError('startDate')}
+                                                {...register(fieldName('startDate'), {
                                                     valueAsDate: true,
                                                 })}
                                             />
@@ -143,22 +162,22 @@ export function CreatePeriod() {
                                             </FieldDescription>
                                         )}
 
-                                        <FieldError errors={[errors.startDate]} />
+                                        <FieldError errors={[fieldError('startDate')]} />
                                     </Field>
                                 </FieldGroup>
 
                                 <FieldGroup>
-                                    <Field data-invalid={!!errors.endDate}>
-                                        <FieldLabel htmlFor="endDate">
+                                    <Field data-invalid={!!fieldError('endDate')}>
+                                        <FieldLabel htmlFor={`${name}-endDate`}>
                                             Дата окончания
                                         </FieldLabel>
 
                                         <InputGroup>
                                             <InputGroupInput
-                                                id="endDate"
+                                                id={`${name}-endDate`}
                                                 type="date"
-                                                aria-invalid={!!errors.endDate}
-                                                {...register('endDate', {
+                                                aria-invalid={!!fieldError('endDate')}
+                                                {...register(fieldName('endDate'), {
                                                     valueAsDate: true,
                                                 })}
                                             />
@@ -174,7 +193,7 @@ export function CreatePeriod() {
                                             </FieldDescription>
                                         )}
 
-                                        <FieldError errors={[errors.endDate]} />
+                                        <FieldError errors={[fieldError('endDate')]} />
                                     </Field>
                                 </FieldGroup>
                             </div>

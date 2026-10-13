@@ -1,7 +1,8 @@
 'use client';
 
 import gsap from 'gsap';
-import { ChevronDown } from 'lucide-react';
+import { ArrowRight, MapPin } from 'lucide-react';
+import Link from 'next/link';
 import { useEffect, useRef } from 'react';
 
 import { FullVideo } from '@/widget/full-video';
@@ -10,7 +11,7 @@ import styles from './styles.module.scss';
 
 import type { HeroPros } from '../model/type';
 
-export function Hero({ title, preTitle, subtitle, poster, video, slot }: HeroPros) {
+export function Hero({ title, preTitle, subtitle, poster, video, slot, action }: HeroPros) {
   const wordRef = useRef<HTMLSpanElement | null>(null);
   const words = Array.isArray(title) ? title.filter(Boolean) : [];
   const initialWord = words[0] ?? '';
@@ -86,7 +87,7 @@ export function Hero({ title, preTitle, subtitle, poster, video, slot }: HeroPro
       <div className={styles.hero__inner}>
         {video && (
           <div className={styles.hero__media}>
-            <FullVideo url={video} poster={poster} />
+            <FullVideo url={video} poster={poster} desktopOnly />
           </div>
         )}
 
@@ -96,8 +97,8 @@ export function Hero({ title, preTitle, subtitle, poster, video, slot }: HeroPro
         <div className={styles.hero__text}>
           {preTitle && (
             <div className={styles.hero__pre_title}>
+              <MapPin aria-hidden="true" />
               <p>{preTitle}</p>
-              <ChevronDown />
             </div>
           )}
 
@@ -118,16 +119,19 @@ export function Hero({ title, preTitle, subtitle, poster, video, slot }: HeroPro
             </h1>
           )}
 
+          {subtitle && <p className={styles.hero__subtitle}>{subtitle}</p>}
+
+          {action && (
+            <Link href={action.href} className={styles.hero__action}>
+              {action.label}
+              <ArrowRight aria-hidden="true" />
+            </Link>
+          )}
+
           {slot && (
             <div className={styles.hero__slot}>
               {slot}
             </div>
-          )}
-
-          {subtitle && (
-            <p className={styles.hero__subtitle}>
-              {subtitle}
-            </p>
           )}
         </div>
       </div>

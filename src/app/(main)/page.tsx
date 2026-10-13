@@ -19,39 +19,46 @@ export default function Page() {
   const pageRef = useRef<HTMLElement | null>(null);
 
   useGSAP(() => {
-    const panels = gsap.utils.toArray<HTMLElement>('.panel:not([data-panel-static="true"])');
+    const motion = gsap.matchMedia();
 
-    panels.forEach((panel) => {
-      gsap.fromTo(
-        panel,
-        {
+    motion.add('(prefers-reduced-motion: no-preference)', () => {
+      const panels = gsap.utils.toArray<HTMLElement>(
+        '.panel:not([data-panel-static="true"])',
+        pageRef.current,
+      );
+
+      panels.forEach((panel) => {
+        gsap.fromTo(panel, {
           autoAlpha: 0,
-          y: 48,
-        },
-        {
+          y: 32,
+        }, {
           autoAlpha: 1,
           y: 0,
-          duration: 0.9,
+          duration: 0.75,
           ease: 'power2.out',
+          clearProps: 'transform,visibility,opacity',
           scrollTrigger: {
             trigger: panel,
-            start: 'top 85%',
+            start: 'top 88%',
             once: true,
           },
-        },
-      );
+        });
+      });
     });
+
+    return () => motion.revert();
   }, { scope: pageRef });
 
   return (
     <main ref={pageRef}>
-      <section className="panel margin_top">
+      <section className="panel">
         <Hero
-          subtitle={'Alanya, Kargıcak'}
-          preTitle={'Welcome'}
+          subtitle={'Сосновые склоны, бирюзовое море и отдых над побережьем'}
+          preTitle={'Аланья · Турция'}
           title={['Utopia World Hotel', 'Utopia World Resort']}
           video={'/video/utopia.mp4'}
-          poster={'/images/poster.jpg'}
+          poster={'/images/hero-poster.webp'}
+          action={{ href: '/book/book', label: 'Забронировать отдых' }}
         />
       </section>
       <section className="panel"><HotelAbout /></section>
@@ -61,8 +68,8 @@ export default function Page() {
           kicker={'Food & Bar'}
           title={'Наши рестораны'}
           subtitle={'Изысканные вкусы, авторская подача и атмосфера Средиземноморья'}
-          slides={RESTAURANTS.map((restaurant, index) => (
-            <RestaurantSlide key={index} {...restaurant} />
+          slides={RESTAURANTS.map((restaurant) => (
+            <RestaurantSlide key={restaurant.title} {...restaurant} />
           ))}
         />
       </section>

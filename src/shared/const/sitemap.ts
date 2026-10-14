@@ -25,8 +25,9 @@ export const sitemap: Record<string, string> = {
   requests: 'Запросы',
   contracts: 'Контракты',
 
-  create: 'Добавить',
+  add: 'Добавить',
   edit: 'Редактировать',
   delete: 'Удалить',
   details: 'Детали',
+  periods: 'Периоды',
 };

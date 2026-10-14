@@ -43,9 +43,6 @@ export const columns: Array<ColumnDef<typeof features, ContractPeriodType>> = [
         <span className="truncate text-sm font-semibold text-slate-800 transition-colors group-hover:text-primary">
           {row.original.title}
         </span>
-        <span className="text-xs text-slate-400">
-          ID: {row.original.id}
-        </span>
       </Link>
     ),
   },
@@ -60,6 +57,29 @@ export const columns: Array<ColumnDef<typeof features, ContractPeriodType>> = [
         <span>{formatDate(row.original.endDate)}</span>
       </div>
     ),
+  },
+  {
+    id: 'nights',
+    accessorFn: (row) => {
+      const start = new Date(row.startDate);
+      const end = new Date(row.endDate);
+
+      return Math.round(
+        (end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24),
+      );
+    },
+    header: 'Количество ночей',
+    cell: ({ row }) => {
+      const nights = row.getValue<number>('nights');
+
+      return (
+        <div className="flex flex-col gap-1 text-sm tabular-nums">
+          <span className="font-medium text-slate-900">
+            {nights} {nights === 1 ? 'ночь' : nights >= 2 && nights <= 4 ? 'ночи' : 'ночей'}
+          </span>
+        </div>
+      );
+    },
   },
   {
     accessorKey: 'createdAt',

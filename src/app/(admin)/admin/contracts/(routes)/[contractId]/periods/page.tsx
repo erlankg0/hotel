@@ -11,6 +11,9 @@ import { DataTable } from '@/shared/ui/data-table';
 import { PaginationUI } from '@/shared/ui/paginator/pagination';
 import { Page } from '@/widget/page';
 import { PageHeader } from '@/widget/page-header';
+import { Plus } from 'lucide-react';
+import Link from 'next/link';
+import { Button } from '@/shared/ui/button';
 
 import type { ContractPeriodType } from '@/entities/contract-period';
 
@@ -32,6 +35,12 @@ export default function PeriodsPage() {
           title="Периоды проживания"
           searchValue={search}
           onSearchOnChange={handleSearchChange}
+          slot={
+            <Button>
+              <Plus />
+              <Link href={"periods/add"}>Добавить</Link>
+            </Button>
+          }
         />
       }
     >

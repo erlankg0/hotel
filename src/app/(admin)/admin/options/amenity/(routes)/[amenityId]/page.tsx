@@ -23,7 +23,6 @@ export default function UpdatePage() {
     await handleOnSubmit({
       id: amenityId, dto: {
         ...dto,
-        id: amenityId,
       },
     });
 
@@ -53,9 +52,8 @@ export default function UpdatePage() {
               className="relative w-full"
             >
               <p
-                className={`flex items-center justify-center gap-2 transition-all duration-200 ${
-                  isPending ? 'opacity-100' : 'opacity-100'
-                }`}
+                className={`flex items-center justify-center gap-2 transition-all duration-200 ${isPending ? 'opacity-100' : 'opacity-100'
+                  }`}
               >
                 {isPending && <Loader2 className="size-4 animate-spin" />}
                 <span>{isPending ? 'Обновление...' : 'Обновить'}</span>

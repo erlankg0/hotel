@@ -3,7 +3,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import {  Loader2 } from 'lucide-react';
 
-import { CreateForm, useOccupancyCreate, occupancySchema } from '@/features/occupancy';
+import {  useOccupancyCreate, occupancySchema } from '@/features/occupancy';
 import { WrapperForm } from '@/shared/providers/form';
 import { Button } from '@/shared/ui/button';
 import { Page } from '@/widget/page';
@@ -23,7 +23,6 @@ export default function CreatePage() {
         }}
         className={'flex flex-col gap-6'}
       >
-        <CreateForm />
         <Button
           disabled={isPending}
           type="submit"

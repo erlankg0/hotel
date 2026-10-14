@@ -56,11 +56,11 @@ export function UpdateForm() {
           <FieldGroup>
             <FieldLabel htmlFor={'shortTitle'}>Короткое названия</FieldLabel>
             <InputGroup>
-              <InputGroupInput {...register('shortTitle')} placeholder={'Anex-KGZ'} id={'shortTitle'} />
+              <InputGroupInput {...register('code')} placeholder={'Anex-KGZ'} id={'shortTitle'} />
               <InputGroupAddon><Tag /></InputGroupAddon>
             </InputGroup>
-            {errors.shortTitle ? (
-              <FieldError>{errors.shortTitle.message}</FieldError>
+            {errors.code ? (
+              <FieldError>{errors.code.message}</FieldError>
             ) : (
               <FieldDescription>Введите уникальный код</FieldDescription>
             )}

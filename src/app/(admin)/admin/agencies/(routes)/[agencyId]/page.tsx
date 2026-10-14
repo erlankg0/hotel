@@ -21,10 +21,8 @@ export default function AgencyUpdatePage() {
     await handleOnSubmit({
       id: operatorId,
       dto: {
-        title: dto.title,
-        shortTitle: dto.shortTitle,
+        ...dto,
         operatorId: operatorId,
-        market: dto.market,
       },
     });
   }
@@ -40,7 +38,6 @@ export default function AgencyUpdatePage() {
             resolver: zodResolver(agencyUpdateSchema),
             defaultValues: {
               title: data?.title,
-              shortTitle: data?.shortTitle,
             },
           }}
 

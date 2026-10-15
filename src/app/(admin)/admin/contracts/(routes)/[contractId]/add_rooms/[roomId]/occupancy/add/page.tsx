@@ -1,19 +1,21 @@
 'use client';
 
-import { useParams } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useParams } from 'next/navigation';
 
+import { useOccupancyCreate } from '@/features/occupancy';
 import {
     CreateForm,
-    OccupancyRuleInput,
-    OccupancyRuleOutput,
     occupancyRuleFormSchema,
     useOccupancyRuleCreate,
 } from '@/features/occupancy-rule';
-import { useOccupancyCreate } from '@/features/occupancy';
 import { WrapperForm } from '@/shared/providers/form';
 import { Button } from '@/shared/ui/button';
 import { Page } from '@/widget/page';
+
+import type {
+    OccupancyRuleInput,
+    OccupancyRuleOutput} from '@/features/occupancy-rule';
 
 export default function OccupancyPage() {
     const { roomId } = useParams<{ roomId: string }>();

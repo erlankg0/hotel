@@ -1,5 +1,6 @@
-import { Card, CardContent } from '@/shared/ui/card';
 import Link from 'next/link';
+
+import { Card, CardContent } from '@/shared/ui/card';
 
 import type { ContractTabsPros } from '../model/types';
 

@@ -1,21 +1,22 @@
 'use client';
 
+
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import { LoaderCircle, Save } from 'lucide-react';
+import { useParams } from 'next/navigation';
+import { useCallback } from 'react';
+
 import {
     ContractPeriodList,
     contractPeriodSchema,
     useCreateContractPeriodList,
 } from '@/features/contract-period';
-
-import type { ContractPeriodFormValues } from '@/features/contract-period';
-
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useParams } from 'next/navigation';
-import { useCallback } from 'react';
-import { LoaderCircle, Save } from 'lucide-react';
-
 import { WrapperForm } from '@/shared/providers/form';
 import { Button } from '@/shared/ui/button';
 import { Page } from '@/widget/page';
+
+import type { ContractPeriodFormValues } from '@/features/contract-period';
 
 export default function PagePeriods() {
     const { contractId } = useParams<{ contractId: string }>();

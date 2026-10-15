@@ -1,11 +1,10 @@
-import Link from 'next/link';
 import { Ellipsis } from 'lucide-react';
+import Link from 'next/link';
 
+import { contractStatusLabels } from '@/shared/const/enums';
 import { Badge } from '@/shared/ui/badge';
 import { Button } from '@/shared/ui/button';
-import { Text } from '@/shared/ui/text';
 import { Card, CardContent } from '@/shared/ui/card';
-
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -13,9 +12,9 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from '@/shared/ui/dropdown-menu';
+import { Text } from '@/shared/ui/text';
 
 import type { ContractHeaderType } from '../model/types';
-import { contractStatusLabels } from '@/shared/const/enums';
 
 
 interface ContractHeaderProps {

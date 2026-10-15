@@ -2,18 +2,15 @@
 
 import { MartiniIcon, ChartBar } from 'lucide-react';
 import Link from 'next/link';
-import { useCallback } from 'react';
 
 import { AMENITY_ICONS } from '@/shared/const/icon_amenities';
 import { Button } from '@/shared/ui/button/button';
 import { Popover, PopoverContent, PopoverTrigger } from '@/shared/ui/popover';
 import { Separator } from '@/shared/ui/separator';
-import { useSwiperNav } from '@/widget/swiper';
 
 import styles from './styles.module.scss';
 
 import type { RoomType } from '../../../model/type';
-import type { Swiper as SwiperType } from 'swiper';
 
 
 export function RoomPrice({
@@ -24,7 +21,7 @@ export function RoomPrice({
                             capacity,
                             category,
                           }: RoomType) {
-  const {
+  /*const {
     onSwiper,
     onSlideChange,
   } = useSwiperNav();
@@ -35,7 +32,7 @@ export function RoomPrice({
 
   const handleOnChange = useCallback((swiper: SwiperType) => {
     onSlideChange(swiper);
-  }, [onSlideChange]);
+  }, [onSlideChange]);*/
 
   return (
     <article className={styles.card} id={id}>

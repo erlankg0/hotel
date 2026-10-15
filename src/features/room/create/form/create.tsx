@@ -3,8 +3,8 @@
 import { useMemo } from 'react';
 import { useFormContext } from 'react-hook-form';
 
-import { useAmenity } from '@/entities/amenity';
-import { useRequest } from '@/entities/requests';
+import { useAmenitiesQuery } from '@/entities/amenity';
+import { useRequestsQuery } from '@/entities/requests';
 import { Dropzone } from '@/shared/ui/dropzone';
 import {
   FieldDescription,
@@ -38,8 +38,8 @@ export function CreateForm() {
     watch,
     formState: { errors },
   } = useFormContext<RoomCreateFormInput>();
-  const { data: amenities, isLoading: isAmenitiesLoading } = useAmenity();
-  const { data: requests, isLoading: isRequestsLoading } = useRequest();
+  const { data: amenities, isLoading: isAmenitiesLoading } = useAmenitiesQuery();
+  const { data: requests, isLoading: isRequestsLoading } = useRequestsQuery();
 
   const selectedAmenityIds = watch('amenityIds');
   const selectedRequestsIds = watch('requestsIds');

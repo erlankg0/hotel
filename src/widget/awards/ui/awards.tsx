@@ -11,8 +11,8 @@ export function AwardsMarquee() {
     <section className={styles.section}>
       <div className={'container'}>
         <div className={styles.header}>
-          <Text tag={'span'} variant={'kicker'}>Awards & Recognition</Text>
-          <Text tag={'h2'} variant={'title'}>Наши награды</Text>
+          <Text tag={'span'} tone={'default'}>Awards & Recognition</Text>
+          <Text tag={'h2'} tone={'success'}>Наши награды</Text>
         </div>
       </div>
 

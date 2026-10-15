@@ -6,7 +6,7 @@ export type WrapperFormProps<
   TTransformedValues extends FieldValues = TFieldValues,
 > = {
   children: ReactNode;
-  options?: UseFormProps<TFieldValues, any, TTransformedValues>;
+  options?: UseFormProps<TFieldValues, never, TTransformedValues>;
   onSubmit: SubmitHandler<TTransformedValues>;
   className?: string;
 };

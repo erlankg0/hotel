@@ -1,11 +1,12 @@
 'use client';
 
 import { X, Hotel, User, Bed, Bath } from 'lucide-react';
+import Image from 'next/image';
 import { useEffect, useMemo, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
-import { useAmenity } from '@/entities/amenity';
-import { useRequest } from '@/entities/requests';
+import { useAmenitiesQuery } from '@/entities/amenity';
+import { useRequestsQuery } from '@/entities/requests';
 import { Dropzone } from '@/shared/ui/dropzone';
 import {
   FieldDescription,
@@ -47,8 +48,8 @@ export function UpdateForm({ existingPhotos = [] }: UpdateFormProps) {
     watch,
     formState: { errors },
   } = useFormContext<RoomUpdateFormInput>();
-  const { data: amenities, isLoading: isAmenitiesLoading } = useAmenity();
-  const { data: requests, isLoading: isRequestsLoading } = useRequest();
+  const { data: amenities, isLoading: isAmenitiesLoading } = useAmenitiesQuery();
+  const { data: requests, isLoading: isRequestsLoading } = useRequestsQuery();
 
   const selectedAmenityIds = watch('amenityIds');
   const selectedRequestsIds = watch('requestsIds');
@@ -372,7 +373,7 @@ export function UpdateForm({ existingPhotos = [] }: UpdateFormProps) {
                       aria-label={'Открыть фото'}
                       onClick={() => openPreview(url, file.name)}
                     >
-                      <img
+                      <Image
                         src={url}
                         alt={file.name}
                         className={styles.photo__preview}
@@ -435,7 +436,7 @@ export function UpdateForm({ existingPhotos = [] }: UpdateFormProps) {
             >
               <X size={18} />
             </button>
-            <img
+            <Image
               src={activePreview.url}
               alt={activePreview.alt}
               className={styles.lightbox__image}

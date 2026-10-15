@@ -9,6 +9,7 @@ import {
   X,
   type LucideIcon,
 } from 'lucide-react';
+import Image from 'next/image';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 
@@ -113,12 +114,12 @@ function getFileIcon(file: File): LucideIcon {
 }
 
 export function Dropzone({
-  className,
-  onFilesSelected,
-  options,
-  placeholder = 'Перетащите файлы сюда или нажмите для загрузки',
-  showPreviewList = true,
-}: DropzoneProps) {
+                           className,
+                           onFilesSelected,
+                           options,
+                           placeholder = 'Перетащите файлы сюда или нажмите для загрузки',
+                           showPreviewList = true,
+                         }: DropzoneProps) {
   const [previewItems, setPreviewItems] = useState<PreviewItem[]>([]);
   const [activePreviewUrl, setActivePreviewUrl] = useState<string | null>(null);
   const [activePreviewName, setActivePreviewName] = useState<string>('');
@@ -241,7 +242,7 @@ export function Dropzone({
                         setActivePreviewName(item.file.name);
                       }}
                     >
-                      <img
+                      <Image
                         alt={item.file.name}
                         className={s.previewImage}
                         src={item.previewUrl}
@@ -308,7 +309,7 @@ export function Dropzone({
               <X size={18} />
             </button>
 
-            <img
+            <Image
               src={activePreviewUrl}
               alt={activePreviewName}
               className={s.lightbox__image}

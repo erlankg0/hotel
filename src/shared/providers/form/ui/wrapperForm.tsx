@@ -11,12 +11,12 @@ export function WrapperForm<
   TFieldValues extends FieldValues,
   TTransformedValues extends FieldValues = TFieldValues,
 >({
-  children,
-  options,
-  className,
-  onSubmit,
-}: WrapperFormProps<TFieldValues, TTransformedValues>) {
-  const methods = useForm<TFieldValues, any, TTransformedValues>(options);
+    children,
+    options,
+    className,
+    onSubmit,
+  }: WrapperFormProps<TFieldValues, TTransformedValues>) {
+  const methods = useForm<TFieldValues, never, TTransformedValues>(options);
 
   return (
     <FormProvider {...methods}>

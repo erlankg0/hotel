@@ -1,6 +1,7 @@
 'use client';
 
 import { Luggage, X, Upload } from 'lucide-react';
+import Image from 'next/image';
 import { useMemo } from 'react';
 import { useFormContext } from 'react-hook-form';
 
@@ -21,6 +22,7 @@ import {
   InputGroupAddon,
 } from '@/shared/ui/input-group';
 
+
 import type { OperatorFormInput } from '../../model/types';
 
 export function Create() {
@@ -30,7 +32,7 @@ export function Create() {
     formState: { errors },
     control,
     watch,
-    resetField
+    resetField,
   } = useFormContext<OperatorFormInput>();
 
   const file = watch('file');
@@ -92,7 +94,7 @@ export function Create() {
             <div className="flex items-center gap-4">
               {previewUrl ? (
                 <div className="relative">
-                  <img
+                  <Image
                     src={previewUrl}
                     alt="Превью иконки оператора"
                     className="size-16 rounded-md border object-cover"
@@ -109,7 +111,8 @@ export function Create() {
                   </Button>
                 </div>
               ) : (
-                <div className="flex size-16 items-center justify-center rounded-md border border-dashed text-muted-foreground">
+                <div
+                  className="flex size-16 items-center justify-center rounded-md border border-dashed text-muted-foreground">
                   <Upload className="size-5" />
                 </div>
               )}

@@ -1,15 +1,19 @@
 'use client';
 import { Plus } from 'lucide-react';
 import Link from 'next/link';
+import { useParams } from 'next/navigation';
+import { useState } from 'react';
 
+import { useOccupancyRulesQuery, columns } from '@/entities/occupcancy-rule';
+import { Button } from '@/shared/ui/button';
+import { DataTable } from '@/shared/ui/data-table';
 import { Page } from '@/widget/page';
 import { PageHeader } from '@/widget/page-header';
-import { useState } from 'react';
-import { useOccupancyRulesQuery, columns } from '@/entities/occupcancy-rule';
+
 import type { OccupancyRuleType } from '@/entities/occupcancy-rule';
-import { DataTable } from '@/shared/ui/data-table';
-import { useParams } from 'next/navigation';
-import { Button } from '@/shared/ui/button';
+
+
+
 
 export default function OccupancyPage() {
     const { roomId } = useParams<{ roomId: string }>();

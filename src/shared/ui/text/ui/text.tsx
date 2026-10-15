@@ -1,5 +1,7 @@
 import { cn } from '@/shared/lib/utils';
+
 import styles from './styles.module.scss';
+
 import type { TextProps, TextSize, TextTone } from '../model/type';
 
 const sizeClassNames: Record<TextSize, string> = {

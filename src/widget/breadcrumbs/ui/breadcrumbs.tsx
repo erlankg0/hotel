@@ -1,8 +1,8 @@
 'use client';
 
+import { ChevronLeft } from 'lucide-react'; 
 import { usePathname, useRouter } from 'next/navigation';
 import { Fragment } from 'react';
-import { ChevronLeft } from 'lucide-react'; 
 
 import { sitemap } from '@/shared/const/sitemap';
 import {
@@ -13,8 +13,8 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/shared/ui/breadcrumb';
-import { Text } from '@/shared/ui/text';
 import { Button } from '@/shared/ui/button'; 
+import { Text } from '@/shared/ui/text';
 
 export function BreadcrumbsUI() {
   const pathname = usePathname();

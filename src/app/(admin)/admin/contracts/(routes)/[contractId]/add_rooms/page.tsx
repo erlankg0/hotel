@@ -24,9 +24,9 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/shared/ui/dialog';
+import { PaginationUI } from '@/shared/ui/paginator/pagination';
 import { Page } from '@/widget/page';
 import { PageHeader } from '@/widget/page-header';
-import { PaginationUI } from '@/shared/ui/paginator/pagination';
 
 import type { ContractRoomType } from '@/entities/contract-room';
 import type { ContractRoomFromInput, ContractRoomFromOutput } from '@/features/contract-room';

@@ -12,6 +12,7 @@ import {
 } from '@/shared/ui/table';
 
 import { useAppTable } from '../hook/useTable';
+
 import { DataTableSkeleton } from './data-table-skeleton';
 
 import type { DataTableProps } from '../model/types';

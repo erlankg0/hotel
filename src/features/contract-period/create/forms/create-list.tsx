@@ -1,15 +1,17 @@
 'use client';
 
-import { useEffect } from 'react';
 import { Plus, CalendarRange } from 'lucide-react';
+import { useEffect } from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
 
 import { Button } from '@/shared/ui/button';
-import { FieldSet } from '@/shared/ui/field';
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/ui/card';
+import { FieldSet } from '@/shared/ui/field';
 
 import { CreatePeriod } from './create-period';
-import { ContractPeriodFormValues } from '../../model/types';
+
+import type { ContractPeriodFormValues } from '../../model/types';
+
 
 export function ContractPeriodList() {
   const { control, getValues } = useFormContext<ContractPeriodFormValues>();

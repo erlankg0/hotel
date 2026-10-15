@@ -93,7 +93,7 @@ export const columns = ({ onToggleActive }: ColumnProps) => {
         <div className="flex justify-center">
           <Switch
             checked={row.original.isActive}
-            onCheckedChange={(checked) => {
+            onCheckedChange={() => {
               onToggleActive(row.original.id)
             }}
             aria-label={

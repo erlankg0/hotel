@@ -13,7 +13,7 @@ export const useOccupanciesQuery = ({ search, contractId }: { search?: string, c
     error,
     isLoading,
   } = useQuery({
-    ...QueryOptionOccupancy.get({ title: debouncedSearch, page }),
+    ...QueryOptionOccupancy.get({ title: debouncedSearch, page, id: contractId }),
   });
 
   const result = data?.data.data || [];

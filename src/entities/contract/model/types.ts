@@ -1,4 +1,4 @@
-import type { ContractStatus, BoardType, AgencyType, Currency } from '@/shared/const/enums';
+import type { ContractStatus, BoardType, Currency } from '@/shared/const/enums';
 
 export type ContractType = {
   readonly id: string;

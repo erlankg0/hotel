@@ -66,7 +66,7 @@ export default function ContractNew() {
             data={data}
             total={total}
           />
-
+          
           <Button
             disabled={isPending}
             type="submit"
@@ -91,8 +91,6 @@ export default function ContractNew() {
 
         </section>
       )}
-
-
     </Page>
   );
 }

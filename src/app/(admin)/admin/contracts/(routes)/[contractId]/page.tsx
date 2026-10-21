@@ -15,7 +15,7 @@ const tabs = (id: string) => {
       { icon: BedDouble, title: 'Комнаты', href: id + '/add_rooms' },
       { icon: Boxes, title: 'Пакеты', href: 'id' },
       { icon: Calendar, title: 'Периоды', href: `${id}/periods` },
-      { icon: HandCoins, title: 'Тарифы и цены', href: 'id' },
+      { icon: HandCoins, title: 'Тарифы и цены', href: `${id}/prices` },
 
     ]
   );

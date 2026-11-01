@@ -1,56 +1,110 @@
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/shared/ui/card';
-import { Table, TableHeader, TableHead, TableBody, TableRow, TableCell, } from '@/shared/ui/table';
+
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from '@/shared/ui/card';
+
+import {
+  Table,
+  TableHeader,
+  TableHead,
+  TableBody,
+  TableRow,
+  TableCell,
+} from '@/shared/ui/table';
+
+const periods = [
+  { id: '1', label: '01.04 – 09.04' },
+  { id: '2', label: '10.04 – 18.04' },
+  { id: '3', label: '19.04 – 30.04' },
+  { id: '4', label: '01.05 – 13.05' },
+  { id: '5', label: '14.05 – 23.05' },
+  { id: '6', label: '24.05 – 31.05' },
+  { id: '7', label: '01.06 – 13.06' },
+];
+
+const rooms = [
+  {
+    id: 'villa-standard',
+    name: 'Villa Standard Room',
+    occupancies: [
+      { id: 'double', label: '2 ADULTS · 0 CHD · 0 INF', prices: [60, 70, 80, 90, 100, 110, 120] },
+      { id: 'single', label: '1 ADULT · 0 CHD · 0 INF', prices: [75, 90, 105, 120, 135, 150, 165] },
+      { id: 'triple', label: '3 ADULTS · 0 CHD · 0 INF', prices: [90, 105, 120, 135, 150, 165, 180] },
+    ],
+  },
+];
 
 export function CreateGrid() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>
-          Контрактные цены
-        </CardTitle>
+        <CardTitle>Контрактные цены</CardTitle>
         <CardDescription>
-          Контрактные цены
+          Стоимость проживания по категориям номеров и периодам
         </CardDescription>
       </CardHeader>
-      <CardContent>
-        <Table>
-          <TableHeader>
-            <TableHead>Категории номеров</TableHead>
 
-            <TableHead>1</TableHead>
-            <TableHead>2</TableHead>
-            <TableHead>3</TableHead>
-            <TableHead>4</TableHead>
-            <TableHead>5</TableHead>
-            <TableHead>6</TableHead>
-            <TableHead>7</TableHead>
-          </TableHeader>
-          <TableBody>
-            <TableRow>
-              <TableCell>
-                <TableRow>
-                  <TableCell>Стандартный номре в виллах</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>2 ADULTS  0 CHD 0 INF</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>1 ADULT 0 CHD 0 INF</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>4</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>5</TableCell>
-                </TableRow>
-              </TableCell>
-              <TableCell>1</TableCell>
-              <TableCell>1</TableCell>
-              <TableCell>1</TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
+      <CardContent>
+        <div className="overflow-x-auto">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead className="sticky left-0 z-20 min-w-[260px] bg-background">
+                  Категория номера / Размещение
+                </TableHead>
+
+                {periods.map((period) => (
+                  <TableHead
+                    key={period.id}
+                    className="min-w-[120px] text-center"
+                  >
+                    <div>{period.label}</div>
+                    <div className="text-xs font-normal text-muted-foreground">
+                      Период {period.id}
+                    </div>
+                  </TableHead>
+                ))}
+              </TableRow>
+            </TableHeader>
+
+            <TableBody>
+              {rooms.map((room) => (
+                room.occupancies.map((occupancy, index) => (
+                  <TableRow key={`${room.id}-${occupancy.id}`}>
+                    <TableCell className="sticky left-0 z-10 bg-background">
+                      <div className="flex flex-col gap-1">
+                        {index === 0 && (
+                          <span className="font-semibold">
+                            {room.name}
+                          </span>
+                        )}
+                        <span className="text-sm text-muted-foreground">
+                          {occupancy.label}
+                        </span>
+                      </div>
+                    </TableCell>
+
+                    {occupancy.prices.map((price, i) => (
+                      <TableCell key={periods[i].id} className="p-1">
+                        <input
+                          type="number"
+                          min="0"
+                          defaultValue={price}
+                          className="h-9 w-full min-w-[90px] rounded-md border bg-background px-2 text-right outline-none focus:ring-2 focus:ring-ring"
+                        />
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                ))
+              ))}
+            </TableBody>
+          </Table>
+        </div>
       </CardContent>
     </Card>
-  )
-};
+  );
+}

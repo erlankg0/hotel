@@ -28,3 +28,20 @@ export function getGuestLabel(count: number) {
 
   return `${count} гостей`;
 }
+
+
+ const dateTimeFormatter = new Intl.DateTimeFormat('ru-RU', {
+  day: '2-digit',
+  month: 'short',
+  year: 'numeric',
+});
+
+const dateFormatter = new Intl.DateTimeFormat('ru-RU', {
+  day: '2-digit',
+  month: '2-digit',
+});
+
+export const formatDate = (value: Date | string) =>
+  dateFormatter.format(new Date(value));
+export const  formatDateTime = (value: Date | string) =>
+  dateTimeFormatter.format(new Date(value));

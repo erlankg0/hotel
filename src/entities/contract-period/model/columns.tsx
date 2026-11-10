@@ -1,26 +1,12 @@
 import Link from 'next/link';
 
+import { formatDate, formatDateTime } from '@/shared/lib/utils';
+
 import type { ContractPeriodType } from '../model/types';
 import type { features } from '@/shared/const/table-features';
 import type { ColumnDef } from '@tanstack/react-table';
 
-const dateFormatter = new Intl.DateTimeFormat('ru-RU', {
-  day: '2-digit',
-  month: 'short',
-  year: 'numeric',
-});
 
-const dateTimeFormatter = new Intl.DateTimeFormat('ru-RU', {
-  day: '2-digit',
-  month: 'short',
-  year: 'numeric',
-  hour: '2-digit',
-  minute: '2-digit',
-});
-
-const formatDate = (value: Date | string) => dateFormatter.format(new Date(value));
-const formatDateTime = (value: Date | string) =>
-  dateTimeFormatter.format(new Date(value));
 
 export const columns: Array<ColumnDef<typeof features, ContractPeriodType>> = [
   {

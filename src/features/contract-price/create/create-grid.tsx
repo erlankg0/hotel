@@ -1,8 +1,13 @@
 'use client';
 
-import { Euro } from 'lucide-react';
+import { Euro, Pencil, RotateCcw } from 'lucide-react';
 import { useState } from 'react';
 
+import { useContractPeriodsQuery } from '@/entities/contract-period';
+import { useOccupanciesQuery } from '@/entities/occupancy';
+import { } from '@/entities'
+import { formatDate } from '@/shared/lib/utils';
+import { Button } from '@/shared/ui/button';
 import {
   Card,
   CardContent,
@@ -10,7 +15,11 @@ import {
   CardHeader,
   CardTitle,
 } from '@/shared/ui/card';
-import { InputGroup, InputGroupAddon, InputGroupInput } from '@/shared/ui/input-group';
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+} from '@/shared/ui/input-group';
 import {
   Table,
   TableBody,
@@ -20,115 +29,204 @@ import {
   TableRow,
 } from '@/shared/ui/table';
 
-const periods = [
-  { id: '1', start: '01.04', end: '09.04', days: 9 },
-  { id: '2', start: '10.04', end: '18.04', days: 9 },
-  { id: '3', start: '19.04', end: '30.04', days: 12 },
-  { id: '4', start: '01.05', end: '13.05', days: 13 },
-  { id: '5', start: '14.05', end: '23.05', days: 10 },
-  { id: '6', start: '24.05', end: '31.05', days: 8 },
-  { id: '7', start: '01.06', end: '13.06', days: 13 },
+const rooms = [
+  { id: 'std', title: 'Standard Room', hint: 'Базовое размещение DBL' },
+  { id: 'fam', title: 'Family Room', hint: 'Базовое размещение DBL' },
 ];
 
 const occupancies = [
-  { id: 'double', label: 'DBL', description: '2 ADULTS · 0 CHD · 0 INF', adults: 2 },
-  { id: 'single', label: 'SNGL', description: '1 ADULT · 0 CHD · 0 INF', adults: 1 },
-  { id: 'triple', label: 'TRPL', description: '3 ADULTS · 0 CHD · 0 INF', adults: 3 },
+  { id: 'dbl', label: 'DBL', hint: '2 AD · 0 CHD · 0 INF', isBase: true, multiplier: { summer: 1, winter: 1 } },
+  { id: 'sngl', label: 'SNGL', hint: '1 AD · 0 CHD · 0 INF', isBase: false, multiplier: { summer: 1.5, winter: 1.8 } },
+  {
+    id: 'dblchd',
+    label: 'DBL+CHD',
+    hint: '2 AD · 1 CHD · 0 INF',
+    isBase: false,
+    multiplier: { summer: 1.15, winter: 1.2 },
+  },
 ];
 
-const initialPerPersonPrices = [30, 35, 40, 45, 50, 55, 60];
+type CellKey = `${string}:${string}:${string}`;
 
-export function CreateGrid() {
-  const [perPersonPrices, setPerPersonPrices] = useState<Record<string, string>>(
-    Object.fromEntries(
-      periods.map((period, index) => [period.id, String(initialPerPersonPrices[index])]),
-    ),
-  );
+function round2(n: number) {
+  return Math.round(n * 100) / 100;
+}
 
+export function CreateGrid({ id }: { id: string }) {
+  const [basePrice, setBasePrice] = useState<Record<string, string>>({
+    'std:summer': '340',
+    'std:winter': '280',
+    'fam:summer': '410',
+    'fam:winter': '350',
+  });
+  const [manual, setManual] = useState<Record<CellKey, string>>({});
+  const { data: periods } = useContractPeriodsQuery({ id });
+  const { data: occupancies1 } = useOccupanciesQuery({ contractId: id });
   return (
-    <Card className="overflow-hidden">
+    <Card className="w-full">
       <CardHeader className="border-b bg-background">
-        <CardTitle>Контрактные цены</CardTitle>
-        <CardDescription>
-          Введите цену за человека для каждого периода. Цены размещения рассчитываются автоматически.
-        </CardDescription>
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <CardTitle>Контрактные цены</CardTitle>
+            <CardDescription>
+              Цена базового размещения на период. Остальные occupancy считаются по правилу.
+              Клик по ячейке — ручная цена.
+            </CardDescription>
+          </div>
+        </div>
       </CardHeader>
 
-      <CardContent className="p-0">
+      <CardContent className="pt-4">
         <div className="overflow-x-auto">
-          <Table className=" border-separate border-spacing-0">
+          <Table className="border-separate border-spacing-0">
             <TableHeader>
               <TableRow className="bg-muted/70 hover:bg-muted/70">
-                <TableHead className="sticky left-0 z-30  border-r bg-muted/95 text-foreground">Категория
-                  номера</TableHead>
-                <TableHead
-                  className="sticky  z-30  border-r bg-muted/95 text-foreground">Размещение</TableHead>
+                <TableHead className="sticky left-0 z-30 min-w-48 border-r bg-muted/95 text-foreground">
+                  Категория номера
+                </TableHead>
+                <TableHead className="sticky left-48 z-30 min-w-44 border-r bg-muted/95 text-foreground">
+                  Размещение
+                </TableHead>
                 {periods.map((period) => (
-                  <TableHead key={period.id} className=" px-2 py-2 text-center text-foreground">
-                    <div
-                      className="text-[10px] font-normal uppercase tracking-wider text-muted-foreground">Период {period.id}</div>
-                    <div className="mt-1 whitespace-nowrap text-xs font-semibold">{period.start} — {period.end}</div>
-                    <div className="mt-1 text-[10px] font-normal text-muted-foreground">{period.days} ночей</div>
-                    <div className="relative mx-auto mt-2 ">
-                      <InputGroup>
-                        <InputGroupInput
-                          type="number"
-                          min="0"
-                          step="0.01"
-                          value={perPersonPrices[period.id] ?? ''}
-                          onChange={(event) => setPerPersonPrices((current) => ({
-                            ...current,
-                            [period.id]: event.target.value,
-                          }))}
-                          aria-label={`Цена PP для периода ${period.id}`}
-                          placeholder="0,00"
-                        />
-                        <InputGroupAddon align={'inline-end'}>
-                          <Euro
-                            className="pointer-events-none absolute right-2 top-1/2 size-3 -translate-y-1/2 text-muted-foreground" />
-                        </InputGroupAddon>
-                      </InputGroup>
+                  <TableHead key={period.id} className="min-w-44 px-3 py-2 text-center text-foreground">
+                    <div className="text-[10px] font-normal uppercase tracking-wider text-muted-foreground">
+                      {period.title}
                     </div>
-                    <div className="mt-1 text-[9px] font-normal text-muted-foreground">за человека / PP</div>
+                    <div className="mt-1 whitespace-nowrap text-xs font-semibold">{formatDate(period.startDate)}</div>
+                    <div className="mt-1 whitespace-nowrap text-xs font-semibold">{formatDate(period.endDate)}</div>
+
                   </TableHead>
                 ))}
               </TableRow>
             </TableHeader>
 
             <TableBody>
-              {occupancies.map((occupancy, index) => (
-                <TableRow key={occupancy.id} className={index === 0 ? 'border-t-2 bg-background' : 'bg-background'}>
-                  {index === 0 && (
-                    <TableCell rowSpan={occupancies.length}
-                               className="sticky left-0 z-20 min-w-45 border-r bg-background align-top">
-                      <div className="pt-2">
-                        <p className="text-sm font-semibold">Villa Standard Room</p>
-                        <p className="mt-1 text-xs text-muted-foreground">Основное размещение</p>
-                      </div>
-                    </TableCell>
-                  )}
-                  <TableCell className="sticky left-45 z-10 min-w-47.5 border-r bg-background">
-                    <div className="font-semibold text-sm">{occupancy.label}</div>
-                    <div className="mt-1 text-[10px] text-muted-foreground">{occupancy.description}</div>
-                    <div className="mt-1 text-[10px] text-muted-foreground">PP × {occupancy.adults}</div>
-                  </TableCell>
-                  {periods.map((period) => {
-                    const pp = Number(perPersonPrices[period.id]);
-                    const total = Number.isFinite(pp) && pp > 0 ? pp * occupancy.adults : null;
-                    return (
-                      <TableCell key={period.id} className="border-l px-2 py-2 text-center">
-                        <div
-                          className="font-semibold tabular-nums text-foreground">{total === null ? '—' : `${total.toFixed(2)} €`}</div>
-                        <div className="mt-1 text-[10px] tabular-nums text-muted-foreground">
-                          {total === null ? 'ожидает цену PP' : `${perPersonPrices[period.id]} × ${occupancy.adults}`}
+              {rooms.map((room) =>
+                occupancies.map((occupancy, occupancyIndex) => (
+                  <TableRow key={`${room.id}:${occupancy.id}`} className="bg-background">
+                    {occupancyIndex === 0 && (
+                      <TableCell
+                        rowSpan={occupancies.length}
+                        className="sticky left-0 z-20 border-r bg-background align-top"
+                      >
+                        <div className="pt-2">
+                          <p className="text-sm font-semibold">{room.title}</p>
+                          <p className="mt-1 text-xs text-muted-foreground">{room.hint}</p>
                         </div>
                       </TableCell>
-                    );
-                  })}
-                </TableRow>
-              ))}
+                    )}
+
+                    <TableCell className="sticky left-48 z-10 border-r bg-background">
+                      <div className="text-sm font-semibold">{occupancy.label}</div>
+                      <div className="mt-1 text-[10px] text-muted-foreground">{occupancy.hint}</div>
+                      {occupancy.isBase && (
+                        <div className="mt-1 text-[10px] font-medium text-primary">база</div>
+                      )}
+                    </TableCell>
+
+                    {periods.map((period) => {
+                      const baseKey = `${room.id}:${period.id}`;
+                      const cellKey = `${room.id}:${occupancy.id}:${period.id}` as CellKey;
+                      const base = Number(basePrice[baseKey]);
+                      const hasBase = Number.isFinite(base) && base > 0;
+                      const multiplier = occupancy.multiplier[period.id as 'summer' | 'winter'];
+                      const isManual = cellKey in manual;
+                      const derived = hasBase ? round2(base * multiplier) : null;
+
+                      if (occupancy.isBase) {
+                        return (
+                          <TableCell key={period.id} className="border-l px-2 py-2">
+                            <InputGroup>
+                              <InputGroupInput
+                                type="number"
+                                min="0"
+                                step="0.01"
+                                placeholder="0,00"
+                                value={basePrice[baseKey] ?? ''}
+                                onChange={(event) =>
+                                  setBasePrice((current) => ({
+                                    ...current,
+                                    [baseKey]: event.target.value,
+                                  }))
+                                }
+                              />
+                              <InputGroupAddon align="inline-end">
+                                <Euro className="size-3 text-muted-foreground" />
+                              </InputGroupAddon>
+                            </InputGroup>
+                          </TableCell>
+                        );
+                      }
+
+                      return (
+                        <TableCell key={period.id} className="border-l px-2 py-2 text-center">
+                          {isManual ? (
+                            <div className="flex items-center gap-1">
+                              <InputGroup>
+                                <InputGroupInput
+                                  type="number"
+                                  min="0"
+                                  step="0.01"
+                                  value={manual[cellKey]}
+                                  onChange={(event) =>
+                                    setManual((current) => ({
+                                      ...current,
+                                      [cellKey]: event.target.value,
+                                    }))
+                                  }
+                                />
+                                <InputGroupAddon align="inline-end">
+                                  <Euro className="size-3 text-muted-foreground" />
+                                </InputGroupAddon>
+                              </InputGroup>
+                              <Button
+                                type="button"
+                                size="icon"
+                                variant="ghost"
+                                onClick={() =>
+                                  setManual((current) => {
+                                    const next = { ...current };
+                                    delete next[cellKey];
+                                    return next;
+                                  })
+                                }
+                              >
+                                <RotateCcw className="size-3.5" />
+                              </Button>
+                            </div>
+                          ) : (
+                            <button
+                              type="button"
+                              className="group w-full rounded-md px-2 py-1 hover:bg-muted/60"
+                              onClick={() =>
+                                setManual((current) => ({
+                                  ...current,
+                                  [cellKey]: derived != null ? String(derived) : '',
+                                }))
+                              }
+                            >
+                              <div className="font-semibold tabular-nums">
+                                {derived == null ? '—' : `${derived.toFixed(2)} €`}
+                              </div>
+                              <div
+                                className="mt-1 flex items-center justify-center gap-1 text-[10px] tabular-nums text-muted-foreground">
+                                {hasBase ? `× ${multiplier}` : 'нет базы'}
+                                <Pencil className="size-2.5 opacity-0 group-hover:opacity-100" />
+                              </div>
+                            </button>
+                          )}
+                        </TableCell>
+                      );
+                    })}
+                  </TableRow>
+                )),
+              )}
             </TableBody>
           </Table>
+        </div>
+
+        <div className="mt-4 flex justify-end">
+          <Button type="button">Сохранить</Button>
         </div>
       </CardContent>
     </Card>

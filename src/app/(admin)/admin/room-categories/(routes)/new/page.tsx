@@ -14,7 +14,7 @@ import type { RoomCategoryFormInput, RoomCategoryFormOutput, RoomCategoryDto } f
 
 export default function RoomCategoryNew() {
   const hotelId = useHotelSwitch((state) => state.hotelId);
-  const { handleOnSubmit, isPending } = useRoomCategoryCreate();
+  const { create, isPending } = useRoomCategoryCreate();
 
   const onHandleSubmit = useCallback(
     async (data: RoomCategoryFormOutput) => {
@@ -26,9 +26,9 @@ export default function RoomCategoryNew() {
         hotelId,
       };
 
-      await handleOnSubmit(dto);
+      await create(dto);
     },
-    [handleOnSubmit, hotelId],
+    [create, hotelId],
   );
 
   return (

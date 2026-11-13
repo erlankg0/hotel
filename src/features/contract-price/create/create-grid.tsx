@@ -1,11 +1,10 @@
 'use client';
 
 import { Euro, Pencil, RotateCcw } from 'lucide-react';
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 
 import { useContractPeriodsQuery } from '@/entities/contract-period';
-import { useOccupanciesQuery } from '@/entities/occupancy';
-import { } from '@/entities'
+import { useContractRoomsQuery } from '@/entities/contract-room';
 import { formatDate } from '@/shared/lib/utils';
 import { Button } from '@/shared/ui/button';
 import {
@@ -29,22 +28,7 @@ import {
   TableRow,
 } from '@/shared/ui/table';
 
-const rooms = [
-  { id: 'std', title: 'Standard Room', hint: 'Базовое размещение DBL' },
-  { id: 'fam', title: 'Family Room', hint: 'Базовое размещение DBL' },
-];
 
-const occupancies = [
-  { id: 'dbl', label: 'DBL', hint: '2 AD · 0 CHD · 0 INF', isBase: true, multiplier: { summer: 1, winter: 1 } },
-  { id: 'sngl', label: 'SNGL', hint: '1 AD · 0 CHD · 0 INF', isBase: false, multiplier: { summer: 1.5, winter: 1.8 } },
-  {
-    id: 'dblchd',
-    label: 'DBL+CHD',
-    hint: '2 AD · 1 CHD · 0 INF',
-    isBase: false,
-    multiplier: { summer: 1.15, winter: 1.2 },
-  },
-];
 
 type CellKey = `${string}:${string}:${string}`;
 
@@ -61,7 +45,8 @@ export function CreateGrid({ id }: { id: string }) {
   });
   const [manual, setManual] = useState<Record<CellKey, string>>({});
   const { data: periods } = useContractPeriodsQuery({ id });
-  const { data: occupancies1 } = useOccupanciesQuery({ contractId: id });
+  const { data: rooms } = useContractRoomsQuery({ id });
+
   return (
     <Card className="w-full">
       <CardHeader className="border-b bg-background">
@@ -69,7 +54,7 @@ export function CreateGrid({ id }: { id: string }) {
           <div>
             <CardTitle>Контрактные цены</CardTitle>
             <CardDescription>
-              Цена базового размещения на период. Остальные occupancy считаются по правилу.
+              Вводится цена PP на период. Остальные размещения считаются по правилу.
               Клик по ячейке — ручная цена.
             </CardDescription>
           </div>
@@ -94,133 +79,140 @@ export function CreateGrid({ id }: { id: string }) {
                     </div>
                     <div className="mt-1 whitespace-nowrap text-xs font-semibold">{formatDate(period.startDate)}</div>
                     <div className="mt-1 whitespace-nowrap text-xs font-semibold">{formatDate(period.endDate)}</div>
-
                   </TableHead>
                 ))}
               </TableRow>
             </TableHeader>
 
             <TableBody>
-              {rooms.map((room) =>
-                occupancies.map((occupancy, occupancyIndex) => (
-                  <TableRow key={`${room.id}:${occupancy.id}`} className="bg-background">
-                    {occupancyIndex === 0 && (
-                      <TableCell
-                        rowSpan={occupancies.length}
-                        className="sticky left-0 z-20 border-r bg-background align-top"
-                      >
-                        <div className="pt-2">
-                          <p className="text-sm font-semibold">{room.title}</p>
-                          <p className="mt-1 text-xs text-muted-foreground">{room.hint}</p>
-                        </div>
-                      </TableCell>
-                    )}
+              {rooms.map((room) => (
+                <Fragment key={room.id}>
+                  {/* ───── PP: единственная строка с вводом ───── */}
+                  <TableRow className="bg-muted/30 hover:bg-muted/30">
+                    <TableCell
+                      rowSpan={room.occupancyRules.length + 1}
+                      className="sticky left-0 z-20 border-r bg-background align-top"
+                    >
+                      <div className="pt-2">
+                        <p className="text-sm font-semibold">{room.roomCategory.title}</p>
+                        <p className="mt-1 text-xs text-muted-foreground">{room.roomCategory.shortTitle}</p>
+                      </div>
+                    </TableCell>
 
-                    <TableCell className="sticky left-48 z-10 border-r bg-background">
-                      <div className="text-sm font-semibold">{occupancy.label}</div>
-                      <div className="mt-1 text-[10px] text-muted-foreground">{occupancy.hint}</div>
-                      {occupancy.isBase && (
-                        <div className="mt-1 text-[10px] font-medium text-primary">база</div>
-                      )}
+                    <TableCell className="sticky left-48 z-10 border-r bg-muted/95">
+                      <div className="text-sm font-semibold">PP</div>
+                      <div className="mt-1 text-[10px] text-muted-foreground">цена за человека</div>
+                      <div className="mt-1 text-[10px] font-medium text-primary">база</div>
                     </TableCell>
 
                     {periods.map((period) => {
                       const baseKey = `${room.id}:${period.id}`;
-                      const cellKey = `${room.id}:${occupancy.id}:${period.id}` as CellKey;
-                      const base = Number(basePrice[baseKey]);
-                      const hasBase = Number.isFinite(base) && base > 0;
-                      const multiplier = occupancy.multiplier[period.id as 'summer' | 'winter'];
-                      const isManual = cellKey in manual;
-                      const derived = hasBase ? round2(base * multiplier) : null;
-
-                      if (occupancy.isBase) {
-                        return (
-                          <TableCell key={period.id} className="border-l px-2 py-2">
-                            <InputGroup>
-                              <InputGroupInput
-                                type="number"
-                                min="0"
-                                step="0.01"
-                                placeholder="0,00"
-                                value={basePrice[baseKey] ?? ''}
-                                onChange={(event) =>
-                                  setBasePrice((current) => ({
-                                    ...current,
-                                    [baseKey]: event.target.value,
-                                  }))
-                                }
-                              />
-                              <InputGroupAddon align="inline-end">
-                                <Euro className="size-3 text-muted-foreground" />
-                              </InputGroupAddon>
-                            </InputGroup>
-                          </TableCell>
-                        );
-                      }
-
                       return (
-                        <TableCell key={period.id} className="border-l px-2 py-2 text-center">
-                          {isManual ? (
-                            <div className="flex items-center gap-1">
-                              <InputGroup>
-                                <InputGroupInput
-                                  type="number"
-                                  min="0"
-                                  step="0.01"
-                                  value={manual[cellKey]}
-                                  onChange={(event) =>
-                                    setManual((current) => ({
-                                      ...current,
-                                      [cellKey]: event.target.value,
-                                    }))
-                                  }
-                                />
-                                <InputGroupAddon align="inline-end">
-                                  <Euro className="size-3 text-muted-foreground" />
-                                </InputGroupAddon>
-                              </InputGroup>
-                              <Button
-                                type="button"
-                                size="icon"
-                                variant="ghost"
-                                onClick={() =>
-                                  setManual((current) => {
-                                    const next = { ...current };
-                                    delete next[cellKey];
-                                    return next;
-                                  })
-                                }
-                              >
-                                <RotateCcw className="size-3.5" />
-                              </Button>
-                            </div>
-                          ) : (
-                            <button
-                              type="button"
-                              className="group w-full rounded-md px-2 py-1 hover:bg-muted/60"
-                              onClick={() =>
-                                setManual((current) => ({
+                        <TableCell key={period.id} className="border-l px-2 py-2">
+                          <InputGroup>
+                            <InputGroupInput
+                              type="number"
+                              min="0"
+                              step="0.01"
+                              placeholder="0,00"
+                              value={basePrice[baseKey] ?? ''}
+                              onChange={(event) =>
+                                setBasePrice((current) => ({
                                   ...current,
-                                  [cellKey]: derived != null ? String(derived) : '',
+                                  [baseKey]: event.target.value,
                                 }))
                               }
-                            >
-                              <div className="font-semibold tabular-nums">
-                                {derived == null ? '—' : `${derived.toFixed(2)} €`}
-                              </div>
-                              <div
-                                className="mt-1 flex items-center justify-center gap-1 text-[10px] tabular-nums text-muted-foreground">
-                                {hasBase ? `× ${multiplier}` : 'нет базы'}
-                                <Pencil className="size-2.5 opacity-0 group-hover:opacity-100" />
-                              </div>
-                            </button>
-                          )}
+                            />
+                            <InputGroupAddon align="inline-end">
+                              <Euro className="size-3 text-muted-foreground" />
+                            </InputGroupAddon>
+                          </InputGroup>
                         </TableCell>
                       );
                     })}
                   </TableRow>
-                )),
-              )}
+
+                  {/* ───── DBL, SNGL, ... : только расчёт ───── */}
+                  {room.occupancyRules.map((occupancy) => (
+                    <TableRow key={`${room.id}:${occupancy.id}`} className="bg-background">
+                      <TableCell className="sticky left-48 z-10 border-r bg-background">
+                        <div className="text-sm font-semibold">{occupancy.id}</div>
+                        <div className="mt-1 text-[10px] text-muted-foreground">test</div>
+                      </TableCell>
+
+                      {periods.map((period) => {
+                        const baseKey = `${room.id}:${period.id}`;
+                        const cellKey = `${room.id}:${occupancy.id}:${period.id}` as CellKey;
+                        const base = Number(basePrice[baseKey]);
+                        const hasBase = Number.isFinite(base) && base > 0;
+                        const multiplier = occupancy.multiplier;
+                        const isManual = cellKey in manual;
+                        const derived = hasBase ? round2(base * multiplier) : null;
+
+                        return (
+                          <TableCell key={period.id} className="border-l px-2 py-2 text-center">
+                            {isManual ? (
+                              <div className="flex items-center gap-1">
+                                <InputGroup>
+                                  <InputGroupInput
+                                    type="number"
+                                    min="0"
+                                    step="0.01"
+                                    value={manual[cellKey]}
+                                    onChange={(event) =>
+                                      setManual((current) => ({
+                                        ...current,
+                                        [cellKey]: event.target.value,
+                                      }))
+                                    }
+                                  />
+                                  <InputGroupAddon align="inline-end">
+                                    <Euro className="size-3 text-muted-foreground" />
+                                  </InputGroupAddon>
+                                </InputGroup>
+                                <Button
+                                  type="button"
+                                  size="icon"
+                                  variant="ghost"
+                                  onClick={() =>
+                                    setManual((current) => {
+                                      const next = { ...current };
+                                      delete next[cellKey];
+                                      return next;
+                                    })
+                                  }
+                                >
+                                  <RotateCcw className="size-3.5" />
+                                </Button>
+                              </div>
+                            ) : (
+                              <button
+                                type="button"
+                                className="group w-full rounded-md px-2 py-1 hover:bg-muted/60"
+                                onClick={() =>
+                                  setManual((current) => ({
+                                    ...current,
+                                    [cellKey]: derived != null ? String(derived) : '',
+                                  }))
+                                }
+                              >
+                                <div className="font-semibold tabular-nums">
+                                  {derived == null ? '—' : `${derived.toFixed(2)} €`}
+                                </div>
+                                <div
+                                  className="mt-1 flex items-center justify-center gap-1 text-[10px] tabular-nums text-muted-foreground">
+                                  {hasBase ? `× ${multiplier}` : 'нет базы'}
+                                  <Pencil className="size-2.5 opacity-0 group-hover:opacity-100" />
+                                </div>
+                              </button>
+                            )}
+                          </TableCell>
+                        );
+                      })}
+                    </TableRow>
+                  ))}
+                </Fragment>
+              ))}
             </TableBody>
           </Table>
         </div>

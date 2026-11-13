@@ -27,7 +27,7 @@ export default function RoomPagr() {
           slot={
             <div className={'flex flex-row items-center gap-2'}>
               <Button type={'button'}>
-                <Link href={`room-category/new?=hotelId=${hotelId}`}>
+                <Link href={`room-categories/new`}>
                   <Plus size={14} />
                 </Link>
               </Button>

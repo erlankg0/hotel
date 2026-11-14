@@ -1,6 +1,6 @@
 'use client';
 
-import { Euro, Pencil, RotateCcw } from 'lucide-react';
+import { Euro, Pencil, RotateCcw,Baby, Users, UserRound } from 'lucide-react';
 import { Fragment, useState } from 'react';
 
 import { useContractPeriodsQuery } from '@/entities/contract-period';
@@ -29,7 +29,6 @@ import {
 } from '@/shared/ui/table';
 
 
-
 type CellKey = `${string}:${string}:${string}`;
 
 function round2(n: number) {
@@ -37,12 +36,7 @@ function round2(n: number) {
 }
 
 export function CreateGrid({ id }: { id: string }) {
-  const [basePrice, setBasePrice] = useState<Record<string, string>>({
-    'std:summer': '340',
-    'std:winter': '280',
-    'fam:summer': '410',
-    'fam:winter': '350',
-  });
+  const [basePrice, setBasePrice] = useState<Record<string, string>>({});
   const [manual, setManual] = useState<Record<CellKey, string>>({});
   const { data: periods } = useContractPeriodsQuery({ id });
   const { data: rooms } = useContractRoomsQuery({ id });
@@ -136,8 +130,23 @@ export function CreateGrid({ id }: { id: string }) {
                   {room.occupancyRules.map((occupancy) => (
                     <TableRow key={`${room.id}:${occupancy.id}`} className="bg-background">
                       <TableCell className="sticky left-48 z-10 border-r bg-background">
-                        <div className="text-sm font-semibold">{occupancy.id}</div>
-                        <div className="mt-1 text-[10px] text-muted-foreground">test</div>
+                        <div className="text-sm font-semibold">{occupancy.occupancy.title}</div>
+                        <div className="mt-1 flex items-center gap-2 text-[10px] text-muted-foreground">
+                          <div className="inline-flex items-center gap-1">
+                            <Users className="h-3 w-3" />
+                            {occupancy.occupancy.adults}
+                          </div>
+
+                          <div className="inline-flex items-center gap-1">
+                            <UserRound className="h-3 w-3" />
+                            {occupancy.occupancy.children}
+                          </div>
+
+                          <div className="inline-flex items-center gap-1">
+                            <Baby className="h-3 w-3" />
+                            {occupancy.occupancy.babies}
+                          </div>
+                        </div>
                       </TableCell>
 
                       {periods.map((period) => {

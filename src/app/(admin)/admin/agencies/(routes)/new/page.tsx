@@ -11,7 +11,7 @@ import { Page } from '@/widget/page';
 import type { AgencyCreateFormValues, AgencyCreateFromInput } from '@/features/agency';
 
 export default function AgencyNew() {
-  const { handleOnSubmit, isPending } = useAgencyCreate();
+  const { create, isPending } = useAgencyCreate();
   const searchParams = useSearchParams();
   const operatorId = searchParams.get('operatorId') || '';
 
@@ -20,7 +20,7 @@ export default function AgencyNew() {
       throw new Error('Operator ID не найден');
     }
 
-    await handleOnSubmit({
+    await create({
      ...dto,
       operatorId: operatorId,
     });

@@ -12,9 +12,6 @@ import { PageHeader } from '@/widget/page-header';
 
 import type { OccupancyRuleType } from '@/entities/occupcancy-rule';
 
-
-
-
 export default function OccupancyPage() {
     const { roomId } = useParams<{ roomId: string }>();
     const [search, setSearch] = useState('');

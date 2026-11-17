@@ -2,9 +2,8 @@
 
 import { Luggage, X, Upload } from 'lucide-react';
 import Image from 'next/image';
-import { useMemo } from 'react';
 import { useFormContext } from 'react-hook-form';
-
+import { useObjectUrl } from '@/shared/lib/hooks/useObjectUrl';
 import { Button } from '@/shared/ui/button';
 import { Card, CardHeader, CardContent, CardTitle } from '@/shared/ui/card';
 import {
@@ -37,10 +36,7 @@ export function Create() {
 
   const file = watch('file');
 
-  const previewUrl = useMemo(() => {
-    if (!file) return null;
-    return URL.createObjectURL(file);
-  }, [file]);
+  const previewUrl = useObjectUrl(file);
 
   const handleRemoveFile = () => {
     resetField('file');
@@ -98,6 +94,8 @@ export function Create() {
                     src={previewUrl}
                     alt="Превью иконки оператора"
                     className="size-16 rounded-md border object-cover"
+                    width={100}
+                    height={100}
                   />
                   <Button
                     type="button"

@@ -7,7 +7,6 @@ import { useParams } from 'next/navigation';
 import { Currency, ContractStatus } from '@/shared/const/enums';
 import { ContractHeader, ContractTabs } from '@/widget/contract';
 
-
 const tabs = (id: string) => {
   return (
     [

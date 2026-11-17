@@ -43,7 +43,7 @@ export const columnsOperator: Array<ColumnDef<typeof features, AgencyType>> = [
     header: 'Контракты',
     cell: ({ row }) => (
       <Link
-        href={`contracts?=${row.original.id}`}
+        href={`contracts?agencyId=${row.original.id}`}
         className="inline-flex items-center text-xs font-medium text-slate-700 bg-slate-100 hover:bg-slate-200/80 px-2.5 py-1.5 rounded-lg transition-colors border border-slate-200/60"
       >
         Контракты

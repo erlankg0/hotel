@@ -13,17 +13,17 @@ import { Page } from '@/widget/page';
 import type { MarketCreateInput, MarketCreateOutput } from '@/features/market';
 
 export default function MarketNew() {
-  const { handleOnSubmit, isPending } = useMarketCreate();
+  const { create, isPending } = useMarketCreate();
   const [page, setPage] = useState<number>(1);
   const [search, setSearch] = useState<string>('');
   const { data, isLoading } = useCountiesQuery({ search: search });
 
   const onHandleSubmit = useCallback(async (dto: MarketCreateInput) => {
-    await handleOnSubmit({
+    await create({
       title: dto.title,
       countries: dto.countries.map((item) => item.id),
     });
-  }, [handleOnSubmit]);
+  }, [create]);
 
   return (
     <Page>

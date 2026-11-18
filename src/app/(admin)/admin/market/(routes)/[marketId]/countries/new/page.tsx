@@ -11,11 +11,11 @@ import { Page } from '@/widget/page';
 import type { CountryCreateInput, CountryCreateOutput, CountryDto } from '@/features/country';
 
 export default function Country() {
-  const { handleOnSubmit, isPending } = useCountryCreate();
+  const { create, isPending } = useCountryCreate();
   const { marketId } = useParams<{ marketId: string }>();
 
   async function onHandleSubmit(dto: CountryDto) {
-    await handleOnSubmit({ ...dto, marketId: marketId });
+    await create({ ...dto, marketId: marketId });
   }
 
   return (

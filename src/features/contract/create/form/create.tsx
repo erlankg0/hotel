@@ -8,6 +8,7 @@ import {
   Currency,
   contractStatusLabels,
   currencyLabels,
+  boardTypeLabels
 } from '@/shared/const/enums';
 import { Card, CardContent } from '@/shared/ui/card';
 import {
@@ -36,14 +37,14 @@ import type { ContractFormInput } from '../../model/types';
 import type { Props } from '@/shared/types/types';
 
 export function CreateForm({
-                             search,
-                             setSearch,
-                             data,
-                             isLoading,
-                             page,
-                             setPage,
-                             total,
-                           }: Props) {
+  search,
+  setSearch,
+  data,
+  isLoading,
+  page,
+  setPage,
+  total,
+}: Props) {
   const {
     register,
     formState: { errors },
@@ -223,27 +224,27 @@ export function CreateForm({
 
                       <SelectContent>
                         <SelectItem value={BoardType.RO}>
-                          [boardTypeLabels[BoardType.RO]]
+                          {[boardTypeLabels[BoardType.RO]]}
                         </SelectItem>
 
                         <SelectItem value={BoardType.BB}>
-                          [boardTypeLabels[BoardType.BB]]
+                          {[boardTypeLabels[BoardType.BB]]}
                         </SelectItem>
 
                         <SelectItem value={BoardType.HB}>
-                          [boardTypeLabels[BoardType.HB]]
+                          {[boardTypeLabels[BoardType.HB]]}
                         </SelectItem>
 
                         <SelectItem value={BoardType.FB}>
-                          [boardTypeLabels[BoardType.FB]]
+                          {[boardTypeLabels[BoardType.FB]]}
                         </SelectItem>
 
                         <SelectItem value={BoardType.AI}>
-                          [boardTypeLabels[BoardType.AI]]
+                          {[boardTypeLabels[BoardType.AI]]}
                         </SelectItem>
 
                         <SelectItem value={BoardType.UAI}>
-                          [boardTypeLabels[BoardType.UAI]]
+                          {[boardTypeLabels[BoardType.UAI]]}                   
                         </SelectItem>
                       </SelectContent>
                     </Select>
@@ -273,7 +274,6 @@ export function CreateForm({
             </div>
 
             <div className="grid gap-6 lg:grid-cols-2">
-              {/* Продажи */}
               <div className="space-y-4 rounded-lg border p-4">
                 <div className="flex items-center gap-2">
                   <div className="flex size-8 items-center justify-center rounded-md bg-muted">
@@ -346,7 +346,6 @@ export function CreateForm({
                 </div>
               </div>
 
-              {/* Проживание */}
               <div className="space-y-4 rounded-lg border p-4">
                 <div className="flex items-center gap-2">
                   <div className="flex size-8 items-center justify-center rounded-md bg-muted">
@@ -422,7 +421,6 @@ export function CreateForm({
           </CardContent>
         </Card>
 
-        {/* Рынки */}
         <Card>
           <CardContent className="space-y-6 pt-6">
             <div className="space-y-1">

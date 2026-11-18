@@ -23,7 +23,7 @@ import type {
 } from '@/features/contract';
 
 export default function ContractNew() {
-  const { handleOnSubmit, isPending } = useCreateContract();
+  const { create, isPending } = useCreateContract();
 
   const hotelId = useHotelSwitch((state) => state.hotelId);
   const searchParams = useSearchParams();
@@ -39,7 +39,7 @@ export default function ContractNew() {
       throw new Error('ID не найден');
     }
 
-    handleOnSubmit({
+    create({
       ...dto,
       agencyId,
       hotelId: hotelId,

@@ -20,8 +20,8 @@ export default function CountryPage() {
   const { data, isLoading } = useCountryQuery(countryId);
   const { handleOnSubmit, isPending } = useCountryUpdate();
 
-  const onHandleSubmit = useCallback(async (dto: CountryUpdateDto) => {
-    await handleOnSubmit({ id: countryId, dto: { ...dto, marketId } });
+  const onHandleSubmit = useCallback( (dto: CountryUpdateDto) => {
+     handleOnSubmit({ id: countryId, dto: { ...dto, marketId } });
 
   }, [countryId, handleOnSubmit, marketId]);
   

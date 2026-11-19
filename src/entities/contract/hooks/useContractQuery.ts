@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import { QueryOptionContract } from '../model/query-option';
 
-export const useContractQuery = (id: string) => {
+export const useContractQuery = ({ id }: { id: string }) => {
   const {
     data,
     error,
@@ -12,7 +12,7 @@ export const useContractQuery = (id: string) => {
   });
 
   return {
-    data: data?.data.data,
+    data: data?.data,
     isLoading,
     error,
   };

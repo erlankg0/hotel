@@ -3,10 +3,10 @@
 
 import { Boxes, BedDouble, Calendar, Table2, HandCoins } from 'lucide-react';
 import { useParams } from 'next/navigation';
-
-import { Currency, ContractStatus } from '@/shared/const/enums';
 import { ContractHeader, ContractTabs } from '@/widget/contract';
-
+import { Page } from '@/widget/page';
+import { useContractQuery } from '@/entities/contract';
+import { formatDate} from '@/shared/lib/utils'
 const tabs = (id: string) => {
   return (
     [
@@ -15,26 +15,48 @@ const tabs = (id: string) => {
       { icon: Boxes, title: 'Пакеты', href: 'id' },
       { icon: Calendar, title: 'Периоды', href: `${id}/periods` },
       { icon: HandCoins, title: 'Тарифы и цены', href: `${id}/prices` },
-
     ]
   );
 };
 
-export default function Page() {
+export default function ContractDetailPage() {
   const { contractId } = useParams<{ contractId: string }>();
+  const { data, isLoading } = useContractQuery({ id: contractId });
+
+
+  const contract = data?.data;
+
+  if (isLoading) {
+    return (
+      <Page>
+        <div className="animate-pulse h-32 rounded-xl bg-muted" />
+      </Page>
+    );
+  }
+
+  if (!contract) {
+    return (
+      <Page>
+        <p>Контракт не найден</p>
+      </Page>
+    );
+  }
+
 
   return (
-    <section className="flex flex-col gap-6">
-      <ContractHeader contract={{
-        currency: Currency.EUR,
-        hotelTitle: 'Utopia World',
-        id: '!',
-        operatorTitle: 'Odeon',
-        season: '2027',
-        status: ContractStatus.DRAFT,
-        title: 'Summer 2027',
-      }} />
-      <ContractTabs options={tabs(contractId)} />
-    </section>
+    <Page>
+      <section className="flex flex-col gap-6">
+        <ContractHeader contract={{
+          currency: contract.currency,
+          hotelTitle: 'Utopia World',
+          id: contractId,
+          operatorTitle: 'Odeon',
+          season: formatDate(contract.salesStart),
+          status: contract.status,
+          title: data?.data.title || '',
+        }} />
+        <ContractTabs options={tabs(contractId)} />
+      </section>
+    </Page>
   );
 }

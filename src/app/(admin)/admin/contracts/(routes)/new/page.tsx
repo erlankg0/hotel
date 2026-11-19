@@ -1,12 +1,14 @@
 import { Suspense } from 'react';
-
+import { Page } from '@/widget/page';
 import ContractNew from './contract-new';
 
-export default function Page() {
+export default function ContractPage() {
   return (
-    <Suspense fallback={<ContractSkeleton />}>
-      <ContractNew />
-    </Suspense>
+    <Page>
+      <Suspense fallback={<ContractSkeleton />}>
+        <ContractNew />
+      </Suspense>
+    </Page>
   );
 }
 

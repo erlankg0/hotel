@@ -7,10 +7,10 @@ import type { QueryOptions } from '@/shared/types/response';
 
 export const QueryOptionOccupancyRule = {
   baseKey: 'occupancy-rule',
-  get: ({ title, limit, enabled, page }: QueryOptions) => {
+  get: ({ title, limit, enabled, page, id }: QueryOptions) => {
     return queryOptions({
-      queryFn: () => get({ title, limit, page }),
-      queryKey: ['occupancy', { title, limit, page }],
+      queryFn: () => get({ title, limit, page, id }),
+      queryKey: ['occupancy', { title, limit, page, id }],
       placeholderData: keepPreviousData,
       enabled: enabled,
     });

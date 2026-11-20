@@ -4,5 +4,8 @@ import type { OccupancyRuleType } from '../model/types';
 import type { QueryOptions } from '@/shared/types/response';
 
 export const get = async (params: QueryOptions) => {
-    return await api.get<OccupancyRuleType>('occupancy-rule', params);
-}
+  return await api.get<OccupancyRuleType>('occupancy-rule', {
+    ...params,
+    ...(params.id ? { roomId: params.id } : {}),
+  });
+};

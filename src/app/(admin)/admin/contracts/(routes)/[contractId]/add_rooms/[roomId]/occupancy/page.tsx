@@ -25,12 +25,12 @@ export default function OccupancyPage() {
         <Page
             headerSlog={
                 <PageHeader
-                    title="Правила проживания"
+                    title={"Правила проживания"}
                     searchValue={search}
                     onSearchOnChange={setSearch}
                     slot={
                         <Button>
-                            <Link href={'occupancy/add'}><Plus /></Link>
+                            <Link href={'occupancy/add'}>Добавить <Plus /></Link>
                         </Button>
                     }
                 />

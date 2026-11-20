@@ -57,6 +57,13 @@ export const contractStatusLabels: Record<ContractStatus, string> = {
   [ContractStatus.EXPIRED]: 'Истёк',
 };
 
+export const contractStatusStyles: Record<ContractStatus, string> = {
+    [ContractStatus.DRAFT]: 'bg-slate-100 text-slate-600 border-slate-200',
+    [ContractStatus.ACTIVE]: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+    [ContractStatus.SUSPENDED]: 'bg-amber-50 text-amber-700 border-amber-200',
+    [ContractStatus.EXPIRED]: 'bg-red-50 text-red-700 border-red-200',
+};
+
 export const boardTypeLabels: Record<BoardType, string> = {
   [BoardType.RO]: 'Только проживание',
   [BoardType.BB]: 'Завтрак',

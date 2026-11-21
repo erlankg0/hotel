@@ -1,18 +1,14 @@
 'use client';
 
-import { Euro, Pencil, RotateCcw,Baby, Users, UserRound } from 'lucide-react';
+import { Euro, Pencil, RotateCcw, Baby, Users, UserRound } from 'lucide-react';
 import { Fragment, useState } from 'react';
 
 import { useContractPeriodsQuery } from '@/entities/contract-period';
 import { useContractRoomsQuery } from '@/entities/contract-room';
-import { formatDate } from '@/shared/lib/utils';
 import { Button } from '@/shared/ui/button';
 import {
   Card,
   CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
 } from '@/shared/ui/card';
 import {
   InputGroup,
@@ -23,11 +19,11 @@ import {
   Table,
   TableBody,
   TableCell,
-  TableHead,
-  TableHeader,
   TableRow,
 } from '@/shared/ui/table';
-
+import { GridSkeleton } from './skeleton-grid';
+import { Header } from './ui/table-header';
+import { TablePeriods } from './ui/table-periods';
 
 type CellKey = `${string}:${string}:${string}`;
 
@@ -38,50 +34,27 @@ function round2(n: number) {
 export function CreateGrid({ id }: { id: string }) {
   const [basePrice, setBasePrice] = useState<Record<string, string>>({});
   const [manual, setManual] = useState<Record<CellKey, string>>({});
-  const { data: periods } = useContractPeriodsQuery({ id });
-  const { data: rooms } = useContractRoomsQuery({ id });
+  const { data: periods, isLoading: isLoadingPeriods } = useContractPeriodsQuery({ id });
+  const { data: rooms, isLoading: isLoadingRooms } = useContractRoomsQuery({ id });
+
+  const isLoading = isLoadingPeriods || isLoadingRooms;
+
+  if (isLoading) {
+    return <GridSkeleton />
+  }
 
   return (
     <Card className="w-full">
-      <CardHeader className="border-b bg-background">
-        <div className="flex flex-wrap items-end justify-between gap-4">
-          <div>
-            <CardTitle>Контрактные цены</CardTitle>
-            <CardDescription>
-              Вводится цена PP на период. Остальные размещения считаются по правилу.
-              Клик по ячейке — ручная цена.
-            </CardDescription>
-          </div>
-        </div>
-      </CardHeader>
+      <Header />
 
       <CardContent className="pt-4">
         <div className="overflow-x-auto">
           <Table className="border-separate border-spacing-0">
-            <TableHeader>
-              <TableRow className="bg-muted/70 hover:bg-muted/70">
-                <TableHead className="sticky left-0 z-30 min-w-48 border-r bg-muted/95 text-foreground">
-                  Категория номера
-                </TableHead>
-                <TableHead className="sticky left-48 z-30 min-w-44 border-r bg-muted/95 text-foreground">
-                  Размещение
-                </TableHead>
-                {periods.map((period) => (
-                  <TableHead key={period.id} className="min-w-44 px-3 py-2 text-center text-foreground">
-                    <div className="text-[10px] font-normal uppercase tracking-wider text-muted-foreground">
-                      {period.title}
-                    </div>
-                    <div className="mt-1 whitespace-nowrap text-xs font-semibold">{formatDate(period.startDate)}</div>
-                    <div className="mt-1 whitespace-nowrap text-xs font-semibold">{formatDate(period.endDate)}</div>
-                  </TableHead>
-                ))}
-              </TableRow>
-            </TableHeader>
-
+            <TablePeriods periods={periods}  />
+           
             <TableBody>
               {rooms.map((room) => (
                 <Fragment key={room.id}>
-                  {/* ───── PP: единственная строка с вводом ───── */}
                   <TableRow className="bg-muted/30 hover:bg-muted/30">
                     <TableCell
                       rowSpan={room.occupancyRules.length + 1}
@@ -126,7 +99,6 @@ export function CreateGrid({ id }: { id: string }) {
                     })}
                   </TableRow>
 
-                  {/* ───── DBL, SNGL, ... : только расчёт ───── */}
                   {room.occupancyRules.map((occupancy) => (
                     <TableRow key={`${room.id}:${occupancy.id}`} className="bg-background">
                       <TableCell className="sticky left-48 z-10 border-r bg-background">
@@ -224,10 +196,6 @@ export function CreateGrid({ id }: { id: string }) {
               ))}
             </TableBody>
           </Table>
-        </div>
-
-        <div className="mt-4 flex justify-end">
-          <Button type="button">Сохранить</Button>
         </div>
       </CardContent>
     </Card>
